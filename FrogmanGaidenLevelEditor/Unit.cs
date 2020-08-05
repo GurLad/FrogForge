@@ -42,7 +42,7 @@ namespace FrogmanGaidenLevelEditor
 
         public override string ToString()
         {
-            return Team.ToString()[0] + ", " + Class + ", " + Level + "; " + Pos.X + ", " + Pos.Y;
+            return Team.ToString()[0] + ",C:" + Class + ",L:" + Level + ";(" + Pos.X + "," + Pos.Y + ")";
         }
     }
 }

@@ -36,13 +36,15 @@
             this.pnlBG = new System.Windows.Forms.Panel();
             this.picPreview = new System.Windows.Forms.Label();
             this.grpUnit = new System.Windows.Forms.GroupBox();
-            this.cmbUnitTeam = new System.Windows.Forms.ComboBox();
-            this.nudLevel = new System.Windows.Forms.NumericUpDown();
-            this.txtClass = new System.Windows.Forms.TextBox();
-            this.btnPlace = new System.Windows.Forms.Button();
-            this.pnlUI = new System.Windows.Forms.Panel();
-            this.lstUnits = new System.Windows.Forms.ListBox();
             this.btnRemove = new System.Windows.Forms.Button();
+            this.lstUnits = new System.Windows.Forms.ListBox();
+            this.btnPlace = new System.Windows.Forms.Button();
+            this.txtClass = new System.Windows.Forms.TextBox();
+            this.nudLevel = new System.Windows.Forms.NumericUpDown();
+            this.cmbUnitTeam = new System.Windows.Forms.ComboBox();
+            this.pnlUI = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbTileSets = new System.Windows.Forms.ComboBox();
             this.grpUnit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             this.pnlUI.SuspendLayout();
@@ -52,20 +54,20 @@
             // 
             this.pnlPossibleTiles.Location = new System.Drawing.Point(0, 1);
             this.pnlPossibleTiles.Name = "pnlPossibleTiles";
-            this.pnlPossibleTiles.Size = new System.Drawing.Size(80, 48);
+            this.pnlPossibleTiles.Size = new System.Drawing.Size(96, 80);
             this.pnlPossibleTiles.TabIndex = 28;
             // 
             // cmbLevelName
             // 
             this.cmbLevelName.FormattingEnabled = true;
-            this.cmbLevelName.Location = new System.Drawing.Point(0, 55);
+            this.cmbLevelName.Location = new System.Drawing.Point(0, 127);
             this.cmbLevelName.Name = "cmbLevelName";
             this.cmbLevelName.Size = new System.Drawing.Size(80, 21);
             this.cmbLevelName.TabIndex = 18;
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(86, 69);
+            this.btnLoad.Location = new System.Drawing.Point(86, 141);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(47, 23);
             this.btnLoad.TabIndex = 16;
@@ -75,7 +77,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(86, 40);
+            this.btnSave.Location = new System.Drawing.Point(86, 112);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(47, 23);
             this.btnSave.TabIndex = 17;
@@ -100,7 +102,7 @@
             // picPreview
             // 
             this.picPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picPreview.Location = new System.Drawing.Point(80, 0);
+            this.picPreview.Location = new System.Drawing.Point(102, 0);
             this.picPreview.Name = "picPreview";
             this.picPreview.Size = new System.Drawing.Size(18, 18);
             this.picPreview.TabIndex = 29;
@@ -121,18 +123,40 @@
             this.grpUnit.TabStop = false;
             this.grpUnit.Text = "Units";
             // 
-            // cmbUnitTeam
+            // btnRemove
             // 
-            this.cmbUnitTeam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbUnitTeam.FormattingEnabled = true;
-            this.cmbUnitTeam.Items.AddRange(new object[] {
-            "Player",
-            "Monster",
-            "Guard"});
-            this.cmbUnitTeam.Location = new System.Drawing.Point(7, 20);
-            this.cmbUnitTeam.Name = "cmbUnitTeam";
-            this.cmbUnitTeam.Size = new System.Drawing.Size(62, 21);
-            this.cmbUnitTeam.TabIndex = 0;
+            this.btnRemove.Location = new System.Drawing.Point(7, 155);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(104, 23);
+            this.btnRemove.TabIndex = 5;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // lstUnits
+            // 
+            this.lstUnits.FormattingEnabled = true;
+            this.lstUnits.Location = new System.Drawing.Point(7, 105);
+            this.lstUnits.Name = "lstUnits";
+            this.lstUnits.Size = new System.Drawing.Size(104, 43);
+            this.lstUnits.TabIndex = 4;
+            // 
+            // btnPlace
+            // 
+            this.btnPlace.Location = new System.Drawing.Point(7, 75);
+            this.btnPlace.Name = "btnPlace";
+            this.btnPlace.Size = new System.Drawing.Size(104, 23);
+            this.btnPlace.TabIndex = 3;
+            this.btnPlace.Text = "Place";
+            this.btnPlace.UseVisualStyleBackColor = true;
+            this.btnPlace.Click += new System.EventHandler(this.btnPlace_Click);
+            // 
+            // txtClass
+            // 
+            this.txtClass.Location = new System.Drawing.Point(7, 48);
+            this.txtClass.Name = "txtClass";
+            this.txtClass.Size = new System.Drawing.Size(104, 20);
+            this.txtClass.TabIndex = 2;
             // 
             // nudLevel
             // 
@@ -146,27 +170,25 @@
             this.nudLevel.Size = new System.Drawing.Size(36, 20);
             this.nudLevel.TabIndex = 1;
             // 
-            // txtClass
+            // cmbUnitTeam
             // 
-            this.txtClass.Location = new System.Drawing.Point(7, 48);
-            this.txtClass.Name = "txtClass";
-            this.txtClass.Size = new System.Drawing.Size(104, 20);
-            this.txtClass.TabIndex = 2;
-            // 
-            // btnPlace
-            // 
-            this.btnPlace.Location = new System.Drawing.Point(7, 75);
-            this.btnPlace.Name = "btnPlace";
-            this.btnPlace.Size = new System.Drawing.Size(104, 23);
-            this.btnPlace.TabIndex = 3;
-            this.btnPlace.Text = "Place";
-            this.btnPlace.UseVisualStyleBackColor = true;
-            this.btnPlace.Click += new System.EventHandler(this.btnPlace_Click);
+            this.cmbUnitTeam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUnitTeam.FormattingEnabled = true;
+            this.cmbUnitTeam.Items.AddRange(new object[] {
+            "Player",
+            "Monster",
+            "Guard"});
+            this.cmbUnitTeam.Location = new System.Drawing.Point(7, 20);
+            this.cmbUnitTeam.Name = "cmbUnitTeam";
+            this.cmbUnitTeam.Size = new System.Drawing.Size(62, 21);
+            this.cmbUnitTeam.TabIndex = 0;
             // 
             // pnlUI
             // 
             this.pnlUI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlUI.Controls.Add(this.cmbTileSets);
+            this.pnlUI.Controls.Add(this.label1);
             this.pnlUI.Controls.Add(this.grpUnit);
             this.pnlUI.Controls.Add(this.pnlPossibleTiles);
             this.pnlUI.Controls.Add(this.btnLoad);
@@ -178,23 +200,24 @@
             this.pnlUI.Size = new System.Drawing.Size(256, 190);
             this.pnlUI.TabIndex = 31;
             // 
-            // lstUnits
+            // label1
             // 
-            this.lstUnits.FormattingEnabled = true;
-            this.lstUnits.Location = new System.Drawing.Point(7, 105);
-            this.lstUnits.Name = "lstUnits";
-            this.lstUnits.Size = new System.Drawing.Size(104, 43);
-            this.lstUnits.TabIndex = 4;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 88);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Tile set:";
             // 
-            // btnRemove
+            // cmbTileSets
             // 
-            this.btnRemove.Location = new System.Drawing.Point(7, 155);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(104, 23);
-            this.btnRemove.TabIndex = 5;
-            this.btnRemove.Text = "Remove";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            this.cmbTileSets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTileSets.FormattingEnabled = true;
+            this.cmbTileSets.Location = new System.Drawing.Point(54, 85);
+            this.cmbTileSets.Name = "cmbTileSets";
+            this.cmbTileSets.Size = new System.Drawing.Size(79, 21);
+            this.cmbTileSets.TabIndex = 32;
+            this.cmbTileSets.SelectedIndexChanged += new System.EventHandler(this.cmbTileSets_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -214,6 +237,7 @@
             this.grpUnit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).EndInit();
             this.pnlUI.ResumeLayout(false);
+            this.pnlUI.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -235,6 +259,8 @@
         private System.Windows.Forms.Panel pnlUI;
         private System.Windows.Forms.ListBox lstUnits;
         private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.ComboBox cmbTileSets;
+        private System.Windows.Forms.Label label1;
     }
 }
 

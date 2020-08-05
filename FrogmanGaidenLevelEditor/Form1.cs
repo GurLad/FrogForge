@@ -16,7 +16,8 @@ namespace FrogmanGaidenLevelEditor
     {
         private Tile[,] Tiles;
         private Tile CurrentSelected = new Tile();
-        private List<Image> PossibleImages;
+        private List<string> PossibleTileSets;
+        private List<Image> PossibleImages = new List<Image>();
         private FilesController Files = new FilesController("Data");
         private Label[,] Renderers;
         private Point Size = new Point(16, 15);
@@ -31,34 +32,19 @@ namespace FrogmanGaidenLevelEditor
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Load images
+            //Load levels
             Files.DefultFileFormat = ".level";
-            string[] files = Files.AllFiles(false, false, @"\Images");
             cmbLevelName.Items.AddRange(Files.AllFiles(false, false));
-            //Tiles
-            PossibleImages = new List<Image>();
-            int i = 0;
-            while (files.Contains(i.ToString()))
-            {
-                PossibleImages.Add(Files.LoadImage(i.ToString(), null, false));
-                i++;
-            }
-            for (int j = 0; j < PossibleImages.Count; j++)
-            {
-                Label tileButton = new Label();
-                tileButton.Width = 16;
-                tileButton.Height = 16;
-                tileButton.Left = 16 * (j % 5);
-                tileButton.Top = 16 * (j / 5);
-                tileButton.Image = PossibleImages[j];
-                tileButton.Tag = j;
-                tileButton.Click += BtnTileButton_Click;
-                pnlPossibleTiles.Controls.Add(tileButton);
-            }
-            //End load images
+            //Load tiles
+            PossibleTileSets = new List<string>(Files.AllDirectories(false, @"\Images"));
+            cmbTileSets.Items.AddRange(PossibleTileSets.ToArray());
+            cmbTileSets.SelectedIndex = 0;
+            SetTileSet(PossibleTileSets[0]);
+            //End load files
             //Generate UI
             UpdatePreview();
             Tiles = new Tile[Size.X, Size.Y];
+            int i;
             for (i = 0; i < Tiles.GetLength(0); i++)
             {
                 for (int j = 0; j < Tiles.GetLength(1); j++)
@@ -177,7 +163,7 @@ namespace FrogmanGaidenLevelEditor
             {
                 result += Units[i].ToSaveString() + ";";
             }
-            result = result.Substring(0, result.Length - 1);
+            result = result.Substring(0, result.Length - 1) + "\n" + cmbTileSets.Text;
             Files.SaveFile(cmbLevelName.Text, result);
             if (!cmbLevelName.Items.Contains(cmbLevelName.Text))
             {
@@ -209,7 +195,10 @@ namespace FrogmanGaidenLevelEditor
             {
                 Units.Add(new Unit(rows[i]));
             }
+            cmbTileSets.Text = result[2];
             Render();
+            lstUnits.DataSource = null;
+            lstUnits.DataSource = Units;
         }
 
         private void UpdatePreview()
@@ -246,6 +235,35 @@ namespace FrogmanGaidenLevelEditor
             lstUnits.DataSource = null;
             lstUnits.DataSource = Units;
             Render();
+        }
+
+        private void cmbTileSets_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetTileSet(cmbTileSets.Text);
+        }
+
+        private void SetTileSet(string set)
+        {
+            string[] files = Files.AllFiles(false, true, @"\Images\" + set);
+            pnlPossibleTiles.Controls.Clear();
+            PossibleImages.Clear();
+            for (int i = 0; i < files.Length; i++)
+            {
+                PossibleImages.Add(Files.LoadImage(set + @"\" + files[i], "", false));
+                Label tileButton = new Label();
+                tileButton.Width = 16;
+                tileButton.Height = 16;
+                tileButton.Left = 16 * (i % 6);
+                tileButton.Top = 16 * (i / 6);
+                tileButton.Image = PossibleImages[i];
+                tileButton.Tag = i;
+                tileButton.Click += BtnTileButton_Click;
+                pnlPossibleTiles.Controls.Add(tileButton);
+            }
+            if (Tiles != null)
+            {
+                Render();
+            }
         }
     }
 }
