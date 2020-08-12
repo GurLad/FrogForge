@@ -191,6 +191,7 @@ namespace FrogmanGaidenLevelEditor
                 }
             }
             rows = result[1].Split(';');
+            Units.Clear();
             for (int i = 0; i < rows.Length; i++)
             {
                 Units.Add(new Unit(rows[i]));
