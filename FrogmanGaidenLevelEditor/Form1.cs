@@ -163,7 +163,7 @@ namespace FrogmanGaidenLevelEditor
             {
                 result += Units[i].ToSaveString() + ";";
             }
-            result = result.Substring(0, result.Length - 1) + "\n" + cmbTileSets.Text;
+            result = result.Substring(0, result.Length - 1) + "\n" + cmbTileSets.Text + "\n" + nudLevelNumber.Value;
             Files.SaveFile(cmbLevelName.Text, result);
             if (!cmbLevelName.Items.Contains(cmbLevelName.Text))
             {
@@ -197,6 +197,7 @@ namespace FrogmanGaidenLevelEditor
                 Units.Add(new Unit(rows[i]));
             }
             cmbTileSets.Text = result[2];
+            nudLevelNumber.Value = int.Parse(result[3]);
             Render();
             lstUnits.DataSource = null;
             lstUnits.DataSource = Units;

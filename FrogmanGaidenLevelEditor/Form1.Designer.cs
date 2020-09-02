@@ -43,11 +43,14 @@
             this.nudLevel = new System.Windows.Forms.NumericUpDown();
             this.cmbUnitTeam = new System.Windows.Forms.ComboBox();
             this.pnlUI = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.cmbTileSets = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.nudLevelNumber = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
             this.grpUnit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             this.pnlUI.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlPossibleTiles
@@ -187,6 +190,8 @@
             // 
             this.pnlUI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlUI.Controls.Add(this.label2);
+            this.pnlUI.Controls.Add(this.nudLevelNumber);
             this.pnlUI.Controls.Add(this.cmbTileSets);
             this.pnlUI.Controls.Add(this.label1);
             this.pnlUI.Controls.Add(this.grpUnit);
@@ -200,15 +205,6 @@
             this.pnlUI.Size = new System.Drawing.Size(256, 190);
             this.pnlUI.TabIndex = 31;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 88);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 31;
-            this.label1.Text = "Tile set:";
-            // 
             // cmbTileSets
             // 
             this.cmbTileSets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -218,6 +214,31 @@
             this.cmbTileSets.Size = new System.Drawing.Size(79, 21);
             this.cmbTileSets.TabIndex = 32;
             this.cmbTileSets.SelectedIndexChanged += new System.EventHandler(this.cmbTileSets_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 88);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Tile set:";
+            // 
+            // nudLevelNumber
+            // 
+            this.nudLevelNumber.Location = new System.Drawing.Point(86, 167);
+            this.nudLevelNumber.Name = "nudLevelNumber";
+            this.nudLevelNumber.Size = new System.Drawing.Size(47, 20);
+            this.nudLevelNumber.TabIndex = 33;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 169);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 13);
+            this.label2.TabIndex = 34;
+            this.label2.Text = "Level number:";
             // 
             // Form1
             // 
@@ -238,6 +259,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).EndInit();
             this.pnlUI.ResumeLayout(false);
             this.pnlUI.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -261,6 +283,8 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.ComboBox cmbTileSets;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown nudLevelNumber;
     }
 }
 
