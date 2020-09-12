@@ -13,12 +13,18 @@ namespace FrogmanGaidenLevelEditor
         public Team Team;
         public int Level;
         public string Class;
+        public AIType AIType;
 
         public Unit(Team team, int level, string @class)
         {
             Team = team;
             Level = level;
             Class = @class;
+        }
+
+        public Unit(Team team, int level, string @class, AIType aIType) : this(team, level, @class)
+        {
+            AIType = aIType;
         }
 
         public Unit(string source)
@@ -28,7 +34,7 @@ namespace FrogmanGaidenLevelEditor
 
         public string ToSaveString()
         {
-            return (int)Team + "," + Class + "," + Level + "," + Pos.X + "," + Pos.Y;
+            return (int)Team + "," + Class + "," + Level + "," + (int)AIType + "," + Pos.X + "," + Pos.Y;
         }
         public void FromSaveString(string source)
         {
@@ -36,8 +42,9 @@ namespace FrogmanGaidenLevelEditor
             Team = (Team)int.Parse(parts[0]);
             Class = parts[1];
             Level = int.Parse(parts[2]);
-            Pos.X = int.Parse(parts[3]);
-            Pos.Y = int.Parse(parts[4]);
+            AIType = (AIType)int.Parse(parts[3]);
+            Pos.X = int.Parse(parts[4]);
+            Pos.Y = int.Parse(parts[5]);
         }
 
         public override string ToString()

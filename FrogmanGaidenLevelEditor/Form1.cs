@@ -12,6 +12,7 @@ using Utils;
 namespace FrogmanGaidenLevelEditor
 {
     public enum Team { Player, Monster, Guard }
+    public enum AIType { Charge, Hold, Guard }
     public partial class Form1 : Form
     {
         private Tile[,] Tiles;
@@ -33,7 +34,7 @@ namespace FrogmanGaidenLevelEditor
         private void Form1_Load(object sender, EventArgs e)
         {
             //Load levels
-            Files.DefultFileFormat = ".level";
+            Files.DefultFileFormat = ".txt";
             cmbLevelName.Items.AddRange(Files.AllFiles(false, false));
             //Load tiles
             PossibleTileSets = new List<string>(Files.AllDirectories(false, @"\Images"));
@@ -114,7 +115,7 @@ namespace FrogmanGaidenLevelEditor
                 if (e.Button == MouseButtons.Left)
                 {
                     Placing.Pos = new Point(pictureBox.Left / 16, pictureBox.Top / 16);
-                    pnlUI.Enabled = true;
+                    tbcUI.Enabled = true;
                     Placing = null;
                     lstUnits.DataSource = null;
                     lstUnits.DataSource = Units;
@@ -210,10 +211,10 @@ namespace FrogmanGaidenLevelEditor
 
         private void btnPlace_Click(object sender, EventArgs e)
         {
-            Units.Add(Placing = new Unit((Team)Enum.Parse(typeof(Team), cmbUnitTeam.Text), (int)nudLevel.Value, txtClass.Text));
+            Units.Add(Placing = new Unit((Team)Enum.Parse(typeof(Team), cmbUnitTeam.Text), (int)nudLevel.Value, txtClass.Text, (AIType)Enum.Parse(typeof(AIType), cmbAIType.Text)));
             CurrentSelected = null;
             picPreview.BackgroundImage = null;
-            pnlUI.Enabled = false;
+            tbcUI.Enabled = false;
         }
 
         private Color ColorFromTeam(Team team)
