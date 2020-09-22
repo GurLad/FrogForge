@@ -14,17 +14,17 @@ namespace FrogmanGaidenLevelEditor
         public int Level;
         public string Class;
         public AIType AIType;
+        public int ReinforcementTurn;
+        public bool Statue;
 
-        public Unit(Team team, int level, string @class)
+        public Unit(Team team, int level, string @class, AIType aIType, int reinforcementTurn, bool statue)
         {
             Team = team;
             Level = level;
             Class = @class;
-        }
-
-        public Unit(Team team, int level, string @class, AIType aIType) : this(team, level, @class)
-        {
             AIType = aIType;
+            ReinforcementTurn = reinforcementTurn;
+            Statue = statue;
         }
 
         public Unit(string source)
@@ -34,7 +34,7 @@ namespace FrogmanGaidenLevelEditor
 
         public string ToSaveString()
         {
-            return (int)Team + "," + Class + "," + Level + "," + (int)AIType + "," + Pos.X + "," + Pos.Y;
+            return (int)Team + "," + Class + "," + Level + "," + (int)AIType + "," + Pos.X + "," + Pos.Y + (ReinforcementTurn > 0 ? ("," + ReinforcementTurn + "," + (Statue ? "T" : "F")) : "");
         }
         public void FromSaveString(string source)
         {
@@ -45,6 +45,15 @@ namespace FrogmanGaidenLevelEditor
             AIType = (AIType)int.Parse(parts[3]);
             Pos.X = int.Parse(parts[4]);
             Pos.Y = int.Parse(parts[5]);
+            if (parts.Length > 6)
+            {
+                ReinforcementTurn = int.Parse(parts[6]);
+                Statue = parts[7] == "T";
+            }
+            else
+            {
+                ReinforcementTurn = 0;
+            }
         }
 
         public override string ToString()

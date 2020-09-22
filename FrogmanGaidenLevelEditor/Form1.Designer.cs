@@ -48,18 +48,22 @@
             this.tbcUI = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.grpUnitList = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.cmbAIType = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.grpUnitList = new System.Windows.Forms.GroupBox();
+            this.cmbAIType = new System.Windows.Forms.ComboBox();
+            this.nudReinforcementTurn = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.ckbStatue = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.grpUnitList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudReinforcementTurn)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlPossibleTiles
@@ -142,7 +146,7 @@
             // 
             // btnPlace
             // 
-            this.btnPlace.Location = new System.Drawing.Point(0, 119);
+            this.btnPlace.Location = new System.Drawing.Point(0, 133);
             this.btnPlace.Name = "btnPlace";
             this.btnPlace.Size = new System.Drawing.Size(124, 23);
             this.btnPlace.TabIndex = 3;
@@ -152,14 +156,14 @@
             // 
             // txtClass
             // 
-            this.txtClass.Location = new System.Drawing.Point(40, 13);
+            this.txtClass.Location = new System.Drawing.Point(40, 0);
             this.txtClass.Name = "txtClass";
             this.txtClass.Size = new System.Drawing.Size(84, 20);
             this.txtClass.TabIndex = 2;
             // 
             // nudLevel
             // 
-            this.nudLevel.Location = new System.Drawing.Point(40, 66);
+            this.nudLevel.Location = new System.Drawing.Point(40, 53);
             this.nudLevel.Maximum = new decimal(new int[] {
             16,
             0,
@@ -177,7 +181,7 @@
             "Player",
             "Monster",
             "Guard"});
-            this.cmbUnitTeam.Location = new System.Drawing.Point(40, 39);
+            this.cmbUnitTeam.Location = new System.Drawing.Point(40, 26);
             this.cmbUnitTeam.Name = "cmbUnitTeam";
             this.cmbUnitTeam.Size = new System.Drawing.Size(84, 21);
             this.cmbUnitTeam.TabIndex = 0;
@@ -248,6 +252,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.label4);
@@ -256,8 +261,10 @@
             this.tabPage2.Controls.Add(this.cmbAIType);
             this.tabPage2.Controls.Add(this.cmbUnitTeam);
             this.tabPage2.Controls.Add(this.btnPlace);
+            this.tabPage2.Controls.Add(this.nudReinforcementTurn);
             this.tabPage2.Controls.Add(this.nudLevel);
             this.tabPage2.Controls.Add(this.txtClass);
+            this.tabPage2.Controls.Add(this.ckbStatue);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -265,6 +272,42 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Units";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(-3, 55);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(36, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Level:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(-3, 82);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(26, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "A.I.:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(-3, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(37, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Team:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(-3, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Name:";
             // 
             // grpUnitList
             // 
@@ -277,33 +320,6 @@
             this.grpUnitList.TabStop = false;
             this.grpUnitList.Text = "List";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(-3, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Name:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(-3, 42);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Team:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(-3, 68);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Level:";
-            // 
             // cmbAIType
             // 
             this.cmbAIType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -312,19 +328,41 @@
             "Charge",
             "Hold",
             "Guard"});
-            this.cmbAIType.Location = new System.Drawing.Point(40, 92);
+            this.cmbAIType.Location = new System.Drawing.Point(40, 79);
             this.cmbAIType.Name = "cmbAIType";
             this.cmbAIType.Size = new System.Drawing.Size(84, 21);
             this.cmbAIType.TabIndex = 0;
             // 
-            // label6
+            // nudReinforcementTurn
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(-3, 95);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(26, 13);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "A.I.:";
+            this.nudReinforcementTurn.Location = new System.Drawing.Point(40, 106);
+            this.nudReinforcementTurn.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.nudReinforcementTurn.Name = "nudReinforcementTurn";
+            this.nudReinforcementTurn.Size = new System.Drawing.Size(32, 20);
+            this.nudReinforcementTurn.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(-3, 108);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(32, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Turn:";
+            // 
+            // ckbStatue
+            // 
+            this.ckbStatue.AutoSize = true;
+            this.ckbStatue.Location = new System.Drawing.Point(78, 107);
+            this.ckbStatue.Name = "ckbStatue";
+            this.ckbStatue.Size = new System.Drawing.Size(57, 17);
+            this.ckbStatue.TabIndex = 8;
+            this.ckbStatue.Text = "Statue";
+            this.ckbStatue.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -348,6 +386,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.grpUnitList.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudReinforcementTurn)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -380,6 +419,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox grpUnitList;
         private System.Windows.Forms.ComboBox cmbAIType;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown nudReinforcementTurn;
+        private System.Windows.Forms.CheckBox ckbStatue;
     }
 }
 

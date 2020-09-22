@@ -211,7 +211,7 @@ namespace FrogmanGaidenLevelEditor
 
         private void btnPlace_Click(object sender, EventArgs e)
         {
-            Units.Add(Placing = new Unit((Team)Enum.Parse(typeof(Team), cmbUnitTeam.Text), (int)nudLevel.Value, txtClass.Text, (AIType)Enum.Parse(typeof(AIType), cmbAIType.Text)));
+            Units.Add(Placing = new Unit((Team)Enum.Parse(typeof(Team), cmbUnitTeam.Text), (int)nudLevel.Value, txtClass.Text, (AIType)Enum.Parse(typeof(AIType), cmbAIType.Text), (int)nudReinforcementTurn.Value, ckbStatue.Checked));
             CurrentSelected = null;
             picPreview.BackgroundImage = null;
             tbcUI.Enabled = false;
