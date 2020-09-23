@@ -48,6 +48,7 @@
             this.tbcUI = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -55,8 +56,11 @@
             this.grpUnitList = new System.Windows.Forms.GroupBox();
             this.cmbAIType = new System.Windows.Forms.ComboBox();
             this.nudReinforcementTurn = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
             this.ckbStatue = new System.Windows.Forms.CheckBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.rdbRout = new System.Windows.Forms.RadioButton();
+            this.rdbDefeatBoss = new System.Windows.Forms.RadioButton();
+            this.txtBossName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
@@ -64,6 +68,7 @@
             this.tabPage2.SuspendLayout();
             this.grpUnitList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudReinforcementTurn)).BeginInit();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlPossibleTiles
@@ -225,6 +230,7 @@
             // 
             this.tbcUI.Controls.Add(this.tabPage1);
             this.tbcUI.Controls.Add(this.tabPage2);
+            this.tbcUI.Controls.Add(this.tabPage3);
             this.tbcUI.Location = new System.Drawing.Point(12, 258);
             this.tbcUI.Name = "tbcUI";
             this.tbcUI.SelectedIndex = 0;
@@ -272,6 +278,15 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Units";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(-3, 108);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(32, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Turn:";
             // 
             // label5
             // 
@@ -345,15 +360,6 @@
             this.nudReinforcementTurn.Size = new System.Drawing.Size(32, 20);
             this.nudReinforcementTurn.TabIndex = 1;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(-3, 108);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 13);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Turn:";
-            // 
             // ckbStatue
             // 
             this.ckbStatue.AutoSize = true;
@@ -363,6 +369,51 @@
             this.ckbStatue.TabIndex = 8;
             this.ckbStatue.Text = "Statue";
             this.ckbStatue.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.txtBossName);
+            this.tabPage3.Controls.Add(this.rdbDefeatBoss);
+            this.tabPage3.Controls.Add(this.rdbRout);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(248, 156);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Objective";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // rdbRout
+            // 
+            this.rdbRout.AutoSize = true;
+            this.rdbRout.Checked = true;
+            this.rdbRout.Location = new System.Drawing.Point(6, 6);
+            this.rdbRout.Name = "rdbRout";
+            this.rdbRout.Size = new System.Drawing.Size(48, 17);
+            this.rdbRout.TabIndex = 0;
+            this.rdbRout.TabStop = true;
+            this.rdbRout.Text = "Rout";
+            this.rdbRout.UseVisualStyleBackColor = true;
+            // 
+            // rdbDefeatBoss
+            // 
+            this.rdbDefeatBoss.AutoSize = true;
+            this.rdbDefeatBoss.Location = new System.Drawing.Point(6, 29);
+            this.rdbDefeatBoss.Name = "rdbDefeatBoss";
+            this.rdbDefeatBoss.Size = new System.Drawing.Size(82, 17);
+            this.rdbDefeatBoss.TabIndex = 0;
+            this.rdbDefeatBoss.TabStop = true;
+            this.rdbDefeatBoss.Text = "Defeat boss";
+            this.rdbDefeatBoss.UseVisualStyleBackColor = true;
+            this.rdbDefeatBoss.CheckedChanged += new System.EventHandler(this.rdbDefeatBoss_CheckedChanged);
+            // 
+            // txtBossName
+            // 
+            this.txtBossName.Enabled = false;
+            this.txtBossName.Location = new System.Drawing.Point(94, 28);
+            this.txtBossName.Name = "txtBossName";
+            this.txtBossName.Size = new System.Drawing.Size(100, 20);
+            this.txtBossName.TabIndex = 1;
             // 
             // Form1
             // 
@@ -387,6 +438,8 @@
             this.tabPage2.PerformLayout();
             this.grpUnitList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudReinforcementTurn)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -422,6 +475,10 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown nudReinforcementTurn;
         private System.Windows.Forms.CheckBox ckbStatue;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TextBox txtBossName;
+        private System.Windows.Forms.RadioButton rdbDefeatBoss;
+        private System.Windows.Forms.RadioButton rdbRout;
     }
 }
 

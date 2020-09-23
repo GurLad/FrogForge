@@ -164,7 +164,7 @@ namespace FrogmanGaidenLevelEditor
             {
                 result += Units[i].ToSaveString() + ";";
             }
-            result = result.Substring(0, result.Length - 1) + "\n" + cmbTileSets.Text + "\n" + nudLevelNumber.Value;
+            result = result.Substring(0, result.Length - 1) + "\n" + cmbTileSets.Text + "\n" + nudLevelNumber.Value + "\n" + ObjectiveToString();
             Files.SaveFile(cmbLevelName.Text, result);
             if (!cmbLevelName.Items.Contains(cmbLevelName.Text))
             {
@@ -199,9 +199,43 @@ namespace FrogmanGaidenLevelEditor
             }
             cmbTileSets.Text = result[2];
             nudLevelNumber.Value = int.Parse(result[3]);
+            ObjectiveFromString(result[4]);
             Render();
             lstUnits.DataSource = null;
             lstUnits.DataSource = Units;
+        }
+
+        private string ObjectiveToString()
+        {
+            if (rdbRout.Checked)
+            {
+                return "Rout";
+            }
+            else if (rdbDefeatBoss.Checked)
+            {
+                return "Boss:" + txtBossName.Text;
+            }
+            else
+            {
+                return "Null";
+            }
+        }
+
+        private void ObjectiveFromString(string source)
+        {
+            string[] parts = source.Split(':');
+            switch (parts[0])
+            {
+                case "Rout":
+                    rdbRout.Checked = true;
+                    break;
+                case "Boss":
+                    rdbDefeatBoss.Checked = true;
+                    txtBossName.Text = parts[1];
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void UpdatePreview()
@@ -267,6 +301,11 @@ namespace FrogmanGaidenLevelEditor
             {
                 Render();
             }
+        }
+
+        private void rdbDefeatBoss_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBossName.Enabled = rdbDefeatBoss.Checked;
         }
     }
 }
