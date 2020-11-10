@@ -58,9 +58,10 @@
             this.nudReinforcementTurn = new System.Windows.Forms.NumericUpDown();
             this.ckbStatue = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.rdbRout = new System.Windows.Forms.RadioButton();
-            this.rdbDefeatBoss = new System.Windows.Forms.RadioButton();
             this.txtBossName = new System.Windows.Forms.TextBox();
+            this.rdbDefeatBoss = new System.Windows.Forms.RadioButton();
+            this.rdbRout = new System.Windows.Forms.RadioButton();
+            this.btnConversationEditor = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
@@ -383,17 +384,13 @@
             this.tabPage3.Text = "Objective";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // rdbRout
+            // txtBossName
             // 
-            this.rdbRout.AutoSize = true;
-            this.rdbRout.Checked = true;
-            this.rdbRout.Location = new System.Drawing.Point(6, 6);
-            this.rdbRout.Name = "rdbRout";
-            this.rdbRout.Size = new System.Drawing.Size(48, 17);
-            this.rdbRout.TabIndex = 0;
-            this.rdbRout.TabStop = true;
-            this.rdbRout.Text = "Rout";
-            this.rdbRout.UseVisualStyleBackColor = true;
+            this.txtBossName.Enabled = false;
+            this.txtBossName.Location = new System.Drawing.Point(94, 28);
+            this.txtBossName.Name = "txtBossName";
+            this.txtBossName.Size = new System.Drawing.Size(100, 20);
+            this.txtBossName.TabIndex = 1;
             // 
             // rdbDefeatBoss
             // 
@@ -407,19 +404,34 @@
             this.rdbDefeatBoss.UseVisualStyleBackColor = true;
             this.rdbDefeatBoss.CheckedChanged += new System.EventHandler(this.rdbDefeatBoss_CheckedChanged);
             // 
-            // txtBossName
+            // rdbRout
             // 
-            this.txtBossName.Enabled = false;
-            this.txtBossName.Location = new System.Drawing.Point(94, 28);
-            this.txtBossName.Name = "txtBossName";
-            this.txtBossName.Size = new System.Drawing.Size(100, 20);
-            this.txtBossName.TabIndex = 1;
+            this.rdbRout.AutoSize = true;
+            this.rdbRout.Checked = true;
+            this.rdbRout.Location = new System.Drawing.Point(6, 6);
+            this.rdbRout.Name = "rdbRout";
+            this.rdbRout.Size = new System.Drawing.Size(48, 17);
+            this.rdbRout.TabIndex = 0;
+            this.rdbRout.TabStop = true;
+            this.rdbRout.Text = "Rout";
+            this.rdbRout.UseVisualStyleBackColor = true;
+            // 
+            // btnConversationEditor
+            // 
+            this.btnConversationEditor.Location = new System.Drawing.Point(170, 255);
+            this.btnConversationEditor.Name = "btnConversationEditor";
+            this.btnConversationEditor.Size = new System.Drawing.Size(97, 23);
+            this.btnConversationEditor.TabIndex = 33;
+            this.btnConversationEditor.Text = "Conversation";
+            this.btnConversationEditor.UseVisualStyleBackColor = true;
+            this.btnConversationEditor.Click += new System.EventHandler(this.btnConversationEditor_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(280, 452);
+            this.Controls.Add(this.btnConversationEditor);
             this.Controls.Add(this.tbcUI);
             this.Controls.Add(this.pnlRenderer);
             this.Controls.Add(this.pnlBG);
@@ -479,6 +491,7 @@
         private System.Windows.Forms.TextBox txtBossName;
         private System.Windows.Forms.RadioButton rdbDefeatBoss;
         private System.Windows.Forms.RadioButton rdbRout;
+        private System.Windows.Forms.Button btnConversationEditor;
     }
 }
 

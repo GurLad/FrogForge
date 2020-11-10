@@ -307,5 +307,10 @@ namespace FrogmanGaidenLevelEditor
         {
             txtBossName.Enabled = rdbDefeatBoss.Checked;
         }
+
+        private void btnConversationEditor_Click(object sender, EventArgs e)
+        {
+            new frmConversationEditor().ShowDialog(this);
+        }
     }
 }
