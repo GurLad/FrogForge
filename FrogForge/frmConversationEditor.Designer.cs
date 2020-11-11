@@ -212,12 +212,13 @@
             this.Controls.Add(this.pnlEditorUI);
             this.Controls.Add(this.pnlPreview);
             this.Controls.Add(this.flbFileBrowser);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            this.KeyPreview = true;
             this.Name = "frmConversationEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Conversation Editor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmConversationEditor_FormClosing);
             this.Load += new System.EventHandler(this.frmConversationEditor_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmConversationEditor_KeyDown);
             this.pnlPreview.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPreviewSpeaker)).EndInit();

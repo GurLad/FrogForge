@@ -13,36 +13,42 @@ namespace FrogmanGaidenLevelEditor
 {
     public enum Team { Player, Monster, Guard }
     public enum AIType { Charge, Hold, Guard }
-    public partial class Form1 : Form
+    public partial class frmLevelEditor : Form
     {
+        public FilesController DataDirectory { get; set; }
+        public FilesController WorkingDirectory { get; set; }
+        private FilesController CurrentDirectory { get; set; }
         private Tile[,] Tiles;
         private Tile CurrentSelected = new Tile();
         private List<string> PossibleTileSets;
         private List<Image> PossibleImages = new List<Image>();
-        private FilesController Files = new FilesController("Data");
         private Label[,] Renderers;
         private Point Size = new Point(16, 15);
         private List<Unit> Units = new List<Unit>();
         private Unit Placing = null;
         private Label PreviousHover = null;
 
-        public Form1()
+        public frmLevelEditor()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Load levels
-            Files.DefultFileFormat = ".txt";
-            cmbLevelName.Items.AddRange(Files.AllFiles(false, false));
-            //Load tiles
-            PossibleTileSets = new List<string>(Files.AllDirectories(false, @"\Images"));
+            // Find directory
+            CurrentDirectory = new FilesController();
+            CurrentDirectory.Path = WorkingDirectory.Path;
+            CurrentDirectory.CreateDirectory("Maps", true); // TODO: replace with FileBrowser
+            // Load levels
+            CurrentDirectory.DefultFileFormat = ".txt";
+            cmbLevelName.Items.AddRange(CurrentDirectory.AllFiles(false, false));
+            // Load tiles
+            PossibleTileSets = new List<string>(DataDirectory.AllDirectories(false, @"\Images"));
             cmbTileSets.Items.AddRange(PossibleTileSets.ToArray());
             cmbTileSets.SelectedIndex = 0;
             SetTileSet(PossibleTileSets[0]);
-            //End load files
-            //Generate UI
+            // End load files
+            // Generate UI
             UpdatePreview();
             Tiles = new Tile[Size.X, Size.Y];
             int i;
@@ -165,7 +171,7 @@ namespace FrogmanGaidenLevelEditor
                 result += Units[i].ToSaveString() + ";";
             }
             result = result.Substring(0, result.Length - 1) + "\n" + cmbTileSets.Text + "\n" + nudLevelNumber.Value + "\n" + ObjectiveToString();
-            Files.SaveFile(cmbLevelName.Text, result);
+            CurrentDirectory.SaveFile(cmbLevelName.Text, result);
             if (!cmbLevelName.Items.Contains(cmbLevelName.Text))
             {
                 cmbLevelName.Items.Add(cmbLevelName.Text);
@@ -175,7 +181,7 @@ namespace FrogmanGaidenLevelEditor
         private void BtnLoad_Click(object sender, EventArgs e)
         {
             Tiles = null;
-            string[] result = Files.LoadFile(cmbLevelName.Text).Split('\n');
+            string[] result = CurrentDirectory.LoadFile(cmbLevelName.Text).Split('\n');
             string[] rows = result[0].Split(';');
             for (int i = 0; i < rows.Length; i++)
             {
@@ -281,12 +287,12 @@ namespace FrogmanGaidenLevelEditor
 
         private void SetTileSet(string set)
         {
-            string[] files = Files.AllFiles(false, true, @"\Images\" + set);
+            string[] files = DataDirectory.AllFiles(false, true, @"\Images\" + set);
             pnlPossibleTiles.Controls.Clear();
             PossibleImages.Clear();
             for (int i = 0; i < files.Length; i++)
             {
-                PossibleImages.Add(Files.LoadImage(set + @"\" + files[i], "", false));
+                PossibleImages.Add(DataDirectory.LoadImage(set + @"\" + files[i], "", false));
                 Label tileButton = new Label();
                 tileButton.Width = 16;
                 tileButton.Height = 16;

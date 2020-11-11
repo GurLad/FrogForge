@@ -1,6 +1,6 @@
 ﻿namespace FrogmanGaidenLevelEditor
 {
-    partial class Form1
+    partial class frmLevelEditor
     {
         /// <summary>
         /// Required designer variable.

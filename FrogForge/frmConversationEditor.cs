@@ -13,14 +13,14 @@ namespace FrogmanGaidenLevelEditor
 {
     public partial class frmConversationEditor : Form
     {
-        public FilesController DataDirectory = new FilesController("Data");
-        public FilesController WorkingDirectoryFiles = new FilesController();
+        public FilesController DataDirectory { get; set; }
+        public FilesController WorkingDirectory { get; set; }
         private const int CHARS_IN_LINE = 23;
-        private FilesController currentDirectory;
-        private string currentFilename;
-        private Dictionary<Color, string[]> keywords = new Dictionary<Color, string[]>();
-        private int firstLineWidth;
-        private bool userInput = true;
+        private FilesController CurrentDirectory;
+        private string CurrentFilename;
+        private Dictionary<Color, string[]> Keywords = new Dictionary<Color, string[]>();
+        private int FirstLineWidth;
+        private bool UserInput = false;
         public frmConversationEditor()
         {
             InitializeComponent();
@@ -34,54 +34,64 @@ namespace FrogmanGaidenLevelEditor
             {
                 string[] keyValue = keywordsFile[i].Split(':');
                 string[] values = keyValue[1].Split(',');
-                keywords.Add(ColorTranslator.FromHtml(keyValue[0]), values);
+                Keywords.Add(ColorTranslator.FromHtml(keyValue[0]), values);
             }
             // Find line width
             txtText.Text = new string('-', CHARS_IN_LINE);
-            firstLineWidth = txtText.GetPositionFromCharIndex(txtText.Text.LastIndexOf('-')).X;
+            FirstLineWidth = txtText.GetPositionFromCharIndex(txtText.Text.LastIndexOf('-')).X;
             // Find directory
-            currentDirectory = new FilesController();
-            currentDirectory.DefultFileFormat = ".txt";
-            currentDirectory.Path = @"C:\Users\Gur\Documents\GitHub\FrogmanGaiden\Assets\Data\Conversations";
-            flbFileBrowser.Files = currentDirectory;
+            CurrentDirectory = new FilesController();
+            CurrentDirectory.DefultFileFormat = ".txt";
+            CurrentDirectory.Path = WorkingDirectory.Path;
+            CurrentDirectory.CreateDirectory("Conversations", true);
+            flbFileBrowser.Files = CurrentDirectory;
             flbFileBrowser.OnFileSelected = LoadFile;
             flbFileBrowser.UpdateList();
+            UserInput = true;
         }
 
         private void LoadFile(string name)
         {
-            currentFilename = name.Replace(currentDirectory.DefultFileFormat, "");
-            txtText.Text = currentDirectory.LoadFile(currentFilename);
-            txtName.Text = currentFilename;
+            if (HasUnsavedChanges())
+            {
+                return;
+            }
+            Text = Text.Replace("*", "");
+            UserInput = false;
+            CurrentFilename = name.Replace(CurrentDirectory.DefultFileFormat, "");
+            txtText.Text = CurrentDirectory.LoadFile(CurrentFilename);
+            txtName.Text = CurrentFilename;
             ColorText();
+            UserInput = true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            currentDirectory.SaveFile(txtName.Text, txtText.Text);
-            if (txtName.Text != currentFilename)
+            CurrentDirectory.SaveFile(txtName.Text, txtText.Text);
+            Text = Text.Replace("*", "");
+            if (txtName.Text != CurrentFilename)
             {
                 flbFileBrowser.UpdateList();
-                currentFilename = txtName.Text;
+                CurrentFilename = txtName.Text;
             }
         }
 
         private void ColorText()
         {
-            userInput = false;
+            UserInput = false;
             txtText.BeginUpdate();
             CheckKeyword("~", Color.Purple, false);
             CheckKeyword(":", Color.DarkGoldenrod, false);
             CheckKeywordLine("#", Color.DarkCyan);
-            foreach (Color color in keywords.Keys)
+            foreach (Color color in Keywords.Keys)
             {
-                foreach (string word in keywords[color])
+                foreach (string word in Keywords[color])
                 {
                     CheckKeyword(word, color);
                 }
             }
             txtText.EndUpdate();
-            userInput = true;
+            UserInput = true;
         }
 
         private void CheckKeyword(string word, Color color, bool keyword = true)
@@ -120,7 +130,7 @@ namespace FrogmanGaidenLevelEditor
 
         private void txtText_TextChanged(object sender, EventArgs e)
         {
-            if (!userInput)
+            if (!UserInput)
             {
                 return;
             }
@@ -137,11 +147,15 @@ namespace FrogmanGaidenLevelEditor
             int index = Math.Max(txtText.Text.LastIndexOf(':', selectionIndex) + 2, txtText.Text.LastIndexOf('\n', selectionIndex) + 1);
             Point pos = txtText.GetPositionFromCharIndex(index);
             picSeperator1.Location = txtText.Location;
-            picSeperator1.Left += pos.X + firstLineWidth;
+            picSeperator1.Left += pos.X + FirstLineWidth;
             picSeperator1.Top += pos.Y + 4;
             picSeperator2.Location = picSeperator1.Location;
-            picSeperator2.Left += firstLineWidth;
+            picSeperator2.Left += FirstLineWidth;
             picSeperator2.Visible = picSeperator1.Visible = picSeperator1.Top >= txtText.Top && picSeperator1.Top + picSeperator1.Height <= txtText.Top + txtText.Height;
+            if (!Text.Contains("*"))
+            {
+                Text += "*";
+            }
         }
 
         private void txtText_KeyPress(object sender, KeyPressEventArgs e)
@@ -149,6 +163,27 @@ namespace FrogmanGaidenLevelEditor
             if (e.KeyChar == '\r' || e.KeyChar == ':')
             {
                 ColorText();
+            }
+        }
+
+        private void frmConversationEditor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (ModifierKeys == Keys.Control && e.KeyCode == Keys.S)
+            {
+                btnSave_Click(sender, e);
+            }
+        }
+
+        private bool HasUnsavedChanges()
+        {
+            return Text.Contains("*") && MessageBox.Show("Unsaved changes! Discard?", "Unsaved changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No;
+        }
+
+        private void frmConversationEditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (HasUnsavedChanges())
+            {
+                e.Cancel = true;
             }
         }
     }

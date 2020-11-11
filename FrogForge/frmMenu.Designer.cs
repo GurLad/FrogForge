@@ -1,0 +1,155 @@
+﻿namespace FrogmanGaidenLevelEditor
+{
+    partial class frmMenu
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnLevelEditor = new System.Windows.Forms.Button();
+            this.btnConversationEditor = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnChangePath = new System.Windows.Forms.Button();
+            this.txtPath = new System.Windows.Forms.TextBox();
+            this.lblVersion = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(289, 23);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Frog Forge";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(13, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(288, 14);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Frogman Gaiden editor";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnLevelEditor
+            // 
+            this.btnLevelEditor.Location = new System.Drawing.Point(12, 49);
+            this.btnLevelEditor.Name = "btnLevelEditor";
+            this.btnLevelEditor.Size = new System.Drawing.Size(289, 23);
+            this.btnLevelEditor.TabIndex = 2;
+            this.btnLevelEditor.Text = "Level editor";
+            this.btnLevelEditor.UseVisualStyleBackColor = true;
+            this.btnLevelEditor.Click += new System.EventHandler(this.btnLevelEditor_Click);
+            // 
+            // btnConversationEditor
+            // 
+            this.btnConversationEditor.Location = new System.Drawing.Point(12, 79);
+            this.btnConversationEditor.Name = "btnConversationEditor";
+            this.btnConversationEditor.Size = new System.Drawing.Size(289, 23);
+            this.btnConversationEditor.TabIndex = 2;
+            this.btnConversationEditor.Text = "Conversation editor";
+            this.btnConversationEditor.UseVisualStyleBackColor = true;
+            this.btnConversationEditor.Click += new System.EventHandler(this.btnConversationEditor_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnChangePath);
+            this.groupBox1.Controls.Add(this.txtPath);
+            this.groupBox1.Location = new System.Drawing.Point(12, 108);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(289, 45);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Project folder";
+            // 
+            // btnChangePath
+            // 
+            this.btnChangePath.Location = new System.Drawing.Point(208, 17);
+            this.btnChangePath.Name = "btnChangePath";
+            this.btnChangePath.Size = new System.Drawing.Size(75, 23);
+            this.btnChangePath.TabIndex = 1;
+            this.btnChangePath.Text = "Browse...";
+            this.btnChangePath.UseVisualStyleBackColor = true;
+            this.btnChangePath.Click += new System.EventHandler(this.btnChangePath_Click);
+            // 
+            // txtPath
+            // 
+            this.txtPath.Location = new System.Drawing.Point(6, 19);
+            this.txtPath.Name = "txtPath";
+            this.txtPath.ReadOnly = true;
+            this.txtPath.Size = new System.Drawing.Size(196, 20);
+            this.txtPath.TabIndex = 0;
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Font = new System.Drawing.Font("3x5", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.lblVersion.Location = new System.Drawing.Point(-1, 0);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(71, 6);
+            this.lblVersion.TabIndex = 4;
+            this.lblVersion.Text = "V.0.3  11.11.2020";
+            // 
+            // frmMenu
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(313, 165);
+            this.Controls.Add(this.lblVersion);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnConversationEditor);
+            this.Controls.Add(this.btnLevelEditor);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.Name = "frmMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Frog Forge";
+            this.Load += new System.EventHandler(this.frmMenu_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnLevelEditor;
+        private System.Windows.Forms.Button btnConversationEditor;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnChangePath;
+        private System.Windows.Forms.TextBox txtPath;
+        private System.Windows.Forms.Label lblVersion;
+    }
+}
