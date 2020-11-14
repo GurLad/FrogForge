@@ -61,7 +61,6 @@
             this.txtBossName = new System.Windows.Forms.TextBox();
             this.rdbDefeatBoss = new System.Windows.Forms.RadioButton();
             this.rdbRout = new System.Windows.Forms.RadioButton();
-            this.btnConversationEditor = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
@@ -416,30 +415,19 @@
             this.rdbRout.Text = "Rout";
             this.rdbRout.UseVisualStyleBackColor = true;
             // 
-            // btnConversationEditor
-            // 
-            this.btnConversationEditor.Location = new System.Drawing.Point(170, 255);
-            this.btnConversationEditor.Name = "btnConversationEditor";
-            this.btnConversationEditor.Size = new System.Drawing.Size(97, 23);
-            this.btnConversationEditor.TabIndex = 33;
-            this.btnConversationEditor.Text = "Conversation";
-            this.btnConversationEditor.UseVisualStyleBackColor = true;
-            this.btnConversationEditor.Click += new System.EventHandler(this.btnConversationEditor_Click);
-            // 
-            // Form1
+            // frmLevelEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(280, 452);
-            this.Controls.Add(this.btnConversationEditor);
             this.Controls.Add(this.tbcUI);
             this.Controls.Add(this.pnlRenderer);
             this.Controls.Add(this.pnlBG);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "frmLevelEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Frogman Gaiden level editor";
+            this.Text = "Level Editor";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).EndInit();
@@ -491,7 +479,6 @@
         private System.Windows.Forms.TextBox txtBossName;
         private System.Windows.Forms.RadioButton rdbDefeatBoss;
         private System.Windows.Forms.RadioButton rdbRout;
-        private System.Windows.Forms.Button btnConversationEditor;
     }
 }
 

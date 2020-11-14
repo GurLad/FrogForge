@@ -36,7 +36,11 @@
             this.btnChangePath = new System.Windows.Forms.Button();
             this.txtPath = new System.Windows.Forms.TextBox();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnImport = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -117,12 +121,44 @@
             this.lblVersion.TabIndex = 4;
             this.lblVersion.Text = "V.0.3.1  14.11.2020";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnImport);
+            this.groupBox2.Controls.Add(this.btnExport);
+            this.groupBox2.Location = new System.Drawing.Point(12, 159);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(289, 45);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Frog Forge data";
+            // 
+            // btnImport
+            // 
+            this.btnImport.Location = new System.Drawing.Point(6, 17);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(134, 23);
+            this.btnImport.TabIndex = 1;
+            this.btnImport.Text = "Import...";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(149, 17);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(134, 23);
+            this.btnExport.TabIndex = 1;
+            this.btnExport.Text = "Export...";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(313, 165);
+            this.ClientSize = new System.Drawing.Size(313, 210);
             this.Controls.Add(this.lblVersion);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnConversationEditor);
             this.Controls.Add(this.btnLevelEditor);
@@ -136,6 +172,7 @@
             this.Load += new System.EventHandler(this.frmMenu_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -151,5 +188,8 @@
         private System.Windows.Forms.Button btnChangePath;
         private System.Windows.Forms.TextBox txtPath;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnImport;
     }
 }

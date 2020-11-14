@@ -17,6 +17,8 @@ namespace FrogForge
         private FilesController DataDirectory = new FilesController("Data");
         private FilesController WorkingDirectory = new FilesController();
         private CommonOpenFileDialog dlgFolder = new CommonOpenFileDialog();
+        private OpenFileDialog dlgDataImport = new OpenFileDialog();
+        private SaveFileDialog dlgDataExport = new SaveFileDialog();
         public frmMenu()
         {
             InitializeComponent();
@@ -27,6 +29,8 @@ namespace FrogForge
             WorkingDirectory.Path = DataDirectory.LoadFile("Path", DataDirectory.Path);
             txtPath.Text = WorkingDirectory.Path;
             dlgFolder.IsFolderPicker = true;
+            dlgDataImport.Filter = "ZIP files|*.zip";
+            dlgDataExport.Filter = "ZIP files|*.zip";
         }
 
         private void btnChangePath_Click(object sender, EventArgs e)
@@ -53,6 +57,35 @@ namespace FrogForge
             conversationEditor.DataDirectory = DataDirectory;
             conversationEditor.WorkingDirectory = WorkingDirectory;
             conversationEditor.ShowDialog(this);
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            if (dlgDataImport.ShowDialog(this) == DialogResult.OK)
+            {
+                FilesController tempData = new FilesController("TempData");
+                if (System.IO.Directory.Exists(tempData.Path))
+                {
+                    System.IO.Directory.Delete(tempData.Path, true);
+                }
+                System.IO.Compression.ZipFile.ExtractToDirectory(dlgDataImport.FileName, tempData.Path);
+                System.IO.Directory.Delete(DataDirectory.Path, true);
+                System.IO.Directory.Move(tempData.Path, DataDirectory.Path);
+                MessageBox.Show("Done!");
+            }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if (dlgDataExport.ShowDialog(this) == DialogResult.OK)
+            {
+                if (System.IO.File.Exists(dlgDataExport.FileName))
+                {
+                    System.IO.File.Delete(dlgDataExport.FileName);
+                }
+                System.IO.Compression.ZipFile.CreateFromDirectory(DataDirectory.Path, dlgDataExport.FileName);
+                MessageBox.Show("Done!");
+            }
         }
     }
 }
