@@ -38,10 +38,13 @@ namespace FrogForge
             // Find directory
             CurrentDirectory = new FilesController();
             CurrentDirectory.Path = WorkingDirectory.Path;
-            CurrentDirectory.CreateDirectory("Maps", true); // TODO: replace with FileBrowser
+            CurrentDirectory.CreateDirectory("Maps", true);
             // Load levels
             CurrentDirectory.DefultFileFormat = ".txt";
-            cmbLevelName.Items.AddRange(CurrentDirectory.AllFiles(false, false));
+            flbFiles.Directory = CurrentDirectory;
+            flbFiles.OnFileSelected = LoadFile;
+            flbFiles.ShowDirectories = false;
+            flbFiles.UpdateList();
             // Load tiles
             PossibleTileSets = new List<string>(DataDirectory.AllDirectories(false, @"\Images"));
             cmbTileSets.Items.AddRange(PossibleTileSets.ToArray());
@@ -171,17 +174,14 @@ namespace FrogForge
                 result += Units[i].ToSaveString() + ";";
             }
             result = result.Substring(0, result.Length - 1) + "\n" + cmbTileSets.Text + "\n" + nudLevelNumber.Value + "\n" + ObjectiveToString();
-            CurrentDirectory.SaveFile(cmbLevelName.Text, result);
-            if (!cmbLevelName.Items.Contains(cmbLevelName.Text))
-            {
-                cmbLevelName.Items.Add(cmbLevelName.Text);
-            }
+            CurrentDirectory.SaveFile(txtLevelName.Text, result);
+            flbFiles.UpdateList();
         }
 
-        private void BtnLoad_Click(object sender, EventArgs e)
+        private void LoadFile(string fileName)
         {
             Tiles = null;
-            string[] result = CurrentDirectory.LoadFile(cmbLevelName.Text).Split('\n');
+            string[] result = CurrentDirectory.LoadFile(txtLevelName.Text = fileName).Replace("\r\n", "\n").Split('\n');
             string[] rows = result[0].Split(';');
             for (int i = 0; i < rows.Length; i++)
             {

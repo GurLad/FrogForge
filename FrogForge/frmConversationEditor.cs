@@ -46,7 +46,7 @@ namespace FrogForge
             CurrentDirectory.DefultFileFormat = ".txt";
             CurrentDirectory.Path = WorkingDirectory.Path;
             CurrentDirectory.CreateDirectory("Conversations", true);
-            flbFileBrowser.Files = CurrentDirectory;
+            flbFileBrowser.Directory = CurrentDirectory;
             flbFileBrowser.OnFileSelected = LoadFile;
             flbFileBrowser.UpdateList();
             UserInput = true;
@@ -63,7 +63,7 @@ namespace FrogForge
             }
             Text = Text.Replace("*", "");
             UserInput = false;
-            CurrentFilename = name.Replace(CurrentDirectory.DefultFileFormat, "");
+            CurrentFilename = name;
             txtText.Text = CurrentDirectory.LoadFile(CurrentFilename);
             txtName.Text = CurrentFilename;
             ColorText();

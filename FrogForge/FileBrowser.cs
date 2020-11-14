@@ -13,11 +13,12 @@ namespace FrogForge
 {
     public partial class FileBrowser : UserControl
     {
-        public FilesController Files;
+        public FilesController Directory;
         /// <summary>
         /// Argument 1 - File name
         /// </summary>
         public Action<string> OnFileSelected;
+        public bool ShowDirectories = true;
         public FileBrowser()
         {
             InitializeComponent();
@@ -25,25 +26,41 @@ namespace FrogForge
 
         public void UpdateList()
         {
-            lstFiles.Items.Clear();
             List<string> items = new List<string>();
-            items.Add("..");
-            items.AddRange(Files.AllDirectories());
-            for (int i = 0; i < items.Count; i++)
+            string selectedItem = "";
+            if (ShowDirectories)
             {
-                items[i] = @"\" + items[i];
+                items.Add("..");
+                items.AddRange(Directory.AllDirectories());
+                for (int i = 0; i < items.Count; i++)
+                {
+                    items[i] = @"\" + items[i];
+                }
             }
-            List<string> files = new List<string>(Files.AllFiles());
+            else
+            {
+                selectedItem = lstFiles.SelectedItem?.ToString() ?? "";
+            }
+            List<string> files = new List<string>(Directory.AllFiles());
             for (int i = 0; i < files.Count; i++)
             {
-                if (files[i].Substring(files[i].Length - Files.DefultFileFormat.Length) != Files.DefultFileFormat)
+                if (files[i].Substring(files[i].Length - Directory.DefultFileFormat.Length) != Directory.DefultFileFormat)
                 {
                     files.RemoveAt(i);
                     i--;
                 }
+                else
+                {
+                    files[i] = files[i].Replace(Directory.DefultFileFormat, "");
+                }
             }
             items.AddRange(files);
+            lstFiles.Items.Clear();
             lstFiles.Items.AddRange(items.ToArray());
+            if (selectedItem != "")
+            {
+                lstFiles.SelectedItem = selectedItem;
+            }
         }
 
         private void lstFiles_DoubleClick(object sender, EventArgs e)
@@ -53,11 +70,11 @@ namespace FrogForge
             {
                 if (item == @"\..")
                 {
-                    Files.Path = Files.Path.Substring(0, Files.Path.LastIndexOf(Files.Seperator));
+                    Directory.Path = Directory.Path.Substring(0, Directory.Path.LastIndexOf(Directory.Seperator));
                 }
                 else
                 {
-                    Files.CreateDirectory(item.Substring(1), true);
+                    Directory.CreateDirectory(item.Substring(1), true);
                 }
                 UpdateList();
             }

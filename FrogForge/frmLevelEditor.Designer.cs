@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.pnlPossibleTiles = new System.Windows.Forms.Panel();
-            this.cmbLevelName = new System.Windows.Forms.ComboBox();
-            this.btnLoad = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.pnlRenderer = new System.Windows.Forms.Panel();
             this.pnlBG = new System.Windows.Forms.Panel();
@@ -61,6 +59,8 @@
             this.txtBossName = new System.Windows.Forms.TextBox();
             this.rdbDefeatBoss = new System.Windows.Forms.RadioButton();
             this.rdbRout = new System.Windows.Forms.RadioButton();
+            this.flbFiles = new FrogForge.FileBrowser();
+            this.txtLevelName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
@@ -78,27 +78,9 @@
             this.pnlPossibleTiles.Size = new System.Drawing.Size(96, 80);
             this.pnlPossibleTiles.TabIndex = 28;
             // 
-            // cmbLevelName
-            // 
-            this.cmbLevelName.FormattingEnabled = true;
-            this.cmbLevelName.Location = new System.Drawing.Point(139, 135);
-            this.cmbLevelName.Name = "cmbLevelName";
-            this.cmbLevelName.Size = new System.Drawing.Size(109, 21);
-            this.cmbLevelName.TabIndex = 18;
-            // 
-            // btnLoad
-            // 
-            this.btnLoad.Location = new System.Drawing.Point(139, 106);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(109, 23);
-            this.btnLoad.TabIndex = 16;
-            this.btnLoad.Text = "Load";
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.BtnLoad_Click);
-            // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(139, 77);
+            this.btnSave.Location = new System.Drawing.Point(139, 133);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(109, 23);
             this.btnSave.TabIndex = 17;
@@ -239,6 +221,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.txtLevelName);
+            this.tabPage1.Controls.Add(this.flbFiles);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.nudLevelNumber);
             this.tabPage1.Controls.Add(this.pnlPossibleTiles);
@@ -246,8 +230,6 @@
             this.tabPage1.Controls.Add(this.picPreview);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.btnSave);
-            this.tabPage1.Controls.Add(this.cmbLevelName);
-            this.tabPage1.Controls.Add(this.btnLoad);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -415,6 +397,20 @@
             this.rdbRout.Text = "Rout";
             this.rdbRout.UseVisualStyleBackColor = true;
             // 
+            // flbFiles
+            // 
+            this.flbFiles.Location = new System.Drawing.Point(139, 0);
+            this.flbFiles.Name = "flbFiles";
+            this.flbFiles.Size = new System.Drawing.Size(109, 101);
+            this.flbFiles.TabIndex = 35;
+            // 
+            // txtLevelName
+            // 
+            this.txtLevelName.Location = new System.Drawing.Point(139, 107);
+            this.txtLevelName.Name = "txtLevelName";
+            this.txtLevelName.Size = new System.Drawing.Size(109, 20);
+            this.txtLevelName.TabIndex = 36;
+            // 
             // frmLevelEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -447,8 +443,6 @@
         #endregion
 
         private System.Windows.Forms.Panel pnlPossibleTiles;
-        private System.Windows.Forms.ComboBox cmbLevelName;
-        private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel pnlRenderer;
         private System.Windows.Forms.Panel pnlBG;
@@ -479,6 +473,8 @@
         private System.Windows.Forms.TextBox txtBossName;
         private System.Windows.Forms.RadioButton rdbDefeatBoss;
         private System.Windows.Forms.RadioButton rdbRout;
+        private FileBrowser flbFiles;
+        private System.Windows.Forms.TextBox txtLevelName;
     }
 }
 
