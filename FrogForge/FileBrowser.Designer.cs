@@ -1,4 +1,4 @@
-﻿namespace FrogmanGaidenLevelEditor
+﻿namespace FrogForge
 {
     partial class FileBrowser
     {

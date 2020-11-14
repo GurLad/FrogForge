@@ -1,4 +1,4 @@
-﻿namespace FrogmanGaidenLevelEditor
+﻿namespace FrogForge
 {
     partial class frmConversationEditor
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlPreview = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picArrow = new System.Windows.Forms.PictureBox();
             this.lblPreviewText = new System.Windows.Forms.Label();
             this.lblPreviewName = new System.Windows.Forms.Label();
             this.picPreviewSpeaker = new System.Windows.Forms.PictureBox();
@@ -40,10 +40,10 @@
             this.btnPreview = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.txtText = new FrogmanGaidenLevelEditor.FixedRichTextBox();
-            this.flbFileBrowser = new FrogmanGaidenLevelEditor.FileBrowser();
+            this.txtText = new FrogForge.FixedRichTextBox();
+            this.flbFileBrowser = new FrogForge.FileBrowser();
             this.pnlPreview.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPreviewSpeaker)).BeginInit();
             this.pnlEditorUI.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSeperator2)).BeginInit();
@@ -52,8 +52,7 @@
             // 
             // pnlPreview
             // 
-            this.pnlPreview.BackgroundImage = global::FrogmanGaidenLevelEditor.Properties.Resources.FrogmanGaidenConversationBG;
-            this.pnlPreview.Controls.Add(this.pictureBox1);
+            this.pnlPreview.Controls.Add(this.picArrow);
             this.pnlPreview.Controls.Add(this.lblPreviewText);
             this.pnlPreview.Controls.Add(this.lblPreviewName);
             this.pnlPreview.Controls.Add(this.picPreviewSpeaker);
@@ -62,14 +61,13 @@
             this.pnlPreview.Size = new System.Drawing.Size(512, 480);
             this.pnlPreview.TabIndex = 1;
             // 
-            // pictureBox1
+            // picArrow
             // 
-            this.pictureBox1.Image = global::FrogmanGaidenLevelEditor.Properties.Resources.Arrow;
-            this.pictureBox1.Location = new System.Drawing.Point(480, 448);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.picArrow.Location = new System.Drawing.Point(480, 448);
+            this.picArrow.Name = "picArrow";
+            this.picArrow.Size = new System.Drawing.Size(16, 16);
+            this.picArrow.TabIndex = 2;
+            this.picArrow.TabStop = false;
             // 
             // lblPreviewText
             // 
@@ -159,6 +157,7 @@
             this.btnPreview.TabIndex = 2;
             this.btnPreview.Text = "Preview";
             this.btnPreview.UseVisualStyleBackColor = true;
+            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
             // label1
             // 
@@ -220,7 +219,7 @@
             this.Load += new System.EventHandler(this.frmConversationEditor_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmConversationEditor_KeyDown);
             this.pnlPreview.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPreviewSpeaker)).EndInit();
             this.pnlEditorUI.ResumeLayout(false);
             this.pnlEditorUI.PerformLayout();
@@ -237,7 +236,7 @@
         private System.Windows.Forms.PictureBox picPreviewSpeaker;
         private System.Windows.Forms.Label lblPreviewName;
         private System.Windows.Forms.Label lblPreviewText;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picArrow;
         private System.Windows.Forms.Panel pnlEditorUI;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtName;

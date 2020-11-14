@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FrogmanGaidenLevelEditor.Properties {
+namespace FrogForge.Properties {
     using System;
     
     

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Utils;
 
-namespace FrogmanGaidenLevelEditor
+namespace FrogForge
 {
     public partial class frmMenu : Form
     {

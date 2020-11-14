@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Utils;
 
-namespace FrogmanGaidenLevelEditor
+namespace FrogForge
 {
     public enum Team { Player, Monster, Guard }
     public enum AIType { Charge, Hold, Guard }

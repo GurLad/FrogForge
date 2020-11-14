@@ -1,4 +1,4 @@
-﻿namespace FrogmanGaidenLevelEditor
+﻿namespace FrogForge
 {
     partial class frmMenu
     {
@@ -113,9 +113,9 @@
             this.lblVersion.Font = new System.Drawing.Font("3x5", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.lblVersion.Location = new System.Drawing.Point(-1, 0);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(71, 6);
+            this.lblVersion.Size = new System.Drawing.Size(79, 6);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.3  11.11.2020";
+            this.lblVersion.Text = "V.0.3.1  14.11.2020";
             // 
             // frmMenu
             // 
