@@ -23,6 +23,7 @@ namespace FrogForge
         private bool UserInput = false;
         private bool Preview = false;
         private List<string> PreviewLines;
+        private Dictionary<string, Image> Portraits = new Dictionary<string, Image>();
         public frmConversationEditor()
         {
             InitializeComponent();
@@ -37,6 +38,14 @@ namespace FrogForge
                 string[] keyValue = keywordsFile[i].Split(':');
                 string[] values = keyValue[1].Split(',');
                 Keywords.Add(ColorTranslator.FromHtml(keyValue[0]), values);
+            }
+            // Load portraits
+            DataDirectory.CreateDirectory("Images");
+            DataDirectory.CreateDirectory(@"Images\Portraits");
+            string[] files = DataDirectory.AllFiles(false, true, @"\Images\Portraits");
+            for (int i = 0; i < files.Length; i++)
+            {
+                Portraits.Add(files[i].Replace(".png", ""), DataDirectory.LoadImage(@"Portraits\" + files[i], "", false));
             }
             // Find line width
             txtText.Text = new string('-', CHARS_IN_LINE);
@@ -199,12 +208,13 @@ namespace FrogForge
                     SetPreviewMode(false);
                     return;
                 }
-            } while (PreviewLines[0] == "" || PreviewLines[0][0] == '#' || PreviewLines[0][0] == ':');
+            } while (PreviewLines[0] == "" || PreviewLines[0][0] == '#' || PreviewLines[0][0] == ':' || PreviewLines[0][0] == '}');
             string line = PreviewLines[0];
             if (line.IndexOf(':') != -1)
             {
                 string[] parts = line.Split(':')[0].Split('|');
                 // TBA - load portrait
+                picPreviewSpeaker.Image = Portraits.ContainsKey(parts[0]) ? Portraits[parts[0]] : null;
                 lblPreviewName.Text = parts[parts.Length - 1];
             }
             // Find the line break

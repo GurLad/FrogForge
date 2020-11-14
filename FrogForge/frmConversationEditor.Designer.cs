@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConversationEditor));
             this.pnlPreview = new System.Windows.Forms.Panel();
             this.picArrow = new System.Windows.Forms.PictureBox();
             this.lblPreviewText = new System.Windows.Forms.Label();
@@ -211,6 +212,7 @@
             this.Controls.Add(this.pnlEditorUI);
             this.Controls.Add(this.pnlPreview);
             this.Controls.Add(this.flbFileBrowser);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "frmConversationEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

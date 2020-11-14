@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLevelEditor));
             this.pnlPossibleTiles = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
             this.pnlRenderer = new System.Windows.Forms.Panel();
@@ -45,6 +46,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbcUI = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtLevelName = new System.Windows.Forms.TextBox();
+            this.flbFiles = new FrogForge.FileBrowser();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -59,8 +62,6 @@
             this.txtBossName = new System.Windows.Forms.TextBox();
             this.rdbDefeatBoss = new System.Windows.Forms.RadioButton();
             this.rdbRout = new System.Windows.Forms.RadioButton();
-            this.flbFiles = new FrogForge.FileBrowser();
-            this.txtLevelName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
@@ -238,6 +239,20 @@
             this.tabPage1.Text = "Tiles";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // txtLevelName
+            // 
+            this.txtLevelName.Location = new System.Drawing.Point(139, 107);
+            this.txtLevelName.Name = "txtLevelName";
+            this.txtLevelName.Size = new System.Drawing.Size(109, 20);
+            this.txtLevelName.TabIndex = 36;
+            // 
+            // flbFiles
+            // 
+            this.flbFiles.Location = new System.Drawing.Point(139, 0);
+            this.flbFiles.Name = "flbFiles";
+            this.flbFiles.Size = new System.Drawing.Size(109, 101);
+            this.flbFiles.TabIndex = 35;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label7);
@@ -397,20 +412,6 @@
             this.rdbRout.Text = "Rout";
             this.rdbRout.UseVisualStyleBackColor = true;
             // 
-            // flbFiles
-            // 
-            this.flbFiles.Location = new System.Drawing.Point(139, 0);
-            this.flbFiles.Name = "flbFiles";
-            this.flbFiles.Size = new System.Drawing.Size(109, 101);
-            this.flbFiles.TabIndex = 35;
-            // 
-            // txtLevelName
-            // 
-            this.txtLevelName.Location = new System.Drawing.Point(139, 107);
-            this.txtLevelName.Name = "txtLevelName";
-            this.txtLevelName.Size = new System.Drawing.Size(109, 20);
-            this.txtLevelName.TabIndex = 36;
-            // 
             // frmLevelEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -420,6 +421,7 @@
             this.Controls.Add(this.pnlRenderer);
             this.Controls.Add(this.pnlBG);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmLevelEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
