@@ -65,6 +65,10 @@ namespace FrogForge
 
         private void lstFiles_DoubleClick(object sender, EventArgs e)
         {
+            if (lstFiles.SelectedItem == null)
+            {
+                return;
+            }
             string item = lstFiles.SelectedItem.ToString();
             if (item[0] == @"\"[0])
             {

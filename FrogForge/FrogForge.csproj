@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{86A43053-20DF-47B2-A4BA-E32EB929AD46}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>FrogmanGaidenLevelEditor</RootNamespace>
-    <AssemblyName>FrogmanGaidenLevelEditor</AssemblyName>
+    <RootNamespace>FrogForge</RootNamespace>
+    <AssemblyName>FrogForge</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

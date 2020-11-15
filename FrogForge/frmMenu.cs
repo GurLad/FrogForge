@@ -71,6 +71,8 @@ namespace FrogForge
                 System.IO.Compression.ZipFile.ExtractToDirectory(dlgDataImport.FileName, tempData.Path);
                 System.IO.Directory.Delete(DataDirectory.Path, true);
                 System.IO.Directory.Move(tempData.Path, DataDirectory.Path);
+                WorkingDirectory.Path = txtPath.Text;
+                DataDirectory.SaveFile("Path", txtPath.Text);
                 MessageBox.Show("Done!");
             }
         }

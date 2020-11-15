@@ -32,7 +32,7 @@ namespace FrogForge
         private void frmConversationEditor_Load(object sender, EventArgs e)
         {
             // Load keywords
-            string[] keywordsFile = DataDirectory.LoadFile("Keywords").Split('\n');
+            string[] keywordsFile = DataDirectory.LoadFile("Keywords").Replace("\r", "").Split('\n');
             for (int i = 0; i < keywordsFile.Length; i++)
             {
                 string[] keyValue = keywordsFile[i].Split(':');
@@ -90,25 +90,26 @@ namespace FrogForge
             }
         }
 
-        private void ColorText()
+        private void ColorText(int minIndex = -1, int maxIndex = -1)
         {
             UserInput = false;
             txtText.BeginUpdate();
-            CheckKeyword("~", Color.Purple, false);
-            CheckKeyword(":", Color.DarkGoldenrod, false);
-            CheckKeywordLine("#", Color.DarkCyan);
+            CheckKeyword("~", Color.Purple, minIndex, maxIndex, false);
+            CheckKeyword(":", Color.DarkGoldenrod, minIndex, maxIndex, false);
+            CheckKeywordLine("#", Color.DarkCyan, minIndex, maxIndex);
             foreach (Color color in Keywords.Keys)
             {
                 foreach (string word in Keywords[color])
                 {
-                    CheckKeyword(word, color);
+                    CheckKeyword(word, color, minIndex, maxIndex);
                 }
             }
             txtText.EndUpdate();
+            txtText.Refresh();
             UserInput = true;
         }
 
-        private void CheckKeyword(string word, Color color, bool keyword = true)
+        private void CheckKeyword(string word, Color color, int minIndex = -1, int maxIndex = -1, bool keyword = true)
         {
             if (txtText.Text.Contains(word))
             {
@@ -117,6 +118,14 @@ namespace FrogForge
 
                 while ((index = txtText.Text.IndexOf(word, index + 1)) != -1 && (!keyword || index + word.Length >= txtText.Text.Length || txtText.Text[index + word.Length] == ':'))
                 {
+                    if (minIndex > 0 && index < minIndex)
+                    {
+                        continue;
+                    }
+                    if (maxIndex > 0 && index > maxIndex)
+                    {
+                        return;
+                    }
                     txtText.Select(index, word.Length);
                     txtText.SelectionColor = color;
                     txtText.Select(selectStart, 0);
@@ -125,7 +134,7 @@ namespace FrogForge
             }
         }
 
-        private void CheckKeywordLine(string word, Color color)
+        private void CheckKeywordLine(string word, Color color, int minIndex = -1, int maxIndex = -1)
         {
             if (txtText.Text.Contains(word))
             {
@@ -134,6 +143,14 @@ namespace FrogForge
 
                 while ((index = txtText.Text.IndexOf(word, index + 1)) != -1)
                 {
+                    if (minIndex > 0 && index < minIndex)
+                    {
+                        continue;
+                    }
+                    if (maxIndex > 0 && index > maxIndex)
+                    {
+                        return;
+                    }
                     txtText.Select(index, txtText.Text.IndexOf('\n', index + word.Length) - index);
                     txtText.SelectionColor = color;
                     txtText.Select(selectStart, 0);
@@ -148,16 +165,7 @@ namespace FrogForge
             {
                 return;
             }
-            int selectionIndex = txtText.SelectionStart;
-            if (selectionIndex > 0)
-            {
-                selectionIndex--;
-                int lineIndex = txtText.Text.IndexOf('\n', selectionIndex);
-                if (lineIndex > selectionIndex)
-                {
-                    selectionIndex = lineIndex - 1;
-                }
-            }
+            int selectionIndex = FindSelectedNextLineStart();
             int index = Math.Max(txtText.Text.LastIndexOf(':', selectionIndex) + 2, txtText.Text.LastIndexOf('\n', selectionIndex) + 1);
             Point pos = txtText.GetPositionFromCharIndex(index);
             picSeperator1.Location = txtText.Location;
@@ -172,12 +180,29 @@ namespace FrogForge
         {
             if (e.KeyChar == '\r' || e.KeyChar == ':')
             {
-                ColorText();
+                int selectionIndex = txtText.Text.LastIndexOf('\n', FindSelectedNextLineStart() - 1) + 1;
+                int nextLineIndex = txtText.Text.IndexOf('\n', selectionIndex + 1);
+                ColorText(selectionIndex, nextLineIndex);
             }
             if (!Text.Contains("*"))
             {
                 Text += "*";
             }
+        }
+
+        private int FindSelectedNextLineStart()
+        {
+            int selectionIndex = txtText.SelectionStart;
+            if (selectionIndex > 0)
+            {
+                selectionIndex--;
+                int lineIndex = txtText.Text.IndexOf('\n', selectionIndex);
+                if (lineIndex > selectionIndex)
+                {
+                    selectionIndex = lineIndex - 1;
+                }
+            }
+            return selectionIndex;
         }
 
         private void frmConversationEditor_KeyDown(object sender, KeyEventArgs e)
