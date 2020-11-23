@@ -96,6 +96,8 @@ namespace FrogForge
             txtText.BeginUpdate();
             CheckKeyword("~", Color.Purple, minIndex, maxIndex, false);
             CheckKeyword(":", Color.DarkGoldenrod, minIndex, maxIndex, false);
+            CheckKeyword("{", Color.Red, minIndex, maxIndex, false);
+            CheckKeyword("}", Color.Red, minIndex, maxIndex, false);
             CheckKeywordLine("#", Color.DarkCyan, minIndex, maxIndex);
             foreach (Color color in Keywords.Keys)
             {
@@ -113,11 +115,15 @@ namespace FrogForge
         {
             if (txtText.Text.Contains(word))
             {
-                int index = -1;
+                int index = minIndex;
                 int selectStart = txtText.SelectionStart;
 
-                while ((index = txtText.Text.IndexOf(word, index + 1)) != -1 && (!keyword || index + word.Length >= txtText.Text.Length || txtText.Text[index + word.Length] == ':'))
+                while ((index = txtText.Text.IndexOf(word, index + 1)) != -1)
                 {
+                    if (!(!keyword || index + word.Length >= txtText.Text.Length || txtText.Text[index + word.Length] == ':'))
+                    {
+                        continue;
+                    }
                     if (minIndex > 0 && index < minIndex)
                     {
                         continue;
@@ -178,13 +184,21 @@ namespace FrogForge
 
         private void txtText_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (txtText.SelectionColor != Color.Black)
+            {
+                txtText.SelectionColor = Color.Black;
+            }
             if (e.KeyChar == '\r' || e.KeyChar == ':')
             {
+                if (e.KeyChar == ':')
+                {
+                    txtText.SelectionColor = Color.DarkGoldenrod;
+                }
                 int selectionIndex = txtText.Text.LastIndexOf('\n', FindSelectedNextLineStart() - 1) + 1;
                 int nextLineIndex = txtText.Text.IndexOf('\n', selectionIndex + 1);
-                ColorText(selectionIndex, nextLineIndex);
+                ColorText(selectionIndex - 1, nextLineIndex); // Because IndexOf's startIndex is exclusive
             }
-            if (!Text.Contains("*"))
+            if (ModifierKeys != Keys.Control && !Text.Contains("*"))
             {
                 Text += "*";
             }
@@ -201,6 +215,10 @@ namespace FrogForge
                 {
                     selectionIndex = lineIndex - 1;
                 }
+            }
+            else
+            {
+                selectionIndex = 1; // Fixes crash on empty file
             }
             return selectionIndex;
         }
