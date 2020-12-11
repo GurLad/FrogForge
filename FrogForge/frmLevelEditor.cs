@@ -138,13 +138,48 @@ namespace FrogForge
                     PreviousHover = pictureBox;
                 }
             }
-            else if (e.Button == MouseButtons.Left && CurrentSelected != null)
+            else if (CurrentSelected != null)
             {
-                Label pictureBox = (Label)sender;
-                pictureBox.Capture = false;
-                Tiles[pictureBox.Left / 16, pictureBox.Top / 16].TileID = CurrentSelected.TileID;
-                RenderPictureboxFromTile(pictureBox, Tiles[pictureBox.Left / 16, pictureBox.Top / 16]);
+                if (e.Button == MouseButtons.Left)
+                {
+                    Label pictureBox = (Label)sender;
+                    pictureBox.Capture = false;
+                    Tiles[pictureBox.Left / 16, pictureBox.Top / 16].TileID = CurrentSelected.TileID;
+                    RenderPictureboxFromTile(pictureBox, Tiles[pictureBox.Left / 16, pictureBox.Top / 16]);
+                }
+                else if (e.Button == MouseButtons.Right)
+                {
+                    Label pictureBox = (Label)sender;
+                    pictureBox.Capture = false;
+                    FillTile(pictureBox.Left / 16, pictureBox.Top / 16, CurrentSelected);
+                }
             }
+        }
+
+        private void FillTile(int x, int y, Tile tile)
+        {
+            int originTileID = Tiles[x, y].TileID;
+            if (originTileID == tile.TileID)
+            {
+                return;
+            }
+            Tiles[x, y].TileID = tile.TileID;
+            RenderPictureboxFromTile(Renderers[x, y], tile);
+            for (int i = -1; i <= 1; i++)
+            {
+                for (int j = -1; j <= 1; j++)
+                {
+                    if ((i == 0 || j == 0) && ValidPos(x + i, y + j) && Tiles[x + i, y + j].TileID == originTileID)
+                    {
+                        FillTile(x + i, y + j, tile);
+                    }
+                }
+            }
+        }
+
+        private bool ValidPos(int x, int y)
+        {
+            return x >= 0 && y >= 0 && x < Size.X && y < Size.Y;
         }
 
         private void BtnTileButton_Click(object sender, EventArgs e)

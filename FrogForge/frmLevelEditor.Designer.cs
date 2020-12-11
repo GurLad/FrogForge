@@ -62,6 +62,7 @@
             this.txtBossName = new System.Windows.Forms.TextBox();
             this.rdbDefeatBoss = new System.Windows.Forms.RadioButton();
             this.rdbRout = new System.Windows.Forms.RadioButton();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
@@ -76,12 +77,12 @@
             // 
             this.pnlPossibleTiles.Location = new System.Drawing.Point(0, 0);
             this.pnlPossibleTiles.Name = "pnlPossibleTiles";
-            this.pnlPossibleTiles.Size = new System.Drawing.Size(96, 80);
+            this.pnlPossibleTiles.Size = new System.Drawing.Size(96, 161);
             this.pnlPossibleTiles.TabIndex = 28;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(139, 133);
+            this.btnSave.Location = new System.Drawing.Point(139, 191);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(109, 23);
             this.btnSave.TabIndex = 17;
@@ -114,7 +115,7 @@
             // btnRemove
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemove.Location = new System.Drawing.Point(6, 127);
+            this.btnRemove.Location = new System.Drawing.Point(6, 179);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(106, 23);
             this.btnRemove.TabIndex = 5;
@@ -129,12 +130,12 @@
             this.lstUnits.FormattingEnabled = true;
             this.lstUnits.Location = new System.Drawing.Point(6, 19);
             this.lstUnits.Name = "lstUnits";
-            this.lstUnits.Size = new System.Drawing.Size(106, 95);
+            this.lstUnits.Size = new System.Drawing.Size(106, 147);
             this.lstUnits.TabIndex = 4;
             // 
             // btnPlace
             // 
-            this.btnPlace.Location = new System.Drawing.Point(0, 133);
+            this.btnPlace.Location = new System.Drawing.Point(0, 191);
             this.btnPlace.Name = "btnPlace";
             this.btnPlace.Size = new System.Drawing.Size(124, 23);
             this.btnPlace.TabIndex = 3;
@@ -177,7 +178,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 124);
+            this.label2.Location = new System.Drawing.Point(4, 194);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 13);
             this.label2.TabIndex = 34;
@@ -185,7 +186,7 @@
             // 
             // nudLevelNumber
             // 
-            this.nudLevelNumber.Location = new System.Drawing.Point(84, 122);
+            this.nudLevelNumber.Location = new System.Drawing.Point(84, 192);
             this.nudLevelNumber.Name = "nudLevelNumber";
             this.nudLevelNumber.Size = new System.Drawing.Size(49, 20);
             this.nudLevelNumber.TabIndex = 33;
@@ -194,7 +195,7 @@
             // 
             this.cmbTileSets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTileSets.FormattingEnabled = true;
-            this.cmbTileSets.Location = new System.Drawing.Point(54, 95);
+            this.cmbTileSets.Location = new System.Drawing.Point(54, 165);
             this.cmbTileSets.Name = "cmbTileSets";
             this.cmbTileSets.Size = new System.Drawing.Size(79, 21);
             this.cmbTileSets.TabIndex = 32;
@@ -203,7 +204,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 98);
+            this.label1.Location = new System.Drawing.Point(4, 168);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 31;
@@ -214,34 +215,34 @@
             this.tbcUI.Controls.Add(this.tabPage1);
             this.tbcUI.Controls.Add(this.tabPage2);
             this.tbcUI.Controls.Add(this.tabPage3);
-            this.tbcUI.Location = new System.Drawing.Point(12, 258);
+            this.tbcUI.Location = new System.Drawing.Point(274, 12);
             this.tbcUI.Name = "tbcUI";
             this.tbcUI.SelectedIndex = 0;
-            this.tbcUI.Size = new System.Drawing.Size(256, 182);
+            this.tbcUI.Size = new System.Drawing.Size(256, 240);
             this.tbcUI.TabIndex = 32;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.cmbTileSets);
             this.tabPage1.Controls.Add(this.txtLevelName);
             this.tabPage1.Controls.Add(this.flbFiles);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.nudLevelNumber);
             this.tabPage1.Controls.Add(this.pnlPossibleTiles);
-            this.tabPage1.Controls.Add(this.cmbTileSets);
             this.tabPage1.Controls.Add(this.picPreview);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.btnSave);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(248, 156);
+            this.tabPage1.Size = new System.Drawing.Size(248, 214);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Tiles";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // txtLevelName
             // 
-            this.txtLevelName.Location = new System.Drawing.Point(139, 107);
+            this.txtLevelName.Location = new System.Drawing.Point(139, 165);
             this.txtLevelName.Name = "txtLevelName";
             this.txtLevelName.Size = new System.Drawing.Size(109, 20);
             this.txtLevelName.TabIndex = 36;
@@ -250,11 +251,12 @@
             // 
             this.flbFiles.Location = new System.Drawing.Point(139, 0);
             this.flbFiles.Name = "flbFiles";
-            this.flbFiles.Size = new System.Drawing.Size(109, 101);
+            this.flbFiles.Size = new System.Drawing.Size(109, 159);
             this.flbFiles.TabIndex = 35;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.label6);
@@ -271,7 +273,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(248, 156);
+            this.tabPage2.Size = new System.Drawing.Size(248, 214);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Units";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -327,7 +329,7 @@
             this.grpUnitList.Controls.Add(this.btnRemove);
             this.grpUnitList.Location = new System.Drawing.Point(130, 0);
             this.grpUnitList.Name = "grpUnitList";
-            this.grpUnitList.Size = new System.Drawing.Size(118, 156);
+            this.grpUnitList.Size = new System.Drawing.Size(118, 208);
             this.grpUnitList.TabIndex = 6;
             this.grpUnitList.TabStop = false;
             this.grpUnitList.Text = "List";
@@ -375,7 +377,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(248, 156);
+            this.tabPage3.Size = new System.Drawing.Size(248, 214);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Objective";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -412,11 +414,21 @@
             this.rdbRout.Text = "Rout";
             this.rdbRout.UseVisualStyleBackColor = true;
             // 
+            // label8
+            // 
+            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label8.Enabled = false;
+            this.label8.Location = new System.Drawing.Point(3, 129);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(121, 59);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "TBA:\r\n-Change data\r\n-Group (for group AI)";
+            // 
             // frmLevelEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(280, 452);
+            this.ClientSize = new System.Drawing.Size(542, 264);
             this.Controls.Add(this.tbcUI);
             this.Controls.Add(this.pnlRenderer);
             this.Controls.Add(this.pnlBG);
@@ -477,6 +489,7 @@
         private System.Windows.Forms.RadioButton rdbRout;
         private FileBrowser flbFiles;
         private System.Windows.Forms.TextBox txtLevelName;
+        private System.Windows.Forms.Label label8;
     }
 }
 
