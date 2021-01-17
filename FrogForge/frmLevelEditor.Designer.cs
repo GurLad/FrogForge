@@ -47,8 +47,8 @@
             this.tbcUI = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtLevelName = new System.Windows.Forms.TextBox();
-            this.flbFiles = new FrogForge.FileBrowser();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -56,13 +56,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.grpUnitList = new System.Windows.Forms.GroupBox();
             this.cmbAIType = new System.Windows.Forms.ComboBox();
+            this.btnReplace = new System.Windows.Forms.Button();
             this.nudReinforcementTurn = new System.Windows.Forms.NumericUpDown();
             this.ckbStatue = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.txtBossName = new System.Windows.Forms.TextBox();
             this.rdbDefeatBoss = new System.Windows.Forms.RadioButton();
             this.rdbRout = new System.Windows.Forms.RadioButton();
-            this.label8 = new System.Windows.Forms.Label();
+            this.flbFiles = new FrogForge.FileBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
@@ -132,6 +133,8 @@
             this.lstUnits.Name = "lstUnits";
             this.lstUnits.Size = new System.Drawing.Size(106, 147);
             this.lstUnits.TabIndex = 4;
+            this.lstUnits.SelectedIndexChanged += new System.EventHandler(this.lstUnits_SelectedIndexChanged);
+            this.lstUnits.DoubleClick += new System.EventHandler(this.lstUnits_DoubleClick);
             // 
             // btnPlace
             // 
@@ -247,15 +250,9 @@
             this.txtLevelName.Size = new System.Drawing.Size(109, 20);
             this.txtLevelName.TabIndex = 36;
             // 
-            // flbFiles
-            // 
-            this.flbFiles.Location = new System.Drawing.Point(139, 0);
-            this.flbFiles.Name = "flbFiles";
-            this.flbFiles.Size = new System.Drawing.Size(109, 159);
-            this.flbFiles.TabIndex = 35;
-            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnPlace);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.label5);
@@ -265,7 +262,7 @@
             this.tabPage2.Controls.Add(this.grpUnitList);
             this.tabPage2.Controls.Add(this.cmbAIType);
             this.tabPage2.Controls.Add(this.cmbUnitTeam);
-            this.tabPage2.Controls.Add(this.btnPlace);
+            this.tabPage2.Controls.Add(this.btnReplace);
             this.tabPage2.Controls.Add(this.nudReinforcementTurn);
             this.tabPage2.Controls.Add(this.nudLevel);
             this.tabPage2.Controls.Add(this.txtClass);
@@ -277,6 +274,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Units";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label8.Enabled = false;
+            this.label8.Location = new System.Drawing.Point(3, 129);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(121, 59);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "TBA:\r\n-Change data\r\n-Group (for group AI)";
             // 
             // label7
             // 
@@ -347,6 +354,17 @@
             this.cmbAIType.Size = new System.Drawing.Size(84, 21);
             this.cmbAIType.TabIndex = 0;
             // 
+            // btnReplace
+            // 
+            this.btnReplace.Enabled = false;
+            this.btnReplace.Location = new System.Drawing.Point(65, 191);
+            this.btnReplace.Name = "btnReplace";
+            this.btnReplace.Size = new System.Drawing.Size(59, 23);
+            this.btnReplace.TabIndex = 3;
+            this.btnReplace.Text = "Replace";
+            this.btnReplace.UseVisualStyleBackColor = true;
+            this.btnReplace.Click += new System.EventHandler(this.btnReplace_Click);
+            // 
             // nudReinforcementTurn
             // 
             this.nudReinforcementTurn.Location = new System.Drawing.Point(40, 106);
@@ -414,15 +432,12 @@
             this.rdbRout.Text = "Rout";
             this.rdbRout.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // flbFiles
             // 
-            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label8.Enabled = false;
-            this.label8.Location = new System.Drawing.Point(3, 129);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(121, 59);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "TBA:\r\n-Change data\r\n-Group (for group AI)";
+            this.flbFiles.Location = new System.Drawing.Point(139, 0);
+            this.flbFiles.Name = "flbFiles";
+            this.flbFiles.Size = new System.Drawing.Size(109, 159);
+            this.flbFiles.TabIndex = 35;
             // 
             // frmLevelEditor
             // 
@@ -490,6 +505,7 @@
         private FileBrowser flbFiles;
         private System.Windows.Forms.TextBox txtLevelName;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnReplace;
     }
 }
 

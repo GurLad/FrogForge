@@ -26,6 +26,7 @@ namespace FrogForge
         private Point Size = new Point(16, 15);
         private List<Unit> Units = new List<Unit>();
         private Unit Placing = null;
+        private Unit Selected = null;
         private Label PreviousHover = null;
 
         public frmLevelEditor()
@@ -46,7 +47,15 @@ namespace FrogForge
             flbFiles.ShowDirectories = false;
             flbFiles.UpdateList();
             // Load tiles
-            PossibleTileSets = new List<string>(DataDirectory.AllDirectories(false, @"\Images"));
+            DataDirectory.CreateDirectory("Images");
+            DataDirectory.CreateDirectory(@"Images\Tilesets");
+            PossibleTileSets = new List<string>(DataDirectory.AllDirectories(false, @"\Images\Tilesets"));
+            if (PossibleTileSets.Count < 1)
+            {
+                Close();
+                MessageBox.Show("You must have at least 1 tileset!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             cmbTileSets.Items.AddRange(PossibleTileSets.ToArray());
             cmbTileSets.SelectedIndex = 0;
             SetTileSet(PossibleTileSets[0]);
@@ -83,6 +92,8 @@ namespace FrogForge
                 }
             }
             Render();
+            cmbAIType.SelectedIndex = 0;
+            cmbUnitTeam.SelectedIndex = 0;
         }
 
         private void Render()
@@ -91,9 +102,14 @@ namespace FrogForge
             {
                 for (int j = 0; j < Size.Y; j++)
                 {
-                    RenderPictureboxFromTile(Renderers[i, j], Tiles[i, j]);
+                    RenderTile(i, j);
                 }
             }
+        }
+
+        private void RenderTile(int x, int y)
+        {
+            RenderPictureboxFromTile(Renderers[x, y], Tiles[x, y]);
         }
 
         private void RenderPictureboxFromTile(Label pictureBox, Tile tile)
@@ -125,10 +141,12 @@ namespace FrogForge
                 {
                     Placing.Pos = new Point(pictureBox.Left / 16, pictureBox.Top / 16);
                     tbcUI.Enabled = true;
-                    Placing = null;
                     lstUnits.DataSource = null;
                     lstUnits.DataSource = Units;
-                    RenderPictureboxFromTile(pictureBox, Tiles[pictureBox.Left / 16, pictureBox.Top / 16]);
+                    lstUnits.SelectedIndex = lstUnits.Items.Count - 1;
+                    SelectUnit(Placing);
+                    Placing = null;
+                    RenderTile(pictureBox.Left / 16, pictureBox.Top / 16);
                     return;
                 }
                 else if (pictureBox.Text == "")
@@ -145,7 +163,7 @@ namespace FrogForge
                     Label pictureBox = (Label)sender;
                     pictureBox.Capture = false;
                     Tiles[pictureBox.Left / 16, pictureBox.Top / 16].TileID = CurrentSelected.TileID;
-                    RenderPictureboxFromTile(pictureBox, Tiles[pictureBox.Left / 16, pictureBox.Top / 16]);
+                    RenderTile(pictureBox.Left / 16, pictureBox.Top / 16);
                 }
                 else if (e.Button == MouseButtons.Right)
                 {
@@ -164,7 +182,7 @@ namespace FrogForge
                 return;
             }
             Tiles[x, y].TileID = tile.TileID;
-            RenderPictureboxFromTile(Renderers[x, y], tile);
+            RenderTile(x, y);
             for (int i = -1; i <= 1; i++)
             {
                 for (int j = -1; j <= 1; j++)
@@ -309,10 +327,7 @@ namespace FrogForge
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            Units.RemoveAt(lstUnits.SelectedIndex);
-            lstUnits.DataSource = null;
-            lstUnits.DataSource = Units;
-            Render();
+            RemoveUnit(Units[lstUnits.SelectedIndex]);
         }
 
         private void cmbTileSets_SelectedIndexChanged(object sender, EventArgs e)
@@ -322,12 +337,12 @@ namespace FrogForge
 
         private void SetTileSet(string set)
         {
-            string[] files = DataDirectory.AllFiles(false, true, @"\Images\" + set);
+            string[] files = DataDirectory.AllFiles(false, true, @"\Images\Tilesets\" + set);
             pnlPossibleTiles.Controls.Clear();
             PossibleImages.Clear();
             for (int i = 0; i < files.Length; i++)
             {
-                PossibleImages.Add(DataDirectory.LoadImage(set + @"\" + files[i], "", false));
+                PossibleImages.Add(DataDirectory.LoadImage(@"\Tilesets\" + set + @"\" + files[i], "", false));
                 Label tileButton = new Label();
                 tileButton.Width = 16;
                 tileButton.Height = 16;
@@ -347,6 +362,55 @@ namespace FrogForge
         private void rdbDefeatBoss_CheckedChanged(object sender, EventArgs e)
         {
             txtBossName.Enabled = rdbDefeatBoss.Checked;
+        }
+
+        private void lstUnits_DoubleClick(object sender, EventArgs e)
+        {
+            if (Placing == null && lstUnits.SelectedIndex >= 0)
+            {
+                SelectUnit(Selected = Units[lstUnits.SelectedIndex]);
+            }
+        }
+
+        private void btnReplace_Click(object sender, EventArgs e)
+        {
+            RemoveUnit(Selected);
+            btnPlace_Click(sender, e);
+        }
+
+        private void SelectUnit(Unit unit)
+        {
+            Selected = unit;
+            if (unit != null)
+            {
+                cmbUnitTeam.Text = unit.Team.ToString();
+                nudLevel.Value = unit.Level;
+                txtClass.Text = unit.Class;
+                cmbAIType.Text = unit.AIType.ToString();
+                nudReinforcementTurn.Value = unit.ReinforcementTurn;
+                ckbStatue.Checked = unit.Statue;
+                btnPlace.Width = 59;
+                btnReplace.Enabled = true;
+            }
+            else
+            {
+                btnPlace.Width = 124;
+                btnReplace.Enabled = false;
+            }
+        }
+
+        private void RemoveUnit(Unit unit)
+        {
+            Point pos = unit.Pos;
+            Units.Remove(unit);
+            lstUnits.DataSource = null;
+            lstUnits.DataSource = Units;
+            RenderTile(pos.X, pos.Y);
+        }
+
+        private void lstUnits_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectUnit(null);
         }
     }
 }

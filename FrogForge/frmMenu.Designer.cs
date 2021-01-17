@@ -120,7 +120,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(87, 6);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.3.4.0  11.12.2020";
+            this.lblVersion.Text = "V.0.3.4.1  17.01.2021";
             // 
             // groupBox2
             // 
