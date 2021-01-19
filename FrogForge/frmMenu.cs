@@ -59,6 +59,14 @@ namespace FrogForge
             conversationEditor.ShowDialog(this);
         }
 
+        private void btnClassEditor_Click(object sender, EventArgs e)
+        {
+            frmClassEditor classEditor = new frmClassEditor();
+            classEditor.DataDirectory = DataDirectory;
+            classEditor.WorkingDirectory = WorkingDirectory;
+            classEditor.ShowDialog(this);
+        }
+
         private void btnImport_Click(object sender, EventArgs e)
         {
             if (dlgDataImport.ShowDialog(this) == DialogResult.OK)

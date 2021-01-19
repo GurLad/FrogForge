@@ -13,10 +13,8 @@ namespace FrogForge
 {
     public enum Team { Player, Monster, Guard }
     public enum AIType { Charge, Hold, Guard }
-    public partial class frmLevelEditor : Form
+    public partial class frmLevelEditor : frmBaseEditor
     {
-        public FilesController DataDirectory { get; set; }
-        public FilesController WorkingDirectory { get; set; }
         private FilesController CurrentDirectory { get; set; }
         private Tile[,] Tiles;
         private Tile CurrentSelected = new Tile();

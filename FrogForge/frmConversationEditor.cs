@@ -11,10 +11,8 @@ using Utils;
 
 namespace FrogForge
 {
-    public partial class frmConversationEditor : Form
+    public partial class frmConversationEditor : frmBaseEditor
     {
-        public FilesController DataDirectory { get; set; }
-        public FilesController WorkingDirectory { get; set; }
         private const int CHARS_IN_LINE = 23;
         private FilesController CurrentDirectory;
         private string CurrentFilename;
