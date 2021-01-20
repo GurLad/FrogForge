@@ -35,28 +35,28 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.grpGrowths = new System.Windows.Forms.GroupBox();
             this.grpWeapon = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.nudWeaponWeight = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.nudWeaponHit = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.nudWeaponDamage = new System.Windows.Forms.NumericUpDown();
+            this.nudWeaponRange = new System.Windows.Forms.NumericUpDown();
+            this.txtWeaponName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.ckbFlies = new System.Windows.Forms.CheckBox();
             this.cmbInclination = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.grpImage = new System.Windows.Forms.GroupBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtWeaponName = new System.Windows.Forms.TextBox();
-            this.nudWeaponRange = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
-            this.nudWeaponDamage = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.nudWeaponHit = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
-            this.nudWeaponWeight = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
             this.picIcon = new System.Windows.Forms.PictureBox();
+            this.btnSave = new System.Windows.Forms.Button();
             this.grpWeapon.SuspendLayout();
-            this.grpImage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudWeaponRange)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudWeaponDamage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudWeaponHit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponWeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWeaponHit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWeaponDamage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWeaponRange)).BeginInit();
+            this.grpImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,6 +128,121 @@
             this.grpWeapon.TabStop = false;
             this.grpWeapon.Text = "Weapon";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(166, 47);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(24, 13);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Wt:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(86, 47);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(23, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Hit:";
+            // 
+            // nudWeaponWeight
+            // 
+            this.nudWeaponWeight.Location = new System.Drawing.Point(204, 45);
+            this.nudWeaponWeight.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.nudWeaponWeight.Minimum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            -2147483648});
+            this.nudWeaponWeight.Name = "nudWeaponWeight";
+            this.nudWeaponWeight.Size = new System.Drawing.Size(36, 20);
+            this.nudWeaponWeight.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 47);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(32, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Dmg:";
+            // 
+            // nudWeaponHit
+            // 
+            this.nudWeaponHit.Location = new System.Drawing.Point(124, 45);
+            this.nudWeaponHit.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.nudWeaponHit.Minimum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            -2147483648});
+            this.nudWeaponHit.Name = "nudWeaponHit";
+            this.nudWeaponHit.Size = new System.Drawing.Size(36, 20);
+            this.nudWeaponHit.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(156, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(42, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Range:";
+            // 
+            // nudWeaponDamage
+            // 
+            this.nudWeaponDamage.Location = new System.Drawing.Point(44, 45);
+            this.nudWeaponDamage.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.nudWeaponDamage.Minimum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            -2147483648});
+            this.nudWeaponDamage.Name = "nudWeaponDamage";
+            this.nudWeaponDamage.Size = new System.Drawing.Size(36, 20);
+            this.nudWeaponDamage.TabIndex = 4;
+            // 
+            // nudWeaponRange
+            // 
+            this.nudWeaponRange.Location = new System.Drawing.Point(204, 19);
+            this.nudWeaponRange.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudWeaponRange.Name = "nudWeaponRange";
+            this.nudWeaponRange.Size = new System.Drawing.Size(36, 20);
+            this.nudWeaponRange.TabIndex = 4;
+            // 
+            // txtWeaponName
+            // 
+            this.txtWeaponName.Location = new System.Drawing.Point(50, 19);
+            this.txtWeaponName.Name = "txtWeaponName";
+            this.txtWeaponName.Size = new System.Drawing.Size(100, 20);
+            this.txtWeaponName.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Name:";
+            // 
             // ckbFlies
             // 
             this.ckbFlies.AutoSize = true;
@@ -172,6 +287,17 @@
             this.grpImage.TabStop = false;
             this.grpImage.Text = "Icon";
             // 
+            // picIcon
+            // 
+            this.picIcon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picIcon.Location = new System.Drawing.Point(0, 19);
+            this.picIcon.Name = "picIcon";
+            this.picIcon.Size = new System.Drawing.Size(43, 30);
+            this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picIcon.TabIndex = 0;
+            this.picIcon.TabStop = false;
+            this.picIcon.Click += new System.EventHandler(this.picIcon_Click);
+            // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -183,131 +309,6 @@
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Name:";
-            // 
-            // txtWeaponName
-            // 
-            this.txtWeaponName.Location = new System.Drawing.Point(50, 19);
-            this.txtWeaponName.Name = "txtWeaponName";
-            this.txtWeaponName.Size = new System.Drawing.Size(100, 20);
-            this.txtWeaponName.TabIndex = 3;
-            // 
-            // nudWeaponRange
-            // 
-            this.nudWeaponRange.Location = new System.Drawing.Point(204, 19);
-            this.nudWeaponRange.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nudWeaponRange.Name = "nudWeaponRange";
-            this.nudWeaponRange.Size = new System.Drawing.Size(36, 20);
-            this.nudWeaponRange.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(156, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Range:";
-            // 
-            // nudWeaponDamage
-            // 
-            this.nudWeaponDamage.Location = new System.Drawing.Point(44, 45);
-            this.nudWeaponDamage.Maximum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.nudWeaponDamage.Minimum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            -2147483648});
-            this.nudWeaponDamage.Name = "nudWeaponDamage";
-            this.nudWeaponDamage.Size = new System.Drawing.Size(36, 20);
-            this.nudWeaponDamage.TabIndex = 4;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 47);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Dmg:";
-            // 
-            // nudWeaponHit
-            // 
-            this.nudWeaponHit.Location = new System.Drawing.Point(124, 45);
-            this.nudWeaponHit.Maximum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.nudWeaponHit.Minimum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            -2147483648});
-            this.nudWeaponHit.Name = "nudWeaponHit";
-            this.nudWeaponHit.Size = new System.Drawing.Size(36, 20);
-            this.nudWeaponHit.TabIndex = 4;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(86, 47);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(23, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Hit:";
-            // 
-            // nudWeaponWeight
-            // 
-            this.nudWeaponWeight.Location = new System.Drawing.Point(204, 45);
-            this.nudWeaponWeight.Maximum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.nudWeaponWeight.Minimum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            -2147483648});
-            this.nudWeaponWeight.Name = "nudWeaponWeight";
-            this.nudWeaponWeight.Size = new System.Drawing.Size(36, 20);
-            this.nudWeaponWeight.TabIndex = 4;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(166, 47);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(24, 13);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "Wt:";
-            // 
-            // picIcon
-            // 
-            this.picIcon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picIcon.Location = new System.Drawing.Point(12, 20);
-            this.picIcon.Name = "picIcon";
-            this.picIcon.Size = new System.Drawing.Size(19, 19);
-            this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picIcon.TabIndex = 0;
-            this.picIcon.TabStop = false;
             // 
             // frmClassEditor
             // 
@@ -331,14 +332,15 @@
             this.Name = "frmClassEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Class Editor";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmClassEditor_FormClosed);
             this.Load += new System.EventHandler(this.frmClassEditor_Load);
             this.grpWeapon.ResumeLayout(false);
             this.grpWeapon.PerformLayout();
-            this.grpImage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudWeaponRange)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudWeaponDamage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudWeaponHit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponWeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWeaponHit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWeaponDamage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWeaponRange)).EndInit();
+            this.grpImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

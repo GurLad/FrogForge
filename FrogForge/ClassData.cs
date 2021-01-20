@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace FrogForge
 {
@@ -17,11 +18,25 @@ namespace FrogForge
         public Inclination Inclination { get; set; }
         public int[] Growths { get; set; } = new int[6];
         public Weapon Weapon { get; set; }
-        public Image MapSprite { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
+        public PalettedImage MapSprite { get; set; }
 
         public override string ToString()
         {
             return Name;
+        }
+        
+        public PalettedImage LoadSprite(FilesController files)
+        {
+            if (MapSprite == null)
+            {
+                Image target = files.LoadImage(@"ClassMapSprites\" + Name);
+                return MapSprite = target != null ? new PalettedImage(target) : null;
+            }
+            else
+            {
+                return MapSprite;
+            }
         }
     }
 }

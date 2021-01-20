@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.Json;
+using System.Drawing.Imaging;
 
 namespace FrogForge
 {
@@ -15,6 +16,8 @@ namespace FrogForge
     {
         private NumericUpDown[] Growths = new NumericUpDown[6];
         private List<ClassData> Classes;
+        private OpenFileDialog dlgOpen = new OpenFileDialog();
+        private PalettedImage SelectedImage;
 
         public frmClassEditor()
         {
@@ -52,6 +55,11 @@ namespace FrogForge
             {
                 Classes = (List<ClassData>) JsonSerializer.Deserialize(WorkingDirectory.LoadFile("Classes", "", ".json"), typeof(List<ClassData>));
                 UpdateList();
+                if (Classes.Count > 0)
+                {
+                    lstClasses.SelectedIndex = 0;
+                    ToUI(Classes[lstClasses.SelectedIndex]);
+                }
             }
             else
             {
@@ -89,8 +97,6 @@ namespace FrogForge
             {
                 lstClasses.SelectedItem = null;
             }
-            // Save
-            WorkingDirectory.SaveFile("Classes", JsonSerializer.Serialize(Classes, typeof(List<ClassData>)), ".json");
         }
 
         private ClassData FromUI()
@@ -101,7 +107,7 @@ namespace FrogForge
         private ClassData FromUI(ClassData data)
         {
             data.Name = txtName.Text;
-            data.MapSprite = picIcon.Image;
+            data.MapSprite = SelectedImage;
             data.Inclination = (Inclination)cmbInclination.SelectedIndex;
             data.Flies = ckbFlies.Checked;
             for (int i = 0; i < 6; i++)
@@ -120,7 +126,7 @@ namespace FrogForge
         private void ToUI(ClassData data)
         {
             txtName.Text = data.Name;
-            picIcon.Image = data.MapSprite;
+            picIcon.Image = (SelectedImage = data.LoadSprite(WorkingDirectory))?.Target;
             cmbInclination.Text = data.Inclination.ToString();
             ckbFlies.Checked = data.Flies;
             for (int i = 0; i < 6; i++)
@@ -145,6 +151,47 @@ namespace FrogForge
             if (lstClasses.SelectedIndex >= 0)
             {
                 ToUI(Classes[lstClasses.SelectedIndex]);
+            }
+        }
+
+        private void picIcon_Click(object sender, EventArgs e)
+        {
+            dlgOpen.Filter = "Animated image files|*.gif;*.png";
+            if (dlgOpen.ShowDialog() == DialogResult.OK)
+            {
+                // Create image
+                Image source = Image.FromFile(dlgOpen.FileName);
+                FrameDimension dimension = new FrameDimension(source.FrameDimensionsList.First());
+                int frameCount = source.GetFrameCount(dimension);
+                Bitmap target = new Bitmap(source.Width * frameCount, source.Height);
+                Graphics graphics = Graphics.FromImage(target);
+                Rectangle cloneRect = new Rectangle(0, 0, source.Width, source.Height);
+                for (int i = 0; i < frameCount; i++)
+                {
+                    cloneRect.Location = new Point(i * cloneRect.Width, 0);
+                    source.SelectActiveFrame(dimension, i);
+                    graphics.DrawImage(source, cloneRect);
+                }
+                // Color image
+                SelectedImage = new PalettedImage(target);
+                SelectedImage.SetPalette();
+                picIcon.Image = SelectedImage.Target;
+            }
+        }
+
+        private void frmClassEditor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Save
+            WorkingDirectory.SaveFile("Classes", JsonSerializer.Serialize(Classes, typeof(List<ClassData>)), ".json");
+            // Save images
+            WorkingDirectory.CreateDirectory("Images");
+            WorkingDirectory.CreateDirectory(@"Images\ClassMapSprites");
+            foreach (ClassData item in Classes)
+            {
+                if (item.MapSprite != null)
+                {
+                    WorkingDirectory.SaveImage(@"ClassMapSprites\" + item.Name, item.MapSprite.Target);
+                }
             }
         }
     }
