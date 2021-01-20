@@ -33,7 +33,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.pnlRenderer = new System.Windows.Forms.Panel();
             this.pnlBG = new System.Windows.Forms.Panel();
-            this.picPreview = new System.Windows.Forms.Label();
             this.btnRemove = new System.Windows.Forms.Button();
             this.lstUnits = new System.Windows.Forms.ListBox();
             this.btnPlace = new System.Windows.Forms.Button();
@@ -47,6 +46,7 @@
             this.tbcUI = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtLevelName = new System.Windows.Forms.TextBox();
+            this.flbFiles = new FrogForge.FileBrowser();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -63,7 +63,7 @@
             this.txtBossName = new System.Windows.Forms.TextBox();
             this.rdbDefeatBoss = new System.Windows.Forms.RadioButton();
             this.rdbRout = new System.Windows.Forms.RadioButton();
-            this.flbFiles = new FrogForge.FileBrowser();
+            this.picPreview = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
@@ -72,6 +72,7 @@
             this.grpUnitList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudReinforcementTurn)).BeginInit();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlPossibleTiles
@@ -104,14 +105,6 @@
             this.pnlBG.Name = "pnlBG";
             this.pnlBG.Size = new System.Drawing.Size(256, 240);
             this.pnlBG.TabIndex = 14;
-            // 
-            // picPreview
-            // 
-            this.picPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picPreview.Location = new System.Drawing.Point(102, -1);
-            this.picPreview.Name = "picPreview";
-            this.picPreview.Size = new System.Drawing.Size(18, 18);
-            this.picPreview.TabIndex = 29;
             // 
             // btnRemove
             // 
@@ -226,13 +219,13 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.picPreview);
             this.tabPage1.Controls.Add(this.cmbTileSets);
             this.tabPage1.Controls.Add(this.txtLevelName);
             this.tabPage1.Controls.Add(this.flbFiles);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.nudLevelNumber);
             this.tabPage1.Controls.Add(this.pnlPossibleTiles);
-            this.tabPage1.Controls.Add(this.picPreview);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.btnSave);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -249,6 +242,13 @@
             this.txtLevelName.Name = "txtLevelName";
             this.txtLevelName.Size = new System.Drawing.Size(109, 20);
             this.txtLevelName.TabIndex = 36;
+            // 
+            // flbFiles
+            // 
+            this.flbFiles.Location = new System.Drawing.Point(139, 0);
+            this.flbFiles.Name = "flbFiles";
+            this.flbFiles.Size = new System.Drawing.Size(109, 159);
+            this.flbFiles.TabIndex = 35;
             // 
             // tabPage2
             // 
@@ -432,12 +432,14 @@
             this.rdbRout.Text = "Rout";
             this.rdbRout.UseVisualStyleBackColor = true;
             // 
-            // flbFiles
+            // picPreview
             // 
-            this.flbFiles.Location = new System.Drawing.Point(139, 0);
-            this.flbFiles.Name = "flbFiles";
-            this.flbFiles.Size = new System.Drawing.Size(109, 159);
-            this.flbFiles.TabIndex = 35;
+            this.picPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picPreview.Location = new System.Drawing.Point(102, -1);
+            this.picPreview.Name = "picPreview";
+            this.picPreview.Size = new System.Drawing.Size(18, 18);
+            this.picPreview.TabIndex = 37;
+            this.picPreview.TabStop = false;
             // 
             // frmLevelEditor
             // 
@@ -465,6 +467,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudReinforcementTurn)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picPreview)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -475,7 +478,6 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel pnlRenderer;
         private System.Windows.Forms.Panel pnlBG;
-        private System.Windows.Forms.Label picPreview;
         private System.Windows.Forms.ComboBox cmbUnitTeam;
         private System.Windows.Forms.NumericUpDown nudLevel;
         private System.Windows.Forms.Button btnPlace;
@@ -506,6 +508,7 @@
         private System.Windows.Forms.TextBox txtLevelName;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnReplace;
+        private System.Windows.Forms.PictureBox picPreview;
     }
 }
 

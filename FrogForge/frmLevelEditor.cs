@@ -20,12 +20,38 @@ namespace FrogForge
         private Tile CurrentSelected = new Tile();
         private List<string> PossibleTileSets;
         private List<Image> PossibleImages = new List<Image>();
-        private Label[,] Renderers;
+        private PictureBox[,] Renderers;
         private Point Size = new Point(16, 15);
         private List<Unit> Units = new List<Unit>();
         private Unit Placing = null;
         private Unit Selected = null;
-        private Label PreviousHover = null;
+        private PictureBox PreviousHover = null;
+        private List<ClassData> CachedSprites = new List<ClassData>();
+
+        private static List<List<Color>> TeamPalettes { get; } = new List<List<Color>>(new List<Color>[]
+        {
+            new List<Color>(new Color[]
+            {
+                ColorTranslator.FromHtml("#FF000000"),
+                ColorTranslator.FromHtml("#FF58F89C"),
+                ColorTranslator.FromHtml("#FF005800"),
+                ColorTranslator.FromHtml("#00000000")
+            }),
+            new List<Color>(new Color[]
+            {
+                ColorTranslator.FromHtml("#FF000000"),
+                ColorTranslator.FromHtml("#FFFC7858"),
+                ColorTranslator.FromHtml("#FFAC1000"),
+                ColorTranslator.FromHtml("#00000000")
+            }),
+            new List<Color>(new Color[]
+            {
+                ColorTranslator.FromHtml("#FF000000"),
+                ColorTranslator.FromHtml("#FF38C0FC"),
+                ColorTranslator.FromHtml("#FF0000FC"),
+                ColorTranslator.FromHtml("#00000000")
+            })
+        });
 
         public frmLevelEditor()
         {
@@ -70,12 +96,12 @@ namespace FrogForge
                     Tiles[i, j].Pos = new Point(i, j);
                 }
             }
-            Renderers = new Label[Size.X, Size.Y];
+            Renderers = new PictureBox[Size.X, Size.Y];
             for (i = 0; i < Size.X; i++)
             {
                 for (int j = 0; j < Size.Y; j++)
                 {
-                    Label pictureBox = new Label();
+                    PictureBox pictureBox = new PictureBox();
                     pictureBox.Width = 16;
                     pictureBox.Height = 16;
                     pictureBox.Left = 16 * i;
@@ -84,7 +110,6 @@ namespace FrogForge
                     pictureBox.MouseDown += TileMouseMove;
                     pictureBox.Capture = false;
                     pictureBox.BackgroundImageLayout = ImageLayout.Stretch;
-                    pictureBox.TextAlign = ContentAlignment.MiddleCenter;
                     pnlRenderer.Controls.Add(pictureBox);
                     Renderers[i, j] = pictureBox;
                 }
@@ -110,19 +135,18 @@ namespace FrogForge
             RenderPictureboxFromTile(Renderers[x, y], Tiles[x, y]);
         }
 
-        private void RenderPictureboxFromTile(Label pictureBox, Tile tile)
+        private void RenderPictureboxFromTile(PictureBox pictureBox, Tile tile)
         {
             pictureBox.BackgroundImage = PossibleImages[tile.TileID];
             Point pos = new Point(pictureBox.Left / 16, pictureBox.Top / 16);
             int unitIndex = Units.FindIndex(a => a.Pos == pos);
             if (unitIndex >= 0)
             {
-                pictureBox.Text = unitIndex.ToString();
-                pictureBox.ForeColor = ColorFromTeam(Units[unitIndex].Team);
+                pictureBox.Image = Units[unitIndex].image ?? GetUnitImage(Units[unitIndex]);
             }
             else
             {
-                pictureBox.Text = "";
+                pictureBox.Image = null;
             }
         }
 
@@ -130,11 +154,11 @@ namespace FrogForge
         {
             if (Placing != null)
             {
-                if (PreviousHover != null && PreviousHover.Text == "O")
+                if (PreviousHover != null && PreviousHover.Image != null)
                 {
-                    PreviousHover.Text = "";
+                    PreviousHover.Image = null;
                 }
-                Label pictureBox = (Label)sender;
+                PictureBox pictureBox = (PictureBox)sender;
                 if (e.Button == MouseButtons.Left)
                 {
                     Placing.Pos = new Point(pictureBox.Left / 16, pictureBox.Top / 16);
@@ -145,12 +169,12 @@ namespace FrogForge
                     SelectUnit(Placing);
                     Placing = null;
                     RenderTile(pictureBox.Left / 16, pictureBox.Top / 16);
+                    PreviousHover = null;
                     return;
                 }
-                else if (pictureBox.Text == "")
+                else if (pictureBox.Image == null)
                 {
-                    pictureBox.Text = "O";
-                    pictureBox.ForeColor = ColorFromTeam(Placing.Team);
+                    pictureBox.Image = Placing.image;
                     PreviousHover = pictureBox;
                 }
             }
@@ -158,14 +182,14 @@ namespace FrogForge
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    Label pictureBox = (Label)sender;
+                    PictureBox pictureBox = (PictureBox)sender;
                     pictureBox.Capture = false;
                     Tiles[pictureBox.Left / 16, pictureBox.Top / 16].TileID = CurrentSelected.TileID;
                     RenderTile(pictureBox.Left / 16, pictureBox.Top / 16);
                 }
                 else if (e.Button == MouseButtons.Right)
                 {
-                    Label pictureBox = (Label)sender;
+                    PictureBox pictureBox = (PictureBox)sender;
                     pictureBox.Capture = false;
                     FillTile(pictureBox.Left / 16, pictureBox.Top / 16, CurrentSelected);
                 }
@@ -303,24 +327,38 @@ namespace FrogForge
         private void btnPlace_Click(object sender, EventArgs e)
         {
             Units.Add(Placing = new Unit((Team)Enum.Parse(typeof(Team), cmbUnitTeam.Text), (int)nudLevel.Value, txtClass.Text, (AIType)Enum.Parse(typeof(AIType), cmbAIType.Text), (int)nudReinforcementTurn.Value, ckbStatue.Checked));
+            Placing.image = GetUnitImage(Placing);
             CurrentSelected = null;
             picPreview.BackgroundImage = null;
             tbcUI.Enabled = false;
         }
 
-        private Color ColorFromTeam(Team team)
+        private Image GetUnitImage(Unit unit)
         {
-            switch (team)
+            List<Color> palette = PaletteFromTeam(unit.Team);
+            // Find image
+            Image image = CachedSprites.Find(a => a.Name == unit.Class && a.MapSprite.CurrentPalette == palette)?.MapSprite.Target;
+            // Check if cached
+            if (image != null)
             {
-                case Team.Player:
-                    return Color.Lime;
-                case Team.Monster:
-                    return Color.Red;
-                case Team.Guard:
-                    return Color.Blue;
-                default:
-                    return Color.Black;
+                return image;
             }
+            else
+            {
+                ClassData newData = new ClassData();
+                newData.Name = unit.Class;
+                CachedSprites.Add(newData);
+                newData.LoadSprite(WorkingDirectory);
+                // Check if exists. Otherwise, load error sprite
+                newData.MapSprite = newData.MapSprite ?? new PalettedImage(DataDirectory.LoadImage("ErrorSprite") ?? throw new Exception("No error sprite!"));
+                newData.MapSprite.CurrentPalette = palette;
+                return newData.MapSprite.Target;
+            }
+        }
+
+        private List<Color> PaletteFromTeam(Team team)
+        {
+            return TeamPalettes[(int)team];
         }
 
         private void btnRemove_Click(object sender, EventArgs e)

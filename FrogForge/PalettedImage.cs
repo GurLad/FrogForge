@@ -10,7 +10,26 @@ namespace FrogForge
     public class PalettedImage
     {
         public Bitmap Target { get; private set; }
-        private List<Color> SourceColors = new List<Color>(new Color[]
+        public List<Color> CurrentPalette
+        {
+            get => currentPalette;
+            set
+            {
+                currentPalette = value ?? SourceColors;
+                if (currentPalette.Count != 4)
+                {
+                    throw new Exception("Palette must have exactly 4 colors!");
+                }
+                for (int i = 0; i < Target.Width; i++)
+                {
+                    for (int j = 0; j < Target.Height; j++)
+                    {
+                        Target.SetPixel(i, j, currentPalette[Indexes[i, j]]);
+                    }
+                }
+            }
+        }
+        private static List<Color> SourceColors { get; } = new List<Color>(new Color[]
         {
             ColorTranslator.FromHtml("#FF000000"),
             ColorTranslator.FromHtml("#FFFFFFFF"),
@@ -18,8 +37,9 @@ namespace FrogForge
             ColorTranslator.FromHtml("#FF788084")
         });
         private int[,] Indexes;
+        private List<Color> currentPalette;
 
-        public PalettedImage(Image target) : this(new Bitmap(target)) {}
+        public PalettedImage(Image target) : this(new Bitmap(target)) { }
 
         public PalettedImage(Bitmap target)
         {
@@ -32,22 +52,6 @@ namespace FrogForge
                 {
                     Color color = Target.GetPixel(i, j);
                     Indexes[i, j] = color.A == 0 ? 3 : ClosestColor(SourceColors, color);
-                }
-            }
-        }
-
-        public void SetPalette(List<Color> palette = null)
-        {
-            palette = palette ?? SourceColors;
-            if (palette.Count != 4)
-            {
-                throw new Exception("Palette must have exactly 4 colors!");
-            }
-            for (int i = 0; i < Target.Width; i++)
-            {
-                for (int j = 0; j < Target.Height; j++)
-                {
-                    Target.SetPixel(i, j, palette[Indexes[i, j]]);
                 }
             }
         }

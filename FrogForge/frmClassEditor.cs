@@ -174,7 +174,7 @@ namespace FrogForge
                 }
                 // Color image
                 SelectedImage = new PalettedImage(target);
-                SelectedImage.SetPalette();
+                SelectedImage.CurrentPalette = null;
                 picIcon.Image = SelectedImage.Target;
             }
         }

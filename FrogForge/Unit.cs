@@ -16,6 +16,7 @@ namespace FrogForge
         public AIType AIType;
         public int ReinforcementTurn;
         public bool Statue;
+        public Image image; // Editor only
 
         public Unit(Team team, int level, string @class, AIType aIType, int reinforcementTurn, bool statue)
         {
