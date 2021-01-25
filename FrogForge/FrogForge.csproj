@@ -92,6 +92,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimationPicturebox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="FileBrowser.cs">
       <SubType>UserControl</SubType>
     </Compile>

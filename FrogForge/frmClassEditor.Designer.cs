@@ -49,7 +49,7 @@
             this.cmbInclination = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.grpImage = new System.Windows.Forms.GroupBox();
-            this.picIcon = new System.Windows.Forms.PictureBox();
+            this.picIcon = new FrogForge.AnimationPicturebox();
             this.btnSave = new System.Windows.Forms.Button();
             this.grpWeapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponWeight)).BeginInit();
@@ -290,13 +290,13 @@
             // picIcon
             // 
             this.picIcon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picIcon.Location = new System.Drawing.Point(0, 19);
+            this.picIcon.Image = null;
+            this.picIcon.Location = new System.Drawing.Point(12, 20);
             this.picIcon.Name = "picIcon";
-            this.picIcon.Size = new System.Drawing.Size(43, 30);
+            this.picIcon.Size = new System.Drawing.Size(20, 20);
             this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picIcon.TabIndex = 0;
             this.picIcon.TabStop = false;
-            this.picIcon.Click += new System.EventHandler(this.picIcon_Click);
             // 
             // btnSave
             // 
@@ -370,6 +370,6 @@
         private System.Windows.Forms.NumericUpDown nudWeaponHit;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown nudWeaponWeight;
-        private System.Windows.Forms.PictureBox picIcon;
+        private AnimationPicturebox picIcon;
     }
 }

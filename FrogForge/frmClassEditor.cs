@@ -17,7 +17,6 @@ namespace FrogForge
         private NumericUpDown[] Growths = new NumericUpDown[6];
         private List<ClassData> Classes;
         private OpenFileDialog dlgOpen = new OpenFileDialog();
-        private PalettedImage SelectedImage;
 
         public frmClassEditor()
         {
@@ -55,18 +54,23 @@ namespace FrogForge
             {
                 Classes = (List<ClassData>) JsonSerializer.Deserialize(WorkingDirectory.LoadFile("Classes", "", ".json"), typeof(List<ClassData>));
                 UpdateList();
-                if (Classes.Count > 0)
-                {
-                    lstClasses.SelectedIndex = 0;
-                    ToUI(Classes[lstClasses.SelectedIndex]);
-                }
             }
             else
             {
                 Classes = new List<ClassData>();
             }
-            // Misc
-            cmbInclination.SelectedIndex = 0;
+            // Init stuff
+            dlgOpen.Filter = "Animated image files|*.gif;*.png";
+            picIcon.Init(dlgOpen);
+            if (Classes.Count > 0)
+            {
+                lstClasses.SelectedIndex = 0;
+                ToUI(Classes[lstClasses.SelectedIndex]);
+            }
+            else
+            {
+                cmbInclination.SelectedIndex = 0;
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -107,7 +111,7 @@ namespace FrogForge
         private ClassData FromUI(ClassData data)
         {
             data.Name = txtName.Text;
-            data.MapSprite = SelectedImage;
+            data.MapSprite = picIcon.Image;
             data.Inclination = (Inclination)cmbInclination.SelectedIndex;
             data.Flies = ckbFlies.Checked;
             for (int i = 0; i < 6; i++)
@@ -126,7 +130,7 @@ namespace FrogForge
         private void ToUI(ClassData data)
         {
             txtName.Text = data.Name;
-            picIcon.Image = (SelectedImage = data.LoadSprite(WorkingDirectory))?.Target;
+            picIcon.Image = data.LoadSprite(WorkingDirectory);
             cmbInclination.Text = data.Inclination.ToString();
             ckbFlies.Checked = data.Flies;
             for (int i = 0; i < 6; i++)
@@ -156,26 +160,8 @@ namespace FrogForge
 
         private void picIcon_Click(object sender, EventArgs e)
         {
-            dlgOpen.Filter = "Animated image files|*.gif;*.png";
             if (dlgOpen.ShowDialog() == DialogResult.OK)
             {
-                // Create image
-                Image source = Image.FromFile(dlgOpen.FileName);
-                FrameDimension dimension = new FrameDimension(source.FrameDimensionsList.First());
-                int frameCount = source.GetFrameCount(dimension);
-                Bitmap target = new Bitmap(source.Width * frameCount, source.Height);
-                Graphics graphics = Graphics.FromImage(target);
-                Rectangle cloneRect = new Rectangle(0, 0, source.Width, source.Height);
-                for (int i = 0; i < frameCount; i++)
-                {
-                    cloneRect.Location = new Point(i * cloneRect.Width, 0);
-                    source.SelectActiveFrame(dimension, i);
-                    graphics.DrawImage(source, cloneRect);
-                }
-                // Color image
-                SelectedImage = new PalettedImage(target);
-                SelectedImage.CurrentPalette = null;
-                picIcon.Image = SelectedImage.Target;
             }
         }
 
