@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace FrogForge
 {
@@ -54,6 +55,12 @@ namespace FrogForge
                     Indexes[i, j] = color.A == 0 ? 3 : ClosestColor(SourceColors, color);
                 }
             }
+        }
+
+        public static PalettedImage FromFile(FilesController files, string filename)
+        {
+            Image target = files.LoadImage(filename);
+            return target != null ? new PalettedImage(target) : null;
         }
 
         private int ClosestColor(List<Color> colors, Color target)

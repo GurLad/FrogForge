@@ -21,6 +21,8 @@ namespace FrogForge
         [System.Text.Json.Serialization.JsonIgnore]
         public PalettedImage MapSprite { get; set; }
         public List<string> BattleAnimations { get; set; } = new List<string>();
+        [System.Text.Json.Serialization.JsonIgnore]
+        public List<PalettedImage> BattleAnimationImages { get; set; } = new List<PalettedImage>();
 
         public override string ToString()
         {
@@ -29,15 +31,7 @@ namespace FrogForge
         
         public PalettedImage LoadSprite(FilesController files)
         {
-            if (MapSprite == null)
-            {
-                Image target = files.LoadImage(@"ClassMapSprites\" + Name);
-                return MapSprite = target != null ? new PalettedImage(target) : null;
-            }
-            else
-            {
-                return MapSprite;
-            }
+            return MapSprite ?? (MapSprite = PalettedImage.FromFile(files, @"ClassMapSprites\" + Name));
         }
     }
 }

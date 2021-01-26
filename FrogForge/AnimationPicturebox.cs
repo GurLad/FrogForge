@@ -71,6 +71,10 @@ namespace FrogForge
                 }
                 else
                 {
+                    if (Image == null)
+                    {
+                        return;
+                    }
                     tmrAnimate.Start();
                     tmrAnimateTick(sender, e);
                 }

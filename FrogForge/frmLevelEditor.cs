@@ -71,8 +71,6 @@ namespace FrogForge
             flbFiles.ShowDirectories = false;
             flbFiles.UpdateList();
             // Load tiles
-            DataDirectory.CreateDirectory("Images");
-            DataDirectory.CreateDirectory(@"Images\Tilesets");
             PossibleTileSets = new List<string>(DataDirectory.AllDirectories(false, @"\Images\Tilesets"));
             if (PossibleTileSets.Count < 1)
             {

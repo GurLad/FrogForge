@@ -38,8 +38,6 @@ namespace FrogForge
                 Keywords.Add(ColorTranslator.FromHtml(keyValue[0]), values);
             }
             // Load portraits
-            DataDirectory.CreateDirectory("Images");
-            DataDirectory.CreateDirectory(@"Images\Portraits");
             string[] files = DataDirectory.AllFiles(false, true, @"\Images\Portraits");
             for (int i = 0; i < files.Length; i++)
             {

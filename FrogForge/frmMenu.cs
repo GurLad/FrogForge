@@ -40,6 +40,13 @@ namespace FrogForge
                 DataDirectory.SaveFile("Path", dlgFolder.FileName);
                 WorkingDirectory.Path = dlgFolder.FileName;
                 txtPath.Text = WorkingDirectory.Path;
+                // Create directories
+                DataDirectory.CreateDirectory("Images");
+                DataDirectory.CreateDirectory(@"Images\Tilesets");
+                DataDirectory.CreateDirectory(@"Images\Portraits");
+                WorkingDirectory.CreateDirectory("Images");
+                WorkingDirectory.CreateDirectory(@"Images\ClassMapSprites");
+                WorkingDirectory.CreateDirectory(@"Images\ClassBattleAnimations");
             }
         }
 
