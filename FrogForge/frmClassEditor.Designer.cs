@@ -51,6 +51,12 @@
             this.grpImage = new System.Windows.Forms.GroupBox();
             this.picIcon = new FrogForge.AnimationPicturebox();
             this.btnSave = new System.Windows.Forms.Button();
+            this.grpBattleAnimations = new System.Windows.Forms.GroupBox();
+            this.btnGenerateBase = new System.Windows.Forms.Button();
+            this.pnlBattleAnimations = new System.Windows.Forms.Panel();
+            this.pnlBattleAnimationsContainer = new System.Windows.Forms.Panel();
+            this.btnAddBattleAnimation = new System.Windows.Forms.Button();
+            this.vsbBattleAnimationsScrollbar = new System.Windows.Forms.VScrollBar();
             this.grpWeapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponHit)).BeginInit();
@@ -58,6 +64,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponRange)).BeginInit();
             this.grpImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
+            this.grpBattleAnimations.SuspendLayout();
+            this.pnlBattleAnimationsContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstClasses
@@ -109,8 +117,6 @@
             // 
             // grpWeapon
             // 
-            this.grpWeapon.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpWeapon.Controls.Add(this.label7);
             this.grpWeapon.Controls.Add(this.label6);
             this.grpWeapon.Controls.Add(this.nudWeaponWeight);
@@ -277,10 +283,8 @@
             // 
             // grpImage
             // 
-            this.grpImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpImage.Controls.Add(this.picIcon);
-            this.grpImage.Location = new System.Drawing.Point(342, 10);
+            this.grpImage.Location = new System.Drawing.Point(342, 12);
             this.grpImage.Name = "grpImage";
             this.grpImage.Size = new System.Drawing.Size(43, 49);
             this.grpImage.TabIndex = 9;
@@ -304,17 +308,79 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Location = new System.Drawing.Point(139, 224);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(246, 23);
+            this.btnSave.Size = new System.Drawing.Size(423, 23);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // grpBattleAnimations
+            // 
+            this.grpBattleAnimations.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpBattleAnimations.Controls.Add(this.btnGenerateBase);
+            this.grpBattleAnimations.Controls.Add(this.pnlBattleAnimationsContainer);
+            this.grpBattleAnimations.Controls.Add(this.btnAddBattleAnimation);
+            this.grpBattleAnimations.Controls.Add(this.vsbBattleAnimationsScrollbar);
+            this.grpBattleAnimations.Location = new System.Drawing.Point(391, 12);
+            this.grpBattleAnimations.Name = "grpBattleAnimations";
+            this.grpBattleAnimations.Size = new System.Drawing.Size(171, 206);
+            this.grpBattleAnimations.TabIndex = 10;
+            this.grpBattleAnimations.TabStop = false;
+            this.grpBattleAnimations.Text = "Battle animations";
+            // 
+            // btnGenerateBase
+            // 
+            this.btnGenerateBase.Location = new System.Drawing.Point(6, 19);
+            this.btnGenerateBase.Name = "btnGenerateBase";
+            this.btnGenerateBase.Size = new System.Drawing.Size(159, 155);
+            this.btnGenerateBase.TabIndex = 4;
+            this.btnGenerateBase.Text = "Generate base";
+            this.btnGenerateBase.UseVisualStyleBackColor = true;
+            this.btnGenerateBase.Click += new System.EventHandler(this.btnGenerateBase_Click);
+            // 
+            // pnlBattleAnimations
+            // 
+            this.pnlBattleAnimations.Location = new System.Drawing.Point(0, 0);
+            this.pnlBattleAnimations.Name = "pnlBattleAnimations";
+            this.pnlBattleAnimations.Size = new System.Drawing.Size(142, 153);
+            this.pnlBattleAnimations.TabIndex = 0;
+            // 
+            // pnlBattleAnimationsContainer
+            // 
+            this.pnlBattleAnimationsContainer.Controls.Add(this.pnlBattleAnimations);
+            this.pnlBattleAnimationsContainer.Location = new System.Drawing.Point(6, 19);
+            this.pnlBattleAnimationsContainer.Name = "pnlBattleAnimationsContainer";
+            this.pnlBattleAnimationsContainer.Size = new System.Drawing.Size(142, 153);
+            this.pnlBattleAnimationsContainer.TabIndex = 4;
+            // 
+            // btnAddBattleAnimation
+            // 
+            this.btnAddBattleAnimation.Location = new System.Drawing.Point(6, 177);
+            this.btnAddBattleAnimation.Name = "btnAddBattleAnimation";
+            this.btnAddBattleAnimation.Size = new System.Drawing.Size(159, 23);
+            this.btnAddBattleAnimation.TabIndex = 3;
+            this.btnAddBattleAnimation.Text = "Add";
+            this.btnAddBattleAnimation.UseVisualStyleBackColor = true;
+            this.btnAddBattleAnimation.Click += new System.EventHandler(this.btnAddBattleAnimation_Click);
+            // 
+            // vsbBattleAnimationsScrollbar
+            // 
+            this.vsbBattleAnimationsScrollbar.LargeChange = 5;
+            this.vsbBattleAnimationsScrollbar.Location = new System.Drawing.Point(151, 16);
+            this.vsbBattleAnimationsScrollbar.Maximum = 5;
+            this.vsbBattleAnimationsScrollbar.Name = "vsbBattleAnimationsScrollbar";
+            this.vsbBattleAnimationsScrollbar.Size = new System.Drawing.Size(17, 156);
+            this.vsbBattleAnimationsScrollbar.TabIndex = 1;
+            this.vsbBattleAnimationsScrollbar.Visible = false;
+            this.vsbBattleAnimationsScrollbar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vsbBattleAnimationsScrollbar_Scroll);
+            // 
             // frmClassEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(397, 260);
+            this.ClientSize = new System.Drawing.Size(574, 260);
+            this.Controls.Add(this.grpBattleAnimations);
             this.Controls.Add(this.grpImage);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbInclination);
@@ -342,6 +408,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponRange)).EndInit();
             this.grpImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
+            this.grpBattleAnimations.ResumeLayout(false);
+            this.pnlBattleAnimationsContainer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -371,5 +439,11 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown nudWeaponWeight;
         private AnimationPicturebox picIcon;
+        private System.Windows.Forms.GroupBox grpBattleAnimations;
+        private System.Windows.Forms.VScrollBar vsbBattleAnimationsScrollbar;
+        private System.Windows.Forms.Button btnAddBattleAnimation;
+        private System.Windows.Forms.Button btnGenerateBase;
+        private System.Windows.Forms.Panel pnlBattleAnimationsContainer;
+        private System.Windows.Forms.Panel pnlBattleAnimations;
     }
 }

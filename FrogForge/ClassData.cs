@@ -20,6 +20,7 @@ namespace FrogForge
         public Weapon Weapon { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
         public PalettedImage MapSprite { get; set; }
+        public List<string> BattleAnimations { get; set; } = new List<string>();
 
         public override string ToString()
         {

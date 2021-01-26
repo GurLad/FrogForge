@@ -16,6 +16,7 @@ namespace FrogForge
     {
         private NumericUpDown[] Growths = new NumericUpDown[6];
         private List<ClassData> Classes;
+        private List<BattleAnimationPanel> BattleAnimations = new List<BattleAnimationPanel>();
         private OpenFileDialog dlgOpen = new OpenFileDialog();
 
         public frmClassEditor()
@@ -65,7 +66,7 @@ namespace FrogForge
             if (Classes.Count > 0)
             {
                 lstClasses.SelectedIndex = 0;
-                ToUI(Classes[lstClasses.SelectedIndex]);
+                DataToUI(Classes[lstClasses.SelectedIndex]);
             }
             else
             {
@@ -78,11 +79,11 @@ namespace FrogForge
             ClassData editing = Classes.Find(a => a.Name == txtName.Text);
             if (editing != null)
             {
-                FromUI(editing);
+                DataFromUI(editing);
             }
             else
             {
-                editing = FromUI();
+                editing = DataFromUI();
                 Classes.Add(editing);
             }
             UpdateList();
@@ -103,12 +104,12 @@ namespace FrogForge
             }
         }
 
-        private ClassData FromUI()
+        private ClassData DataFromUI()
         {
-            return FromUI(new ClassData());
+            return DataFromUI(new ClassData());
         }
 
-        private ClassData FromUI(ClassData data)
+        private ClassData DataFromUI(ClassData data)
         {
             data.Name = txtName.Text;
             data.MapSprite = picIcon.Image;
@@ -124,10 +125,16 @@ namespace FrogForge
             data.Weapon.Damage = (int)nudWeaponDamage.Value;
             data.Weapon.HitStat = (int)nudWeaponHit.Value;
             data.Weapon.Weight = (int)nudWeaponWeight.Value;
+            // Battle animations
+            data.BattleAnimations.Clear();
+            foreach (var item in BattleAnimations)
+            {
+                data.BattleAnimations.Add(item.AnimationName);
+            }
             return data;
         }
 
-        private void ToUI(ClassData data)
+        private void DataToUI(ClassData data)
         {
             txtName.Text = data.Name;
             picIcon.Image = data.LoadSprite(WorkingDirectory);
@@ -142,6 +149,7 @@ namespace FrogForge
             nudWeaponDamage.Value = data.Weapon.Damage;
             nudWeaponHit.Value = data.Weapon.HitStat;
             nudWeaponWeight.Value = data.Weapon.Weight;
+            BattleAnimationsFromList(data.BattleAnimations, data.Name);
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -154,7 +162,7 @@ namespace FrogForge
         {
             if (lstClasses.SelectedIndex >= 0)
             {
-                ToUI(Classes[lstClasses.SelectedIndex]);
+                DataToUI(Classes[lstClasses.SelectedIndex]);
             }
         }
 
@@ -179,6 +187,58 @@ namespace FrogForge
                     WorkingDirectory.SaveImage(@"ClassMapSprites\" + item.Name, item.MapSprite.Target);
                 }
             }
+        }
+
+        private void AddBattleAnimations(string name = "")
+        {
+            BattleAnimationPanel newPanel = new BattleAnimationPanel();
+            newPanel.Top = BattleAnimations.Count * (newPanel.Height + 3);
+            newPanel.AnimationName = name;
+            newPanel.Init(dlgOpen);
+            BattleAnimations.Add(newPanel);
+            pnlBattleAnimations.Controls.Add(newPanel);
+            pnlBattleAnimations.Height = BattleAnimations.Count * (newPanel.Height + 3);
+            UpdateBattleAnimationsUI();
+        }
+
+        private void BattleAnimationsFromList(List<string> names, string className)
+        {
+            BattleAnimations.Clear();
+            pnlBattleAnimations.Controls.Clear();
+            for (int i = 0; i < names.Count; i++)
+            {
+                AddBattleAnimations(names[i]);
+            }
+            UpdateBattleAnimationsUI();
+        }
+
+        private void UpdateBattleAnimationsUI()
+        {
+            btnGenerateBase.Visible = BattleAnimations.Count == 0;
+            vsbBattleAnimationsScrollbar.Visible = BattleAnimations.Count > 4;
+            vsbBattleAnimationsScrollbar.Maximum = BattleAnimations.Count;
+            pnlBattleAnimations.Top = 0;
+        }
+
+        private void btnAddBattleAnimation_Click(object sender, EventArgs e)
+        {
+            AddBattleAnimations("");
+        }
+
+        private void btnGenerateBase_Click(object sender, EventArgs e)
+        {
+            BattleAnimationsFromList(new List<string>(new string[]
+            {
+                "Idle",
+                "Walk",
+                "AttackStart",
+                "AttackEnd"
+            }), txtName.Text);
+        }
+
+        private void vsbBattleAnimationsScrollbar_Scroll(object sender, ScrollEventArgs e)
+        {
+            pnlBattleAnimations.Top = -vsbBattleAnimationsScrollbar.Value * (BattleAnimations[0].Height + 3);
         }
     }
 }

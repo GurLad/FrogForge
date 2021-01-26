@@ -95,6 +95,12 @@
     <Compile Include="AnimationPicturebox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="BattleAnimationPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BattleAnimationPanel.Designer.cs">
+      <DependentUpon>BattleAnimationPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileBrowser.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     <Compile Include="Unit.cs" />
     <Compile Include="ClassData.cs" />
     <Compile Include="Weapon.cs" />
+    <EmbeddedResource Include="BattleAnimationPanel.resx">
+      <DependentUpon>BattleAnimationPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FileBrowser.resx">
       <DependentUpon>FileBrowser.cs</DependentUpon>
     </EmbeddedResource>

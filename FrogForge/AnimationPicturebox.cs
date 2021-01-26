@@ -32,7 +32,7 @@ namespace FrogForge
 
         public void Init(OpenFileDialog dlgOpen)
         {
-            MouseDown += OnClick;
+            MouseUp += OnClick;
             this.dlgOpen = dlgOpen;
             tmrAnimate.Interval = 400;
             tmrAnimate.Tick += tmrAnimateTick;
