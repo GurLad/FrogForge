@@ -45,6 +45,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbcUI = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.picPreview = new System.Windows.Forms.PictureBox();
             this.txtLevelName = new System.Windows.Forms.TextBox();
             this.flbFiles = new FrogForge.FileBrowser();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -60,19 +61,27 @@
             this.nudReinforcementTurn = new System.Windows.Forms.NumericUpDown();
             this.ckbStatue = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.nudEscapePosY = new System.Windows.Forms.NumericUpDown();
+            this.nudEscapePosX = new System.Windows.Forms.NumericUpDown();
+            this.nudSurviveTurn = new System.Windows.Forms.NumericUpDown();
             this.txtBossName = new System.Windows.Forms.TextBox();
             this.rdbDefeatBoss = new System.Windows.Forms.RadioButton();
+            this.rdbEscape = new System.Windows.Forms.RadioButton();
+            this.rdbSurvive = new System.Windows.Forms.RadioButton();
             this.rdbRout = new System.Windows.Forms.RadioButton();
-            this.picPreview = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picPreview)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.grpUnitList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudReinforcementTurn)).BeginInit();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picPreview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEscapePosY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEscapePosX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSurviveTurn)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlPossibleTiles
@@ -236,6 +245,15 @@
             this.tabPage1.Text = "Tiles";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // picPreview
+            // 
+            this.picPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picPreview.Location = new System.Drawing.Point(102, -1);
+            this.picPreview.Name = "picPreview";
+            this.picPreview.Size = new System.Drawing.Size(18, 18);
+            this.picPreview.TabIndex = 37;
+            this.picPreview.TabStop = false;
+            // 
             // txtLevelName
             // 
             this.txtLevelName.Location = new System.Drawing.Point(139, 165);
@@ -389,8 +407,14 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label9);
+            this.tabPage3.Controls.Add(this.nudEscapePosY);
+            this.tabPage3.Controls.Add(this.nudEscapePosX);
+            this.tabPage3.Controls.Add(this.nudSurviveTurn);
             this.tabPage3.Controls.Add(this.txtBossName);
             this.tabPage3.Controls.Add(this.rdbDefeatBoss);
+            this.tabPage3.Controls.Add(this.rdbEscape);
+            this.tabPage3.Controls.Add(this.rdbSurvive);
             this.tabPage3.Controls.Add(this.rdbRout);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -400,10 +424,58 @@
             this.tabPage3.Text = "Objective";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(127, 92);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(10, 13);
+            this.label9.TabIndex = 3;
+            this.label9.Text = ",";
+            // 
+            // nudEscapePosY
+            // 
+            this.nudEscapePosY.Enabled = false;
+            this.nudEscapePosY.Location = new System.Drawing.Point(143, 85);
+            this.nudEscapePosY.Maximum = new decimal(new int[] {
+            14,
+            0,
+            0,
+            0});
+            this.nudEscapePosY.Name = "nudEscapePosY";
+            this.nudEscapePosY.Size = new System.Drawing.Size(33, 20);
+            this.nudEscapePosY.TabIndex = 2;
+            // 
+            // nudEscapePosX
+            // 
+            this.nudEscapePosX.Enabled = false;
+            this.nudEscapePosX.Location = new System.Drawing.Point(94, 85);
+            this.nudEscapePosX.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.nudEscapePosX.Name = "nudEscapePosX";
+            this.nudEscapePosX.Size = new System.Drawing.Size(33, 20);
+            this.nudEscapePosX.TabIndex = 2;
+            // 
+            // nudSurviveTurn
+            // 
+            this.nudSurviveTurn.Enabled = false;
+            this.nudSurviveTurn.Location = new System.Drawing.Point(94, 59);
+            this.nudSurviveTurn.Maximum = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            this.nudSurviveTurn.Name = "nudSurviveTurn";
+            this.nudSurviveTurn.Size = new System.Drawing.Size(33, 20);
+            this.nudSurviveTurn.TabIndex = 2;
+            // 
             // txtBossName
             // 
             this.txtBossName.Enabled = false;
-            this.txtBossName.Location = new System.Drawing.Point(94, 28);
+            this.txtBossName.Location = new System.Drawing.Point(94, 32);
             this.txtBossName.Name = "txtBossName";
             this.txtBossName.Size = new System.Drawing.Size(100, 20);
             this.txtBossName.TabIndex = 1;
@@ -411,35 +483,47 @@
             // rdbDefeatBoss
             // 
             this.rdbDefeatBoss.AutoSize = true;
-            this.rdbDefeatBoss.Location = new System.Drawing.Point(6, 29);
+            this.rdbDefeatBoss.Location = new System.Drawing.Point(6, 33);
             this.rdbDefeatBoss.Name = "rdbDefeatBoss";
             this.rdbDefeatBoss.Size = new System.Drawing.Size(82, 17);
             this.rdbDefeatBoss.TabIndex = 0;
-            this.rdbDefeatBoss.TabStop = true;
             this.rdbDefeatBoss.Text = "Defeat boss";
             this.rdbDefeatBoss.UseVisualStyleBackColor = true;
             this.rdbDefeatBoss.CheckedChanged += new System.EventHandler(this.rdbDefeatBoss_CheckedChanged);
+            // 
+            // rdbEscape
+            // 
+            this.rdbEscape.AutoSize = true;
+            this.rdbEscape.Location = new System.Drawing.Point(6, 85);
+            this.rdbEscape.Name = "rdbEscape";
+            this.rdbEscape.Size = new System.Drawing.Size(61, 17);
+            this.rdbEscape.TabIndex = 0;
+            this.rdbEscape.Text = "Escape";
+            this.rdbEscape.UseVisualStyleBackColor = true;
+            this.rdbEscape.CheckedChanged += new System.EventHandler(this.rdbEscape_CheckedChanged);
+            // 
+            // rdbSurvive
+            // 
+            this.rdbSurvive.AutoSize = true;
+            this.rdbSurvive.Location = new System.Drawing.Point(6, 59);
+            this.rdbSurvive.Name = "rdbSurvive";
+            this.rdbSurvive.Size = new System.Drawing.Size(61, 17);
+            this.rdbSurvive.TabIndex = 0;
+            this.rdbSurvive.Text = "Survive";
+            this.rdbSurvive.UseVisualStyleBackColor = true;
+            this.rdbSurvive.CheckedChanged += new System.EventHandler(this.rdbSurvive_CheckedChanged);
             // 
             // rdbRout
             // 
             this.rdbRout.AutoSize = true;
             this.rdbRout.Checked = true;
-            this.rdbRout.Location = new System.Drawing.Point(6, 6);
+            this.rdbRout.Location = new System.Drawing.Point(6, 7);
             this.rdbRout.Name = "rdbRout";
             this.rdbRout.Size = new System.Drawing.Size(48, 17);
             this.rdbRout.TabIndex = 0;
             this.rdbRout.TabStop = true;
             this.rdbRout.Text = "Rout";
             this.rdbRout.UseVisualStyleBackColor = true;
-            // 
-            // picPreview
-            // 
-            this.picPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picPreview.Location = new System.Drawing.Point(102, -1);
-            this.picPreview.Name = "picPreview";
-            this.picPreview.Size = new System.Drawing.Size(18, 18);
-            this.picPreview.TabIndex = 37;
-            this.picPreview.TabStop = false;
             // 
             // frmLevelEditor
             // 
@@ -461,13 +545,16 @@
             this.tbcUI.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picPreview)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.grpUnitList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudReinforcementTurn)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picPreview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEscapePosY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEscapePosX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSurviveTurn)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -509,6 +596,12 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnReplace;
         private System.Windows.Forms.PictureBox picPreview;
+        private System.Windows.Forms.RadioButton rdbSurvive;
+        private System.Windows.Forms.RadioButton rdbEscape;
+        private System.Windows.Forms.NumericUpDown nudEscapePosX;
+        private System.Windows.Forms.NumericUpDown nudSurviveTurn;
+        private System.Windows.Forms.NumericUpDown nudEscapePosY;
+        private System.Windows.Forms.Label label9;
     }
 }
 

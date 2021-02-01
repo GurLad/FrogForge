@@ -294,6 +294,14 @@ namespace FrogForge
             {
                 return "Boss:" + txtBossName.Text;
             }
+            else if (rdbSurvive.Checked)
+            {
+                return "Survive:" + nudSurviveTurn.Value;
+            }
+            else if (rdbEscape.Checked)
+            {
+                return "Escape:" + nudEscapePosX.Value + ":" + nudEscapePosY.Value;
+            }
             else
             {
                 return "Null";
@@ -311,6 +319,15 @@ namespace FrogForge
                 case "Boss":
                     rdbDefeatBoss.Checked = true;
                     txtBossName.Text = parts[1];
+                    break;
+                case "Survive":
+                    rdbSurvive.Checked = true;
+                    nudSurviveTurn.Value = int.Parse(parts[1]);
+                    break;
+                case "Escape":
+                    rdbEscape.Checked = true;
+                    nudEscapePosX.Value = int.Parse(parts[1]);
+                    nudEscapePosY.Value = int.Parse(parts[2]);
                     break;
                 default:
                     break;
@@ -393,11 +410,6 @@ namespace FrogForge
             }
         }
 
-        private void rdbDefeatBoss_CheckedChanged(object sender, EventArgs e)
-        {
-            txtBossName.Enabled = rdbDefeatBoss.Checked;
-        }
-
         private void lstUnits_DoubleClick(object sender, EventArgs e)
         {
             if (Placing == null && lstUnits.SelectedIndex >= 0)
@@ -445,6 +457,21 @@ namespace FrogForge
         private void lstUnits_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectUnit(null);
+        }
+
+        private void rdbDefeatBoss_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBossName.Enabled = rdbDefeatBoss.Checked;
+        }
+
+        private void rdbSurvive_CheckedChanged(object sender, EventArgs e)
+        {
+            nudSurviveTurn.Enabled = rdbSurvive.Checked;
+        }
+
+        private void rdbEscape_CheckedChanged(object sender, EventArgs e)
+        {
+            nudEscapePosX.Enabled = nudEscapePosY.Enabled = rdbEscape.Checked;
         }
     }
 }
