@@ -200,6 +200,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FrogForge.ico" />
+    <None Include="Resources\Play.png" />
+    <None Include="Resources\New.png" />
+    <None Include="Resources\Save.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

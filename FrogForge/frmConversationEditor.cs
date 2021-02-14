@@ -58,6 +58,8 @@ namespace FrogForge
             // Fix wierd bug
             pnlPreview.BackgroundImage = Properties.Resources.FrogmanGaidenConversationBG;
             picArrow.Image = Properties.Resources.Arrow;
+            // Load empty conversation
+            btnNew_Click(sender, e);
         }
 
         private void LoadFile(string name)
@@ -90,11 +92,9 @@ namespace FrogForge
         {
             UserInput = false;
             txtText.BeginUpdate();
-            CheckKeyword("~", Color.Purple, minIndex, maxIndex, false);
             CheckKeyword(":", Color.DarkGoldenrod, minIndex, maxIndex, false);
             CheckKeyword("{", Color.Red, minIndex, maxIndex, false);
             CheckKeyword("}", Color.Red, minIndex, maxIndex, false);
-            CheckKeywordLine("#", Color.DarkCyan, minIndex, maxIndex);
             foreach (Color color in Keywords.Keys)
             {
                 foreach (string word in Keywords[color])
@@ -102,6 +102,8 @@ namespace FrogForge
                     CheckKeyword(word, color, minIndex, maxIndex);
                 }
             }
+            CheckKeywordLine("~", Color.Purple, minIndex, maxIndex);
+            CheckKeywordLine("#", Color.DarkCyan, minIndex, maxIndex);
             txtText.EndUpdate();
             txtText.Refresh();
             UserInput = true;
@@ -343,6 +345,13 @@ namespace FrogForge
             flbFileBrowser.Enabled = !on;
             BackColor = on ? SystemColors.ControlDark : SystemColors.Control;
             Preview = on;
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            txtName.Text = "";
+            txtText.Text = DataDirectory.LoadFile("BaseConversation");
+            ColorText();
         }
     }
 }
