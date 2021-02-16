@@ -30,29 +30,29 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConversationEditor));
             this.pnlPreview = new System.Windows.Forms.Panel();
+            this.picArrow = new System.Windows.Forms.PictureBox();
             this.lblPreviewText = new System.Windows.Forms.Label();
             this.lblPreviewName = new System.Windows.Forms.Label();
+            this.picPreviewSpeaker = new System.Windows.Forms.PictureBox();
             this.pnlEditorUI = new System.Windows.Forms.Panel();
+            this.picSeperator2 = new System.Windows.Forms.PictureBox();
+            this.picSeperator1 = new System.Windows.Forms.PictureBox();
             this.txtText = new FrogForge.FixedRichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.flbFileBrowser = new FrogForge.FileBrowser();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnPreview = new System.Windows.Forms.ToolStripButton();
-            this.picSeperator2 = new System.Windows.Forms.PictureBox();
-            this.picSeperator1 = new System.Windows.Forms.PictureBox();
-            this.picArrow = new System.Windows.Forms.PictureBox();
-            this.picPreviewSpeaker = new System.Windows.Forms.PictureBox();
             this.pnlPreview.SuspendLayout();
-            this.pnlEditorUI.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picSeperator2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSeperator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picArrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPreviewSpeaker)).BeginInit();
+            this.pnlEditorUI.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSeperator2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSeperator1)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlPreview
@@ -66,6 +66,14 @@
             this.pnlPreview.Name = "pnlPreview";
             this.pnlPreview.Size = new System.Drawing.Size(512, 480);
             this.pnlPreview.TabIndex = 1;
+            // 
+            // picArrow
+            // 
+            this.picArrow.Location = new System.Drawing.Point(480, 448);
+            this.picArrow.Name = "picArrow";
+            this.picArrow.Size = new System.Drawing.Size(16, 16);
+            this.picArrow.TabIndex = 2;
+            this.picArrow.TabStop = false;
             // 
             // lblPreviewText
             // 
@@ -89,6 +97,15 @@
             this.lblPreviewName.TabIndex = 1;
             this.lblPreviewName.Text = "Xirveros";
             // 
+            // picPreviewSpeaker
+            // 
+            this.picPreviewSpeaker.BackColor = System.Drawing.Color.Transparent;
+            this.picPreviewSpeaker.Location = new System.Drawing.Point(16, 368);
+            this.picPreviewSpeaker.Name = "picPreviewSpeaker";
+            this.picPreviewSpeaker.Size = new System.Drawing.Size(96, 96);
+            this.picPreviewSpeaker.TabIndex = 0;
+            this.picPreviewSpeaker.TabStop = false;
+            // 
             // pnlEditorUI
             // 
             this.pnlEditorUI.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -103,6 +120,24 @@
             this.pnlEditorUI.Name = "pnlEditorUI";
             this.pnlEditorUI.Size = new System.Drawing.Size(455, 480);
             this.pnlEditorUI.TabIndex = 2;
+            // 
+            // picSeperator2
+            // 
+            this.picSeperator2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.picSeperator2.Location = new System.Drawing.Point(-1, -1);
+            this.picSeperator2.Name = "picSeperator2";
+            this.picSeperator2.Size = new System.Drawing.Size(1, 12);
+            this.picSeperator2.TabIndex = 4;
+            this.picSeperator2.TabStop = false;
+            // 
+            // picSeperator1
+            // 
+            this.picSeperator1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.picSeperator1.Location = new System.Drawing.Point(-1, -1);
+            this.picSeperator1.Name = "picSeperator1";
+            this.picSeperator1.Size = new System.Drawing.Size(1, 12);
+            this.picSeperator1.TabIndex = 4;
+            this.picSeperator1.TabStop = false;
             // 
             // txtText
             // 
@@ -161,11 +196,6 @@
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // btnSave
             // 
             this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -186,6 +216,11 @@
             this.btnNew.Text = "New";
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // btnPreview
             // 
             this.btnPreview.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -195,41 +230,6 @@
             this.btnPreview.Size = new System.Drawing.Size(23, 22);
             this.btnPreview.Text = "Preview";
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
-            // 
-            // picSeperator2
-            // 
-            this.picSeperator2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.picSeperator2.Location = new System.Drawing.Point(-1, -1);
-            this.picSeperator2.Name = "picSeperator2";
-            this.picSeperator2.Size = new System.Drawing.Size(1, 12);
-            this.picSeperator2.TabIndex = 4;
-            this.picSeperator2.TabStop = false;
-            // 
-            // picSeperator1
-            // 
-            this.picSeperator1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.picSeperator1.Location = new System.Drawing.Point(-1, -1);
-            this.picSeperator1.Name = "picSeperator1";
-            this.picSeperator1.Size = new System.Drawing.Size(1, 12);
-            this.picSeperator1.TabIndex = 4;
-            this.picSeperator1.TabStop = false;
-            // 
-            // picArrow
-            // 
-            this.picArrow.Location = new System.Drawing.Point(480, 448);
-            this.picArrow.Name = "picArrow";
-            this.picArrow.Size = new System.Drawing.Size(16, 16);
-            this.picArrow.TabIndex = 2;
-            this.picArrow.TabStop = false;
-            // 
-            // picPreviewSpeaker
-            // 
-            this.picPreviewSpeaker.BackColor = System.Drawing.Color.Transparent;
-            this.picPreviewSpeaker.Location = new System.Drawing.Point(16, 368);
-            this.picPreviewSpeaker.Name = "picPreviewSpeaker";
-            this.picPreviewSpeaker.Size = new System.Drawing.Size(96, 96);
-            this.picPreviewSpeaker.TabIndex = 0;
-            this.picPreviewSpeaker.TabStop = false;
             // 
             // frmConversationEditor
             // 
@@ -241,22 +241,20 @@
             this.Controls.Add(this.pnlPreview);
             this.Controls.Add(this.flbFileBrowser);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.KeyPreview = true;
             this.Name = "frmConversationEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Conversation Editor";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmConversationEditor_FormClosing);
             this.Load += new System.EventHandler(this.frmConversationEditor_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmConversationEditor_KeyDown);
             this.pnlPreview.ResumeLayout(false);
-            this.pnlEditorUI.ResumeLayout(false);
-            this.pnlEditorUI.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picSeperator2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSeperator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picArrow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPreviewSpeaker)).EndInit();
+            this.pnlEditorUI.ResumeLayout(false);
+            this.pnlEditorUI.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSeperator2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSeperator1)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

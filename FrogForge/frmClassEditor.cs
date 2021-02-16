@@ -22,6 +22,8 @@ namespace FrogForge
         public frmClassEditor()
         {
             InitializeComponent();
+            BaseName = Text;
+            // TODO: Add dirty/filename support
         }
 
         private void frmClassEditor_Load(object sender, EventArgs e)

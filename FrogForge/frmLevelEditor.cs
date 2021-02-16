@@ -56,6 +56,8 @@ namespace FrogForge
         public frmLevelEditor()
         {
             InitializeComponent();
+            BaseName = Text;
+            ControlKeyAction = ControlKey;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -168,6 +170,7 @@ namespace FrogForge
                     Placing = null;
                     RenderTile(pictureBox.Left / 16, pictureBox.Top / 16);
                     PreviousHover = null;
+                    Dirty = true;
                     return;
                 }
                 else if (pictureBox.Image == null)
@@ -184,12 +187,14 @@ namespace FrogForge
                     pictureBox.Capture = false;
                     Tiles[pictureBox.Left / 16, pictureBox.Top / 16].TileID = CurrentSelected.TileID;
                     RenderTile(pictureBox.Left / 16, pictureBox.Top / 16);
+                    Dirty = true;
                 }
                 else if (e.Button == MouseButtons.Right)
                 {
                     PictureBox pictureBox = (PictureBox)sender;
                     pictureBox.Capture = false;
                     FillTile(pictureBox.Left / 16, pictureBox.Top / 16, CurrentSelected);
+                    Dirty = true;
                 }
             }
         }
@@ -229,6 +234,7 @@ namespace FrogForge
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
+            Dirty = false;
             string result = "";
             for (int i = 0; i < Tiles.GetLength(0); i++)
             {
@@ -253,6 +259,11 @@ namespace FrogForge
 
         private void LoadFile(string fileName)
         {
+            if (HasUnsavedChanges())
+            {
+                return;
+            }
+            CurrentFile = fileName;
             Tiles = null;
             string[] result = CurrentDirectory.LoadFile(txtLevelName.Text = fileName).Replace("\r\n", "\n").Split('\n');
             string[] rows = result[0].Split(';');
@@ -282,6 +293,18 @@ namespace FrogForge
             Render();
             lstUnits.DataSource = null;
             lstUnits.DataSource = Units;
+        }
+
+        private void ControlKey(Keys key)
+        {
+            switch (key)
+            {
+                case Keys.S:
+                    BtnSave_Click(key, new EventArgs());
+                    break;
+                default:
+                    break;
+            }
         }
 
         private string ObjectiveToString()

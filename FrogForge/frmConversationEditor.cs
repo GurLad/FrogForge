@@ -25,6 +25,7 @@ namespace FrogForge
         public frmConversationEditor()
         {
             InitializeComponent();
+            BaseName = Text;
         }
 
         private void frmConversationEditor_Load(object sender, EventArgs e)
@@ -68,7 +69,7 @@ namespace FrogForge
             {
                 return;
             }
-            Text = Text.Replace("*", "");
+            CurrentFile = name;
             UserInput = false;
             CurrentFilename = name;
             txtText.Text = CurrentDirectory.LoadFile(CurrentFilename);
@@ -80,7 +81,7 @@ namespace FrogForge
         private void btnSave_Click(object sender, EventArgs e)
         {
             CurrentDirectory.SaveFile(txtName.Text, txtText.Text);
-            Text = Text.Replace("*", "");
+            Dirty = false;
             if (txtName.Text != CurrentFilename)
             {
                 flbFileBrowser.UpdateList();
@@ -182,11 +183,18 @@ namespace FrogForge
 
         private void txtText_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (txtText.SelectionColor != Color.Black)
+            if (ModifierKeys != Keys.Control)
             {
-                txtText.SelectionColor = Color.Black;
+                if (!Dirty)
+                {
+                    Dirty = true;
+                }
+                if (txtText.SelectionColor != Color.Black)
+                {
+                    txtText.SelectionColor = Color.Black;
+                }
             }
-            if (e.KeyChar == '\r' || e.KeyChar == ':')
+            if (e.KeyChar == '\r' || e.KeyChar == ':') // TODO: Fix coloring
             {
                 if (e.KeyChar == ':')
                 {
@@ -195,10 +203,6 @@ namespace FrogForge
                 int selectionIndex = txtText.Text.LastIndexOf('\n', FindSelectedNextLineStart() - 1) + 1;
                 int nextLineIndex = txtText.Text.IndexOf('\n', selectionIndex + 1);
                 ColorText(selectionIndex - 1, nextLineIndex); // Because IndexOf's startIndex is exclusive
-            }
-            if (ModifierKeys != Keys.Control && !Text.Contains("*"))
-            {
-                Text += "*";
             }
         }
 
@@ -232,15 +236,29 @@ namespace FrogForge
             }
             else
             {
-                if (ModifierKeys == Keys.Control && e.KeyCode == Keys.S)
+                if (ModifierKeys == Keys.Control)
                 {
-                    btnSave_Click(sender, e);
+                    switch (e.KeyCode)
+                    {
+                        case Keys.S:
+                            btnSave_Click(sender, e);
+                            break;
+                        case Keys.N:
+                            btnNew_Click(sender, e);
+                            break;
+                        case Keys.P:
+                            btnPreview_Click(sender, e);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
 
         private void ShowLine()
         {
+            // TODO: Fix logic
             do
             {
                 PreviewLines.RemoveAt(0);
@@ -299,19 +317,6 @@ namespace FrogForge
             return trueLine.IndexOf('\n') < 0;
         }
 
-        private bool HasUnsavedChanges()
-        {
-            return Text.Contains("*") && MessageBox.Show("Unsaved changes! Discard?", "Unsaved changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No;
-        }
-
-        private void frmConversationEditor_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (HasUnsavedChanges())
-            {
-                e.Cancel = true;
-            }
-        }
-
         private void btnPreview_Click(object sender, EventArgs e)
         {
             // Only preview text
@@ -349,9 +354,14 @@ namespace FrogForge
 
         private void btnNew_Click(object sender, EventArgs e)
         {
+            if (HasUnsavedChanges())
+            {
+                return;
+            }
             txtName.Text = "";
             txtText.Text = DataDirectory.LoadFile("BaseConversation");
             ColorText();
+            CurrentFile = "";
         }
     }
 }
