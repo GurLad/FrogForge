@@ -11,12 +11,11 @@ using Utils;
 
 namespace FrogForge
 {
-    public partial class frmBaseEditor : Form
+    public abstract partial class frmBaseEditor : Form
     {
         public FilesController DataDirectory { get; set; }
         public FilesController WorkingDirectory { get; set; }
         protected string BaseName;
-        protected Action<Keys> ControlKeyAction;
         protected string CurrentFile
         {
             set
@@ -63,6 +62,22 @@ namespace FrogForge
             return Dirty && MessageBox.Show("Unsaved changes! Discard?", "Unsaved changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No;
         }
 
+        protected bool DeleteFile(string fileName, FilesController directory)
+        {
+            if (MessageBox.Show("Are you sure you want to delete " + fileName + "?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                directory.DeleteFile(fileName);
+                if (directory.CheckFileExist(fileName + directory.DefultFileFormat + ".meta"))
+                {
+                    directory.DeleteFile(fileName + directory.DefultFileFormat + ".meta", "");
+                }
+                return true;
+            }
+            return false;
+        }
+
+        protected abstract void ControlKeyAction(Keys key);
+
         private void FormClosingEvent(object sender, FormClosingEventArgs e)
         {
             if (HasUnsavedChanges())
@@ -75,7 +90,7 @@ namespace FrogForge
         {
             if (ModifierKeys == Keys.Control)
             {
-                ControlKeyAction?.Invoke(e.KeyCode);
+                ControlKeyAction(e.KeyCode);
             }
         }
     }

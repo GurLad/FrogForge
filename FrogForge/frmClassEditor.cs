@@ -23,7 +23,6 @@ namespace FrogForge
         {
             InitializeComponent();
             BaseName = Text;
-            // TODO: Add dirty/filename support
         }
 
         private void frmClassEditor_Load(object sender, EventArgs e)
@@ -65,15 +64,7 @@ namespace FrogForge
             // Init stuff
             dlgOpen.Filter = "Animated image files|*.gif;*.png";
             picIcon.Init(dlgOpen);
-            if (Classes.Count > 0)
-            {
-                lstClasses.SelectedIndex = 0;
-                DataToUI(Classes[lstClasses.SelectedIndex]);
-            }
-            else
-            {
-                cmbInclination.SelectedIndex = 0;
-            }
+            cmbInclination.SelectedIndex = 0;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -260,6 +251,18 @@ namespace FrogForge
         private void vsbBattleAnimationsScrollbar_Scroll(object sender, ScrollEventArgs e)
         {
             pnlBattleAnimations.Top = -vsbBattleAnimationsScrollbar.Value * (BattleAnimations[0].Height + 3);
+        }
+
+        protected override void ControlKeyAction(Keys key)
+        {
+            switch (key)
+            {
+                case Keys.S:
+                    btnSave_Click(this, new EventArgs());
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

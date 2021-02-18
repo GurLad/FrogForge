@@ -225,6 +225,27 @@ namespace FrogForge
             return selectionIndex;
         }
 
+        protected override void ControlKeyAction(Keys key)
+        {
+            if (!Preview)
+            {
+                switch (key)
+                {
+                    case Keys.S:
+                        btnSave_Click(this, new EventArgs());
+                        break;
+                    case Keys.N:
+                        btnNew_Click(this, new EventArgs());
+                        break;
+                    case Keys.P:
+                        btnPreview_Click(this, new EventArgs());
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
         private void frmConversationEditor_KeyDown(object sender, KeyEventArgs e)
         {
             if (Preview)
@@ -232,26 +253,6 @@ namespace FrogForge
                 if (e.KeyCode == Keys.Space || e.KeyCode == Keys.Enter || e.KeyCode == Keys.NumPad4)
                 {
                     ShowLine();
-                }
-            }
-            else
-            {
-                if (ModifierKeys == Keys.Control)
-                {
-                    switch (e.KeyCode)
-                    {
-                        case Keys.S:
-                            btnSave_Click(sender, e);
-                            break;
-                        case Keys.N:
-                            btnNew_Click(sender, e);
-                            break;
-                        case Keys.P:
-                            btnPreview_Click(sender, e);
-                            break;
-                        default:
-                            break;
-                    }
                 }
             }
         }
@@ -362,6 +363,18 @@ namespace FrogForge
             txtText.Text = DataDirectory.LoadFile("BaseConversation");
             ColorText();
             CurrentFile = "";
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (CurrentDirectory.CheckFileExist(txtName.Text + CurrentDirectory.DefultFileFormat))
+            {
+                if (DeleteFile(txtName.Text, CurrentDirectory))
+                {
+                    flbFileBrowser.UpdateList();
+                    CurrentFilename = "";
+                }
+            }
         }
     }
 }

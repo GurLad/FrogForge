@@ -57,7 +57,6 @@ namespace FrogForge
         {
             InitializeComponent();
             BaseName = Text;
-            ControlKeyAction = ControlKey;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -295,12 +294,30 @@ namespace FrogForge
             lstUnits.DataSource = Units;
         }
 
-        private void ControlKey(Keys key)
+        protected override void ControlKeyAction(Keys key)
         {
             switch (key)
             {
                 case Keys.S:
                     BtnSave_Click(key, new EventArgs());
+                    break;
+                case Keys.N: // TBA: btnNew click
+                    Units.Clear();
+                    lstUnits.DataSource = null;
+                    lstUnits.DataSource = Units;
+                    txtLevelName.Text = "";
+                    rdbRout.Checked = true;
+                    for (int i = 0; i < Size.X; i++)
+                    {
+                        for (int j = 0; j < Size.Y; j++)
+                        {
+                            Tiles[i, j].TileID = 0;
+                        }
+                    }
+                    cmbTileSets.SelectedIndex = 0;
+                    SetTileSet(PossibleTileSets[0]);
+                    Render();
+                    CurrentFile = "";
                     break;
                 default:
                     break;
