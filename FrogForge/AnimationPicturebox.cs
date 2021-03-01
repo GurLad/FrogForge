@@ -11,6 +11,7 @@ namespace FrogForge
 {
     public partial class AnimationPicturebox : PictureBox
     {
+        private frmBaseEditor Editor;
         private OpenFileDialog dlgOpen;
         private Timer tmrAnimate = new Timer();
         private int CurrentFrame;
@@ -30,10 +31,11 @@ namespace FrogForge
             }
         }
 
-        public void Init(OpenFileDialog dlgOpen)
+        public void Init(OpenFileDialog dlgOpen, frmBaseEditor editor)
         {
             MouseUp += OnClick;
             this.dlgOpen = dlgOpen;
+            Editor = editor;
             tmrAnimate.Interval = 400;
             tmrAnimate.Tick += tmrAnimateTick;
             SizeMode = PictureBoxSizeMode.Normal;
@@ -61,6 +63,8 @@ namespace FrogForge
                     // Color image
                     Image = new PalettedImage(target);
                     Image.CurrentPalette = null;
+                    // Set dirty
+                    Editor.Dirty = true;
                 }
             }
             else if (e.Button == MouseButtons.Right)

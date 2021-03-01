@@ -40,9 +40,9 @@ namespace FrogForge
             InitializeComponent();
         }
 
-        public void Init(OpenFileDialog dlgOpen)
+        public void Init(OpenFileDialog dlgOpen, frmBaseEditor editor)
         {
-            picAnimation.Init(dlgOpen);
+            picAnimation.Init(dlgOpen, editor);
         }
     }
 }

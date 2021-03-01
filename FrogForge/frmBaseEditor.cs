@@ -11,21 +11,12 @@ using Utils;
 
 namespace FrogForge
 {
-    public abstract partial class frmBaseEditor : Form
+    public partial class frmBaseEditor : Form
     {
         public FilesController DataDirectory { get; set; }
         public FilesController WorkingDirectory { get; set; }
-        protected string BaseName;
-        protected string CurrentFile
-        {
-            set
-            {
-                Text = BaseName + (value == "" ? "" : " - " + value);
-                Dirty = false;
-            }
-        }
         private bool _dirty;
-        protected bool Dirty
+        public bool Dirty
         {
             get
             {
@@ -48,6 +39,15 @@ namespace FrogForge
                 }
             }
         }
+        protected string BaseName;
+        protected string CurrentFile
+        {
+            set
+            {
+                Text = BaseName + (value == "" ? "" : " - " + value);
+                Dirty = false;
+            }
+        }
 
         protected frmBaseEditor()
         {
@@ -59,12 +59,12 @@ namespace FrogForge
 
         protected bool HasUnsavedChanges()
         {
-            return Dirty && MessageBox.Show("Unsaved changes! Discard?", "Unsaved changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No;
+            return Dirty && !ConfirmDialog("Unsaved changes! Discard?", "Unsaved changes");
         }
 
         protected bool DeleteFile(string fileName, FilesController directory)
         {
-            if (MessageBox.Show("Are you sure you want to delete " + fileName + "?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (ConfirmDialog("Are you sure you want to delete " + fileName + "?", "Delete"))
             {
                 directory.DeleteFile(fileName);
                 if (directory.CheckFileExist(fileName + directory.DefultFileFormat + ".meta"))
@@ -76,7 +76,15 @@ namespace FrogForge
             return false;
         }
 
-        protected abstract void ControlKeyAction(Keys key);
+        protected bool ConfirmDialog(string text, string title)
+        {
+            return MessageBox.Show(text, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
+        }
+
+        protected virtual void ControlKeyAction(Keys key)
+        {
+            throw new NotImplementedException();
+        }
 
         private void FormClosingEvent(object sender, FormClosingEventArgs e)
         {

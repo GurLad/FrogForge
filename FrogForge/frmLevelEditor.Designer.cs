@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLevelEditor));
             this.pnlPossibleTiles = new System.Windows.Forms.Panel();
-            this.btnSave = new System.Windows.Forms.Button();
             this.pnlRenderer = new System.Windows.Forms.Panel();
             this.pnlBG = new System.Windows.Forms.Panel();
             this.btnRemove = new System.Windows.Forms.Button();
@@ -46,8 +45,6 @@
             this.tbcUI = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.picPreview = new System.Windows.Forms.PictureBox();
-            this.txtLevelName = new System.Windows.Forms.TextBox();
-            this.flbFiles = new FrogForge.FileBrowser();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -70,6 +67,13 @@
             this.rdbEscape = new System.Windows.Forms.RadioButton();
             this.rdbSurvive = new System.Windows.Forms.RadioButton();
             this.rdbRout = new System.Windows.Forms.RadioButton();
+            this.txtLevelName = new System.Windows.Forms.TextBox();
+            this.flbFiles = new FrogForge.FileBrowser();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnSave = new System.Windows.Forms.ToolStripButton();
+            this.btnNew = new System.Windows.Forms.ToolStripButton();
+            this.btnDelete = new System.Windows.Forms.ToolStripButton();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
@@ -82,6 +86,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudEscapePosY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEscapePosX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSurviveTurn)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlPossibleTiles
@@ -91,26 +96,18 @@
             this.pnlPossibleTiles.Size = new System.Drawing.Size(96, 161);
             this.pnlPossibleTiles.TabIndex = 28;
             // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(139, 191);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(109, 23);
-            this.btnSave.TabIndex = 17;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            // 
             // pnlRenderer
             // 
-            this.pnlRenderer.Location = new System.Drawing.Point(12, 12);
+            this.pnlRenderer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pnlRenderer.Location = new System.Drawing.Point(127, 54);
             this.pnlRenderer.Name = "pnlRenderer";
             this.pnlRenderer.Size = new System.Drawing.Size(256, 240);
             this.pnlRenderer.TabIndex = 13;
             // 
             // pnlBG
             // 
-            this.pnlBG.Location = new System.Drawing.Point(12, 12);
+            this.pnlBG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pnlBG.Location = new System.Drawing.Point(127, 54);
             this.pnlBG.Name = "pnlBG";
             this.pnlBG.Size = new System.Drawing.Size(256, 240);
             this.pnlBG.TabIndex = 14;
@@ -183,7 +180,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 194);
+            this.label2.Location = new System.Drawing.Point(286, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 13);
             this.label2.TabIndex = 34;
@@ -191,7 +188,7 @@
             // 
             // nudLevelNumber
             // 
-            this.nudLevelNumber.Location = new System.Drawing.Point(84, 192);
+            this.nudLevelNumber.Location = new System.Drawing.Point(366, 28);
             this.nudLevelNumber.Name = "nudLevelNumber";
             this.nudLevelNumber.Size = new System.Drawing.Size(49, 20);
             this.nudLevelNumber.TabIndex = 33;
@@ -217,10 +214,11 @@
             // 
             // tbcUI
             // 
+            this.tbcUI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tbcUI.Controls.Add(this.tabPage1);
             this.tbcUI.Controls.Add(this.tabPage2);
             this.tbcUI.Controls.Add(this.tabPage3);
-            this.tbcUI.Location = new System.Drawing.Point(274, 12);
+            this.tbcUI.Location = new System.Drawing.Point(389, 54);
             this.tbcUI.Name = "tbcUI";
             this.tbcUI.SelectedIndex = 0;
             this.tbcUI.Size = new System.Drawing.Size(256, 240);
@@ -230,13 +228,8 @@
             // 
             this.tabPage1.Controls.Add(this.picPreview);
             this.tabPage1.Controls.Add(this.cmbTileSets);
-            this.tabPage1.Controls.Add(this.txtLevelName);
-            this.tabPage1.Controls.Add(this.flbFiles);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.nudLevelNumber);
             this.tabPage1.Controls.Add(this.pnlPossibleTiles);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.btnSave);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -253,20 +246,6 @@
             this.picPreview.Size = new System.Drawing.Size(18, 18);
             this.picPreview.TabIndex = 37;
             this.picPreview.TabStop = false;
-            // 
-            // txtLevelName
-            // 
-            this.txtLevelName.Location = new System.Drawing.Point(139, 165);
-            this.txtLevelName.Name = "txtLevelName";
-            this.txtLevelName.Size = new System.Drawing.Size(109, 20);
-            this.txtLevelName.TabIndex = 36;
-            // 
-            // flbFiles
-            // 
-            this.flbFiles.Location = new System.Drawing.Point(139, 0);
-            this.flbFiles.Name = "flbFiles";
-            this.flbFiles.Size = new System.Drawing.Size(109, 159);
-            this.flbFiles.TabIndex = 35;
             // 
             // tabPage2
             // 
@@ -525,13 +504,86 @@
             this.rdbRout.Text = "Rout";
             this.rdbRout.UseVisualStyleBackColor = true;
             // 
+            // txtLevelName
+            // 
+            this.txtLevelName.Location = new System.Drawing.Point(171, 28);
+            this.txtLevelName.Name = "txtLevelName";
+            this.txtLevelName.Size = new System.Drawing.Size(109, 20);
+            this.txtLevelName.TabIndex = 36;
+            // 
+            // flbFiles
+            // 
+            this.flbFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.flbFiles.Location = new System.Drawing.Point(12, 28);
+            this.flbFiles.Name = "flbFiles";
+            this.flbFiles.Size = new System.Drawing.Size(109, 266);
+            this.flbFiles.TabIndex = 35;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnSave,
+            this.btnNew,
+            this.btnDelete});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(657, 25);
+            this.toolStrip1.TabIndex = 33;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnSave
+            // 
+            this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSave.Image = global::FrogForge.Properties.Resources.Save;
+            this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(23, 22);
+            this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnNew
+            // 
+            this.btnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNew.Image = global::FrogForge.Properties.Resources.New;
+            this.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(23, 22);
+            this.btnNew.Text = "New";
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnDelete.Image = global::FrogForge.Properties.Resources.Delete;
+            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(23, 22);
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(127, 31);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(38, 13);
+            this.label10.TabIndex = 37;
+            this.label10.Text = "Name:";
+            // 
             // frmLevelEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(542, 264);
+            this.ClientSize = new System.Drawing.Size(657, 306);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tbcUI);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtLevelName);
+            this.Controls.Add(this.nudLevelNumber);
             this.Controls.Add(this.pnlRenderer);
+            this.Controls.Add(this.flbFiles);
             this.Controls.Add(this.pnlBG);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -555,14 +607,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudEscapePosY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEscapePosX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSurviveTurn)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Panel pnlPossibleTiles;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel pnlRenderer;
         private System.Windows.Forms.Panel pnlBG;
         private System.Windows.Forms.ComboBox cmbUnitTeam;
@@ -602,6 +656,11 @@
         private System.Windows.Forms.NumericUpDown nudSurviveTurn;
         private System.Windows.Forms.NumericUpDown nudEscapePosY;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnSave;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ToolStripButton btnNew;
+        private System.Windows.Forms.ToolStripButton btnDelete;
     }
 }
 

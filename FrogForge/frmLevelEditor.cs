@@ -116,6 +116,14 @@ namespace FrogForge
             Render();
             cmbAIType.SelectedIndex = 0;
             cmbUnitTeam.SelectedIndex = 0;
+            // Set dirty
+            EventHandler func = (s, e1) => Dirty = true;
+            rdbDefeatBoss.CheckedChanged += func;
+            rdbEscape.CheckedChanged += func;
+            rdbRout.CheckedChanged += func;
+            rdbSurvive.CheckedChanged += func;
+            txtLevelName.TextChanged += func;
+            nudLevelNumber.ValueChanged += func;
         }
 
         private void Render()
@@ -224,14 +232,14 @@ namespace FrogForge
             return x >= 0 && y >= 0 && x < Size.X && y < Size.Y;
         }
 
-        private void BtnTileButton_Click(object sender, EventArgs e)
+        private void btnTileButton_Click(object sender, EventArgs e)
         {
             CurrentSelected = CurrentSelected ?? new Tile();
             CurrentSelected.TileID = (int)((Label)sender).Tag;
             UpdatePreview();
         }
 
-        private void BtnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             Dirty = false;
             string result = "";
@@ -292,6 +300,7 @@ namespace FrogForge
             Render();
             lstUnits.DataSource = null;
             lstUnits.DataSource = Units;
+            Dirty = false;
         }
 
         protected override void ControlKeyAction(Keys key)
@@ -299,25 +308,10 @@ namespace FrogForge
             switch (key)
             {
                 case Keys.S:
-                    BtnSave_Click(key, new EventArgs());
+                    btnSave_Click(key, new EventArgs());
                     break;
-                case Keys.N: // TBA: btnNew click
-                    Units.Clear();
-                    lstUnits.DataSource = null;
-                    lstUnits.DataSource = Units;
-                    txtLevelName.Text = "";
-                    rdbRout.Checked = true;
-                    for (int i = 0; i < Size.X; i++)
-                    {
-                        for (int j = 0; j < Size.Y; j++)
-                        {
-                            Tiles[i, j].TileID = 0;
-                        }
-                    }
-                    cmbTileSets.SelectedIndex = 0;
-                    SetTileSet(PossibleTileSets[0]);
-                    Render();
-                    CurrentFile = "";
+                case Keys.N:
+                    btnNew_Click(key, new EventArgs());
                     break;
                 default:
                     break;
@@ -441,7 +435,7 @@ namespace FrogForge
                 tileButton.Top = 16 * (i / 6);
                 tileButton.Image = PossibleImages[i];
                 tileButton.Tag = i;
-                tileButton.Click += BtnTileButton_Click;
+                tileButton.Click += btnTileButton_Click;
                 pnlPossibleTiles.Controls.Add(tileButton);
             }
             if (Tiles != null)
@@ -512,6 +506,42 @@ namespace FrogForge
         private void rdbEscape_CheckedChanged(object sender, EventArgs e)
         {
             nudEscapePosX.Enabled = nudEscapePosY.Enabled = rdbEscape.Checked;
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            if (HasUnsavedChanges())
+            {
+                return;
+            }
+            Units.Clear();
+            lstUnits.DataSource = null;
+            lstUnits.DataSource = Units;
+            txtLevelName.Text = "";
+            nudLevelNumber.Value = 0;
+            rdbRout.Checked = true;
+            for (int i = 0; i < Size.X; i++)
+            {
+                for (int j = 0; j < Size.Y; j++)
+                {
+                    Tiles[i, j].TileID = 0;
+                }
+            }
+            cmbTileSets.SelectedIndex = 0;
+            SetTileSet(PossibleTileSets[0]);
+            Render();
+            CurrentFile = "";
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (CurrentDirectory.CheckFileExist(txtLevelName.Text + CurrentDirectory.DefultFileFormat))
+            {
+                if (DeleteFile(txtLevelName.Text, CurrentDirectory))
+                {
+                    flbFiles.UpdateList();
+                }
+            }
         }
     }
 }

@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClassEditor));
             this.lstClasses = new System.Windows.Forms.ListBox();
-            this.btnRemove = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.grpGrowths = new System.Windows.Forms.GroupBox();
@@ -50,13 +49,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.grpImage = new System.Windows.Forms.GroupBox();
             this.picIcon = new FrogForge.AnimationPicturebox();
-            this.btnSave = new System.Windows.Forms.Button();
             this.grpBattleAnimations = new System.Windows.Forms.GroupBox();
             this.btnGenerateBase = new System.Windows.Forms.Button();
-            this.pnlBattleAnimations = new System.Windows.Forms.Panel();
             this.pnlBattleAnimationsContainer = new System.Windows.Forms.Panel();
+            this.pnlBattleAnimations = new System.Windows.Forms.Panel();
             this.btnAddBattleAnimation = new System.Windows.Forms.Button();
             this.vsbBattleAnimationsScrollbar = new System.Windows.Forms.VScrollBar();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnSave = new System.Windows.Forms.ToolStripButton();
+            this.btnNew = new System.Windows.Forms.ToolStripButton();
+            this.btnRemove = new System.Windows.Forms.ToolStripButton();
             this.grpWeapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponHit)).BeginInit();
@@ -66,6 +68,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.grpBattleAnimations.SuspendLayout();
             this.pnlBattleAnimationsContainer.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstClasses
@@ -73,27 +76,16 @@
             this.lstClasses.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstClasses.FormattingEnabled = true;
-            this.lstClasses.Location = new System.Drawing.Point(13, 13);
+            this.lstClasses.Location = new System.Drawing.Point(12, 28);
             this.lstClasses.Name = "lstClasses";
             this.lstClasses.Size = new System.Drawing.Size(120, 199);
             this.lstClasses.TabIndex = 0;
             this.lstClasses.DoubleClick += new System.EventHandler(this.lstClasses_DoubleClick);
             // 
-            // btnRemove
-            // 
-            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemove.Location = new System.Drawing.Point(13, 224);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(120, 23);
-            this.btnRemove.TabIndex = 1;
-            this.btnRemove.Text = "Remove";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(139, 16);
+            this.label1.Location = new System.Drawing.Point(138, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 2;
@@ -101,14 +93,14 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(183, 13);
+            this.txtName.Location = new System.Drawing.Point(182, 28);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(100, 20);
             this.txtName.TabIndex = 3;
             // 
             // grpGrowths
             // 
-            this.grpGrowths.Location = new System.Drawing.Point(139, 65);
+            this.grpGrowths.Location = new System.Drawing.Point(138, 80);
             this.grpGrowths.Name = "grpGrowths";
             this.grpGrowths.Size = new System.Drawing.Size(246, 76);
             this.grpGrowths.TabIndex = 4;
@@ -127,9 +119,9 @@
             this.grpWeapon.Controls.Add(this.nudWeaponRange);
             this.grpWeapon.Controls.Add(this.txtWeaponName);
             this.grpWeapon.Controls.Add(this.label3);
-            this.grpWeapon.Location = new System.Drawing.Point(139, 147);
+            this.grpWeapon.Location = new System.Drawing.Point(138, 162);
             this.grpWeapon.Name = "grpWeapon";
-            this.grpWeapon.Size = new System.Drawing.Size(246, 71);
+            this.grpWeapon.Size = new System.Drawing.Size(246, 72);
             this.grpWeapon.TabIndex = 5;
             this.grpWeapon.TabStop = false;
             this.grpWeapon.Text = "Weapon";
@@ -252,7 +244,7 @@
             // ckbFlies
             // 
             this.ckbFlies.AutoSize = true;
-            this.ckbFlies.Location = new System.Drawing.Point(289, 15);
+            this.ckbFlies.Location = new System.Drawing.Point(288, 30);
             this.ckbFlies.Name = "ckbFlies";
             this.ckbFlies.Size = new System.Drawing.Size(47, 17);
             this.ckbFlies.TabIndex = 6;
@@ -267,7 +259,7 @@
             "Physical",
             "Technical",
             "Skillful"});
-            this.cmbInclination.Location = new System.Drawing.Point(203, 38);
+            this.cmbInclination.Location = new System.Drawing.Point(202, 53);
             this.cmbInclination.Name = "cmbInclination";
             this.cmbInclination.Size = new System.Drawing.Size(133, 21);
             this.cmbInclination.TabIndex = 7;
@@ -275,7 +267,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(139, 41);
+            this.label2.Location = new System.Drawing.Point(138, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 8;
@@ -284,7 +276,7 @@
             // grpImage
             // 
             this.grpImage.Controls.Add(this.picIcon);
-            this.grpImage.Location = new System.Drawing.Point(342, 12);
+            this.grpImage.Location = new System.Drawing.Point(341, 28);
             this.grpImage.Name = "grpImage";
             this.grpImage.Size = new System.Drawing.Size(43, 49);
             this.grpImage.TabIndex = 9;
@@ -302,18 +294,6 @@
             this.picIcon.TabIndex = 0;
             this.picIcon.TabStop = false;
             // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(139, 224);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(423, 23);
-            this.btnSave.TabIndex = 1;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // grpBattleAnimations
             // 
             this.grpBattleAnimations.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -322,7 +302,7 @@
             this.grpBattleAnimations.Controls.Add(this.pnlBattleAnimationsContainer);
             this.grpBattleAnimations.Controls.Add(this.btnAddBattleAnimation);
             this.grpBattleAnimations.Controls.Add(this.vsbBattleAnimationsScrollbar);
-            this.grpBattleAnimations.Location = new System.Drawing.Point(391, 12);
+            this.grpBattleAnimations.Location = new System.Drawing.Point(390, 28);
             this.grpBattleAnimations.Name = "grpBattleAnimations";
             this.grpBattleAnimations.Size = new System.Drawing.Size(171, 206);
             this.grpBattleAnimations.TabIndex = 10;
@@ -339,13 +319,6 @@
             this.btnGenerateBase.UseVisualStyleBackColor = true;
             this.btnGenerateBase.Click += new System.EventHandler(this.btnGenerateBase_Click);
             // 
-            // pnlBattleAnimations
-            // 
-            this.pnlBattleAnimations.Location = new System.Drawing.Point(0, 0);
-            this.pnlBattleAnimations.Name = "pnlBattleAnimations";
-            this.pnlBattleAnimations.Size = new System.Drawing.Size(142, 153);
-            this.pnlBattleAnimations.TabIndex = 0;
-            // 
             // pnlBattleAnimationsContainer
             // 
             this.pnlBattleAnimationsContainer.Controls.Add(this.pnlBattleAnimations);
@@ -353,6 +326,13 @@
             this.pnlBattleAnimationsContainer.Name = "pnlBattleAnimationsContainer";
             this.pnlBattleAnimationsContainer.Size = new System.Drawing.Size(142, 153);
             this.pnlBattleAnimationsContainer.TabIndex = 4;
+            // 
+            // pnlBattleAnimations
+            // 
+            this.pnlBattleAnimations.Location = new System.Drawing.Point(0, 0);
+            this.pnlBattleAnimations.Name = "pnlBattleAnimations";
+            this.pnlBattleAnimations.Size = new System.Drawing.Size(142, 153);
+            this.pnlBattleAnimations.TabIndex = 0;
             // 
             // btnAddBattleAnimation
             // 
@@ -375,11 +355,54 @@
             this.vsbBattleAnimationsScrollbar.Visible = false;
             this.vsbBattleAnimationsScrollbar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vsbBattleAnimationsScrollbar_Scroll);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnSave,
+            this.btnNew,
+            this.btnRemove});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(573, 25);
+            this.toolStrip1.TabIndex = 11;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnSave
+            // 
+            this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSave.Image = global::FrogForge.Properties.Resources.Save;
+            this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(23, 22);
+            this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnNew
+            // 
+            this.btnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNew.Image = global::FrogForge.Properties.Resources.New;
+            this.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(23, 22);
+            this.btnNew.Text = "New";
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnRemove.Image = global::FrogForge.Properties.Resources.Delete;
+            this.btnRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(23, 22);
+            this.btnRemove.Text = "Delete";
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
             // frmClassEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 260);
+            this.ClientSize = new System.Drawing.Size(573, 246);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.grpBattleAnimations);
             this.Controls.Add(this.grpImage);
             this.Controls.Add(this.label2);
@@ -389,8 +412,6 @@
             this.Controls.Add(this.grpGrowths);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.lstClasses);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -410,6 +431,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
             this.grpBattleAnimations.ResumeLayout(false);
             this.pnlBattleAnimationsContainer.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -418,7 +441,6 @@
         #endregion
 
         private System.Windows.Forms.ListBox lstClasses;
-        private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.GroupBox grpGrowths;
@@ -427,7 +449,6 @@
         private System.Windows.Forms.ComboBox cmbInclination;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox grpImage;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.NumericUpDown nudWeaponRange;
         private System.Windows.Forms.TextBox txtWeaponName;
         private System.Windows.Forms.Label label3;
@@ -445,5 +466,9 @@
         private System.Windows.Forms.Button btnGenerateBase;
         private System.Windows.Forms.Panel pnlBattleAnimationsContainer;
         private System.Windows.Forms.Panel pnlBattleAnimations;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnSave;
+        private System.Windows.Forms.ToolStripButton btnNew;
+        private System.Windows.Forms.ToolStripButton btnRemove;
     }
 }

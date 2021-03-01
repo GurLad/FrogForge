@@ -27,6 +27,7 @@ namespace FrogForge
 
         private void frmClassEditor_Load(object sender, EventArgs e)
         {
+            EventHandler dirtyFunc = (s, e1) => Dirty = true;
             // Create growths UI
             int nudWidth = 36, lblWidth = 32, height = 23, offset = 6, topOffset = 18, lblTopOffset = 3, leftOffset = 6;
             Color[] colors = new Color[] { Color.Red, Color.Blue, Color.Green };
@@ -48,6 +49,7 @@ namespace FrogForge
                 newNud.ForeColor = colors[i / 2];
                 newNud.Minimum = 0;
                 newNud.Maximum = 5;
+                newNud.ValueChanged += dirtyFunc;
                 grpGrowths.Controls.Add(newNud);
                 Growths[i] = newNud;
             }
@@ -63,8 +65,16 @@ namespace FrogForge
             }
             // Init stuff
             dlgOpen.Filter = "Animated image files|*.gif;*.png";
-            picIcon.Init(dlgOpen);
+            picIcon.Init(dlgOpen, this);
             cmbInclination.SelectedIndex = 0;
+            // Set dirty
+            nudWeaponDamage.ValueChanged += dirtyFunc;
+            nudWeaponWeight.ValueChanged += dirtyFunc;
+            nudWeaponRange.ValueChanged += dirtyFunc;
+            nudWeaponHit.ValueChanged += dirtyFunc;
+            txtWeaponName.TextChanged += dirtyFunc;
+            cmbInclination.TextChanged += dirtyFunc;
+            ckbFlies.CheckedChanged += dirtyFunc;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -80,6 +90,7 @@ namespace FrogForge
                 Classes.Add(editing);
             }
             UpdateList();
+            Dirty = false;
         }
 
         private void UpdateList()
@@ -112,7 +123,6 @@ namespace FrogForge
             {
                 data.Growths[i] = (int)Growths[i].Value;
             }
-            data.Weapon = new Weapon();
             data.Weapon.Name = txtWeaponName.Text;
             data.Weapon.Range = (int)nudWeaponRange.Value;
             data.Weapon.Damage = (int)nudWeaponDamage.Value;
@@ -145,16 +155,25 @@ namespace FrogForge
             nudWeaponHit.Value = data.Weapon.HitStat;
             nudWeaponWeight.Value = data.Weapon.Weight;
             BattleAnimationsFromClassData(data);
+            CurrentFile = data.Name;
+            Dirty = false;
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            Classes.RemoveAt(lstClasses.SelectedIndex);
-            UpdateList();
+            if (ConfirmDialog("Are you sure you want to delete " + Classes[lstClasses.SelectedIndex].Name + "?", "Delete"))
+            {
+                Classes.RemoveAt(lstClasses.SelectedIndex);
+                UpdateList();
+            }
         }
 
         private void lstClasses_DoubleClick(object sender, EventArgs e)
         {
+            if (HasUnsavedChanges())
+            {
+                return;
+            }
             if (lstClasses.SelectedIndex >= 0)
             {
                 DataToUI(Classes[lstClasses.SelectedIndex]);
@@ -189,7 +208,7 @@ namespace FrogForge
             newPanel.Top = BattleAnimations.Count * (newPanel.Height + 3);
             newPanel.AnimationName = name;
             newPanel.Animation = image;
-            newPanel.Init(dlgOpen);
+            newPanel.Init(dlgOpen, this);
             BattleAnimations.Add(newPanel);
             pnlBattleAnimations.Controls.Add(newPanel);
             pnlBattleAnimations.Height = BattleAnimations.Count * (newPanel.Height + 3);
@@ -235,6 +254,7 @@ namespace FrogForge
         private void btnAddBattleAnimation_Click(object sender, EventArgs e)
         {
             AddBattleAnimations("");
+            Dirty = true;
         }
 
         private void btnGenerateBase_Click(object sender, EventArgs e)
@@ -246,6 +266,7 @@ namespace FrogForge
                 "AttackStart",
                 "AttackEnd"
             }));
+            Dirty = true;
         }
 
         private void vsbBattleAnimationsScrollbar_Scroll(object sender, ScrollEventArgs e)
@@ -260,9 +281,22 @@ namespace FrogForge
                 case Keys.S:
                     btnSave_Click(this, new EventArgs());
                     break;
+                case Keys.N:
+                    btnNew_Click(this, new EventArgs());
+                    break;
                 default:
                     break;
             }
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            if (HasUnsavedChanges())
+            {
+                return;
+            }
+            DataToUI(new ClassData());
+            CurrentFile = "";
         }
     }
 }
