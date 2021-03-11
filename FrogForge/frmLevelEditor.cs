@@ -28,31 +28,6 @@ namespace FrogForge
         private PictureBox PreviousHover = null;
         private List<ClassData> CachedSprites = new List<ClassData>();
 
-        private static List<List<Color>> TeamPalettes { get; } = new List<List<Color>>(new List<Color>[]
-        {
-            new List<Color>(new Color[]
-            {
-                ColorTranslator.FromHtml("#FF000000"),
-                ColorTranslator.FromHtml("#FF58F89C"),
-                ColorTranslator.FromHtml("#FF005800"),
-                ColorTranslator.FromHtml("#00000000")
-            }),
-            new List<Color>(new Color[]
-            {
-                ColorTranslator.FromHtml("#FF000000"),
-                ColorTranslator.FromHtml("#FFFC7858"),
-                ColorTranslator.FromHtml("#FFAC1000"),
-                ColorTranslator.FromHtml("#00000000")
-            }),
-            new List<Color>(new Color[]
-            {
-                ColorTranslator.FromHtml("#FF000000"),
-                ColorTranslator.FromHtml("#FF38C0FC"),
-                ColorTranslator.FromHtml("#FF0000FC"),
-                ColorTranslator.FromHtml("#00000000")
-            })
-        });
-
         public frmLevelEditor()
         {
             InitializeComponent();
@@ -384,7 +359,7 @@ namespace FrogForge
 
         private Image GetUnitImage(Unit unit)
         {
-            List<Color> palette = PaletteFromTeam(unit.Team);
+            Palette palette = PaletteFromTeam(unit.Team);
             // Find image
             Image image = CachedSprites.Find(a => a.Name == unit.Class && a.MapSprite.CurrentPalette == palette)?.MapSprite.Target;
             // Check if cached
@@ -405,9 +380,9 @@ namespace FrogForge
             }
         }
 
-        private List<Color> PaletteFromTeam(Team team)
+        private Palette PaletteFromTeam(Team team)
         {
-            return TeamPalettes[(int)team];
+            return Palette.BaseFGPalettes[(int)team];
         }
 
         private void btnRemove_Click(object sender, EventArgs e)

@@ -140,6 +140,13 @@
     <Compile Include="frmMenu.Designer.cs">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPortraitEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPortraitEditor.Designer.cs">
+      <DependentUpon>frmPortraitEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Palette.cs" />
     <Compile Include="PalettedImage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -164,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenu.resx">
       <DependentUpon>frmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPortraitEditor.resx">
+      <DependentUpon>frmPortraitEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

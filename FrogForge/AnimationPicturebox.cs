@@ -15,6 +15,24 @@ namespace FrogForge
         private OpenFileDialog dlgOpen;
         private Timer tmrAnimate = new Timer();
         private int CurrentFrame;
+        public Action PostOnClick;
+        private Palette palette;
+        public Palette Palette
+        {
+            get
+            {
+                return palette ?? Palette.BasePalette;
+            }
+            set
+            {
+                palette = value;
+                if (Image != null)
+                {
+                    Image.CurrentPalette = Palette;
+                    Image = Image;
+                }
+            }
+        }
         private PalettedImage image;
         public new PalettedImage Image
         {
@@ -62,9 +80,10 @@ namespace FrogForge
                     }
                     // Color image
                     Image = new PalettedImage(target);
-                    Image.CurrentPalette = null;
+                    Image.CurrentPalette = Palette;
                     // Set dirty
                     Editor.Dirty = true;
+                    PostOnClick?.Invoke();
                 }
             }
             else if (e.Button == MouseButtons.Right)

@@ -41,6 +41,7 @@
             this.btnImport = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnClassEditor = new System.Windows.Forms.Button();
+            this.btnPortraitEditor = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -89,7 +90,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.btnChangePath);
             this.groupBox1.Controls.Add(this.txtPath);
-            this.groupBox1.Location = new System.Drawing.Point(12, 137);
+            this.groupBox1.Location = new System.Drawing.Point(12, 166);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(289, 45);
             this.groupBox1.TabIndex = 3;
@@ -129,7 +130,7 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.btnImport);
             this.groupBox2.Controls.Add(this.btnExport);
-            this.groupBox2.Location = new System.Drawing.Point(12, 188);
+            this.groupBox2.Location = new System.Drawing.Point(12, 217);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(289, 45);
             this.groupBox2.TabIndex = 3;
@@ -166,14 +167,25 @@
             this.btnClassEditor.UseVisualStyleBackColor = true;
             this.btnClassEditor.Click += new System.EventHandler(this.btnClassEditor_Click);
             // 
+            // btnPortraitEditor
+            // 
+            this.btnPortraitEditor.Location = new System.Drawing.Point(12, 137);
+            this.btnPortraitEditor.Name = "btnPortraitEditor";
+            this.btnPortraitEditor.Size = new System.Drawing.Size(289, 23);
+            this.btnPortraitEditor.TabIndex = 2;
+            this.btnPortraitEditor.Text = "Portrait editor";
+            this.btnPortraitEditor.UseVisualStyleBackColor = true;
+            this.btnPortraitEditor.Click += new System.EventHandler(this.btnPortraitEditor_Click);
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(313, 239);
+            this.ClientSize = new System.Drawing.Size(313, 268);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnPortraitEditor);
             this.Controls.Add(this.btnClassEditor);
             this.Controls.Add(this.btnConversationEditor);
             this.Controls.Add(this.btnLevelEditor);
@@ -208,5 +220,6 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnClassEditor;
+        private System.Windows.Forms.Button btnPortraitEditor;
     }
 }

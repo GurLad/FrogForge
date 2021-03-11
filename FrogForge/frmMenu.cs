@@ -74,6 +74,14 @@ namespace FrogForge
             classEditor.ShowDialog(this);
         }
 
+        private void btnPortraitEditor_Click(object sender, EventArgs e)
+        {
+            frmPortraitEditor portraitEditor = new frmPortraitEditor();
+            portraitEditor.DataDirectory = DataDirectory;
+            portraitEditor.WorkingDirectory = WorkingDirectory;
+            portraitEditor.ShowDialog(this);
+        }
+
         private void btnImport_Click(object sender, EventArgs e)
         {
             if (dlgDataImport.ShowDialog(this) == DialogResult.OK)

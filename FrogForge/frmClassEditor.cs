@@ -17,7 +17,6 @@ namespace FrogForge
         private NumericUpDown[] Growths = new NumericUpDown[6];
         private List<ClassData> Classes;
         private List<BattleAnimationPanel> BattleAnimations = new List<BattleAnimationPanel>();
-        private OpenFileDialog dlgOpen = new OpenFileDialog();
 
         public frmClassEditor()
         {

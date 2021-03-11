@@ -39,6 +39,7 @@ namespace FrogForge
                 }
             }
         }
+        protected OpenFileDialog dlgOpen = new OpenFileDialog();
         protected string BaseName;
         protected string CurrentFile
         {
