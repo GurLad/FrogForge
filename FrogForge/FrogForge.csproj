@@ -101,6 +101,12 @@
     <Compile Include="BattleAnimationPanel.Designer.cs">
       <DependentUpon>BattleAnimationPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="dlgColorSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgColorSelector.Designer.cs">
+      <DependentUpon>dlgColorSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileBrowser.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -157,6 +163,9 @@
     <EmbeddedResource Include="BattleAnimationPanel.resx">
       <DependentUpon>BattleAnimationPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="dlgColorSelector.resx">
+      <DependentUpon>dlgColorSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FileBrowser.resx">
       <DependentUpon>FileBrowser.cs</DependentUpon>
     </EmbeddedResource>
@@ -210,6 +219,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FrogForge.ico" />
+    <None Include="Resources\Palette.png" />
     <None Include="Resources\Delete.png" />
     <None Include="Resources\Play.png" />
     <None Include="Resources\New.png" />
