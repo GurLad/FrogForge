@@ -15,7 +15,6 @@ namespace FrogForge
     public partial class frmClassEditor : frmBaseEditor
     {
         private NumericUpDown[] Growths = new NumericUpDown[6];
-        private List<ClassData> Classes;
         private List<BattleAnimationPanel> BattleAnimations = new List<BattleAnimationPanel>();
 
         public frmClassEditor()
@@ -52,16 +51,6 @@ namespace FrogForge
                 grpGrowths.Controls.Add(newNud);
                 Growths[i] = newNud;
             }
-            // Load classes data
-            if (WorkingDirectory.CheckFileExist("Classes.json"))
-            {
-                Classes = (List<ClassData>) JsonSerializer.Deserialize(WorkingDirectory.LoadFile("Classes", "", ".json"), typeof(List<ClassData>));
-                UpdateList();
-            }
-            else
-            {
-                Classes = new List<ClassData>();
-            }
             // Init stuff
             dlgOpen.Filter = "Animated image files|*.gif;*.png";
             picIcon.Init(dlgOpen, this);
@@ -74,42 +63,13 @@ namespace FrogForge
             txtWeaponName.TextChanged += dirtyFunc;
             cmbInclination.TextChanged += dirtyFunc;
             ckbFlies.CheckedChanged += dirtyFunc;
+            // Init base
+            lstClasses.Init(this, () => new ClassData(), DataFromUI, DataToUI, "Classes");
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            ClassData editing = Classes.Find(a => a.Name == txtName.Text);
-            if (editing != null)
-            {
-                DataFromUI(editing);
-            }
-            else
-            {
-                editing = DataFromUI();
-                Classes.Add(editing);
-            }
-            UpdateList();
-            Dirty = false;
-        }
-
-        private void UpdateList()
-        {
-            object item = lstClasses.SelectedItem;
-            lstClasses.DataSource = null;
-            lstClasses.DataSource = Classes;
-            if (item != null && lstClasses.Items.Contains(item))
-            {
-                lstClasses.SelectedItem = item;
-            }
-            else
-            {
-                lstClasses.SelectedItem = null;
-            }
-        }
-
-        private ClassData DataFromUI()
-        {
-            return DataFromUI(new ClassData());
+            lstClasses.Save(txtName.Text);
         }
 
         private ClassData DataFromUI(ClassData data)
@@ -160,31 +120,15 @@ namespace FrogForge
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            if (ConfirmDialog("Are you sure you want to delete " + Classes[lstClasses.SelectedIndex].Name + "?", "Delete"))
-            {
-                Classes.RemoveAt(lstClasses.SelectedIndex);
-                UpdateList();
-            }
-        }
-
-        private void lstClasses_DoubleClick(object sender, EventArgs e)
-        {
-            if (HasUnsavedChanges())
-            {
-                return;
-            }
-            if (lstClasses.SelectedIndex >= 0)
-            {
-                DataToUI(Classes[lstClasses.SelectedIndex]);
-            }
+            lstClasses.Remove();
         }
 
         private void frmClassEditor_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Save
-            WorkingDirectory.SaveFile("Classes", JsonSerializer.Serialize(Classes, typeof(List<ClassData>)), ".json");
+            WorkingDirectory.SaveFile("Classes", JsonSerializer.Serialize(lstClasses.Data, typeof(List<ClassData>)), ".json");
             // Save images
-            foreach (ClassData item in Classes)
+            foreach (ClassData item in lstClasses.Data)
             {
                 if (item.MapSprite != null)
                 {
@@ -281,7 +225,7 @@ namespace FrogForge
                     btnSave_Click(this, new EventArgs());
                     break;
                 case Keys.N:
-                    btnNew_Click(this, new EventArgs());
+                    lstClasses.New();
                     break;
                 default:
                     break;
@@ -290,12 +234,7 @@ namespace FrogForge
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            if (HasUnsavedChanges())
-            {
-                return;
-            }
-            DataToUI(new ClassData());
-            CurrentFile = "";
+            lstClasses.New();
         }
     }
 }

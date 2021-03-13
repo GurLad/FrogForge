@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FrogForge
 {
-    class Weapon
+    public class Weapon
     {
         public string Name { get; set; }
         public int HitStat { get; set; }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClassEditor));
-            this.lstClasses = new System.Windows.Forms.ListBox();
+            this.lstClasses = new JSONBrowser<ClassData>();
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.grpGrowths = new System.Windows.Forms.GroupBox();
@@ -80,7 +80,6 @@
             this.lstClasses.Name = "lstClasses";
             this.lstClasses.Size = new System.Drawing.Size(120, 199);
             this.lstClasses.TabIndex = 0;
-            this.lstClasses.DoubleClick += new System.EventHandler(this.lstClasses_DoubleClick);
             // 
             // label1
             // 
@@ -440,7 +439,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox lstClasses;
+        private JSONBrowser<ClassData> lstClasses;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.GroupBox grpGrowths;

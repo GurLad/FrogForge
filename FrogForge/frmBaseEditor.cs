@@ -39,9 +39,7 @@ namespace FrogForge
                 }
             }
         }
-        protected OpenFileDialog dlgOpen = new OpenFileDialog();
-        protected string BaseName;
-        protected string CurrentFile
+        public string CurrentFile
         {
             set
             {
@@ -49,6 +47,8 @@ namespace FrogForge
                 Dirty = false;
             }
         }
+        protected OpenFileDialog dlgOpen = new OpenFileDialog();
+        protected string BaseName;
 
         protected frmBaseEditor()
         {
@@ -58,7 +58,12 @@ namespace FrogForge
             KeyDown += KeyDownEvent;
         }
 
-        protected bool HasUnsavedChanges()
+        public bool ConfirmDialog(string text, string title)
+        {
+            return MessageBox.Show(text, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
+        }
+
+        public bool HasUnsavedChanges()
         {
             return Dirty && !ConfirmDialog("Unsaved changes! Discard?", "Unsaved changes");
         }
@@ -75,11 +80,6 @@ namespace FrogForge
                 return true;
             }
             return false;
-        }
-
-        protected bool ConfirmDialog(string text, string title)
-        {
-            return MessageBox.Show(text, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
         }
 
         protected virtual void ControlKeyAction(Keys key)

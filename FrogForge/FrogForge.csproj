@@ -152,6 +152,10 @@
     <Compile Include="frmPortraitEditor.Designer.cs">
       <DependentUpon>frmPortraitEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="JSONBrowser.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NamedData.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="PalettedImage.cs" />
     <Compile Include="Program.cs" />
@@ -168,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FileBrowser.resx">
       <DependentUpon>FileBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBaseEditor.resx">
+      <DependentUpon>frmBaseEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmClassEditor.resx">
       <DependentUpon>frmClassEditor.cs</DependentUpon>
