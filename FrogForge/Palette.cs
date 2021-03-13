@@ -9,7 +9,7 @@ namespace FrogForge
 {
     public class Palette
     {
-        public static List<Palette> BaseFGPalettes { get; } = new List<Palette>(new Palette[]
+        public static List<Palette> BaseSpritePalettes { get; } = new List<Palette>(new Palette[]
         {
             new Palette(
                 ColorTranslator.FromHtml("#FF000000"),

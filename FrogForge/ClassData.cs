@@ -22,15 +22,12 @@ namespace FrogForge
         public List<string> BattleAnimations { get; set; } = new List<string>();
         [System.Text.Json.Serialization.JsonIgnore]
         public List<PalettedImage> BattleAnimationImages { get; set; } = new List<PalettedImage>();
-
-        public override string ToString()
-        {
-            return Name;
-        }
         
         public PalettedImage LoadSprite(FilesController files)
         {
             return MapSprite ?? (MapSprite = PalettedImage.FromFile(files, @"ClassMapSprites\" + Name));
         }
     }
+
+    public class ClassJSONBrowser : JSONBrowser<ClassData> { }
 }

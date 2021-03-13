@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClassEditor));
-            this.lstClasses = new JSONBrowser<ClassData>();
+            this.lstClasses = new FrogForge.ClassJSONBrowser();
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.grpGrowths = new System.Windows.Forms.GroupBox();
@@ -439,7 +439,7 @@
 
         #endregion
 
-        private JSONBrowser<ClassData> lstClasses;
+        private FrogForge.ClassJSONBrowser lstClasses;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.GroupBox grpGrowths;

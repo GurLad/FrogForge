@@ -11,13 +11,14 @@ using System.Text.Json;
 
 namespace FrogForge
 {
-    public partial class JSONBrowser<T> : ListBox where T : NamedData
+    public class JSONBrowser<T> : ListBox where T : NamedData
     {
         public List<T> Data;
         private Func<T> NewT;
         private Func<T, T> DataFromUI;
         private Action<T> DataToUI;
         private frmBaseEditor BaseEditor;
+        private string FileName;
 
         public void Init(frmBaseEditor baseEditor, Func<T> newT, Func<T, T> dataFromUI, Action<T> dataToUI, string fileName)
         {
@@ -25,6 +26,7 @@ namespace FrogForge
             NewT = newT;
             DataFromUI = dataFromUI;
             DataToUI = dataToUI;
+            FileName = fileName;
             // Init ListBox
             DoubleClick += ListBox_DoubleClick;
             // Load JSON file
@@ -37,6 +39,11 @@ namespace FrogForge
             {
                 Data = new List<T>();
             }
+        }
+
+        public void SaveToFile()
+        {
+            BaseEditor.WorkingDirectory.SaveFile(FileName, JsonSerializer.Serialize(Data, typeof(List<T>)), ".json");
         }
 
         public void Save(string editingName)

@@ -25,7 +25,6 @@ namespace FrogForge
 
         private void frmClassEditor_Load(object sender, EventArgs e)
         {
-            EventHandler dirtyFunc = (s, e1) => Dirty = true;
             // Create growths UI
             int nudWidth = 36, lblWidth = 32, height = 23, offset = 6, topOffset = 18, lblTopOffset = 3, leftOffset = 6;
             Color[] colors = new Color[] { Color.Red, Color.Blue, Color.Green };
@@ -47,7 +46,7 @@ namespace FrogForge
                 newNud.ForeColor = colors[i / 2];
                 newNud.Minimum = 0;
                 newNud.Maximum = 5;
-                newNud.ValueChanged += dirtyFunc;
+                newNud.ValueChanged += DirtyFunc;
                 grpGrowths.Controls.Add(newNud);
                 Growths[i] = newNud;
             }
@@ -56,13 +55,13 @@ namespace FrogForge
             picIcon.Init(dlgOpen, this);
             cmbInclination.SelectedIndex = 0;
             // Set dirty
-            nudWeaponDamage.ValueChanged += dirtyFunc;
-            nudWeaponWeight.ValueChanged += dirtyFunc;
-            nudWeaponRange.ValueChanged += dirtyFunc;
-            nudWeaponHit.ValueChanged += dirtyFunc;
-            txtWeaponName.TextChanged += dirtyFunc;
-            cmbInclination.TextChanged += dirtyFunc;
-            ckbFlies.CheckedChanged += dirtyFunc;
+            nudWeaponDamage.ValueChanged += DirtyFunc;
+            nudWeaponWeight.ValueChanged += DirtyFunc;
+            nudWeaponRange.ValueChanged += DirtyFunc;
+            nudWeaponHit.ValueChanged += DirtyFunc;
+            txtWeaponName.TextChanged += DirtyFunc;
+            cmbInclination.TextChanged += DirtyFunc;
+            ckbFlies.CheckedChanged += DirtyFunc;
             // Init base
             lstClasses.Init(this, () => new ClassData(), DataFromUI, DataToUI, "Classes");
         }
@@ -95,6 +94,8 @@ namespace FrogForge
                 data.BattleAnimations.Add(item.AnimationName);
                 data.BattleAnimationImages.Add(item.Animation);
             }
+            CurrentFile = data.Name;
+            Dirty = false;
             return data;
         }
 
@@ -126,7 +127,7 @@ namespace FrogForge
         private void frmClassEditor_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Save
-            WorkingDirectory.SaveFile("Classes", JsonSerializer.Serialize(lstClasses.Data, typeof(List<ClassData>)), ".json");
+            lstClasses.SaveToFile();
             // Save images
             foreach (ClassData item in lstClasses.Data)
             {

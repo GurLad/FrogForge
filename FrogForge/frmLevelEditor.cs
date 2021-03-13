@@ -92,13 +92,12 @@ namespace FrogForge
             cmbAIType.SelectedIndex = 0;
             cmbUnitTeam.SelectedIndex = 0;
             // Set dirty
-            EventHandler func = (s, e1) => Dirty = true;
-            rdbDefeatBoss.CheckedChanged += func;
-            rdbEscape.CheckedChanged += func;
-            rdbRout.CheckedChanged += func;
-            rdbSurvive.CheckedChanged += func;
-            txtLevelName.TextChanged += func;
-            nudLevelNumber.ValueChanged += func;
+            rdbDefeatBoss.CheckedChanged += DirtyFunc;
+            rdbEscape.CheckedChanged += DirtyFunc;
+            rdbRout.CheckedChanged += DirtyFunc;
+            rdbSurvive.CheckedChanged += DirtyFunc;
+            txtLevelName.TextChanged += DirtyFunc;
+            nudLevelNumber.ValueChanged += DirtyFunc;
         }
 
         private void Render()
@@ -382,7 +381,7 @@ namespace FrogForge
 
         private Palette PaletteFromTeam(Team team)
         {
-            return Palette.BaseFGPalettes[(int)team];
+            return Palette.BaseSpritePalettes[(int)team];
         }
 
         private void btnRemove_Click(object sender, EventArgs e)

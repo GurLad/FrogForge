@@ -49,6 +49,7 @@ namespace FrogForge
         }
         protected OpenFileDialog dlgOpen = new OpenFileDialog();
         protected string BaseName;
+        protected EventHandler DirtyFunc;
 
         protected frmBaseEditor()
         {
@@ -56,6 +57,7 @@ namespace FrogForge
             FormClosing += FormClosingEvent;
             KeyPreview = true;
             KeyDown += KeyDownEvent;
+            DirtyFunc = (s, e1) => Dirty = true;
         }
 
         public bool ConfirmDialog(string text, string title)
