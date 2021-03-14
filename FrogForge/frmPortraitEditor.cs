@@ -87,6 +87,7 @@ namespace FrogForge
         {
             txtName.Text = data.Name;
             trkFGPalette.Value = data.ForegroundColorID;
+            picFGPalette.BackColor = Palette.BaseSpritePalettes[data.ForegroundColorID][1];
             for (int i = 0; i < 4; i++)
             {
                 BGPaletteSelectors[i].BackColor = data.BackgroundColor[i];

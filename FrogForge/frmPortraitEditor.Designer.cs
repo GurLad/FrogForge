@@ -50,8 +50,6 @@
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnPreview = new System.Windows.Forms.ToolStripButton();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBG)).BeginInit();
@@ -232,9 +230,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnSave,
             this.btnNew,
-            this.btnDelete,
-            this.toolStripSeparator1,
-            this.btnPreview});
+            this.btnDelete});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(363, 25);
@@ -270,20 +266,6 @@
             this.btnDelete.Size = new System.Drawing.Size(23, 22);
             this.btnDelete.Text = "Delete";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btnPreview
-            // 
-            this.btnPreview.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnPreview.Image = global::FrogForge.Properties.Resources.Play;
-            this.btnPreview.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnPreview.Name = "btnPreview";
-            this.btnPreview.Size = new System.Drawing.Size(23, 22);
-            this.btnPreview.Text = "Preview";
             // 
             // frmPortraitEditor
             // 
@@ -341,8 +323,6 @@
         private System.Windows.Forms.ToolStripButton btnSave;
         private System.Windows.Forms.ToolStripButton btnNew;
         private System.Windows.Forms.ToolStripButton btnDelete;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton btnPreview;
         private System.Windows.Forms.PictureBox picPreview;
     }
 }

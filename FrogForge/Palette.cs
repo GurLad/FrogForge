@@ -38,38 +38,50 @@ namespace FrogForge
             ColorTranslator.FromHtml("#FFBCC0C4"),
             ColorTranslator.FromHtml("#FF788084"));
 
-        private List<Color> Colors { get; }
+        // For JSON convertion from FrogForge to FrogmanGaiden
+        public UnityColor[] Colors
+        {
+            get
+            {
+                return new UnityColor[] { RealColors[0], RealColors[1], RealColors[2], RealColors[3] };
+            }
+            set
+            {
+                RealColors = new List<Color>(new Color[] { value[0], value[1], value[2], value[3] });
+            }
+        }
+        private List<Color> RealColors { get; set; }
         public Color this[int index]
         {
             get
             {
-                return Colors[index];
+                return RealColors[index];
             }
         }
 
         public Palette()
         {
-            Colors = BasePalette.Colors;
+            RealColors = BasePalette.RealColors;
         }
 
         public Palette(Color c1, Color c2, Color c3, Color c4)
         {
-            Colors = new List<Color>();
-            Colors.Add(c1);
-            Colors.Add(c2);
-            Colors.Add(c3);
-            Colors.Add(c4);
+            RealColors = new List<Color>();
+            RealColors.Add(c1);
+            RealColors.Add(c2);
+            RealColors.Add(c3);
+            RealColors.Add(c4);
         }
 
         public Palette(Color[] colors)
         {
-            Colors = new List<Color>(colors);
+            RealColors = new List<Color>(colors);
         }
 
         public int ClosestColor( Color target)
         {
-            var colorDiffs = Colors.Select(n => ColorDiff(n, target)).Min(n => n);
-            return Colors.FindIndex(n => ColorDiff(n, target) == colorDiffs);
+            var colorDiffs = RealColors.Select(n => ColorDiff(n, target)).Min(n => n);
+            return RealColors.FindIndex(n => ColorDiff(n, target) == colorDiffs);
         }
 
         private int ColorDiff(Color c1, Color c2)
