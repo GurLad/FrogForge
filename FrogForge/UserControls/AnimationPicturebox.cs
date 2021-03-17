@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrogForge.Editors;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -7,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrogForge
+namespace FrogForge.UserControls
 {
     public partial class AnimationPicturebox : PictureBox
     {

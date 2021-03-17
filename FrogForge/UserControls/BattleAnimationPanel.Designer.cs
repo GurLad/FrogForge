@@ -1,4 +1,4 @@
-﻿namespace FrogForge
+﻿namespace FrogForge.UserControls
 {
     partial class BattleAnimationPanel
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.txtName = new System.Windows.Forms.TextBox();
-            this.picAnimation = new FrogForge.AnimationPicturebox();
+            this.picAnimation = new FrogForge.UserControls.AnimationPicturebox();
             ((System.ComponentModel.ISupportInitialize)(this.picAnimation)).BeginInit();
             this.SuspendLayout();
             // 

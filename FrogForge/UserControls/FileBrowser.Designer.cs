@@ -1,4 +1,4 @@
-﻿namespace FrogForge
+﻿namespace FrogForge.UserControls
 {
     partial class FileBrowser
     {

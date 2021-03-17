@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Utils;
 
-namespace FrogForge
+namespace FrogForge.Editors
 {
     public partial class frmBaseEditor : Form
     {
@@ -102,6 +102,7 @@ namespace FrogForge
             if (ModifierKeys == Keys.Control)
             {
                 ControlKeyAction(e.KeyCode);
+                e.Handled = true;
             }
         }
     }

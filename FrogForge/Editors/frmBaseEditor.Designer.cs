@@ -1,6 +1,6 @@
-﻿namespace FrogForge
+﻿namespace FrogForge.Editors
 {
-    partial class frmBaseEditor
+    public partial class frmBaseEditor
     {
         /// <summary>
         /// Required designer variable.

@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrogForge.Editors;
 
-namespace FrogForge
+namespace FrogForge.UserControls
 {
     public partial class BattleAnimationPanel : UserControl
     {

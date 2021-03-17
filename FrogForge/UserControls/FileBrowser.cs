@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Utils;
 
-namespace FrogForge
+namespace FrogForge.UserControls
 {
     public partial class FileBrowser : UserControl
     {

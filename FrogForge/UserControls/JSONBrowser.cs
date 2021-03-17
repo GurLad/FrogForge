@@ -8,8 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.Json;
+using FrogForge.Datas;
+using FrogForge.Editors;
 
-namespace FrogForge
+namespace FrogForge.UserControls
 {
     public class JSONBrowser<T> : ListBox where T : NamedData
     {

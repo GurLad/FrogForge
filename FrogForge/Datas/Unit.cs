@@ -1,11 +1,12 @@
-﻿using System;
+﻿using FrogForge.Editors;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FrogForge
+namespace FrogForge.Datas
 {
     class Unit
     {

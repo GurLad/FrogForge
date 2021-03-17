@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.Json;
 using System.Drawing.Imaging;
+using FrogForge.Datas;
+using FrogForge.UserControls;
 
-namespace FrogForge
+namespace FrogForge.Editors
 {
     public partial class frmClassEditor : frmBaseEditor
     {

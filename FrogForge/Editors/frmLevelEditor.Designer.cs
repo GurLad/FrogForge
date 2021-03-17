@@ -1,4 +1,4 @@
-﻿namespace FrogForge
+﻿namespace FrogForge.Editors
 {
     partial class frmLevelEditor
     {
@@ -68,7 +68,7 @@
             this.rdbSurvive = new System.Windows.Forms.RadioButton();
             this.rdbRout = new System.Windows.Forms.RadioButton();
             this.txtLevelName = new System.Windows.Forms.TextBox();
-            this.flbFiles = new FrogForge.FileBrowser();
+            this.flbFiles = new FrogForge.UserControls.FileBrowser();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
@@ -125,7 +125,7 @@
             // 
             // lstUnits
             // 
-            this.lstUnits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lstUnits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstUnits.FormattingEnabled = true;
             this.lstUnits.Location = new System.Drawing.Point(6, 19);
@@ -513,7 +513,7 @@
             // 
             // flbFiles
             // 
-            this.flbFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.flbFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.flbFiles.Location = new System.Drawing.Point(12, 28);
             this.flbFiles.Name = "flbFiles";
@@ -645,7 +645,7 @@
         private System.Windows.Forms.TextBox txtBossName;
         private System.Windows.Forms.RadioButton rdbDefeatBoss;
         private System.Windows.Forms.RadioButton rdbRout;
-        private FileBrowser flbFiles;
+        private FrogForge.UserControls.FileBrowser flbFiles;
         private System.Windows.Forms.TextBox txtLevelName;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnReplace;

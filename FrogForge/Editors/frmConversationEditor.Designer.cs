@@ -1,4 +1,4 @@
-﻿namespace FrogForge
+﻿namespace FrogForge.Editors
 {
     partial class frmConversationEditor
     {
@@ -33,10 +33,10 @@
             this.lblPreviewText = new System.Windows.Forms.Label();
             this.lblPreviewName = new System.Windows.Forms.Label();
             this.pnlEditorUI = new System.Windows.Forms.Panel();
-            this.txtText = new FrogForge.FixedRichTextBox();
+            this.txtText = new FrogForge.UserControls.FixedRichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.flbFileBrowser = new FrogForge.FileBrowser();
+            this.flbFileBrowser = new FrogForge.UserControls.FileBrowser();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
@@ -92,8 +92,8 @@
             // 
             // pnlEditorUI
             // 
-            this.pnlEditorUI.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnlEditorUI.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlEditorUI.Controls.Add(this.picSeperator2);
             this.pnlEditorUI.Controls.Add(this.picSeperator1);
@@ -107,8 +107,8 @@
             // 
             // txtText
             // 
-            this.txtText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtText.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtText.Location = new System.Drawing.Point(0, 26);
@@ -133,7 +133,7 @@
             // 
             // txtName
             // 
-            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.Location = new System.Drawing.Point(41, 0);
             this.txtName.Name = "txtName";
@@ -142,7 +142,7 @@
             // 
             // flbFileBrowser
             // 
-            this.flbFileBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.flbFileBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.flbFileBrowser.Location = new System.Drawing.Point(12, 28);
             this.flbFileBrowser.Name = "flbFileBrowser";
@@ -274,7 +274,7 @@
 
         #endregion
 
-        private FileBrowser flbFileBrowser;
+        private FrogForge.UserControls.FileBrowser flbFileBrowser;
         private System.Windows.Forms.Panel pnlPreview;
         private System.Windows.Forms.PictureBox picPreviewSpeaker;
         private System.Windows.Forms.Label lblPreviewName;
@@ -285,7 +285,7 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.PictureBox picSeperator2;
         private System.Windows.Forms.PictureBox picSeperator1;
-        private FixedRichTextBox txtText;
+        private FrogForge.UserControls.FixedRichTextBox txtText;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnSave;
         private System.Windows.Forms.ToolStripButton btnNew;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrogForge.Datas;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Utils;
 
-namespace FrogForge
+namespace FrogForge.Editors
 {
     public enum Team { Player, Monster, Guard }
     public enum AIType { Charge, Hold, Guard }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FrogForge
+namespace FrogForge.Datas
 {
     public class PortraitData : NamedData
     {
@@ -15,6 +15,9 @@ namespace FrogForge
         [System.Text.Json.Serialization.JsonIgnore]
         public PalettedImage Foreground { get; set; }
     }
+}
 
-    public class PortraitJSONBrowser : JSONBrowser<PortraitData> { }
+namespace FrogForge.UserControls
+{
+    public class PortraitJSONBrowser : JSONBrowser<Datas.PortraitData> { }
 }

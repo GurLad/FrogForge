@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 
-namespace FrogForge
+namespace FrogForge.UserControls
 {
     [System.ComponentModel.Designer(typeof(RichTextBoxExDesigner))]
     public partial class FixedRichTextBox : RichTextBox

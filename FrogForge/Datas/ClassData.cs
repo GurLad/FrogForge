@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utils;
 
-namespace FrogForge
+namespace FrogForge.Datas
 {
     public enum Inclination { Physical, Technical, Skillful } // Bad names
     public enum StatNames { Str, End, Pir, Arm, Pre, Eva }
@@ -28,6 +28,9 @@ namespace FrogForge
             return MapSprite ?? (MapSprite = PalettedImage.FromFile(files, @"ClassMapSprites\" + Name));
         }
     }
+}
 
-    public class ClassJSONBrowser : JSONBrowser<ClassData> { }
+namespace FrogForge.UserControls
+{
+    public class ClassJSONBrowser : JSONBrowser<Datas.ClassData> { }
 }

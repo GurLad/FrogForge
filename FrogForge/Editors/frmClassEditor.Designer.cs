@@ -1,4 +1,4 @@
-﻿namespace FrogForge
+﻿namespace FrogForge.Editors
 {
     partial class frmClassEditor
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClassEditor));
-            this.lstClasses = new FrogForge.ClassJSONBrowser();
+            this.lstClasses = new FrogForge.UserControls.ClassJSONBrowser();
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.grpGrowths = new System.Windows.Forms.GroupBox();
@@ -48,7 +48,7 @@
             this.cmbInclination = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.grpImage = new System.Windows.Forms.GroupBox();
-            this.picIcon = new FrogForge.AnimationPicturebox();
+            this.picIcon = new FrogForge.UserControls.AnimationPicturebox();
             this.grpBattleAnimations = new System.Windows.Forms.GroupBox();
             this.btnGenerateBase = new System.Windows.Forms.Button();
             this.pnlBattleAnimationsContainer = new System.Windows.Forms.Panel();
@@ -73,7 +73,7 @@
             // 
             // lstClasses
             // 
-            this.lstClasses.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lstClasses.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstClasses.FormattingEnabled = true;
             this.lstClasses.Location = new System.Drawing.Point(12, 28);
@@ -295,7 +295,7 @@
             // 
             // grpBattleAnimations
             // 
-            this.grpBattleAnimations.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.grpBattleAnimations.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBattleAnimations.Controls.Add(this.btnGenerateBase);
             this.grpBattleAnimations.Controls.Add(this.pnlBattleAnimationsContainer);
@@ -439,7 +439,7 @@
 
         #endregion
 
-        private FrogForge.ClassJSONBrowser lstClasses;
+        private FrogForge.UserControls.ClassJSONBrowser lstClasses;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.GroupBox grpGrowths;
@@ -458,7 +458,7 @@
         private System.Windows.Forms.NumericUpDown nudWeaponHit;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown nudWeaponWeight;
-        private AnimationPicturebox picIcon;
+        private FrogForge.UserControls.AnimationPicturebox picIcon;
         private System.Windows.Forms.GroupBox grpBattleAnimations;
         private System.Windows.Forms.VScrollBar vsbBattleAnimationsScrollbar;
         private System.Windows.Forms.Button btnAddBattleAnimation;

@@ -92,13 +92,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimationPicturebox.cs">
+    <Compile Include="Datas\GenericPortraitData.cs" />
+    <Compile Include="UserControls\AnimationPicturebox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BattleAnimationPanel.cs">
+    <Compile Include="UserControls\BattleAnimationPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BattleAnimationPanel.Designer.cs">
+    <Compile Include="UserControls\BattleAnimationPanel.Designer.cs">
       <DependentUpon>BattleAnimationPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="dlgColorSelector.cs">
@@ -107,90 +108,90 @@
     <Compile Include="dlgColorSelector.Designer.cs">
       <DependentUpon>dlgColorSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileBrowser.cs">
+    <Compile Include="UserControls\FileBrowser.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FileBrowser.Designer.cs">
+    <Compile Include="UserControls\FileBrowser.Designer.cs">
       <DependentUpon>FileBrowser.cs</DependentUpon>
     </Compile>
-    <Compile Include="FixedRichTextBox.cs">
+    <Compile Include="UserControls\FixedRichTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="frmBaseEditor.cs">
+    <Compile Include="Editors\frmBaseEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBaseEditor.Designer.cs">
+    <Compile Include="Editors\frmBaseEditor.Designer.cs">
       <DependentUpon>frmBaseEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmClassEditor.cs">
+    <Compile Include="Editors\frmClassEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmClassEditor.Designer.cs">
+    <Compile Include="Editors\frmClassEditor.Designer.cs">
       <DependentUpon>frmClassEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLevelEditor.cs">
+    <Compile Include="Editors\frmLevelEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLevelEditor.Designer.cs">
+    <Compile Include="Editors\frmLevelEditor.Designer.cs">
       <DependentUpon>frmLevelEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmConversationEditor.cs">
+    <Compile Include="Editors\frmConversationEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmConversationEditor.Designer.cs">
+    <Compile Include="Editors\frmConversationEditor.Designer.cs">
       <DependentUpon>frmConversationEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMenu.cs">
+    <Compile Include="Editors\frmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMenu.Designer.cs">
+    <Compile Include="Editors\frmMenu.Designer.cs">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPortraitEditor.cs">
+    <Compile Include="Editors\frmPortraitEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPortraitEditor.Designer.cs">
+    <Compile Include="Editors\frmPortraitEditor.Designer.cs">
       <DependentUpon>frmPortraitEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="JSONBrowser.cs">
+    <Compile Include="UserControls\JSONBrowser.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="NamedData.cs" />
+    <Compile Include="Datas\NamedData.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="PalettedImage.cs" />
-    <Compile Include="PortraitData.cs" />
+    <Compile Include="Datas\PortraitData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tile.cs" />
-    <Compile Include="Unit.cs" />
-    <Compile Include="ClassData.cs" />
+    <Compile Include="Datas\Tile.cs" />
+    <Compile Include="Datas\Unit.cs" />
+    <Compile Include="Datas\ClassData.cs" />
     <Compile Include="UnityColor.cs" />
     <Compile Include="Weapon.cs" />
-    <EmbeddedResource Include="BattleAnimationPanel.resx">
+    <EmbeddedResource Include="UserControls\BattleAnimationPanel.resx">
       <DependentUpon>BattleAnimationPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dlgColorSelector.resx">
       <DependentUpon>dlgColorSelector.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FileBrowser.resx">
+    <EmbeddedResource Include="UserControls\FileBrowser.resx">
       <DependentUpon>FileBrowser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmBaseEditor.resx">
+    <EmbeddedResource Include="Editors\frmBaseEditor.resx">
       <DependentUpon>frmBaseEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmClassEditor.resx">
+    <EmbeddedResource Include="Editors\frmClassEditor.resx">
       <DependentUpon>frmClassEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLevelEditor.resx">
+    <EmbeddedResource Include="Editors\frmLevelEditor.resx">
       <DependentUpon>frmLevelEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmConversationEditor.resx">
+    <EmbeddedResource Include="Editors\frmConversationEditor.resx">
       <DependentUpon>frmConversationEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMenu.resx">
+    <EmbeddedResource Include="Editors\frmMenu.resx">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPortraitEditor.resx">
+    <EmbeddedResource Include="Editors\frmPortraitEditor.resx">
       <DependentUpon>frmPortraitEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
