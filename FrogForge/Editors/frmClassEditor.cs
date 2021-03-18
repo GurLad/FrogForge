@@ -17,7 +17,6 @@ namespace FrogForge.Editors
     public partial class frmClassEditor : frmBaseEditor
     {
         private NumericUpDown[] Growths = new NumericUpDown[6];
-        private List<BattleAnimationPanel> BattleAnimations = new List<BattleAnimationPanel>();
 
         public frmClassEditor()
         {
@@ -66,6 +65,7 @@ namespace FrogForge.Editors
             ckbFlies.CheckedChanged += DirtyFunc;
             // Init base
             lstClasses.Init(this, () => new ClassData(), DataFromUI, DataToUI, "Classes");
+            balBattleAnimations.Init(() => new BattleAnimationData(), () => new BattleAnimationPanel(), (bap) => bap.Init(dlgOpen, this), () => btnGenerateBase.Visible = balBattleAnimations.Datas.Count <= 0);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -90,11 +90,9 @@ namespace FrogForge.Editors
             data.Weapon.Weight = (int)nudWeaponWeight.Value;
             // Battle animations
             data.BattleAnimations.Clear();
-            data.BattleAnimationImages.Clear();
-            foreach (var item in BattleAnimations)
+            foreach (var item in balBattleAnimations.Datas)
             {
-                data.BattleAnimations.Add(item.AnimationName);
-                data.BattleAnimationImages.Add(item.Animation);
+                data.BattleAnimations.Add(item);
             }
             CurrentFile = data.Name;
             Dirty = false;
@@ -138,69 +136,38 @@ namespace FrogForge.Editors
                     WorkingDirectory.SaveImage(@"ClassMapSprites\" + item.Name, item.MapSprite.Target);
                 }
                 WorkingDirectory.CreateDirectory(@"Images\ClassBattleAnimations\" + item.Name);
-                for (int i = 0; i < item.BattleAnimationImages.Count; i++)
+                for (int i = 0; i < item.BattleAnimations.Count; i++)
                 {
-                    if (item.BattleAnimationImages[i]?.Target != null)
+                    if (item.BattleAnimations[i]?.Image?.Target != null)
                     {
-                        WorkingDirectory.SaveImage(@"ClassBattleAnimations\" + item.Name + @"\" + item.BattleAnimations[i], item.BattleAnimationImages[i].Target);
+                        WorkingDirectory.SaveImage(@"ClassBattleAnimations\" + item.Name + @"\" + item.BattleAnimations[i].Name, item.BattleAnimations[i].Image.Target);
                     }
                 }
             }
         }
 
-        private void AddBattleAnimations(string name = "", PalettedImage image = null)
-        {
-            BattleAnimationPanel newPanel = new BattleAnimationPanel();
-            newPanel.Top = BattleAnimations.Count * (newPanel.Height + 3);
-            newPanel.AnimationName = name;
-            newPanel.Animation = image;
-            newPanel.Init(dlgOpen, this);
-            BattleAnimations.Add(newPanel);
-            pnlBattleAnimations.Controls.Add(newPanel);
-            pnlBattleAnimations.Height = BattleAnimations.Count * (newPanel.Height + 3);
-            UpdateBattleAnimationsUI();
-        }
-
         private void BattleAnimationsFromList(List<string> names)
         {
-            BattleAnimations.Clear();
-            pnlBattleAnimations.Controls.Clear();
+            List<BattleAnimationData> battleAnimations = new List<BattleAnimationData>();
             for (int i = 0; i < names.Count; i++)
             {
-                AddBattleAnimations(names[i]);
+                battleAnimations.Add(new BattleAnimationData(names[i]));
             }
-            UpdateBattleAnimationsUI();
+            balBattleAnimations.Datas = battleAnimations;
         }
 
         private void BattleAnimationsFromClassData(ClassData data)
         {
-            BattleAnimations.Clear();
-            pnlBattleAnimations.Controls.Clear();
             WorkingDirectory.CreateDirectory(@"Images\ClassBattleAnimations\" + data.Name);
-            for (int i = data.BattleAnimationImages.Count; i < data.BattleAnimations.Count; i++)
-            {
-                data.BattleAnimationImages.Add(PalettedImage.FromFile(WorkingDirectory, @"ClassBattleAnimations\" + data.Name + @"\" + data.BattleAnimations[i]));
-            }
             for (int i = 0; i < data.BattleAnimations.Count; i++)
             {
-                AddBattleAnimations(data.BattleAnimations[i], data.BattleAnimationImages[i]);
+                if (data.BattleAnimations[i].Image == null)
+                {
+                    data.BattleAnimations[i].Image = 
+                        PalettedImage.FromFile(WorkingDirectory, @"ClassBattleAnimations\" + data.Name + @"\" + data.BattleAnimations[i].Name);
+                }
             }
-            UpdateBattleAnimationsUI();
-        }
-
-        private void UpdateBattleAnimationsUI()
-        {
-            btnGenerateBase.Visible = BattleAnimations.Count == 0;
-            vsbBattleAnimationsScrollbar.Visible = BattleAnimations.Count > 4;
-            vsbBattleAnimationsScrollbar.Maximum = BattleAnimations.Count;
-            vsbBattleAnimationsScrollbar.Value = 0;
-            pnlBattleAnimations.Top = 0;
-        }
-
-        private void btnAddBattleAnimation_Click(object sender, EventArgs e)
-        {
-            AddBattleAnimations("");
-            Dirty = true;
+            balBattleAnimations.Datas = data.BattleAnimations;
         }
 
         private void btnGenerateBase_Click(object sender, EventArgs e)
@@ -213,11 +180,6 @@ namespace FrogForge.Editors
                 "AttackEnd"
             }));
             Dirty = true;
-        }
-
-        private void vsbBattleAnimationsScrollbar_Scroll(object sender, ScrollEventArgs e)
-        {
-            pnlBattleAnimations.Top = -vsbBattleAnimationsScrollbar.Value * (BattleAnimations[0].Height + 3);
         }
 
         protected override void ControlKeyAction(Keys key)

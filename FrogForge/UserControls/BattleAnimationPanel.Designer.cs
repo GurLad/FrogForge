@@ -1,6 +1,6 @@
 ﻿namespace FrogForge.UserControls
 {
-    partial class BattleAnimationPanel
+    public partial class BattleAnimationPanel : BattleAnimationEditor
     {
         /// <summary> 
         /// Required designer variable.

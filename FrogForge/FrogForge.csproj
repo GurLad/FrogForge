@@ -92,6 +92,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datas\BattleAnimationData.cs" />
     <Compile Include="Datas\GenericPortraitData.cs" />
     <Compile Include="UserControls\AnimationPicturebox.cs">
       <SubType>Component</SubType>
@@ -107,6 +108,15 @@
     </Compile>
     <Compile Include="dlgColorSelector.Designer.cs">
       <DependentUpon>dlgColorSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DataEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ListDataEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ListDataEditor.Designer.cs">
+      <DependentUpon>ListDataEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\FileBrowser.cs">
       <SubType>UserControl</SubType>
@@ -172,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="dlgColorSelector.resx">
       <DependentUpon>dlgColorSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ListDataEditor.resx">
+      <DependentUpon>ListDataEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\FileBrowser.resx">
       <DependentUpon>FileBrowser.cs</DependentUpon>

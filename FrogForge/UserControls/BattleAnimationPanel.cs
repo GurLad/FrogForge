@@ -8,31 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrogForge.Editors;
+using FrogForge.Datas;
 
 namespace FrogForge.UserControls
 {
-    public partial class BattleAnimationPanel : UserControl
+    public partial class BattleAnimationPanel : BattleAnimationEditor
     {
-        public string AnimationName
+        public override BattleAnimationData Data
         {
             get
             {
-                return txtName.Text;
+                return new BattleAnimationData(txtName.Text, picAnimation.Image);
             }
             set
             {
-                txtName.Text = value;
-            }
-        }
-        public PalettedImage Animation
-        {
-            get
-            {
-                return picAnimation.Image;
-            }
-            set
-            {
-                picAnimation.Image = value;
+                picAnimation.Image = value.Image;
+                txtName.Text = value.Name;
             }
         }
 

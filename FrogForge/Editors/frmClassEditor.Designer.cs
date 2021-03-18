@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            FrogForge.Palette palette1 = new FrogForge.Palette();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClassEditor));
             this.lstClasses = new FrogForge.UserControls.ClassJSONBrowser();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,10 +52,7 @@
             this.picIcon = new FrogForge.UserControls.AnimationPicturebox();
             this.grpBattleAnimations = new System.Windows.Forms.GroupBox();
             this.btnGenerateBase = new System.Windows.Forms.Button();
-            this.pnlBattleAnimationsContainer = new System.Windows.Forms.Panel();
-            this.pnlBattleAnimations = new System.Windows.Forms.Panel();
-            this.btnAddBattleAnimation = new System.Windows.Forms.Button();
-            this.vsbBattleAnimationsScrollbar = new System.Windows.Forms.VScrollBar();
+            this.balBattleAnimations = new FrogForge.UserControls.BattleAnimationsListEditor();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
@@ -67,13 +65,12 @@
             this.grpImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.grpBattleAnimations.SuspendLayout();
-            this.pnlBattleAnimationsContainer.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstClasses
             // 
-            this.lstClasses.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.lstClasses.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstClasses.FormattingEnabled = true;
             this.lstClasses.Location = new System.Drawing.Point(12, 28);
@@ -101,13 +98,15 @@
             // 
             this.grpGrowths.Location = new System.Drawing.Point(138, 80);
             this.grpGrowths.Name = "grpGrowths";
-            this.grpGrowths.Size = new System.Drawing.Size(246, 76);
+            this.grpGrowths.Size = new System.Drawing.Size(246, 75);
             this.grpGrowths.TabIndex = 4;
             this.grpGrowths.TabStop = false;
             this.grpGrowths.Text = "Growths";
             // 
             // grpWeapon
             // 
+            this.grpWeapon.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.grpWeapon.Controls.Add(this.label7);
             this.grpWeapon.Controls.Add(this.label6);
             this.grpWeapon.Controls.Add(this.nudWeaponWeight);
@@ -118,9 +117,9 @@
             this.grpWeapon.Controls.Add(this.nudWeaponRange);
             this.grpWeapon.Controls.Add(this.txtWeaponName);
             this.grpWeapon.Controls.Add(this.label3);
-            this.grpWeapon.Location = new System.Drawing.Point(138, 162);
+            this.grpWeapon.Location = new System.Drawing.Point(138, 161);
             this.grpWeapon.Name = "grpWeapon";
-            this.grpWeapon.Size = new System.Drawing.Size(246, 72);
+            this.grpWeapon.Size = new System.Drawing.Size(246, 71);
             this.grpWeapon.TabIndex = 5;
             this.grpWeapon.TabStop = false;
             this.grpWeapon.Text = "Weapon";
@@ -286,8 +285,9 @@
             // 
             this.picIcon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.picIcon.Image = null;
-            this.picIcon.Location = new System.Drawing.Point(12, 20);
+            this.picIcon.Location = new System.Drawing.Point(11, 19);
             this.picIcon.Name = "picIcon";
+            this.picIcon.Palette = palette1;
             this.picIcon.Size = new System.Drawing.Size(20, 20);
             this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picIcon.TabIndex = 0;
@@ -295,64 +295,39 @@
             // 
             // grpBattleAnimations
             // 
-            this.grpBattleAnimations.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.grpBattleAnimations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBattleAnimations.Controls.Add(this.btnGenerateBase);
-            this.grpBattleAnimations.Controls.Add(this.pnlBattleAnimationsContainer);
-            this.grpBattleAnimations.Controls.Add(this.btnAddBattleAnimation);
-            this.grpBattleAnimations.Controls.Add(this.vsbBattleAnimationsScrollbar);
+            this.grpBattleAnimations.Controls.Add(this.balBattleAnimations);
             this.grpBattleAnimations.Location = new System.Drawing.Point(390, 28);
             this.grpBattleAnimations.Name = "grpBattleAnimations";
-            this.grpBattleAnimations.Size = new System.Drawing.Size(171, 206);
+            this.grpBattleAnimations.Size = new System.Drawing.Size(174, 204);
             this.grpBattleAnimations.TabIndex = 10;
             this.grpBattleAnimations.TabStop = false;
             this.grpBattleAnimations.Text = "Battle animations";
             // 
             // btnGenerateBase
             // 
+            this.btnGenerateBase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGenerateBase.Location = new System.Drawing.Point(6, 19);
             this.btnGenerateBase.Name = "btnGenerateBase";
-            this.btnGenerateBase.Size = new System.Drawing.Size(159, 155);
+            this.btnGenerateBase.Size = new System.Drawing.Size(162, 153);
             this.btnGenerateBase.TabIndex = 4;
             this.btnGenerateBase.Text = "Generate base";
             this.btnGenerateBase.UseVisualStyleBackColor = true;
             this.btnGenerateBase.Click += new System.EventHandler(this.btnGenerateBase_Click);
             // 
-            // pnlBattleAnimationsContainer
+            // balBattleAnimations
             // 
-            this.pnlBattleAnimationsContainer.Controls.Add(this.pnlBattleAnimations);
-            this.pnlBattleAnimationsContainer.Location = new System.Drawing.Point(6, 19);
-            this.pnlBattleAnimationsContainer.Name = "pnlBattleAnimationsContainer";
-            this.pnlBattleAnimationsContainer.Size = new System.Drawing.Size(142, 153);
-            this.pnlBattleAnimationsContainer.TabIndex = 4;
-            // 
-            // pnlBattleAnimations
-            // 
-            this.pnlBattleAnimations.Location = new System.Drawing.Point(0, 0);
-            this.pnlBattleAnimations.Name = "pnlBattleAnimations";
-            this.pnlBattleAnimations.Size = new System.Drawing.Size(142, 153);
-            this.pnlBattleAnimations.TabIndex = 0;
-            // 
-            // btnAddBattleAnimation
-            // 
-            this.btnAddBattleAnimation.Location = new System.Drawing.Point(6, 177);
-            this.btnAddBattleAnimation.Name = "btnAddBattleAnimation";
-            this.btnAddBattleAnimation.Size = new System.Drawing.Size(159, 23);
-            this.btnAddBattleAnimation.TabIndex = 3;
-            this.btnAddBattleAnimation.Text = "Add";
-            this.btnAddBattleAnimation.UseVisualStyleBackColor = true;
-            this.btnAddBattleAnimation.Click += new System.EventHandler(this.btnAddBattleAnimation_Click);
-            // 
-            // vsbBattleAnimationsScrollbar
-            // 
-            this.vsbBattleAnimationsScrollbar.LargeChange = 5;
-            this.vsbBattleAnimationsScrollbar.Location = new System.Drawing.Point(151, 16);
-            this.vsbBattleAnimationsScrollbar.Maximum = 5;
-            this.vsbBattleAnimationsScrollbar.Name = "vsbBattleAnimationsScrollbar";
-            this.vsbBattleAnimationsScrollbar.Size = new System.Drawing.Size(17, 156);
-            this.vsbBattleAnimationsScrollbar.TabIndex = 1;
-            this.vsbBattleAnimationsScrollbar.Visible = false;
-            this.vsbBattleAnimationsScrollbar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vsbBattleAnimationsScrollbar_Scroll);
+            this.balBattleAnimations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.balBattleAnimations.Location = new System.Drawing.Point(6, 19);
+            this.balBattleAnimations.Name = "balBattleAnimations";
+            this.balBattleAnimations.Size = new System.Drawing.Size(162, 179);
+            this.balBattleAnimations.TabIndex = 5;
             // 
             // toolStrip1
             // 
@@ -362,7 +337,7 @@
             this.btnRemove});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(573, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(576, 25);
             this.toolStrip1.TabIndex = 11;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -400,7 +375,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(573, 246);
+            this.ClientSize = new System.Drawing.Size(576, 244);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.grpBattleAnimations);
             this.Controls.Add(this.grpImage);
@@ -429,7 +404,6 @@
             this.grpImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
             this.grpBattleAnimations.ResumeLayout(false);
-            this.pnlBattleAnimationsContainer.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -460,14 +434,11 @@
         private System.Windows.Forms.NumericUpDown nudWeaponWeight;
         private FrogForge.UserControls.AnimationPicturebox picIcon;
         private System.Windows.Forms.GroupBox grpBattleAnimations;
-        private System.Windows.Forms.VScrollBar vsbBattleAnimationsScrollbar;
-        private System.Windows.Forms.Button btnAddBattleAnimation;
-        private System.Windows.Forms.Button btnGenerateBase;
-        private System.Windows.Forms.Panel pnlBattleAnimationsContainer;
-        private System.Windows.Forms.Panel pnlBattleAnimations;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnSave;
         private System.Windows.Forms.ToolStripButton btnNew;
         private System.Windows.Forms.ToolStripButton btnRemove;
+        private System.Windows.Forms.Button btnGenerateBase;
+        private UserControls.BattleAnimationsListEditor balBattleAnimations;
     }
 }

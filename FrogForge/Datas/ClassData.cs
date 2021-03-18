@@ -19,9 +19,7 @@ namespace FrogForge.Datas
         public Weapon Weapon { get; set; } = new Weapon();
         [System.Text.Json.Serialization.JsonIgnore]
         public PalettedImage MapSprite { get; set; }
-        public List<string> BattleAnimations { get; set; } = new List<string>();
-        [System.Text.Json.Serialization.JsonIgnore]
-        public List<PalettedImage> BattleAnimationImages { get; set; } = new List<PalettedImage>();
+        public List<BattleAnimationData> BattleAnimations { get; set; } = new List<BattleAnimationData>();
         
         public PalettedImage LoadSprite(FilesController files)
         {
