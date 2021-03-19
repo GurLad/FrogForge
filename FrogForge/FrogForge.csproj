@@ -176,6 +176,12 @@
     <Compile Include="Datas\Unit.cs" />
     <Compile Include="Datas\ClassData.cs" />
     <Compile Include="UnityColor.cs" />
+    <Compile Include="UserControls\PalettePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\PalettePanel.Designer.cs">
+      <DependentUpon>PalettePanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Weapon.cs" />
     <EmbeddedResource Include="UserControls\BattleAnimationPanel.resx">
       <DependentUpon>BattleAnimationPanel.cs</DependentUpon>
@@ -217,6 +223,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\PalettePanel.resx">
+      <DependentUpon>PalettePanel.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

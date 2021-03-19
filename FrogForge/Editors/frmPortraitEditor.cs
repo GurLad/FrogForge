@@ -13,8 +13,8 @@ namespace FrogForge.Editors
 {
     public partial class frmPortraitEditor : frmBaseEditor
     {
-        private List<PictureBox> BGPaletteSelectors;
-        private static int[] PageWidths { get; } = new int[] { 393, 504 };
+        private static int[] PageWidths { get; } = new int[] { 393, 561 };
+        private Random RNG { get; } = new Random();
         public frmPortraitEditor()
         {
             InitializeComponent();
@@ -23,22 +23,6 @@ namespace FrogForge.Editors
 
         private void frmPortraitEditor_Load(object sender, EventArgs e)
         {
-            // Generate BGPaletteSelectors
-            BGPaletteSelectors = new List<PictureBox>(4);
-            for (int i = 0; i < 4; i++)
-            {
-                PictureBox box = new PictureBox();
-                box.Location = new Point(73 + 36 * i, 71);
-                box.Size = new Size(29, 20);
-                box.BorderStyle = BorderStyle.Fixed3D;
-                box.BackColor = Palette.BasePalette[i];
-                if (i != 0)
-                {
-                    box.Click += Box_Click;
-                }
-                grpData.Controls.Add(box);
-                BGPaletteSelectors.Add(box);
-            }
             // Init animation pictureboxes
             picCharactersBG.Init(dlgOpen, this);
             picCharactersFG.Init(dlgOpen, this);
@@ -46,23 +30,28 @@ namespace FrogForge.Editors
             picGenericsBG.Init(dlgOpen, this);
             picGenericsFG.Init(dlgOpen, this);
             picGenericsBG.PostOnClick = picGenericsFG.PostOnClick = UpdateGenericPreview;
-            // Misc
-            dlgOpen.Filter = "Image files|*.gif;*.png";
-            trkFGPalette_Scroll(sender, e);
             // Init base
             lstCharacters.Init(this, () => new PortraitData(), CharacterDataFromUI, CharacterDataToUI, "Portraits");
             lstGenerics.Init(this, () => new GenericPortraitData(), GenericDataFromUI, GenericDataToUI, "GenericPortraits");
+            pleGenericsPossibleBGPalettes.Init(null, () => new Palette(), () => new UserControls.PalettePanel(), (plt) => plt.Init(null), false);
+            pltCharactersBGPalette.Init(this, (p) =>
+            {
+                picCharactersBG.Palette = p;
+                UpdateCharacterPreview();
+            });
             Dirty = false;
+            // Misc
+            dlgOpen.Filter = "Image files|*.gif;*.png";
+            trkFGPalette_Scroll(sender, e);
+            if (WorkingDirectory.CheckFileExist("GenericPortraitsGlobalData.json"))
+            {
+                pleGenericsPossibleBGPalettes.Datas =
+                    (List<Palette>)System.Text.Json.JsonSerializer.Deserialize(
+                        WorkingDirectory.LoadFile("GenericPortraitsGlobalData", "", ".json"), typeof(List<Palette>));
+            }
             // Set dirty
             txtGenericsTags.TextChanged += DirtyFunc;
-        }
-
-        private void Box_Click(object sender, EventArgs e)
-        {
-            ((PictureBox)sender).BackColor = dlgColorSelector.Dialog(this) ?? ((PictureBox)sender).BackColor;
-            picCharactersBG.Palette = PaletteFromUI();
-            UpdateCharacterPreview();
-            Dirty = true;
+            Dirty = false;
         }
 
         private void trkFGPalette_Scroll(object sender, EventArgs e)
@@ -83,15 +72,16 @@ namespace FrogForge.Editors
         {
             picGenericsPreview.Image = picGenericsFG.Image?.Target;
             picGenericsPreview.BackgroundImage = picGenericsBG.Image?.Target;
-            picGenericsBG.Palette = Palette.BasePalette; // TODO: Replace with a random palette from the available ones
-            picGenericsFG.Palette = Palette.BaseSpritePalettes[new Random().Next(0, 4)]; // TODO: Better Random
+            picGenericsBG.Palette = pleGenericsPossibleBGPalettes.Datas.Count > 0 ?
+                pleGenericsPossibleBGPalettes.Datas[RNG.Next(pleGenericsPossibleBGPalettes.Datas.Count)] : Palette.BasePalette;
+            picGenericsFG.Palette = Palette.BaseSpritePalettes[RNG.Next(0, 4)]; // TODO: Better Random
         }
 
         private PortraitData CharacterDataFromUI(PortraitData data)
         {
             data.Name = txtCharactersName.Text;
             data.ForegroundColorID = trkCharactersFGPalette.Value;
-            data.BackgroundColor = PaletteFromUI();
+            data.BackgroundColor = pltCharactersBGPalette.Data;
             data.Background = picCharactersBG.Image;
             data.Foreground = picCharactersFG.Image;
             CurrentFile = data.Name;
@@ -104,10 +94,7 @@ namespace FrogForge.Editors
             txtCharactersName.Text = data.Name;
             trkCharactersFGPalette.Value = data.ForegroundColorID;
             picCharactersFGPalette.BackColor = Palette.BaseSpritePalettes[data.ForegroundColorID][1];
-            for (int i = 0; i < 4; i++)
-            {
-                BGPaletteSelectors[i].BackColor = data.BackgroundColor[i];
-            }
+            pltCharactersBGPalette.Data = data.BackgroundColor;
             WorkingDirectory.CreateDirectory(@"Images\Portraits\" + data.Name);
             picCharactersBG.Image = data.Background ?? new PalettedImage(WorkingDirectory.LoadImage(@"Portraits\" + data.Name + @"\B") ?? new Bitmap(1, 1));
             picCharactersBG.Palette = data.BackgroundColor;
@@ -141,11 +128,6 @@ namespace FrogForge.Editors
             UpdateGenericPreview();
             CurrentFile = data.Name;
             Dirty = false;
-        }
-
-        private Palette PaletteFromUI()
-        {
-            return new Palette(BGPaletteSelectors.Select(a => a.BackColor).ToArray());
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -222,6 +204,9 @@ namespace FrogForge.Editors
                     WorkingDirectory.SaveImage(@"GenericPortraits\" + item.Name + @"\B", item.Background.Target);
                 }
             }
+            // Generics global data save
+            WorkingDirectory.SaveFile(
+                "GenericPortraitsGlobalData", System.Text.Json.JsonSerializer.Serialize(pleGenericsPossibleBGPalettes.Datas, typeof(List<Palette>)), ".json");
             Cursor.Current = Cursors.Default;
         }
 

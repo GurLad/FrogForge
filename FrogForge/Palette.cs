@@ -92,3 +92,16 @@ namespace FrogForge
         }
     }
 }
+
+namespace FrogForge.UserControls
+{
+    public partial class PaletteEditor : DataEditor<Palette>
+    {
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public override Palette Data { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    }
+
+    public partial class PalettesListEditor : ListDataEditor<PalettePanel, Palette> { }
+}

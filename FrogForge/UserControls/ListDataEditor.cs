@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrogForge.Editors;
 
 namespace FrogForge.UserControls
 {
@@ -31,6 +32,7 @@ namespace FrogForge.UserControls
                 UpdateUI();
             }
         }
+        private frmBaseEditor Editor;
         private const int DATA_SPACING = 3;
         private List<Control> GeneratedControls { get; } = new List<Control>();
         private Func<DataType> NewData;
@@ -43,14 +45,27 @@ namespace FrogForge.UserControls
             InitializeComponent();
         }
 
-        public void Init(Func<DataType> newData, Func<Control> newControl, Action<Control> initControl, Action updateUIAction = null)
+        public void Init(frmBaseEditor editor, Func<DataType> newData, Func<Control> newControl, Action<Control> initControl, bool fixWidth = true, Action updateUIAction = null)
         {
+            Editor = editor;
             NewData = newData;
             NewControl = newControl;
             InitControl = initControl;
             UpdateUIAction = updateUIAction;
             Control temp = NewControl();
-            Width = temp.Width + vsbDatasScroller.Width + DATA_SPACING;
+            if (fixWidth)
+            {
+                Width = temp.Width + vsbDatasScroller.Width + DATA_SPACING;
+            }
+            else
+            {
+                NewControl = () =>
+                {
+                    Control t = newControl();
+                    t.Width = pnlControls.Width;
+                    return t;
+                };
+            }
             NumDatasInOneScreen = (pnlContainer.Height + DATA_SPACING) / (temp.Height + DATA_SPACING);
             Height = NumDatasInOneScreen * (temp.Height + DATA_SPACING) - DATA_SPACING + btnAdd.Height + btnAdd.Top - vsbDatasScroller.Bottom;
             vsbDatasScroller.LargeChange = NumDatasInOneScreen + 1;
@@ -78,6 +93,10 @@ namespace FrogForge.UserControls
             pnlControls.Controls.Add(toAdd);
             pnlControls.Height = GeneratedControls.Count * (toAdd.Height + 3);
             UpdateUI();
+            if (Editor != null)
+            {
+                Editor.Dirty = true;
+            }
         }
 
         private void UpdateUI()

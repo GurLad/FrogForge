@@ -9,6 +9,9 @@ namespace FrogForge.UserControls
 {
     public abstract class DataEditor<T> : UserControl where T : class
     {
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public abstract T Data { get; set; }
     }
 }

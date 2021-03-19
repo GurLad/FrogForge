@@ -65,7 +65,9 @@ namespace FrogForge.Editors
             ckbFlies.CheckedChanged += DirtyFunc;
             // Init base
             lstClasses.Init(this, () => new ClassData(), DataFromUI, DataToUI, "Classes");
-            balBattleAnimations.Init(() => new BattleAnimationData(), () => new BattleAnimationPanel(), (bap) => bap.Init(dlgOpen, this), () => btnGenerateBase.Visible = balBattleAnimations.Datas.Count <= 0);
+            balBattleAnimations.Init(
+                this, () => new BattleAnimationData(), () => new BattleAnimationPanel(),
+                (bap) => bap.Init(dlgOpen, this), true, () => btnGenerateBase.Visible = balBattleAnimations.Datas.Count <= 0);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
