@@ -285,7 +285,7 @@
             // 
             this.picIcon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.picIcon.Image = null;
-            this.picIcon.Location = new System.Drawing.Point(11, 19);
+            this.picIcon.Location = new System.Drawing.Point(12, 19);
             this.picIcon.Name = "picIcon";
             this.picIcon.Palette = palette1;
             this.picIcon.Size = new System.Drawing.Size(20, 20);

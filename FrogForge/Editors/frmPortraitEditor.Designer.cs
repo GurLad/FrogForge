@@ -56,6 +56,9 @@
             this.lstCharacters = new FrogForge.UserControls.PortraitJSONBrowser();
             this.tbpGenerics = new System.Windows.Forms.TabPage();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.pleGenericsPossibleBGPalettes = new FrogForge.UserControls.PalettesListEditor();
             this.lstGenerics = new FrogForge.UserControls.GenericPortraitJSONBrowser();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -72,9 +75,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.trkGenericsVoiceType = new System.Windows.Forms.TrackBar();
-            this.pleGenericsPossibleBGPalettes = new FrogForge.UserControls.PalettesListEditor();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCharactersBG)).BeginInit();
@@ -90,6 +90,7 @@
             this.tbpPortraits.SuspendLayout();
             this.tbpGenerics.SuspendLayout();
             this.groupBox11.SuspendLayout();
+            this.groupBox12.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGenericsBG)).BeginInit();
@@ -99,7 +100,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picGenericsFG)).BeginInit();
             this.groupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkGenericsVoiceType)).BeginInit();
-            this.groupBox12.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -273,7 +273,7 @@
             this.btnDelete});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(545, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(377, 25);
             this.toolStrip1.TabIndex = 17;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -317,7 +317,7 @@
             this.tbcMain.Location = new System.Drawing.Point(12, 28);
             this.tbcMain.Name = "tbcMain";
             this.tbcMain.SelectedIndex = 0;
-            this.tbcMain.Size = new System.Drawing.Size(520, 278);
+            this.tbcMain.Size = new System.Drawing.Size(352, 278);
             this.tbcMain.TabIndex = 10;
             this.tbcMain.SelectedIndexChanged += new System.EventHandler(this.tbcMain_SelectedIndexChanged);
             // 
@@ -369,6 +369,35 @@
             this.groupBox11.TabIndex = 19;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Global Data";
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Location = new System.Drawing.Point(6, 149);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(150, 97);
+            this.groupBox13.TabIndex = 2;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Voices TBA";
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.pleGenericsPossibleBGPalettes);
+            this.groupBox12.Location = new System.Drawing.Point(6, 19);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(150, 124);
+            this.groupBox12.TabIndex = 1;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "BG Palettes";
+            // 
+            // pleGenericsPossibleBGPalettes
+            // 
+            this.pleGenericsPossibleBGPalettes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pleGenericsPossibleBGPalettes.Location = new System.Drawing.Point(6, 19);
+            this.pleGenericsPossibleBGPalettes.Name = "pleGenericsPossibleBGPalettes";
+            this.pleGenericsPossibleBGPalettes.Size = new System.Drawing.Size(138, 99);
+            this.pleGenericsPossibleBGPalettes.TabIndex = 0;
             // 
             // lstGenerics
             // 
@@ -532,40 +561,11 @@
             this.trkGenericsVoiceType.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trkGenericsVoiceType.ValueChanged += new System.EventHandler(this.trkGenericsVoiceType_ValueChanged);
             // 
-            // pleGenericsPossibleBGPalettes
-            // 
-            this.pleGenericsPossibleBGPalettes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pleGenericsPossibleBGPalettes.Location = new System.Drawing.Point(6, 19);
-            this.pleGenericsPossibleBGPalettes.Name = "pleGenericsPossibleBGPalettes";
-            this.pleGenericsPossibleBGPalettes.Size = new System.Drawing.Size(138, 99);
-            this.pleGenericsPossibleBGPalettes.TabIndex = 0;
-            // 
-            // groupBox12
-            // 
-            this.groupBox12.Controls.Add(this.pleGenericsPossibleBGPalettes);
-            this.groupBox12.Location = new System.Drawing.Point(6, 19);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(150, 124);
-            this.groupBox12.TabIndex = 1;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "BG Palettes";
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Location = new System.Drawing.Point(6, 149);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(150, 97);
-            this.groupBox13.TabIndex = 2;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "Voices TBA";
-            // 
             // frmPortraitEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(545, 318);
+            this.ClientSize = new System.Drawing.Size(377, 318);
             this.Controls.Add(this.tbcMain);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -593,6 +593,7 @@
             this.tbpPortraits.ResumeLayout(false);
             this.tbpGenerics.ResumeLayout(false);
             this.groupBox11.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picGenericsBG)).EndInit();
@@ -603,7 +604,6 @@
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkGenericsVoiceType)).EndInit();
-            this.groupBox12.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
