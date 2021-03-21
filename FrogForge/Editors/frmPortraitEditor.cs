@@ -15,6 +15,8 @@ namespace FrogForge.Editors
     {
         private static int[] PageWidths { get; } = new int[] { 393, 561 };
         private Random RNG { get; } = new Random();
+        private GenericPortraitsGlobalData GlobalData = new GenericPortraitsGlobalData();
+
         public frmPortraitEditor()
         {
             InitializeComponent();
@@ -45,9 +47,8 @@ namespace FrogForge.Editors
             trkFGPalette_Scroll(sender, e);
             if (WorkingDirectory.CheckFileExist("GenericPortraitsGlobalData.json"))
             {
-                pleGenericsPossibleBGPalettes.Datas =
-                    (List<Palette>)System.Text.Json.JsonSerializer.Deserialize(
-                        WorkingDirectory.LoadFile("GenericPortraitsGlobalData", "", ".json"), typeof(List<Palette>));
+                GlobalData = WorkingDirectory.LoadFile("GenericPortraitsGlobalData", "", ".json").JsonToObject<GenericPortraitsGlobalData>();
+                pleGenericsPossibleBGPalettes.Datas = GlobalData.GenericPossibleBackgroundColors;
             }
             // Set dirty
             txtGenericsTags.TextChanged += DirtyFunc;
@@ -205,8 +206,8 @@ namespace FrogForge.Editors
                 }
             }
             // Generics global data save
-            WorkingDirectory.SaveFile(
-                "GenericPortraitsGlobalData", System.Text.Json.JsonSerializer.Serialize(pleGenericsPossibleBGPalettes.Datas, typeof(List<Palette>)), ".json");
+            GlobalData.GenericPossibleBackgroundColors = pleGenericsPossibleBGPalettes.Datas;
+            WorkingDirectory.SaveFile("GenericPortraitsGlobalData", GlobalData.ToJson(), ".json");
             Cursor.Current = Cursors.Default;
         }
 

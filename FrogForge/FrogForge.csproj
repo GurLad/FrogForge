@@ -94,6 +94,8 @@
   <ItemGroup>
     <Compile Include="Datas\BattleAnimationData.cs" />
     <Compile Include="Datas\GenericPortraitData.cs" />
+    <Compile Include="Datas\GenericPortraitsGlobalData.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="UserControls\AnimationPicturebox.cs">
       <SubType>Component</SubType>
     </Compile>

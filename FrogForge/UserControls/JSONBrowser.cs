@@ -34,7 +34,7 @@ namespace FrogForge.UserControls
             // Load JSON file
             if (BaseEditor.WorkingDirectory.CheckFileExist(fileName + ".json"))
             {
-                Data = (List<T>)JsonSerializer.Deserialize(BaseEditor.WorkingDirectory.LoadFile(fileName, "", ".json"), typeof(List<T>));
+                Data = BaseEditor.WorkingDirectory.LoadFile(fileName, "", ".json").JsonToObject<List<T>>();
                 UpdateList();
             }
             else
@@ -45,7 +45,7 @@ namespace FrogForge.UserControls
 
         public void SaveToFile()
         {
-            BaseEditor.WorkingDirectory.SaveFile(FileName, JsonSerializer.Serialize(Data, typeof(List<T>)), ".json");
+            BaseEditor.WorkingDirectory.SaveFile(FileName, Data.ToJson(), ".json");
         }
 
         public void Save(string editingName)
