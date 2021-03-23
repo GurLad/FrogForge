@@ -63,22 +63,17 @@ namespace FrogForge.UserControls
             }
         }
 
-        private void lstFiles_DoubleClick(object sender, EventArgs e)
+        public void Navigate(string place)
         {
-            if (lstFiles.SelectedItem == null)
+            if (place[0] == @"\"[0])
             {
-                return;
-            }
-            string item = lstFiles.SelectedItem.ToString();
-            if (item[0] == @"\"[0])
-            {
-                if (item == @"\..")
+                if (place == @"\..")
                 {
                     Directory.Path = Directory.Path.Substring(0, Directory.Path.LastIndexOf(Directory.Seperator));
                 }
                 else
                 {
-                    Directory.CreateDirectory(item.Substring(1), true);
+                    Directory.CreateDirectory(place.Substring(1), true);
                 }
                 UpdateList();
             }
@@ -86,6 +81,16 @@ namespace FrogForge.UserControls
             {
                 OnFileSelected(lstFiles.SelectedItem.ToString());
             }
+        }
+
+        private void lstFiles_DoubleClick(object sender, EventArgs e)
+        {
+            if (lstFiles.SelectedItem == null)
+            {
+                return;
+            }
+            string item = lstFiles.SelectedItem.ToString();
+            Navigate(item);
         }
     }
 }

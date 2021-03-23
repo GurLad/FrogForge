@@ -82,9 +82,10 @@ namespace FrogForge.Editors
         {
             CurrentDirectory.SaveFile(txtName.Text, txtText.Text);
             Dirty = false;
+            // TODO: Check if moved folder
+            flbFileBrowser.UpdateList();
             if (txtName.Text != CurrentFilename)
             {
-                flbFileBrowser.UpdateList();
                 CurrentFilename = txtName.Text;
             }
         }
@@ -374,6 +375,36 @@ namespace FrogForge.Editors
                     flbFileBrowser.UpdateList();
                     CurrentFilename = "";
                 }
+            }
+        }
+
+        private void btnNewFolder_Click(object sender, EventArgs e)
+        {
+            if (txtName.Text == "")
+            {
+                MessageBox.Show("You must enter a folder name.");
+                return;
+            }
+            CurrentDirectory.CreateDirectory(txtName.Text);
+            flbFileBrowser.UpdateList();
+        }
+
+        private void btnDeleteFolder_Click(object sender, EventArgs e)
+        {
+            // TBA: Update Utils to add directory support
+            string toDelete = txtName.Text != "" ? @"\" + txtName.Text : "";
+            string toDeleteName = toDelete != "" ? toDelete.Replace(@"\", "") : CurrentDirectory.Path.Substring(CurrentDirectory.Path.LastIndexOf(@"\") + 1);
+            if (System.IO.Directory.Exists(CurrentDirectory.Path + toDelete) &&
+                ConfirmDialog("Are you sure you want to delete folder " + toDeleteName + "?", "Warning") &&
+                (CurrentDirectory.AllFiles(false, true, txtName.Text).Length == 0 ||
+                 ConfirmDialog("Warning! " + toDeleteName + " contains files. Continue anyway?", "Warning")))
+            {
+                System.IO.Directory.Delete(CurrentDirectory.Path + toDelete, true);
+                if (toDelete == "")
+                {
+                    flbFileBrowser.Navigate(@"\..");
+                }
+                flbFileBrowser.UpdateList();
             }
         }
     }

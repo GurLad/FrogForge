@@ -102,7 +102,7 @@ namespace FrogForge.Editors
             if (ModifierKeys == Keys.Control)
             {
                 ControlKeyAction(e.KeyCode);
-                e.Handled = true;
+                //e.Handled = true;
             }
         }
     }

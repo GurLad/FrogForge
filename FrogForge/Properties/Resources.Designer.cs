@@ -83,6 +83,16 @@ namespace FrogForge.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DeleteFolder {
+            get {
+                object obj = ResourceManager.GetObject("DeleteFolder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FrogmanGaidenConversationBG {
             get {
                 object obj = ResourceManager.GetObject("FrogmanGaidenConversationBG", resourceCulture);
@@ -96,6 +106,16 @@ namespace FrogForge.Properties {
         internal static System.Drawing.Bitmap New {
             get {
                 object obj = ResourceManager.GetObject("New", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NewFolder {
+            get {
+                object obj = ResourceManager.GetObject("NewFolder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
