@@ -19,6 +19,13 @@ namespace FrogForge.UserControls
         /// </summary>
         public Action<string> OnFileSelected;
         public bool ShowDirectories = true;
+        public string SelectedFilename
+        {
+            get
+            {
+                return lstFiles.SelectedItem?.ToString();
+            }
+        }
         public FileBrowser()
         {
             InitializeComponent();

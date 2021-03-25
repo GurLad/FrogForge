@@ -278,19 +278,20 @@ namespace FrogForge.Editors
             Dirty = false;
         }
 
-        protected override void ControlKeyAction(Keys key)
+        protected override bool ControlKeyAction(Keys key)
         {
             switch (key)
             {
                 case Keys.S:
                     btnSave_Click(key, new EventArgs());
-                    break;
+                    return true;
                 case Keys.N:
                     btnNew_Click(key, new EventArgs());
-                    break;
+                    return true;
                 default:
                     break;
             }
+            return false;
         }
 
         private string ObjectiveToString()

@@ -211,19 +211,20 @@ namespace FrogForge.Editors
             Cursor.Current = Cursors.Default;
         }
 
-        protected override void ControlKeyAction(Keys key)
+        protected override bool ControlKeyAction(Keys key)
         {
             switch (key)
             {
                 case Keys.S:
                     btnSave_Click(this, new EventArgs());
-                    break;
+                    return true;
                 case Keys.N:
                     btnNew_Click(this, new EventArgs());
-                    break;
+                    return true;
                 default:
                     break;
             }
+            return false;
         }
 
         private void tbcMain_SelectedIndexChanged(object sender, EventArgs e)

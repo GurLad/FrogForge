@@ -226,7 +226,7 @@ namespace FrogForge.Editors
             return selectionIndex;
         }
 
-        protected override void ControlKeyAction(Keys key)
+        protected override bool ControlKeyAction(Keys key)
         {
             if (!Preview)
             {
@@ -234,17 +234,18 @@ namespace FrogForge.Editors
                 {
                     case Keys.S:
                         btnSave_Click(this, new EventArgs());
-                        break;
+                        return true;
                     case Keys.N:
                         btnNew_Click(this, new EventArgs());
-                        break;
+                        return true;
                     case Keys.P:
                         btnPreview_Click(this, new EventArgs());
-                        break;
+                        return true;
                     default:
                         break;
                 }
             }
+            return false;
         }
 
         private void frmConversationEditor_KeyDown(object sender, KeyEventArgs e)
@@ -368,9 +369,10 @@ namespace FrogForge.Editors
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (CurrentDirectory.CheckFileExist(txtName.Text + CurrentDirectory.DefultFileFormat))
+            string toDelete = flbFileBrowser.SelectedFilename ?? txtName.Text;
+            if (CurrentDirectory.CheckFileExist(toDelete + CurrentDirectory.DefultFileFormat))
             {
-                if (DeleteFile(txtName.Text, CurrentDirectory))
+                if (DeleteFile(toDelete, CurrentDirectory))
                 {
                     flbFileBrowser.UpdateList();
                     CurrentFilename = "";
@@ -392,7 +394,7 @@ namespace FrogForge.Editors
         private void btnDeleteFolder_Click(object sender, EventArgs e)
         {
             // TBA: Update Utils to add directory support
-            string toDelete = txtName.Text != "" ? @"\" + txtName.Text : "";
+            string toDelete = flbFileBrowser.SelectedFilename ?? (txtName.Text != "" ? @"\" + txtName.Text : "");
             string toDeleteName = toDelete != "" ? toDelete.Replace(@"\", "") : CurrentDirectory.Path.Substring(CurrentDirectory.Path.LastIndexOf(@"\") + 1);
             if (System.IO.Directory.Exists(CurrentDirectory.Path + toDelete) &&
                 ConfirmDialog("Are you sure you want to delete folder " + toDeleteName + "?", "Warning") &&

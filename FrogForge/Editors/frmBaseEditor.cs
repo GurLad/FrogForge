@@ -84,7 +84,7 @@ namespace FrogForge.Editors
             return false;
         }
 
-        protected virtual void ControlKeyAction(Keys key)
+        protected virtual bool ControlKeyAction(Keys key)
         {
             throw new NotImplementedException();
         }
@@ -101,8 +101,7 @@ namespace FrogForge.Editors
         {
             if (ModifierKeys == Keys.Control)
             {
-                ControlKeyAction(e.KeyCode);
-                //e.Handled = true;
+                e.Handled = ControlKeyAction(e.KeyCode);
             }
         }
     }
