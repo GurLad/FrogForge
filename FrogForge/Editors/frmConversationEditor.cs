@@ -15,7 +15,8 @@ namespace FrogForge.Editors
     {
         private const int CHARS_IN_LINE = 23;
         private FilesController CurrentDirectory;
-        private string CurrentFilename;
+        private string CurrentFileName;
+        private string CurrentFilePath;
         private Dictionary<Color, string[]> Keywords = new Dictionary<Color, string[]>();
         private int FirstLineWidth;
         private bool UserInput = false;
@@ -71,9 +72,10 @@ namespace FrogForge.Editors
             }
             CurrentFile = name;
             UserInput = false;
-            CurrentFilename = name;
-            txtText.Text = CurrentDirectory.LoadFile(CurrentFilename);
-            txtName.Text = CurrentFilename;
+            CurrentFileName = name;
+            CurrentFilePath = CurrentDirectory.Path;
+            txtText.Text = CurrentDirectory.LoadFile(CurrentFileName);
+            txtName.Text = CurrentFileName;
             ColorText();
             UserInput = true;
         }
@@ -83,10 +85,15 @@ namespace FrogForge.Editors
             CurrentDirectory.SaveFile(txtName.Text, txtText.Text);
             Dirty = false;
             // TODO: Check if moved folder
-            flbFileBrowser.UpdateList();
-            if (txtName.Text != CurrentFilename)
+            if (CurrentFilePath != CurrentDirectory.Path)
             {
-                CurrentFilename = txtName.Text;
+                flbFileBrowser.UpdateList();
+                flbFileBrowser.SelectedFilename = CurrentFileName;
+                CurrentFilePath = CurrentDirectory.Path;
+            }
+            if (txtName.Text != CurrentFileName)
+            {
+                CurrentFileName = txtName.Text;
             }
         }
 
@@ -375,7 +382,7 @@ namespace FrogForge.Editors
                 if (DeleteFile(toDelete, CurrentDirectory))
                 {
                     flbFileBrowser.UpdateList();
-                    CurrentFilename = "";
+                    CurrentFileName = "";
                 }
             }
         }

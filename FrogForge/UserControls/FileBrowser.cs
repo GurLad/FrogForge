@@ -25,6 +25,10 @@ namespace FrogForge.UserControls
             {
                 return lstFiles.SelectedItem?.ToString();
             }
+            set
+            {
+                lstFiles.SelectedItem = value;
+            }
         }
         public FileBrowser()
         {

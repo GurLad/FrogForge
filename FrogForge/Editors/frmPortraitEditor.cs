@@ -157,13 +157,29 @@ namespace FrogForge.Editors
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            BasePortraitData removed;
+            string baseFolder;
             if (tbcMain.SelectedIndex == 0)
             {
-                lstCharacters.Remove();
+                removed = lstCharacters.Remove();
+                baseFolder = @"Images\Portraits\" + removed?.Name;
             }
             else
             {
-                lstGenerics.Remove();
+                removed = lstGenerics.Remove();
+                baseFolder = @"Images\GenericPortraits\" + removed?.Name;
+            }
+            if (removed != null) // Delete images
+            {
+                if (WorkingDirectory.CheckFileExist(baseFolder + @"\F" + WorkingDirectory.DefultImageFileFormat))
+                {
+                    DeleteFile(baseFolder + @"\F", WorkingDirectory, false, WorkingDirectory.DefultImageFileFormat);
+                }
+                if (WorkingDirectory.CheckFileExist(baseFolder + @"\B" + WorkingDirectory.DefultImageFileFormat))
+                {
+                    DeleteFile(baseFolder + @"\B", WorkingDirectory, false, WorkingDirectory.DefultImageFileFormat);
+                }
+                // TBA: Delete folder
             }
         }
 

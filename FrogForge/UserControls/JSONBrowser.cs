@@ -64,13 +64,16 @@ namespace FrogForge.UserControls
             BaseEditor.Dirty = false;
         }
 
-        public void Remove()
+        public T Remove()
         {
             if (BaseEditor.ConfirmDialog("Are you sure you want to delete " + Data[SelectedIndex].Name + "?", "Delete"))
             {
+                T temp = Data[SelectedIndex];
                 Data.RemoveAt(SelectedIndex);
                 UpdateList();
+                return temp;
             }
+            return null;
         }
 
         public void New()

@@ -70,14 +70,14 @@ namespace FrogForge.Editors
             return Dirty && !ConfirmDialog("Unsaved changes! Discard?", "Unsaved changes");
         }
 
-        protected bool DeleteFile(string fileName, FilesController directory)
+        protected bool DeleteFile(string fileName, FilesController directory, bool showConfirmDialog = true, string format = null)
         {
-            if (ConfirmDialog("Are you sure you want to delete " + fileName + "?", "Delete"))
+            if (!showConfirmDialog || ConfirmDialog("Are you sure you want to delete " + fileName + "?", "Delete"))
             {
-                directory.DeleteFile(fileName);
-                if (directory.CheckFileExist(fileName + directory.DefultFileFormat + ".meta"))
+                directory.DeleteFile(fileName, format);
+                if (directory.CheckFileExist(fileName + (format ?? directory.DefultFileFormat) + ".meta"))
                 {
-                    directory.DeleteFile(fileName + directory.DefultFileFormat + ".meta", "");
+                    directory.DeleteFile(fileName + (format ?? directory.DefultFileFormat) + ".meta", "");
                 }
                 return true;
             }

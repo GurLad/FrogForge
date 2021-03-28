@@ -123,7 +123,19 @@ namespace FrogForge.Editors
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            lstClasses.Remove();
+            ClassData removed = lstClasses.Remove();
+            if (removed != null) // Delete images
+            {
+                for (int i = 0; i < removed.BattleAnimations.Count; i++)
+                {
+                    string fileName = @"Images\ClassBattleAnimations\" + removed.Name + @"\" + removed.BattleAnimations[i].Name;
+                    if (WorkingDirectory.CheckFileExist(fileName + WorkingDirectory.DefultImageFileFormat))
+                    {
+                        DeleteFile(fileName, WorkingDirectory, false, WorkingDirectory.DefultImageFileFormat);
+                    }
+                }
+                // TBA: Delete folders
+            }
         }
 
         private void frmClassEditor_FormClosed(object sender, FormClosedEventArgs e)

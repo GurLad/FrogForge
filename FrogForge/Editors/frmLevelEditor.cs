@@ -511,9 +511,10 @@ namespace FrogForge.Editors
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (CurrentDirectory.CheckFileExist(txtLevelName.Text + CurrentDirectory.DefultFileFormat))
+            string toDelete = flbFiles.SelectedFilename ?? txtLevelName.Text;
+            if (CurrentDirectory.CheckFileExist(toDelete + CurrentDirectory.DefultFileFormat))
             {
-                if (DeleteFile(txtLevelName.Text, CurrentDirectory))
+                if (DeleteFile(toDelete, CurrentDirectory))
                 {
                     flbFiles.UpdateList();
                 }
