@@ -31,6 +31,21 @@ namespace FrogForge.Editors
             dlgFolder.IsFolderPicker = true;
             dlgDataImport.Filter = "ZIP files|*.zip";
             dlgDataExport.Filter = "ZIP files|*.zip";
+            if (true) // Joke (voice assist)
+            {
+                lblVoice.Visible = true;
+                cmbVoice.Visible = true;
+                cmbVoice.Items.Add("None");
+                cmbVoice.Items.AddRange(VoiceAssist.GetAvailableVoices());
+                string selectedVoice = DataDirectory.LoadFile("SavedVoice");
+                VoiceAssist.SelectVoice(selectedVoice);
+                cmbVoice.SelectedItem = selectedVoice == "" ? "None" : selectedVoice;
+                VoiceAssist.Say("Ready");
+            }
+            else
+            {
+                Height -= 301 - 268;
+            }
         }
 
         private void btnChangePath_Click(object sender, EventArgs e)
@@ -55,6 +70,7 @@ namespace FrogForge.Editors
             frmLevelEditor levelEditor = new frmLevelEditor();
             levelEditor.DataDirectory = DataDirectory;
             levelEditor.WorkingDirectory = WorkingDirectory;
+            VoiceAssist.Say("Open");
             levelEditor.ShowDialog(this);
         }
 
@@ -63,6 +79,7 @@ namespace FrogForge.Editors
             frmConversationEditor conversationEditor = new frmConversationEditor();
             conversationEditor.DataDirectory = DataDirectory;
             conversationEditor.WorkingDirectory = WorkingDirectory;
+            VoiceAssist.Say("Open");
             conversationEditor.ShowDialog(this);
         }
 
@@ -71,6 +88,7 @@ namespace FrogForge.Editors
             frmClassEditor classEditor = new frmClassEditor();
             classEditor.DataDirectory = DataDirectory;
             classEditor.WorkingDirectory = WorkingDirectory;
+            VoiceAssist.Say("Open");
             classEditor.ShowDialog(this);
         }
 
@@ -79,6 +97,7 @@ namespace FrogForge.Editors
             frmPortraitEditor portraitEditor = new frmPortraitEditor();
             portraitEditor.DataDirectory = DataDirectory;
             portraitEditor.WorkingDirectory = WorkingDirectory;
+            VoiceAssist.Say("Open");
             portraitEditor.ShowDialog(this);
         }
 
@@ -111,6 +130,14 @@ namespace FrogForge.Editors
                 System.IO.Compression.ZipFile.CreateFromDirectory(DataDirectory.Path, dlgDataExport.FileName);
                 MessageBox.Show("Done!");
             }
+        }
+
+        private void cmbVoice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedVoice = cmbVoice.SelectedItem.ToString() == "None" ? "" : cmbVoice.SelectedItem.ToString();
+            VoiceAssist.SelectVoice(selectedVoice);
+            DataDirectory.SaveFile("SavedVoice", selectedVoice);
+            VoiceAssist.Say("Ready");
         }
     }
 }

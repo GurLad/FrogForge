@@ -237,6 +237,7 @@ namespace FrogForge.Editors
             result = result.Substring(0, result.Length - 1) + "\n" + cmbTileSets.Text + "\n" + nudLevelNumber.Value + "\n" + ObjectiveToString();
             CurrentDirectory.SaveFile(txtLevelName.Text, result);
             flbFiles.UpdateList();
+            VoiceAssist.Say("Save");
         }
 
         private void LoadFile(string fileName)
@@ -507,6 +508,7 @@ namespace FrogForge.Editors
             SetTileSet(PossibleTileSets[0]);
             Render();
             CurrentFile = "";
+            VoiceAssist.Say("New");
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -517,6 +519,7 @@ namespace FrogForge.Editors
                 if (DeleteFile(toDelete, CurrentDirectory))
                 {
                     flbFiles.UpdateList();
+                    VoiceAssist.Say("Delete");
                 }
             }
         }

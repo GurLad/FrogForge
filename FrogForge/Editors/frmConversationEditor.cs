@@ -84,7 +84,6 @@ namespace FrogForge.Editors
         {
             CurrentDirectory.SaveFile(txtName.Text, txtText.Text);
             Dirty = false;
-            // TODO: Check if moved folder
             if (CurrentFilePath != CurrentDirectory.Path)
             {
                 flbFileBrowser.UpdateList();
@@ -95,6 +94,7 @@ namespace FrogForge.Editors
             {
                 CurrentFileName = txtName.Text;
             }
+            VoiceAssist.Say("Save");
         }
 
         private void ColorText(int minIndex = -1, int maxIndex = -1)
@@ -372,6 +372,7 @@ namespace FrogForge.Editors
             txtText.Text = DataDirectory.LoadFile("BaseConversation");
             ColorText();
             CurrentFile = "";
+            VoiceAssist.Say("New");
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -383,6 +384,7 @@ namespace FrogForge.Editors
                 {
                     flbFileBrowser.UpdateList();
                     CurrentFileName = "";
+                    VoiceAssist.Say("Delete");
                 }
             }
         }

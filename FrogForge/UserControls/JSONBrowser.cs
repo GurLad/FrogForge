@@ -62,6 +62,7 @@ namespace FrogForge.UserControls
             }
             UpdateList();
             BaseEditor.Dirty = false;
+            VoiceAssist.Say("Save");
         }
 
         public T Remove()
@@ -71,6 +72,7 @@ namespace FrogForge.UserControls
                 T temp = Data[SelectedIndex];
                 Data.RemoveAt(SelectedIndex);
                 UpdateList();
+                VoiceAssist.Say("Delete");
                 return temp;
             }
             return null;
@@ -84,6 +86,7 @@ namespace FrogForge.UserControls
             }
             DataToUI(NewT());
             BaseEditor.CurrentFile = "";
+            VoiceAssist.Say("New");
         }
 
         private void UpdateList()
@@ -111,6 +114,7 @@ namespace FrogForge.UserControls
             if (SelectedIndex >= 0)
             {
                 DataToUI(Data[SelectedIndex]);
+                VoiceAssist.Say("Open");
             }
         }
     }

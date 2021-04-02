@@ -91,6 +91,7 @@ namespace FrogForge.UserControls
             else
             {
                 OnFileSelected(lstFiles.SelectedItem.ToString());
+                VoiceAssist.Say("Open");
             }
         }
 

@@ -75,7 +75,7 @@ namespace FrogForge.Editors
             picGenericsPreview.BackgroundImage = picGenericsBG.Image?.Target;
             picGenericsBG.Palette = pleGenericsPossibleBGPalettes.Datas.Count > 0 ?
                 pleGenericsPossibleBGPalettes.Datas[RNG.Next(pleGenericsPossibleBGPalettes.Datas.Count)] : Palette.BasePalette;
-            picGenericsFG.Palette = Palette.BaseSpritePalettes[RNG.Next(0, 4)]; // TODO: Better Random
+            picGenericsFG.Palette = Palette.BaseSpritePalettes[RNG.Next(0, 4)];
         }
 
         private PortraitData CharacterDataFromUI(PortraitData data)

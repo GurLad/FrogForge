@@ -62,6 +62,7 @@ namespace FrogForge.Editors
 
         public bool ConfirmDialog(string text, string title)
         {
+            VoiceAssist.Say("Confirm");
             return MessageBox.Show(text, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
         }
 

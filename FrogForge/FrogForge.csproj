@@ -87,7 +87,8 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Utils">
+    <Reference Include="Utils, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\Documents\GitHub\Utils\Utils.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -185,6 +186,7 @@
     <Compile Include="UserControls\PalettePanel.Designer.cs">
       <DependentUpon>PalettePanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="VoiceAssist.cs" />
     <Compile Include="Weapon.cs" />
     <EmbeddedResource Include="UserControls\BattleAnimationPanel.resx">
       <DependentUpon>BattleAnimationPanel.cs</DependentUpon>
