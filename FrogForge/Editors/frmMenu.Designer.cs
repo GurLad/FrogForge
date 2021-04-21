@@ -124,7 +124,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(83, 6);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.5.1.5 28.03.2021";
+            this.lblVersion.Text = "V.0.5.1.6 21.04.2021";
             // 
             // groupBox2
             // 
@@ -185,6 +185,7 @@
             this.lblVoice.Size = new System.Drawing.Size(81, 13);
             this.lblVoice.TabIndex = 8;
             this.lblVoice.Text = "Voice assistant:";
+            this.lblVoice.Visible = false;
             // 
             // cmbVoice
             // 
@@ -194,6 +195,7 @@
             this.cmbVoice.Name = "cmbVoice";
             this.cmbVoice.Size = new System.Drawing.Size(202, 21);
             this.cmbVoice.TabIndex = 7;
+            this.cmbVoice.Visible = false;
             this.cmbVoice.SelectedIndexChanged += new System.EventHandler(this.cmbVoice_SelectedIndexChanged);
             // 
             // frmMenu

@@ -75,6 +75,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.trkGenericsVoiceType = new System.Windows.Forms.TrackBar();
+            this.cmbVoiceType = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.trkPitch = new System.Windows.Forms.TrackBar();
+            this.nudPitch = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCharactersBG)).BeginInit();
@@ -85,6 +90,7 @@
             this.grpData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCharactersFGPalette)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkCharactersFGPalette)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tbcMain.SuspendLayout();
             this.tbpPortraits.SuspendLayout();
@@ -100,6 +106,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picGenericsFG)).BeginInit();
             this.groupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkGenericsVoiceType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkPitch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPitch)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -258,12 +266,17 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox3.Controls.Add(this.nudPitch);
+            this.groupBox3.Controls.Add(this.cmbVoiceType);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.trkPitch);
+            this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Location = new System.Drawing.Point(126, 211);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(216, 40);
+            this.groupBox3.Size = new System.Drawing.Size(216, 79);
             this.groupBox3.TabIndex = 16;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Voice TBA";
+            this.groupBox3.Text = "Voice";
             // 
             // toolStrip1
             // 
@@ -317,7 +330,7 @@
             this.tbcMain.Location = new System.Drawing.Point(12, 28);
             this.tbcMain.Name = "tbcMain";
             this.tbcMain.SelectedIndex = 0;
-            this.tbcMain.Size = new System.Drawing.Size(352, 278);
+            this.tbcMain.Size = new System.Drawing.Size(352, 317);
             this.tbcMain.TabIndex = 10;
             this.tbcMain.SelectedIndexChanged += new System.EventHandler(this.tbcMain_SelectedIndexChanged);
             // 
@@ -330,7 +343,7 @@
             this.tbpPortraits.Location = new System.Drawing.Point(4, 22);
             this.tbpPortraits.Name = "tbpPortraits";
             this.tbpPortraits.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpPortraits.Size = new System.Drawing.Size(344, 252);
+            this.tbpPortraits.Size = new System.Drawing.Size(344, 291);
             this.tbpPortraits.TabIndex = 0;
             this.tbpPortraits.Text = "Character Portraits";
             this.tbpPortraits.UseVisualStyleBackColor = true;
@@ -342,7 +355,7 @@
             this.lstCharacters.FormattingEnabled = true;
             this.lstCharacters.Location = new System.Drawing.Point(0, 0);
             this.lstCharacters.Name = "lstCharacters";
-            this.lstCharacters.Size = new System.Drawing.Size(120, 251);
+            this.lstCharacters.Size = new System.Drawing.Size(120, 290);
             this.lstCharacters.TabIndex = 3;
             // 
             // tbpGenerics
@@ -354,7 +367,7 @@
             this.tbpGenerics.Location = new System.Drawing.Point(4, 22);
             this.tbpGenerics.Name = "tbpGenerics";
             this.tbpGenerics.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpGenerics.Size = new System.Drawing.Size(512, 252);
+            this.tbpGenerics.Size = new System.Drawing.Size(344, 252);
             this.tbpGenerics.TabIndex = 1;
             this.tbpGenerics.Text = "Generic Portraits";
             this.tbpGenerics.UseVisualStyleBackColor = true;
@@ -411,6 +424,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.groupBox7);
             this.groupBox2.Controls.Add(this.groupBox8);
             this.groupBox2.Controls.Add(this.groupBox9);
@@ -484,6 +498,8 @@
             // 
             // groupBox10
             // 
+            this.groupBox10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox10.Controls.Add(this.lblVoiceType);
             this.groupBox10.Controls.Add(this.txtGenericsTags);
             this.groupBox10.Controls.Add(this.txtGenericsID);
@@ -561,11 +577,83 @@
             this.trkGenericsVoiceType.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trkGenericsVoiceType.ValueChanged += new System.EventHandler(this.trkGenericsVoiceType_ValueChanged);
             // 
+            // cmbVoiceType
+            // 
+            this.cmbVoiceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbVoiceType.FormattingEnabled = true;
+            this.cmbVoiceType.Items.AddRange(new object[] {
+            "Square50",
+            "Square25",
+            "Square12",
+            "Triangle"});
+            this.cmbVoiceType.Location = new System.Drawing.Point(73, 19);
+            this.cmbVoiceType.Name = "cmbVoiceType";
+            this.cmbVoiceType.Size = new System.Drawing.Size(137, 21);
+            this.cmbVoiceType.TabIndex = 0;
+            this.cmbVoiceType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbVoiceType_KeyPress);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Type:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 50);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(34, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Pitch:";
+            // 
+            // trkPitch
+            // 
+            this.trkPitch.AutoSize = false;
+            this.trkPitch.BackColor = System.Drawing.Color.White;
+            this.trkPitch.LargeChange = 20;
+            this.trkPitch.Location = new System.Drawing.Point(73, 46);
+            this.trkPitch.Maximum = 200;
+            this.trkPitch.Name = "trkPitch";
+            this.trkPitch.Size = new System.Drawing.Size(88, 20);
+            this.trkPitch.SmallChange = 5;
+            this.trkPitch.TabIndex = 2;
+            this.trkPitch.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trkPitch.Value = 100;
+            this.trkPitch.Scroll += new System.EventHandler(this.trkPitch_Scroll);
+            // 
+            // nudPitch
+            // 
+            this.nudPitch.DecimalPlaces = 2;
+            this.nudPitch.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nudPitch.Location = new System.Drawing.Point(167, 46);
+            this.nudPitch.Maximum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.nudPitch.Name = "nudPitch";
+            this.nudPitch.Size = new System.Drawing.Size(43, 20);
+            this.nudPitch.TabIndex = 3;
+            this.nudPitch.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudPitch.ValueChanged += new System.EventHandler(this.nudPitch_ValueChanged);
+            // 
             // frmPortraitEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(377, 318);
+            this.ClientSize = new System.Drawing.Size(377, 357);
             this.Controls.Add(this.tbcMain);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -587,6 +675,8 @@
             this.grpData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCharactersFGPalette)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkCharactersFGPalette)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tbcMain.ResumeLayout(false);
@@ -604,6 +694,8 @@
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkGenericsVoiceType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkPitch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPitch)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -654,5 +746,10 @@
         private UserControls.PalettesListEditor pleGenericsPossibleBGPalettes;
         private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.ComboBox cmbVoiceType;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TrackBar trkPitch;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown nudPitch;
     }
 }

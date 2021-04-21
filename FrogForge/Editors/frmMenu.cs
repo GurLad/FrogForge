@@ -31,7 +31,7 @@ namespace FrogForge.Editors
             dlgFolder.IsFolderPicker = true;
             dlgDataImport.Filter = "ZIP files|*.zip";
             dlgDataExport.Filter = "ZIP files|*.zip";
-            if (true) // Joke (voice assist)
+            if (DataDirectory.LoadFile("UseVoiceAssist", "F") == "T") // Joke (voice assist)
             {
                 lblVoice.Visible = true;
                 cmbVoice.Visible = true;

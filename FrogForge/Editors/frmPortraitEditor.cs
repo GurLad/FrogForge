@@ -43,6 +43,7 @@ namespace FrogForge.Editors
             });
             Dirty = false;
             // Misc
+            cmbVoiceType.SelectedIndex = 0;
             dlgOpen.Filter = "Image files|*.gif;*.png";
             trkFGPalette_Scroll(sender, e);
             if (WorkingDirectory.CheckFileExist("GenericPortraitsGlobalData.json"))
@@ -52,6 +53,8 @@ namespace FrogForge.Editors
             }
             // Set dirty
             txtGenericsTags.TextChanged += DirtyFunc;
+            nudPitch.ValueChanged += DirtyFunc;
+            cmbVoiceType.SelectedIndexChanged += DirtyFunc;
             Dirty = false;
         }
 
@@ -85,6 +88,8 @@ namespace FrogForge.Editors
             data.BackgroundColor = pltCharactersBGPalette.Data;
             data.Background = picCharactersBG.Image;
             data.Foreground = picCharactersFG.Image;
+            data.Voice.Pitch = (float)nudPitch.Value;
+            data.Voice.VoiceType = (VoiceType)cmbVoiceType.SelectedIndex;
             CurrentFile = data.Name;
             Dirty = false;
             return data;
@@ -101,6 +106,8 @@ namespace FrogForge.Editors
             picCharactersBG.Palette = data.BackgroundColor;
             picCharactersFG.Image = data.Foreground ?? new PalettedImage(WorkingDirectory.LoadImage(@"Portraits\" + data.Name + @"\F") ?? new Bitmap(1, 1));
             picCharactersFG.Palette = Palette.BaseSpritePalettes[trkCharactersFGPalette.Value];
+            nudPitch.Value = (decimal)data.Voice.Pitch;
+            cmbVoiceType.SelectedIndex = (int)data.Voice.VoiceType;
             UpdateCharacterPreview();
             CurrentFile = data.Name;
             Dirty = false;
@@ -252,6 +259,21 @@ namespace FrogForge.Editors
         {
             lblVoiceType.Text = trkGenericsVoiceType.Value.ToString();
             Dirty = true;
+        }
+
+        private void trkPitch_Scroll(object sender, EventArgs e)
+        {
+            nudPitch.Value = trkPitch.Value / (decimal)100;
+        }
+
+        private void nudPitch_ValueChanged(object sender, EventArgs e)
+        {
+            trkPitch.Value = (int)(nudPitch.Value * 100);
+        }
+
+        private void cmbVoiceType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

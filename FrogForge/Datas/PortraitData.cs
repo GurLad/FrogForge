@@ -10,6 +10,7 @@ namespace FrogForge.Datas
     {
         public Palette BackgroundColor { get; set; } = new Palette();
         public int ForegroundColorID { get; set; }
+        public CharacterVoice Voice { get; set; } = new CharacterVoice();
     }
 }
 
