@@ -98,6 +98,8 @@
     <Compile Include="Datas\GenericPortraitData.cs" />
     <Compile Include="Datas\GenericPortraitsGlobalData.cs" />
     <Compile Include="Datas\CharacterVoice.cs" />
+    <Compile Include="Datas\Growths.cs" />
+    <Compile Include="Datas\UnitData.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="UserControls\AnimationPicturebox.cs">
       <SubType>Component</SubType>
@@ -116,6 +118,12 @@
     </Compile>
     <Compile Include="UserControls\DataEditor.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\GrowthsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\GrowthsPanel.Designer.cs">
+      <DependentUpon>GrowthsPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ListDataEditor.cs">
       <SubType>UserControl</SubType>

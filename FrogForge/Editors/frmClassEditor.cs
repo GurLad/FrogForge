@@ -16,8 +16,6 @@ namespace FrogForge.Editors
 {
     public partial class frmClassEditor : frmBaseEditor
     {
-        private NumericUpDown[] Growths = new NumericUpDown[6];
-
         public frmClassEditor()
         {
             InitializeComponent();
@@ -26,45 +24,21 @@ namespace FrogForge.Editors
 
         private void frmClassEditor_Load(object sender, EventArgs e)
         {
-            // Create growths UI
-            int nudWidth = 36, lblWidth = 32, height = 23, offset = 6, topOffset = 18, lblTopOffset = 3, leftOffset = 6;
-            Color[] colors = new Color[] { Color.Red, Color.Blue, Color.Green };
-            for (int i = 0; i < 6; i++)
-            {
-                Label newLbl = new Label();
-                newLbl.Width = lblWidth;
-                newLbl.Height = height;
-                newLbl.Left = (i / 2) * (lblWidth + nudWidth + offset * 2) + leftOffset;
-                newLbl.Top = (i % 2) * (height + offset) + topOffset + lblTopOffset;
-                newLbl.ForeColor = colors[i / 2];
-                newLbl.Text = ((StatNames)i).ToString() + ":";
-                grpGrowths.Controls.Add(newLbl);
-                NumericUpDown newNud = new NumericUpDown();
-                newNud.Width = nudWidth;
-                newNud.Height = height;
-                newNud.Left = (i / 2) * (lblWidth + nudWidth + offset * 2) + lblWidth + offset + leftOffset;
-                newNud.Top = (i % 2) * (height + offset) + topOffset;
-                newNud.ForeColor = colors[i / 2];
-                newNud.Minimum = 0;
-                newNud.Maximum = 5;
-                newNud.ValueChanged += DirtyFunc;
-                grpGrowths.Controls.Add(newNud);
-                Growths[i] = newNud;
-            }
             // Init stuff
             dlgOpen.Filter = "Animated image files|*.gif;*.png";
             picIcon.Init(dlgOpen, this);
-            cmbInclination.SelectedIndex = 0;
+            cmbClassInclination.SelectedIndex = 0;
             // Set dirty
             nudWeaponDamage.ValueChanged += DirtyFunc;
             nudWeaponWeight.ValueChanged += DirtyFunc;
             nudWeaponRange.ValueChanged += DirtyFunc;
             nudWeaponHit.ValueChanged += DirtyFunc;
             txtWeaponName.TextChanged += DirtyFunc;
-            cmbInclination.TextChanged += DirtyFunc;
+            cmbClassInclination.TextChanged += DirtyFunc;
             ckbFlies.CheckedChanged += DirtyFunc;
             // Init base
             lstClasses.Init(this, () => new ClassData(), DataFromUI, DataToUI, "Classes");
+            gthClassGrowths.Init(this);
             balBattleAnimations.Init(
                 this, () => new BattleAnimationData(), () => new BattleAnimationPanel(),
                 (bap) => bap.Init(dlgOpen, this), true, () => btnGenerateBase.Visible = balBattleAnimations.Datas.Count <= 0);
@@ -72,19 +46,16 @@ namespace FrogForge.Editors
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            lstClasses.Save(txtName.Text);
+            lstClasses.Save(txtClassName.Text);
         }
 
         private ClassData DataFromUI(ClassData data)
         {
-            data.Name = txtName.Text;
+            data.Name = txtClassName.Text;
             data.MapSprite = picIcon.Image;
-            data.Inclination = (Inclination)cmbInclination.SelectedIndex;
+            data.Inclination = (Inclination)cmbClassInclination.SelectedIndex;
             data.Flies = ckbFlies.Checked;
-            for (int i = 0; i < 6; i++)
-            {
-                data.Growths[i] = (int)Growths[i].Value;
-            }
+            data.Growths = gthClassGrowths.Data;
             data.Weapon.Name = txtWeaponName.Text;
             data.Weapon.Range = (int)nudWeaponRange.Value;
             data.Weapon.Damage = (int)nudWeaponDamage.Value;
@@ -103,14 +74,11 @@ namespace FrogForge.Editors
 
         private void DataToUI(ClassData data)
         {
-            txtName.Text = data.Name;
+            txtClassName.Text = data.Name;
             picIcon.Image = data.LoadSprite(WorkingDirectory);
-            cmbInclination.Text = data.Inclination.ToString();
+            cmbClassInclination.Text = data.Inclination.ToString();
             ckbFlies.Checked = data.Flies;
-            for (int i = 0; i < 6; i++)
-            {
-                Growths[i].Value = data.Growths[i];
-            }
+            gthClassGrowths.Data = data.Growths;
             txtWeaponName.Text = data.Weapon.Name;
             nudWeaponRange.Value = data.Weapon.Range;
             nudWeaponDamage.Value = data.Weapon.Damage;

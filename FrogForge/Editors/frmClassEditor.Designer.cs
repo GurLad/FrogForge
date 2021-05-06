@@ -1,6 +1,6 @@
 ﻿namespace FrogForge.Editors
 {
-    partial class frmClassEditor
+    partial class frmClassEditor : frmBaseEditor
     {
         /// <summary>
         /// Required designer variable.
@@ -32,8 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClassEditor));
             this.lstClasses = new FrogForge.UserControls.ClassJSONBrowser();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtClassName = new System.Windows.Forms.TextBox();
             this.grpGrowths = new System.Windows.Forms.GroupBox();
+            this.gthClassGrowths = new FrogForge.UserControls.GrowthsPanel();
             this.grpWeapon = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -46,7 +47,7 @@
             this.txtWeaponName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.ckbFlies = new System.Windows.Forms.CheckBox();
-            this.cmbInclination = new System.Windows.Forms.ComboBox();
+            this.cmbClassInclination = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.grpImage = new System.Windows.Forms.GroupBox();
             this.picIcon = new FrogForge.UserControls.AnimationPicturebox();
@@ -57,6 +58,7 @@
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
             this.btnRemove = new System.Windows.Forms.ToolStripButton();
+            this.grpGrowths.SuspendLayout();
             this.grpWeapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponHit)).BeginInit();
@@ -87,21 +89,29 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Name:";
             // 
-            // txtName
+            // txtClassName
             // 
-            this.txtName.Location = new System.Drawing.Point(182, 28);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(100, 20);
-            this.txtName.TabIndex = 3;
+            this.txtClassName.Location = new System.Drawing.Point(182, 28);
+            this.txtClassName.Name = "txtClassName";
+            this.txtClassName.Size = new System.Drawing.Size(100, 20);
+            this.txtClassName.TabIndex = 3;
             // 
             // grpGrowths
             // 
+            this.grpGrowths.Controls.Add(this.gthClassGrowths);
             this.grpGrowths.Location = new System.Drawing.Point(138, 80);
             this.grpGrowths.Name = "grpGrowths";
             this.grpGrowths.Size = new System.Drawing.Size(246, 75);
             this.grpGrowths.TabIndex = 4;
             this.grpGrowths.TabStop = false;
             this.grpGrowths.Text = "Growths";
+            // 
+            // gthClassGrowths
+            // 
+            this.gthClassGrowths.Location = new System.Drawing.Point(6, 19);
+            this.gthClassGrowths.Name = "gthClassGrowths";
+            this.gthClassGrowths.Size = new System.Drawing.Size(234, 49);
+            this.gthClassGrowths.TabIndex = 0;
             // 
             // grpWeapon
             // 
@@ -249,18 +259,18 @@
             this.ckbFlies.Text = "Flies";
             this.ckbFlies.UseVisualStyleBackColor = true;
             // 
-            // cmbInclination
+            // cmbClassInclination
             // 
-            this.cmbInclination.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbInclination.FormattingEnabled = true;
-            this.cmbInclination.Items.AddRange(new object[] {
+            this.cmbClassInclination.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbClassInclination.FormattingEnabled = true;
+            this.cmbClassInclination.Items.AddRange(new object[] {
             "Physical",
             "Technical",
             "Skillful"});
-            this.cmbInclination.Location = new System.Drawing.Point(202, 53);
-            this.cmbInclination.Name = "cmbInclination";
-            this.cmbInclination.Size = new System.Drawing.Size(133, 21);
-            this.cmbInclination.TabIndex = 7;
+            this.cmbClassInclination.Location = new System.Drawing.Point(202, 53);
+            this.cmbClassInclination.Name = "cmbClassInclination";
+            this.cmbClassInclination.Size = new System.Drawing.Size(133, 21);
+            this.cmbClassInclination.TabIndex = 7;
             // 
             // label2
             // 
@@ -380,11 +390,11 @@
             this.Controls.Add(this.grpBattleAnimations);
             this.Controls.Add(this.grpImage);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.cmbInclination);
+            this.Controls.Add(this.cmbClassInclination);
             this.Controls.Add(this.ckbFlies);
             this.Controls.Add(this.grpWeapon);
             this.Controls.Add(this.grpGrowths);
-            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.txtClassName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lstClasses);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -395,6 +405,7 @@
             this.Text = "Class Editor";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmClassEditor_FormClosed);
             this.Load += new System.EventHandler(this.frmClassEditor_Load);
+            this.grpGrowths.ResumeLayout(false);
             this.grpWeapon.ResumeLayout(false);
             this.grpWeapon.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponWeight)).EndInit();
@@ -415,11 +426,11 @@
 
         private FrogForge.UserControls.ClassJSONBrowser lstClasses;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtClassName;
         private System.Windows.Forms.GroupBox grpGrowths;
         private System.Windows.Forms.GroupBox grpWeapon;
         private System.Windows.Forms.CheckBox ckbFlies;
-        private System.Windows.Forms.ComboBox cmbInclination;
+        private System.Windows.Forms.ComboBox cmbClassInclination;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox grpImage;
         private System.Windows.Forms.NumericUpDown nudWeaponRange;
@@ -440,5 +451,6 @@
         private System.Windows.Forms.ToolStripButton btnRemove;
         private System.Windows.Forms.Button btnGenerateBase;
         private UserControls.BattleAnimationsListEditor balBattleAnimations;
+        private UserControls.GrowthsPanel gthClassGrowths;
     }
 }

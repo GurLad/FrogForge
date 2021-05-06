@@ -15,7 +15,7 @@ namespace FrogForge.Datas
     {
         public bool Flies { get; set; }
         public Inclination Inclination { get; set; }
-        public int[] Growths { get; set; } = new int[6];
+        public Growths Growths { get; set; }
         public Weapon Weapon { get; set; } = new Weapon();
         [System.Text.Json.Serialization.JsonIgnore]
         public PalettedImage MapSprite { get; set; }
