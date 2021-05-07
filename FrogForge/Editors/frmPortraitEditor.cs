@@ -252,7 +252,12 @@ namespace FrogForge.Editors
 
         private void tbcMain_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //if (HasUnsavedChanges())
+            //{
+            //    return;
+            //}
             Width = PageWidths[tbcMain.SelectedIndex];
+            CurrentFile = "";
         }
 
         private void trkGenericsVoiceType_ValueChanged(object sender, EventArgs e)

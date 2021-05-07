@@ -58,6 +58,20 @@
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
             this.btnRemove = new System.Windows.Forms.ToolStripButton();
+            this.tbcMain = new System.Windows.Forms.TabControl();
+            this.tbpClass = new System.Windows.Forms.TabPage();
+            this.tbpUnit = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lstUnits = new FrogForge.UserControls.UnitJSONBrowser();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtUnitClass = new System.Windows.Forms.TextBox();
+            this.txtUnitName = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gthUnitGrowths = new FrogForge.UserControls.GrowthsPanel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cmbUnitInclination = new System.Windows.Forms.ComboBox();
             this.grpGrowths.SuspendLayout();
             this.grpWeapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponWeight)).BeginInit();
@@ -68,6 +82,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.grpBattleAnimations.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.tbcMain.SuspendLayout();
+            this.tbpClass.SuspendLayout();
+            this.tbpUnit.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstClasses
@@ -75,7 +94,7 @@
             this.lstClasses.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstClasses.FormattingEnabled = true;
-            this.lstClasses.Location = new System.Drawing.Point(12, 28);
+            this.lstClasses.Location = new System.Drawing.Point(0, 0);
             this.lstClasses.Name = "lstClasses";
             this.lstClasses.Size = new System.Drawing.Size(120, 199);
             this.lstClasses.TabIndex = 0;
@@ -83,7 +102,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(138, 31);
+            this.label1.Location = new System.Drawing.Point(126, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 2;
@@ -91,7 +110,8 @@
             // 
             // txtClassName
             // 
-            this.txtClassName.Location = new System.Drawing.Point(182, 28);
+            this.txtClassName.Location = new System.Drawing.Point(170, 0);
+            this.txtClassName.MaxLength = 8;
             this.txtClassName.Name = "txtClassName";
             this.txtClassName.Size = new System.Drawing.Size(100, 20);
             this.txtClassName.TabIndex = 3;
@@ -99,7 +119,7 @@
             // grpGrowths
             // 
             this.grpGrowths.Controls.Add(this.gthClassGrowths);
-            this.grpGrowths.Location = new System.Drawing.Point(138, 80);
+            this.grpGrowths.Location = new System.Drawing.Point(126, 52);
             this.grpGrowths.Name = "grpGrowths";
             this.grpGrowths.Size = new System.Drawing.Size(246, 75);
             this.grpGrowths.TabIndex = 4;
@@ -127,7 +147,7 @@
             this.grpWeapon.Controls.Add(this.nudWeaponRange);
             this.grpWeapon.Controls.Add(this.txtWeaponName);
             this.grpWeapon.Controls.Add(this.label3);
-            this.grpWeapon.Location = new System.Drawing.Point(138, 161);
+            this.grpWeapon.Location = new System.Drawing.Point(126, 133);
             this.grpWeapon.Name = "grpWeapon";
             this.grpWeapon.Size = new System.Drawing.Size(246, 71);
             this.grpWeapon.TabIndex = 5;
@@ -252,7 +272,7 @@
             // ckbFlies
             // 
             this.ckbFlies.AutoSize = true;
-            this.ckbFlies.Location = new System.Drawing.Point(288, 30);
+            this.ckbFlies.Location = new System.Drawing.Point(276, 2);
             this.ckbFlies.Name = "ckbFlies";
             this.ckbFlies.Size = new System.Drawing.Size(47, 17);
             this.ckbFlies.TabIndex = 6;
@@ -267,7 +287,7 @@
             "Physical",
             "Technical",
             "Skillful"});
-            this.cmbClassInclination.Location = new System.Drawing.Point(202, 53);
+            this.cmbClassInclination.Location = new System.Drawing.Point(190, 25);
             this.cmbClassInclination.Name = "cmbClassInclination";
             this.cmbClassInclination.Size = new System.Drawing.Size(133, 21);
             this.cmbClassInclination.TabIndex = 7;
@@ -275,7 +295,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(138, 56);
+            this.label2.Location = new System.Drawing.Point(126, 28);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 8;
@@ -284,7 +304,7 @@
             // grpImage
             // 
             this.grpImage.Controls.Add(this.picIcon);
-            this.grpImage.Location = new System.Drawing.Point(341, 28);
+            this.grpImage.Location = new System.Drawing.Point(329, 0);
             this.grpImage.Name = "grpImage";
             this.grpImage.Size = new System.Drawing.Size(43, 49);
             this.grpImage.TabIndex = 9;
@@ -310,7 +330,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBattleAnimations.Controls.Add(this.btnGenerateBase);
             this.grpBattleAnimations.Controls.Add(this.balBattleAnimations);
-            this.grpBattleAnimations.Location = new System.Drawing.Point(390, 28);
+            this.grpBattleAnimations.Location = new System.Drawing.Point(378, 0);
             this.grpBattleAnimations.Name = "grpBattleAnimations";
             this.grpBattleAnimations.Size = new System.Drawing.Size(174, 204);
             this.grpBattleAnimations.TabIndex = 10;
@@ -347,7 +367,7 @@
             this.btnRemove});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(576, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(586, 25);
             this.toolStrip1.TabIndex = 11;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -381,28 +401,175 @@
             this.btnRemove.Text = "Delete";
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
+            // tbcMain
+            // 
+            this.tbcMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbcMain.Controls.Add(this.tbpClass);
+            this.tbcMain.Controls.Add(this.tbpUnit);
+            this.tbcMain.Location = new System.Drawing.Point(12, 28);
+            this.tbcMain.Name = "tbcMain";
+            this.tbcMain.SelectedIndex = 0;
+            this.tbcMain.Size = new System.Drawing.Size(562, 231);
+            this.tbcMain.TabIndex = 12;
+            this.tbcMain.SelectedIndexChanged += new System.EventHandler(this.tbcMain_SelectedIndexChanged);
+            // 
+            // tbpClass
+            // 
+            this.tbpClass.Controls.Add(this.lstClasses);
+            this.tbpClass.Controls.Add(this.label1);
+            this.tbpClass.Controls.Add(this.grpBattleAnimations);
+            this.tbpClass.Controls.Add(this.txtClassName);
+            this.tbpClass.Controls.Add(this.grpImage);
+            this.tbpClass.Controls.Add(this.grpGrowths);
+            this.tbpClass.Controls.Add(this.label2);
+            this.tbpClass.Controls.Add(this.grpWeapon);
+            this.tbpClass.Controls.Add(this.cmbClassInclination);
+            this.tbpClass.Controls.Add(this.ckbFlies);
+            this.tbpClass.Location = new System.Drawing.Point(4, 22);
+            this.tbpClass.Name = "tbpClass";
+            this.tbpClass.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpClass.Size = new System.Drawing.Size(554, 205);
+            this.tbpClass.TabIndex = 0;
+            this.tbpClass.Text = "Class";
+            this.tbpClass.UseVisualStyleBackColor = true;
+            // 
+            // tbpUnit
+            // 
+            this.tbpUnit.Controls.Add(this.groupBox2);
+            this.tbpUnit.Controls.Add(this.lstUnits);
+            this.tbpUnit.Controls.Add(this.label10);
+            this.tbpUnit.Controls.Add(this.label8);
+            this.tbpUnit.Controls.Add(this.txtUnitClass);
+            this.tbpUnit.Controls.Add(this.txtUnitName);
+            this.tbpUnit.Controls.Add(this.groupBox1);
+            this.tbpUnit.Controls.Add(this.label9);
+            this.tbpUnit.Controls.Add(this.cmbUnitInclination);
+            this.tbpUnit.Location = new System.Drawing.Point(4, 22);
+            this.tbpUnit.Name = "tbpUnit";
+            this.tbpUnit.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpUnit.Size = new System.Drawing.Size(554, 205);
+            this.tbpUnit.TabIndex = 1;
+            this.tbpUnit.Text = "Unit";
+            this.tbpUnit.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Enabled = false;
+            this.groupBox2.Location = new System.Drawing.Point(126, 160);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(246, 39);
+            this.groupBox2.TabIndex = 15;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Dead space";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 20);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(100, 13);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Nothing to see here";
+            // 
+            // lstUnits
+            // 
+            this.lstUnits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstUnits.FormattingEnabled = true;
+            this.lstUnits.Location = new System.Drawing.Point(0, 0);
+            this.lstUnits.Name = "lstUnits";
+            this.lstUnits.Size = new System.Drawing.Size(120, 199);
+            this.lstUnits.TabIndex = 4;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(126, 29);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(35, 13);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "Class:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(126, 3);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(38, 13);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Name:";
+            // 
+            // txtUnitClass
+            // 
+            this.txtUnitClass.Location = new System.Drawing.Point(190, 26);
+            this.txtUnitClass.MaxLength = 8;
+            this.txtUnitClass.Name = "txtUnitClass";
+            this.txtUnitClass.Size = new System.Drawing.Size(182, 20);
+            this.txtUnitClass.TabIndex = 1;
+            // 
+            // txtUnitName
+            // 
+            this.txtUnitName.Location = new System.Drawing.Point(190, 0);
+            this.txtUnitName.MaxLength = 8;
+            this.txtUnitName.Name = "txtUnitName";
+            this.txtUnitName.Size = new System.Drawing.Size(182, 20);
+            this.txtUnitName.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.gthUnitGrowths);
+            this.groupBox1.Location = new System.Drawing.Point(126, 79);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(246, 75);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Growths";
+            // 
+            // gthUnitGrowths
+            // 
+            this.gthUnitGrowths.Location = new System.Drawing.Point(6, 19);
+            this.gthUnitGrowths.Name = "gthUnitGrowths";
+            this.gthUnitGrowths.Size = new System.Drawing.Size(234, 49);
+            this.gthUnitGrowths.TabIndex = 3;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(126, 55);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(58, 13);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Inclination:";
+            // 
+            // cmbUnitInclination
+            // 
+            this.cmbUnitInclination.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUnitInclination.FormattingEnabled = true;
+            this.cmbUnitInclination.Items.AddRange(new object[] {
+            "Physical",
+            "Technical",
+            "Skillful"});
+            this.cmbUnitInclination.Location = new System.Drawing.Point(190, 52);
+            this.cmbUnitInclination.Name = "cmbUnitInclination";
+            this.cmbUnitInclination.Size = new System.Drawing.Size(182, 21);
+            this.cmbUnitInclination.TabIndex = 2;
+            // 
             // frmClassEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(576, 244);
+            this.ClientSize = new System.Drawing.Size(586, 271);
+            this.Controls.Add(this.tbcMain);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.grpBattleAnimations);
-            this.Controls.Add(this.grpImage);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.cmbClassInclination);
-            this.Controls.Add(this.ckbFlies);
-            this.Controls.Add(this.grpWeapon);
-            this.Controls.Add(this.grpGrowths);
-            this.Controls.Add(this.txtClassName);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.lstClasses);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmClassEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Class Editor";
+            this.Text = "Class + Unit Editor";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmClassEditor_FormClosed);
             this.Load += new System.EventHandler(this.frmClassEditor_Load);
             this.grpGrowths.ResumeLayout(false);
@@ -417,6 +584,14 @@
             this.grpBattleAnimations.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.tbcMain.ResumeLayout(false);
+            this.tbpClass.ResumeLayout(false);
+            this.tbpClass.PerformLayout();
+            this.tbpUnit.ResumeLayout(false);
+            this.tbpUnit.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -452,5 +627,19 @@
         private System.Windows.Forms.Button btnGenerateBase;
         private UserControls.BattleAnimationsListEditor balBattleAnimations;
         private UserControls.GrowthsPanel gthClassGrowths;
+        private System.Windows.Forms.TabControl tbcMain;
+        private System.Windows.Forms.TabPage tbpClass;
+        private System.Windows.Forms.TabPage tbpUnit;
+        private UserControls.UnitJSONBrowser lstUnits;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtUnitName;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private UserControls.GrowthsPanel gthUnitGrowths;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox cmbUnitInclination;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtUnitClass;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label11;
     }
 }

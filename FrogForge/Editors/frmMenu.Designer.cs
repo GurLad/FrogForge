@@ -124,7 +124,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(83, 6);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.5.1.6 21.04.2021";
+            this.lblVersion.Text = "V.0.5.2.0 07.05.2021";
             // 
             // groupBox2
             // 
@@ -163,7 +163,7 @@
             this.btnClassEditor.Name = "btnClassEditor";
             this.btnClassEditor.Size = new System.Drawing.Size(289, 23);
             this.btnClassEditor.TabIndex = 2;
-            this.btnClassEditor.Text = "Class editor";
+            this.btnClassEditor.Text = "Class + Unit editor";
             this.btnClassEditor.UseVisualStyleBackColor = true;
             this.btnClassEditor.Click += new System.EventHandler(this.btnClassEditor_Click);
             // 

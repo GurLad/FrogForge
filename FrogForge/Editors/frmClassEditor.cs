@@ -16,6 +16,8 @@ namespace FrogForge.Editors
 {
     public partial class frmClassEditor : frmBaseEditor
     {
+        private static int[] PageWidths { get; } = new int[] { 602, 422 };
+
         public frmClassEditor()
         {
             InitializeComponent();
@@ -36,9 +38,13 @@ namespace FrogForge.Editors
             txtWeaponName.TextChanged += DirtyFunc;
             cmbClassInclination.TextChanged += DirtyFunc;
             ckbFlies.CheckedChanged += DirtyFunc;
+            txtUnitClass.TextChanged += DirtyFunc;
+            cmbUnitInclination.TextChanged += DirtyFunc;
             // Init base
-            lstClasses.Init(this, () => new ClassData(), DataFromUI, DataToUI, "Classes");
+            lstClasses.Init(this, () => new ClassData(), ClassDataFromUI, ClassDataToUI, "Classes");
+            lstUnits.Init(this, () => new UnitData(), UnitDataFromUI, UnitDataToUI, "Units");
             gthClassGrowths.Init(this);
+            gthUnitGrowths.Init(this);
             balBattleAnimations.Init(
                 this, () => new BattleAnimationData(), () => new BattleAnimationPanel(),
                 (bap) => bap.Init(dlgOpen, this), true, () => btnGenerateBase.Visible = balBattleAnimations.Datas.Count <= 0);
@@ -46,10 +52,53 @@ namespace FrogForge.Editors
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            lstClasses.Save(txtClassName.Text);
+            if (tbcMain.SelectedIndex == 0)
+            {
+                lstClasses.Save(txtClassName.Text);
+            }
+            else
+            {
+                lstUnits.Save(txtUnitName.Text);
+            }
         }
 
-        private ClassData DataFromUI(ClassData data)
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            if (tbcMain.SelectedIndex == 0)
+            {
+                lstClasses.New();
+            }
+            else
+            {
+                lstUnits.New();
+            }
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (tbcMain.SelectedIndex == 0)
+            {
+                ClassData removed = lstClasses.Remove();
+                if (removed != null) // Delete images
+                {
+                    for (int i = 0; i < removed.BattleAnimations.Count; i++)
+                    {
+                        string fileName = @"Images\ClassBattleAnimations\" + removed.Name + @"\" + removed.BattleAnimations[i].Name;
+                        if (WorkingDirectory.CheckFileExist(fileName + WorkingDirectory.DefultImageFileFormat))
+                        {
+                            DeleteFile(fileName, WorkingDirectory, false, WorkingDirectory.DefultImageFileFormat);
+                        }
+                    }
+                    // TBA: Delete folders
+                }
+            }
+            else
+            {
+                UnitData removed = lstUnits.Remove(); // There isn't much to do with it - units have no images
+            }
+        }
+
+        private ClassData ClassDataFromUI(ClassData data)
         {
             data.Name = txtClassName.Text;
             data.MapSprite = picIcon.Image;
@@ -72,7 +121,7 @@ namespace FrogForge.Editors
             return data;
         }
 
-        private void DataToUI(ClassData data)
+        private void ClassDataToUI(ClassData data)
         {
             txtClassName.Text = data.Name;
             picIcon.Image = data.LoadSprite(WorkingDirectory);
@@ -89,28 +138,32 @@ namespace FrogForge.Editors
             Dirty = false;
         }
 
-        private void btnRemove_Click(object sender, EventArgs e)
+        private UnitData UnitDataFromUI(UnitData data)
         {
-            ClassData removed = lstClasses.Remove();
-            if (removed != null) // Delete images
-            {
-                for (int i = 0; i < removed.BattleAnimations.Count; i++)
-                {
-                    string fileName = @"Images\ClassBattleAnimations\" + removed.Name + @"\" + removed.BattleAnimations[i].Name;
-                    if (WorkingDirectory.CheckFileExist(fileName + WorkingDirectory.DefultImageFileFormat))
-                    {
-                        DeleteFile(fileName, WorkingDirectory, false, WorkingDirectory.DefultImageFileFormat);
-                    }
-                }
-                // TBA: Delete folders
-            }
+            data.Name = txtUnitName.Text;
+            data.Class = txtUnitClass.Text;
+            data.Inclination = (Inclination)cmbUnitInclination.SelectedIndex;
+            data.Growths = gthUnitGrowths.Data;
+            CurrentFile = data.Name;
+            Dirty = false;
+            return data;
+        }
+
+        private void UnitDataToUI(UnitData data)
+        {
+            txtUnitName.Text = data.Name;
+            txtUnitClass.Text = data.Class;
+            cmbUnitInclination.Text = data.Inclination.ToString();
+            gthUnitGrowths.Data = data.Growths;
+            CurrentFile = data.Name;
+            Dirty = false;
         }
 
         private void frmClassEditor_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Save
+            // Save classes
             lstClasses.SaveToFile();
-            // Save images
+            // Save class images
             foreach (ClassData item in lstClasses.Data)
             {
                 if (item.MapSprite != null)
@@ -126,6 +179,8 @@ namespace FrogForge.Editors
                     }
                 }
             }
+            // Save units
+            lstUnits.SaveToFile();
         }
 
         private void BattleAnimationsFromList(List<string> names)
@@ -172,7 +227,7 @@ namespace FrogForge.Editors
                     btnSave_Click(this, new EventArgs());
                     return true;
                 case Keys.N:
-                    lstClasses.New();
+                    btnNew_Click(this, new EventArgs());
                     return true;
                 default:
                     break;
@@ -180,9 +235,14 @@ namespace FrogForge.Editors
             return false;
         }
 
-        private void btnNew_Click(object sender, EventArgs e)
+        private void tbcMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lstClasses.New();
+            //if (HasUnsavedChanges())
+            //{
+            //    return;
+            //}
+            Width = PageWidths[tbcMain.SelectedIndex];
+            CurrentFile = "";
         }
     }
 }
