@@ -1,4 +1,6 @@
 ﻿using FrogForge.Datas;
+using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -279,6 +281,28 @@ namespace FrogForge.Editors
         private void cmbVoiceType_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void btnVoicePlay_Click(object sender, EventArgs e)
+        {
+            // From https://github.com/naudio/NAudio/blob/master/Docs/SmbPitchShiftingSampleProvider.md. Pitch changing outside Unity is weird.
+            string inPath = DataDirectory.Path + @"\BaseVoices\" + cmbVoiceType.Text + ".wav";
+            double semitone = Math.Pow(2, 1.0 / 12);
+            double upOneTone = semitone * semitone;
+            double downOneTone = 1.0 / upOneTone;
+            double targetPitch = ((double)nudPitch.Value + (-0.1 + RNG.NextDouble() / 5)) * semitone;
+            using (var reader = new MediaFoundationReader(inPath))
+            {
+                var pitch = new SmbPitchShiftingSampleProvider(reader.ToSampleProvider());
+                using (var device = new WaveOutEvent())
+                {
+                    pitch.PitchFactor = (float)targetPitch;
+                    device.Init(pitch.Take(TimeSpan.FromSeconds(5)));
+                    //device.Init(new AudioFileReader(inPath));
+                    device.Play();
+                    System.Threading.Thread.Sleep(400);
+                }
+            }
         }
     }
 }
