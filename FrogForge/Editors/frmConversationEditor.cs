@@ -82,17 +82,42 @@ namespace FrogForge.Editors
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            CurrentDirectory.SaveFile(txtName.Text, txtText.Text);
-            Dirty = false;
-            if (CurrentFilePath != CurrentDirectory.Path)
+            void UpdateList()
             {
                 flbFileBrowser.UpdateList();
                 flbFileBrowser.SelectedFilename = CurrentFileName;
                 CurrentFilePath = CurrentDirectory.Path;
             }
-            if (txtName.Text != CurrentFileName)
+            if (CurrentFilePath != "" && CurrentFilePath != CurrentDirectory.Path && txtName.Text == CurrentFileName)
+            {
+                if (ConfirmDialog("It appears that you're trying to save an existing file in another directory. Is this intended?", ""))
+                {
+                    CurrentFilePath = CurrentDirectory.Path;
+                }
+                else
+                {
+                    CurrentDirectory.Path = CurrentFilePath;
+                }
+                CurrentDirectory.SaveFile(txtName.Text, txtText.Text);
+                Dirty = false;
+                UpdateList();
+            }
+            else if (CurrentFilePath != CurrentDirectory.Path || txtName.Text != CurrentFileName)
             {
                 CurrentFileName = txtName.Text;
+                CurrentFilePath = CurrentDirectory.Path;
+                CurrentDirectory.SaveFile(txtName.Text, txtText.Text);
+                Dirty = false;
+                UpdateList();
+            }
+            else
+            {
+                CurrentDirectory.SaveFile(txtName.Text, txtText.Text);
+                Dirty = false;
+            }
+            if (CurrentFilePath != CurrentDirectory.Path)
+            {
+                CurrentFilePath = CurrentDirectory.Path;
             }
             VoiceAssist.Say("Save");
         }
@@ -372,6 +397,7 @@ namespace FrogForge.Editors
             txtText.Text = DataDirectory.LoadFile("BaseConversation");
             ColorText();
             CurrentFile = "";
+            CurrentFilePath = "";
             VoiceAssist.Say("New");
         }
 

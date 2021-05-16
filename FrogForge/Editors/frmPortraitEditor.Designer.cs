@@ -47,6 +47,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnVoicePlay = new System.Windows.Forms.Button();
             this.nudPitch = new System.Windows.Forms.NumericUpDown();
             this.cmbVoiceType = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -80,7 +81,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.trkGenericsVoiceType = new System.Windows.Forms.TrackBar();
-            this.btnVoicePlay = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCharactersBG)).BeginInit();
@@ -280,6 +280,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Voice";
             // 
+            // btnVoicePlay
+            // 
+            this.btnVoicePlay.Location = new System.Drawing.Point(167, 19);
+            this.btnVoicePlay.Name = "btnVoicePlay";
+            this.btnVoicePlay.Size = new System.Drawing.Size(43, 21);
+            this.btnVoicePlay.TabIndex = 4;
+            this.btnVoicePlay.Text = "Play";
+            this.btnVoicePlay.UseVisualStyleBackColor = true;
+            this.btnVoicePlay.Click += new System.EventHandler(this.btnVoicePlay_Click);
+            // 
             // nudPitch
             // 
             this.nudPitch.DecimalPlaces = 2;
@@ -441,7 +451,7 @@
             this.tbpGenerics.Location = new System.Drawing.Point(4, 22);
             this.tbpGenerics.Name = "tbpGenerics";
             this.tbpGenerics.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpGenerics.Size = new System.Drawing.Size(344, 291);
+            this.tbpGenerics.Size = new System.Drawing.Size(569, 291);
             this.tbpGenerics.TabIndex = 1;
             this.tbpGenerics.Text = "Generic Portraits";
             this.tbpGenerics.UseVisualStyleBackColor = true;
@@ -452,7 +462,7 @@
             this.groupBox11.Controls.Add(this.groupBox12);
             this.groupBox11.Location = new System.Drawing.Point(348, 0);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(162, 252);
+            this.groupBox11.Size = new System.Drawing.Size(162, 290);
             this.groupBox11.TabIndex = 19;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Global Data";
@@ -461,7 +471,7 @@
             // 
             this.groupBox13.Location = new System.Drawing.Point(6, 149);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(150, 97);
+            this.groupBox13.Size = new System.Drawing.Size(150, 135);
             this.groupBox13.TabIndex = 2;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Voices TBA";
@@ -493,7 +503,7 @@
             this.lstGenerics.FormattingEnabled = true;
             this.lstGenerics.Location = new System.Drawing.Point(0, 0);
             this.lstGenerics.Name = "lstGenerics";
-            this.lstGenerics.Size = new System.Drawing.Size(120, 251);
+            this.lstGenerics.Size = new System.Drawing.Size(120, 290);
             this.lstGenerics.TabIndex = 4;
             // 
             // groupBox2
@@ -502,7 +512,7 @@
             this.groupBox2.Controls.Add(this.groupBox7);
             this.groupBox2.Controls.Add(this.groupBox8);
             this.groupBox2.Controls.Add(this.groupBox9);
-            this.groupBox2.Location = new System.Drawing.Point(126, 149);
+            this.groupBox2.Location = new System.Drawing.Point(126, 188);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(216, 102);
             this.groupBox2.TabIndex = 17;
@@ -583,7 +593,7 @@
             this.groupBox10.Controls.Add(this.trkGenericsVoiceType);
             this.groupBox10.Location = new System.Drawing.Point(126, 0);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(216, 143);
+            this.groupBox10.Size = new System.Drawing.Size(216, 182);
             this.groupBox10.TabIndex = 18;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Data";
@@ -650,16 +660,6 @@
             this.trkGenericsVoiceType.TabIndex = 3;
             this.trkGenericsVoiceType.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trkGenericsVoiceType.ValueChanged += new System.EventHandler(this.trkGenericsVoiceType_ValueChanged);
-            // 
-            // btnVoicePlay
-            // 
-            this.btnVoicePlay.Location = new System.Drawing.Point(167, 19);
-            this.btnVoicePlay.Name = "btnVoicePlay";
-            this.btnVoicePlay.Size = new System.Drawing.Size(43, 21);
-            this.btnVoicePlay.TabIndex = 4;
-            this.btnVoicePlay.Text = "Play";
-            this.btnVoicePlay.UseVisualStyleBackColor = true;
-            this.btnVoicePlay.Click += new System.EventHandler(this.btnVoicePlay_Click);
             // 
             // frmPortraitEditor
             // 
