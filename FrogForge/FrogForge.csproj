@@ -123,14 +123,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datas\AIPriorities.cs" />
     <Compile Include="Datas\BasePortraitData.cs" />
     <Compile Include="Datas\BattleAnimationData.cs" />
     <Compile Include="Datas\GenericPortraitData.cs" />
     <Compile Include="Datas\GenericPortraitsGlobalData.cs" />
     <Compile Include="Datas\CharacterVoice.cs" />
     <Compile Include="Datas\Growths.cs" />
+    <Compile Include="Datas\LevelMetadata.cs" />
+    <Compile Include="Datas\TeamData.cs" />
     <Compile Include="Datas\UnitData.cs" />
+    <Compile Include="Editors\frmLevelMetadataEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\frmLevelMetadataEditor.Designer.cs">
+      <DependentUpon>frmLevelMetadataEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="UserControls\AIPrioritiesPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AIPrioritiesPanel.Designer.cs">
+      <DependentUpon>AIPrioritiesPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AnimationPicturebox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -225,8 +240,20 @@
     <Compile Include="UserControls\PalettePanel.Designer.cs">
       <DependentUpon>PalettePanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TeamPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TeamPanel.Designer.cs">
+      <DependentUpon>TeamPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="VoiceAssist.cs" />
     <Compile Include="Weapon.cs" />
+    <EmbeddedResource Include="Editors\frmLevelMetadataEditor.resx">
+      <DependentUpon>frmLevelMetadataEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\AIPrioritiesPanel.resx">
+      <DependentUpon>AIPrioritiesPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\BattleAnimationPanel.resx">
       <DependentUpon>BattleAnimationPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -269,6 +296,9 @@
     </Compile>
     <EmbeddedResource Include="UserControls\PalettePanel.resx">
       <DependentUpon>PalettePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TeamPanel.resx">
+      <DependentUpon>TeamPanel.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

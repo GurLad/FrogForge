@@ -101,6 +101,15 @@ namespace FrogForge.Editors
             portraitEditor.ShowDialog(this);
         }
 
+        private void btnLevelMetadataEditor_Click(object sender, EventArgs e)
+        {
+            frmLevelMetadataEditor levelMetadataEditor = new frmLevelMetadataEditor();
+            levelMetadataEditor.DataDirectory = DataDirectory;
+            levelMetadataEditor.WorkingDirectory = WorkingDirectory;
+            VoiceAssist.Say("Open");
+            levelMetadataEditor.ShowDialog(this);
+        }
+
         private void btnImport_Click(object sender, EventArgs e)
         {
             if (dlgDataImport.ShowDialog(this) == DialogResult.OK)

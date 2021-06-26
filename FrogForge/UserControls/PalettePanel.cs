@@ -30,6 +30,10 @@ namespace FrogForge.UserControls
                 }
             }
         }
+        [Browsable(true)]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public bool SpritePalette { get; set; } = false;
         private frmBaseEditor Editor;
         private List<PictureBox> BGPaletteSelectors;
         private Action<Palette> OnPaletteChange;
@@ -80,6 +84,11 @@ namespace FrogForge.UserControls
                 if (i != 0)
                 {
                     box.Click += Box_Click;
+                }
+                if (SpritePalette && i == 3)
+                {
+                    box.BackColor = Color.Magenta;
+                    box.Enabled = false;
                 }
                 Controls.Add(box);
                 BGPaletteSelectors.Add(box);
