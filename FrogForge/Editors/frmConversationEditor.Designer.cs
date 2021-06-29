@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConversationEditor));
-            this.pnlPreview = new System.Windows.Forms.Panel();
-            this.picArrow = new System.Windows.Forms.PictureBox();
-            this.lblPreviewText = new System.Windows.Forms.Label();
-            this.lblPreviewName = new System.Windows.Forms.Label();
-            this.picPreviewSpeaker = new System.Windows.Forms.PictureBox();
             this.pnlEditorUI = new System.Windows.Forms.Panel();
             this.picSeperator2 = new System.Windows.Forms.PictureBox();
             this.picSeperator1 = new System.Windows.Forms.PictureBox();
@@ -50,65 +45,12 @@
             this.btnDeleteFolder = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnPreview = new System.Windows.Forms.ToolStripButton();
-            this.pnlPreview.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picArrow)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPreviewSpeaker)).BeginInit();
+            this.copConversationPlayer = new FrogForge.UserControls.ConversationPlayer();
             this.pnlEditorUI.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSeperator2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSeperator1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pnlPreview
-            // 
-            this.pnlPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlPreview.Controls.Add(this.picArrow);
-            this.pnlPreview.Controls.Add(this.lblPreviewText);
-            this.pnlPreview.Controls.Add(this.lblPreviewName);
-            this.pnlPreview.Controls.Add(this.picPreviewSpeaker);
-            this.pnlPreview.Location = new System.Drawing.Point(656, 28);
-            this.pnlPreview.Name = "pnlPreview";
-            this.pnlPreview.Size = new System.Drawing.Size(512, 480);
-            this.pnlPreview.TabIndex = 1;
-            // 
-            // picArrow
-            // 
-            this.picArrow.Location = new System.Drawing.Point(480, 448);
-            this.picArrow.Name = "picArrow";
-            this.picArrow.Size = new System.Drawing.Size(16, 16);
-            this.picArrow.TabIndex = 2;
-            this.picArrow.TabStop = false;
-            // 
-            // lblPreviewText
-            // 
-            this.lblPreviewText.BackColor = System.Drawing.Color.Transparent;
-            this.lblPreviewText.Font = new System.Drawing.Font("Gaiden", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.lblPreviewText.ForeColor = System.Drawing.Color.White;
-            this.lblPreviewText.Location = new System.Drawing.Point(141, 416);
-            this.lblPreviewText.Name = "lblPreviewText";
-            this.lblPreviewText.Size = new System.Drawing.Size(362, 48);
-            this.lblPreviewText.TabIndex = 1;
-            this.lblPreviewText.Text = "I was a great wizard~@\r\n\r\nI never ate a lizard@";
-            // 
-            // lblPreviewName
-            // 
-            this.lblPreviewName.BackColor = System.Drawing.Color.Transparent;
-            this.lblPreviewName.Font = new System.Drawing.Font("Gaiden", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.lblPreviewName.ForeColor = System.Drawing.Color.White;
-            this.lblPreviewName.Location = new System.Drawing.Point(141, 368);
-            this.lblPreviewName.Name = "lblPreviewName";
-            this.lblPreviewName.Size = new System.Drawing.Size(136, 16);
-            this.lblPreviewName.TabIndex = 1;
-            this.lblPreviewName.Text = "Xirveros";
-            // 
-            // picPreviewSpeaker
-            // 
-            this.picPreviewSpeaker.BackColor = System.Drawing.Color.Transparent;
-            this.picPreviewSpeaker.Location = new System.Drawing.Point(16, 368);
-            this.picPreviewSpeaker.Name = "picPreviewSpeaker";
-            this.picPreviewSpeaker.Size = new System.Drawing.Size(96, 96);
-            this.picPreviewSpeaker.TabIndex = 0;
-            this.picPreviewSpeaker.TabStop = false;
             // 
             // pnlEditorUI
             // 
@@ -122,7 +64,7 @@
             this.pnlEditorUI.Controls.Add(this.txtName);
             this.pnlEditorUI.Location = new System.Drawing.Point(195, 28);
             this.pnlEditorUI.Name = "pnlEditorUI";
-            this.pnlEditorUI.Size = new System.Drawing.Size(455, 480);
+            this.pnlEditorUI.Size = new System.Drawing.Size(567, 480);
             this.pnlEditorUI.TabIndex = 2;
             // 
             // picSeperator2
@@ -151,10 +93,9 @@
             this.txtText.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtText.Location = new System.Drawing.Point(0, 26);
             this.txtText.Name = "txtText";
-            this.txtText.Size = new System.Drawing.Size(455, 454);
+            this.txtText.Size = new System.Drawing.Size(567, 454);
             this.txtText.TabIndex = 3;
-            this.txtText.Text = "Xirveros: I was a great wizard~@ I never ate a lizard@\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
-    "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+            this.txtText.Text = "Xirveros: 012345678901234567890123456789 01234567890123456789012345678";
             this.txtText.SelectionChanged += new System.EventHandler(this.txtText_TextChanged);
             this.txtText.VScroll += new System.EventHandler(this.txtText_TextChanged);
             this.txtText.TextChanged += new System.EventHandler(this.txtText_TextChanged);
@@ -175,7 +116,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.Location = new System.Drawing.Point(41, 0);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(414, 20);
+            this.txtName.Size = new System.Drawing.Size(526, 20);
             this.txtName.TabIndex = 0;
             // 
             // flbFileBrowser
@@ -184,6 +125,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.flbFileBrowser.Location = new System.Drawing.Point(12, 28);
             this.flbFileBrowser.Name = "flbFileBrowser";
+            this.flbFileBrowser.SelectedFilename = null;
             this.flbFileBrowser.Size = new System.Drawing.Size(177, 479);
             this.flbFileBrowser.TabIndex = 0;
             // 
@@ -200,7 +142,7 @@
             this.btnPreview});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1180, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1292, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -274,24 +216,28 @@
             this.btnPreview.Text = "Preview";
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
+            // copConversationPlayer
+            // 
+            this.copConversationPlayer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.copConversationPlayer.Location = new System.Drawing.Point(768, 28);
+            this.copConversationPlayer.Name = "copConversationPlayer";
+            this.copConversationPlayer.Size = new System.Drawing.Size(512, 480);
+            this.copConversationPlayer.TabIndex = 4;
+            // 
             // frmConversationEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1180, 520);
+            this.ClientSize = new System.Drawing.Size(1292, 520);
+            this.Controls.Add(this.copConversationPlayer);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.pnlEditorUI);
-            this.Controls.Add(this.pnlPreview);
             this.Controls.Add(this.flbFileBrowser);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmConversationEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Conversation Editor";
             this.Load += new System.EventHandler(this.frmConversationEditor_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmConversationEditor_KeyDown);
-            this.pnlPreview.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picArrow)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPreviewSpeaker)).EndInit();
             this.pnlEditorUI.ResumeLayout(false);
             this.pnlEditorUI.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSeperator2)).EndInit();
@@ -306,11 +252,6 @@
         #endregion
 
         private FrogForge.UserControls.FileBrowser flbFileBrowser;
-        private System.Windows.Forms.Panel pnlPreview;
-        private System.Windows.Forms.PictureBox picPreviewSpeaker;
-        private System.Windows.Forms.Label lblPreviewName;
-        private System.Windows.Forms.Label lblPreviewText;
-        private System.Windows.Forms.PictureBox picArrow;
         private System.Windows.Forms.Panel pnlEditorUI;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtName;
@@ -326,5 +267,6 @@
         private System.Windows.Forms.ToolStripButton btnNewFolder;
         private System.Windows.Forms.ToolStripButton btnDeleteFolder;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private UserControls.ConversationPlayer copConversationPlayer;
     }
 }

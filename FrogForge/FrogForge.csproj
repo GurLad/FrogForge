@@ -161,6 +161,12 @@
     <Compile Include="dlgColorSelector.Designer.cs">
       <DependentUpon>dlgColorSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ConversationPlayer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ConversationPlayer.Designer.cs">
+      <DependentUpon>ConversationPlayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\DataEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -259,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="dlgColorSelector.resx">
       <DependentUpon>dlgColorSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ConversationPlayer.resx">
+      <DependentUpon>ConversationPlayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ListDataEditor.resx">
       <DependentUpon>ListDataEditor.cs</DependentUpon>

@@ -13,16 +13,13 @@ namespace FrogForge.Editors
 {
     public partial class frmConversationEditor : frmBaseEditor
     {
-        private const int CHARS_IN_LINE = 23;
+        private const int CHARS_IN_LINE = 31;
         private FilesController CurrentDirectory;
         private string CurrentFileName;
         private string CurrentFilePath;
         private Dictionary<Color, string[]> Keywords = new Dictionary<Color, string[]>();
         private int FirstLineWidth;
         private bool UserInput = false;
-        private bool Preview = false;
-        private List<string> PreviewLines;
-        private Dictionary<string, Image> Portraits = new Dictionary<string, Image>();
         public frmConversationEditor()
         {
             InitializeComponent();
@@ -39,12 +36,6 @@ namespace FrogForge.Editors
                 string[] values = keyValue[1].Split(',');
                 Keywords.Add(ColorTranslator.FromHtml(keyValue[0]), values);
             }
-            // Load portraits
-            string[] files = DataDirectory.AllFiles(false, true, @"\Images\Portraits");
-            for (int i = 0; i < files.Length; i++)
-            {
-                Portraits.Add(files[i].Replace(".png", ""), DataDirectory.LoadImage(@"Portraits\" + files[i], "", false));
-            }
             // Find line width
             txtText.Text = new string('-', CHARS_IN_LINE);
             FirstLineWidth = txtText.GetPositionFromCharIndex(txtText.Text.LastIndexOf('-')).X;
@@ -57,9 +48,8 @@ namespace FrogForge.Editors
             flbFileBrowser.OnFileSelected = LoadFile;
             flbFileBrowser.UpdateList();
             UserInput = true;
-            // Fix wierd bug
-            pnlPreview.BackgroundImage = Properties.Resources.FrogmanGaidenConversationBG;
-            picArrow.Image = Properties.Resources.Arrow;
+            // Init conversation player
+            copConversationPlayer.Init(WorkingDirectory, CHARS_IN_LINE, SetPreviewMode);
             // Load empty conversation
             btnNew_Click(sender, e);
         }
@@ -260,7 +250,7 @@ namespace FrogForge.Editors
 
         protected override bool ControlKeyAction(Keys key)
         {
-            if (!Preview)
+            if (!copConversationPlayer.Preview)
             {
                 switch (key)
                 {
@@ -280,111 +270,12 @@ namespace FrogForge.Editors
             return false;
         }
 
-        private void frmConversationEditor_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (Preview)
-            {
-                if (e.KeyCode == Keys.Space || e.KeyCode == Keys.Enter || e.KeyCode == Keys.NumPad4)
-                {
-                    ShowLine();
-                }
-            }
-        }
-
-        private void ShowLine()
-        {
-            // TODO: Fix logic
-            do
-            {
-                PreviewLines.RemoveAt(0);
-                if (PreviewLines.Count <= 0)
-                {
-                    SetPreviewMode(false);
-                    return;
-                }
-            } while (PreviewLines[0] == "" || PreviewLines[0][0] == '#' || PreviewLines[0][0] == ':' || PreviewLines[0][0] == '}');
-            string line = PreviewLines[0];
-            if (line.IndexOf(':') != -1)
-            {
-                string[] parts = line.Split(':')[0].Split('|');
-                // TBA - load portrait
-                picPreviewSpeaker.Image = Portraits.ContainsKey(parts[0]) ? Portraits[parts[0]] : null;
-                lblPreviewName.Text = parts[parts.Length - 1];
-            }
-            // Find the line break
-            string trueLine = FindLineBreack(TrueLine(line));
-            // Check if it's short (aka no line break) and had previous
-            if (line.IndexOf(':') < 0 && LineAddition(trueLine))
-            {
-                string[] previousLineParts = lblPreviewText.Text.Split('\n');
-                lblPreviewText.Text = previousLineParts[previousLineParts.Length - 1] + '\n' + trueLine;
-            }
-            else
-            {
-                lblPreviewText.Text = trueLine;
-            }
-            lblPreviewText.Text = lblPreviewText.Text.Replace("\n", "\n\n");
-        }
-
-        private string TrueLine(string line)
-        {
-            int index = line.IndexOf(':');
-            line = line.Substring(index >= 0 ? index + 2 : 0);
-            return line;
-        }
-
-        private string FindLineBreack(string line)
-        {
-            for (int i = line.IndexOf(' '); i > -1; i = line.IndexOf(' ', i + 1))
-            {
-                int length = line.Substring(0, i + 1).Length + line.Substring(i + 1).Split(' ')[0].Length;
-                if (length > CHARS_IN_LINE - 1)
-                {
-                    line = line.Substring(0, i) + '\n' + line.Substring(i + 1);
-                    break;
-                }
-            }
-            return line;
-        }
-
-        private bool LineAddition(string trueLine)
-        {
-            return trueLine.IndexOf('\n') < 0;
-        }
-
-        private void btnPreview_Click(object sender, EventArgs e)
-        {
-            // Only preview text
-            PreviewLines = new List<string>();
-            PreviewLines.Add("");
-            string[] sourceParts = txtText.Text.Split('~');
-            if (sourceParts.Length < 4)
-            {
-                MessageBox.Show("Invalid conversation! Must have at least 4 parts - identifiers, requirements, demands, text and (optional) post-battle text.", "Invalid conversation", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            // Find text part
-            string[] textParts = sourceParts[3].Split('\n');
-            PreviewLines.AddRange(textParts);
-            // Find post-battle part
-            if (sourceParts.Length >= 5)
-            {
-                PreviewLines.Add("Info: Battle...");
-                textParts = sourceParts[4].Split('\n');
-                PreviewLines.AddRange(textParts);
-            }
-            // Finally, set preview mode
-            SetPreviewMode(true);
-            Focus();
-            ShowLine();
-        }
-
         private void SetPreviewMode(bool on)
         {
             pnlEditorUI.Enabled = !on;
             flbFileBrowser.Enabled = !on;
             BackColor = on ? SystemColors.ControlDark : SystemColors.Control;
-            Preview = on;
+            copConversationPlayer.Preview = on;
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -443,6 +334,11 @@ namespace FrogForge.Editors
                 }
                 flbFileBrowser.UpdateList();
             }
+        }
+
+        private void btnPreview_Click(object sender, EventArgs e)
+        {
+            copConversationPlayer.Play(txtText.Text);
         }
     }
 }
