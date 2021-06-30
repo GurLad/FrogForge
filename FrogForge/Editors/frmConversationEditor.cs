@@ -322,12 +322,12 @@ namespace FrogForge.Editors
             // TBA: Update Utils to add directory support
             string toDelete = flbFileBrowser.SelectedFilename ?? (txtName.Text != "" ? @"\" + txtName.Text : "");
             string toDeleteName = toDelete != "" ? toDelete.Replace(@"\", "") : CurrentDirectory.Path.Substring(CurrentDirectory.Path.LastIndexOf(@"\") + 1);
-            if (System.IO.Directory.Exists(CurrentDirectory.Path + toDelete) &&
+            if (CurrentDirectory.DirectoryExists(toDelete) &&
                 ConfirmDialog("Are you sure you want to delete folder " + toDeleteName + "?", "Warning") &&
-                (CurrentDirectory.AllFiles(false, true, txtName.Text).Length == 0 ||
+                (CurrentDirectory.AllFiles(false, true, toDelete).Length == 0 ||
                  ConfirmDialog("Warning! " + toDeleteName + " contains files. Continue anyway?", "Warning")))
             {
-                System.IO.Directory.Delete(CurrentDirectory.Path + toDelete, true);
+                CurrentDirectory.DeleteDirectory(toDelete);
                 if (toDelete == "")
                 {
                     flbFileBrowser.Navigate(@"\..");

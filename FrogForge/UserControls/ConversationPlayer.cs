@@ -68,6 +68,10 @@ namespace FrogForge.UserControls
             {
                 return;
             }
+            if (!WorkingDirectory.DirectoryExists(@"Images\Portraits\" + name))
+            {
+                return;
+            }
             WorkingDirectory.CreateDirectory(@"Images\Portraits\" + name);
             if (!PortraitsBG.ContainsKey(name))
             {
