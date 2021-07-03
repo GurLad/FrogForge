@@ -234,7 +234,11 @@ namespace FrogForge.Editors
             {
                 result += Units[i].ToSaveString() + ";";
             }
-            result = result.Substring(0, result.Length - 1) + "\n" + cmbTileSets.Text + "\n" + nudLevelNumber.Value + "\n" + ObjectiveToString();
+            if (Units.Count > 0)
+            {
+                result = result.Substring(0, result.Length - 1);
+            }
+            result += "\n" + cmbTileSets.Text + "\n" + nudLevelNumber.Value + "\n" + ObjectiveToString();
             CurrentDirectory.SaveFile(txtLevelName.Text, result);
             flbFiles.UpdateList();
             VoiceAssist.Say("Save");
@@ -268,7 +272,10 @@ namespace FrogForge.Editors
             Units.Clear();
             for (int i = 0; i < rows.Length; i++)
             {
-                Units.Add(new Unit(rows[i]));
+                if (rows[i] != "")
+                {
+                    Units.Add(new Unit(rows[i]));
+                }
             }
             cmbTileSets.Text = result[2];
             nudLevelNumber.Value = int.Parse(result[3]);
