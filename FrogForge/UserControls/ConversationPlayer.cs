@@ -20,6 +20,8 @@ namespace FrogForge.UserControls
         private List<string> PreviewLines;
         private Dictionary<string, PalettedImage> PortraitsFG = new Dictionary<string, PalettedImage>();
         private Dictionary<string, PalettedImage> PortraitsBG = new Dictionary<string, PalettedImage>();
+        private string TargetLine = "";
+        private int CurrentChar;
 
         public ConversationPlayer()
         {
@@ -33,26 +35,30 @@ namespace FrogForge.UserControls
             SetPreviewMode = setPreviewMode;
         }
 
-        public void Play(string text)
+        public void Play(string text, bool removeParts = true)
         {
             // Only preview text
             PreviewLines = new List<string>();
             PreviewLines.Add("");
-            string[] sourceParts = text.Split('~');
-            if (sourceParts.Length < 4)
+            List<string> sourceParts = new List<string>(text.Split('~'));
+            if (removeParts)
             {
-                MessageBox.Show("Invalid conversation! Must have at least 4 parts - identifiers, requirements, demands, text and (optional) post-battle text.", "Invalid conversation", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                if (sourceParts.Count < 4)
+                {
+                    MessageBox.Show("Invalid conversation! Must have at least 4 parts - identifiers, requirements, demands, text and (optional) post-battle text.", "Invalid conversation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    sourceParts.RemoveRange(0, 3);
+                }
             }
-            // Find text part
-            List<string> textParts = new List<string>(sourceParts[3].Split('\n'));
-            textParts.RemoveAt(0);
-            PreviewLines.AddRange(textParts);
-            // Find post-battle part
-            if (sourceParts.Length >= 5)
+            // Find text parts
+            List<string> textParts;
+            for (int i = 0; i < sourceParts.Count; i++)
             {
-                PreviewLines.Add("Info: Battle...");
-                textParts = new List<string>(sourceParts[4].Split('\n'));
+                textParts = new List<string>(sourceParts[i].Split('\n'));
+                PreviewLines.Add("Info: " + textParts[0].Trim());
                 textParts.RemoveAt(0);
                 PreviewLines.AddRange(textParts);
             }
@@ -102,37 +108,63 @@ namespace FrogForge.UserControls
 
         private void ShowLine()
         {
-            // TODO: Fix logic
-            do
+            if (TargetLine == "")
             {
-                PreviewLines.RemoveAt(0);
-                if (PreviewLines.Count <= 0)
+                do
                 {
-                    SetPreviewMode(false);
-                    return;
+                    PreviewLines.RemoveAt(0);
+                    if (PreviewLines.Count <= 0)
+                    {
+                        SetPreviewMode(false);
+                        return;
+                    }
+                } while (PreviewLines[0] == "" || PreviewLines[0][0] == '#' || PreviewLines[0][0] == ':' || PreviewLines[0][0] == '}');
+                string line = PreviewLines[0];
+                if (line.IndexOf(':') != -1)
+                {
+                    string[] parts = line.Split(':')[0].Split('|');
+                    // TBA - set speaker pos and stuff
+                    LoadPortrait(parts[0]);
+                    lblPreviewName.Text = parts.Length > 1 ? parts[1] : parts[0];
                 }
-            } while (PreviewLines[0] == "" || PreviewLines[0][0] == '#' || PreviewLines[0][0] == ':' || PreviewLines[0][0] == '}');
-            string line = PreviewLines[0];
-            if (line.IndexOf(':') != -1)
-            {
-                string[] parts = line.Split(':')[0].Split('|');
-                // TBA - set speaker pos and stuff
-                LoadPortrait(parts[0]);
-                lblPreviewName.Text = parts.Length > 1 ? parts[1] : parts[0];
+                // Find the line break
+                line = line.Replace(@"\a", "\a");
+                string trueLine = FindLineBreaks(TrueLine(line));
+                // Check if it's short (aka no line break) and had previous
+                if (line.IndexOf(':') < 0 && LineAddition(trueLine))
+                {
+                    string[] previousLineParts = FindLineBreaks(lblPreviewText.Text).Split('\n');
+                    TargetLine = previousLineParts[previousLineParts.Length - 1] + '\n' + trueLine;
+                    CurrentChar = previousLineParts[previousLineParts.Length - 1].Length;
+                    lblPreviewText.Text = previousLineParts[previousLineParts.Length - 1] + '\n' + trueLine;
+                }
+                else
+                {
+                    TargetLine = trueLine;
+                    CurrentChar = 0;
+                    lblPreviewText.Text = trueLine;
+                }
             }
-            // Find the line break
-            string trueLine = FindLineBreack(TrueLine(line));
-            // Check if it's short (aka no line break) and had previous
-            if (line.IndexOf(':') < 0 && LineAddition(trueLine))
+            ShowNextLine();
+        }
+
+        private void ShowNextLine()
+        {
+            if (TargetLine == "")
             {
-                string[] previousLineParts = lblPreviewText.Text.Split('\n');
-                lblPreviewText.Text = previousLineParts[previousLineParts.Length - 1] + '\n' + trueLine;
+                ShowLine();
+                return;
             }
-            else
+            int aIndex = TargetLine.IndexOf('\a', CurrentChar + 1);
+            string trueLine = aIndex > 0 ? TargetLine.Substring(0, aIndex) : TargetLine;
+            while (trueLine.Count(a => a == '\n') > 1)
             {
-                lblPreviewText.Text = trueLine;
+                int lengthReduce = trueLine.IndexOf('\n');
+                trueLine = trueLine.Substring(lengthReduce + 1);
             }
-            lblPreviewText.Text = lblPreviewText.Text.Replace("\n", "\n\n");
+            lblPreviewText.Text = trueLine.Replace("\n", "\n\n").Replace("\a", "");
+            TargetLine = (aIndex < TargetLine.Length - 1 && aIndex > 0) ? TargetLine : "";
+            CurrentChar = aIndex;
         }
 
         private string TrueLine(string line)
@@ -142,17 +174,23 @@ namespace FrogForge.UserControls
             return line;
         }
 
-        private string FindLineBreack(string line)
+        private string FindLineBreaks(string line)
         {
-            for (int i = line.IndexOf(' '); i > -1; i = line.IndexOf(' ', i + 1))
+            int lineWidth = CharsInLine - 1;
+            string cutLine = line;
+            for (int i = line.IndexOf(' '); i > -1; i = cutLine.IndexOf(' ', i + 1))
             {
-                int length = line.Substring(0, i + 1).Length + line.Substring(i + 1).Split(' ')[0].Length;
-                if (length > CharsInLine - 1)
+                int nextLength = cutLine.Substring(i + 1).Split(' ')[0].Length;
+                int length = i + 1 + nextLength - cutLine.Substring(0, i + 1 + nextLength).Count(a => a == '\a');
+                if (length > lineWidth)
                 {
-                    line = line.Substring(0, i) + '\n' + line.Substring(i + 1);
-                    break;
+                    //Debug.Log("Length (" + cutLine.Substring(0, i + 1) + "): " + (i + 1) + ", next word (" + cutLine.Substring(i + 1).Split(' ')[0] + "): " + nextLength + @", \a count: " + cutLine.Substring(0, i + 1 + nextLength).Count(a => a == '\a') + ", total: " + length + " / " + lineWidth);
+                    line = line.Substring(0, line.LastIndexOf('\n') + 1) + cutLine.Substring(0, i) + '\n' + cutLine.Substring(i + 1);
+                    i = 0;
+                    cutLine = line.Substring(line.LastIndexOf('\n') + 1);
                 }
             }
+            //Debug.Log(line);
             return line;
         }
 

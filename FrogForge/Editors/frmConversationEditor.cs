@@ -119,6 +119,7 @@ namespace FrogForge.Editors
             CheckKeyword(":", Color.DarkGoldenrod, minIndex, maxIndex, false);
             CheckKeyword("{", Color.Red, minIndex, maxIndex, false);
             CheckKeyword("}", Color.Red, minIndex, maxIndex, false);
+            CheckKeyword(@"\a", Color.DarkViolet, minIndex, maxIndex, false);
             foreach (Color color in Keywords.Keys)
             {
                 foreach (string word in Keywords[color])
@@ -196,12 +197,13 @@ namespace FrogForge.Editors
             int selectionIndex = FindSelectedNextLineStart();
             int index = Math.Max(txtText.Text.LastIndexOf(':', selectionIndex) + 2, txtText.Text.LastIndexOf('\n', selectionIndex) + 1);
             Point pos = txtText.GetPositionFromCharIndex(index);
-            picSeperator1.Location = txtText.Location;
-            picSeperator1.Left += pos.X + FirstLineWidth;
-            picSeperator1.Top += pos.Y + 4;
-            picSeperator2.Location = picSeperator1.Location;
-            picSeperator2.Left += FirstLineWidth;
-            picSeperator2.Visible = picSeperator1.Visible = picSeperator1.Top >= txtText.Top && picSeperator1.Top + picSeperator1.Height <= txtText.Top + txtText.Height;
+            // Seperator stuff - currently removed because of \a, might return in the future. But Preview should be enough.
+            //picSeperator1.Location = txtText.Location;
+            //picSeperator1.Left += pos.X + FirstLineWidth;
+            //picSeperator1.Top += pos.Y + 4;
+            //picSeperator2.Location = picSeperator1.Location;
+            //picSeperator2.Left += FirstLineWidth;
+            //picSeperator2.Visible = picSeperator1.Visible = picSeperator1.Top >= txtText.Top && picSeperator1.Top + picSeperator1.Height <= txtText.Top + txtText.Height;
         }
 
         private void txtText_KeyPress(object sender, KeyPressEventArgs e)
@@ -338,7 +340,14 @@ namespace FrogForge.Editors
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
-            copConversationPlayer.Play(txtText.Text);
+            if (txtText.SelectedText == "")
+            {
+                copConversationPlayer.Play(txtText.Text);
+            }
+            else
+            {
+                copConversationPlayer.Play(txtText.SelectedText, false);
+            }
         }
     }
 }
