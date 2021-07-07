@@ -72,13 +72,16 @@ namespace FrogForge.UserControls
         {
             if (name.Contains("?"))
             {
+                picPreviewSpeaker.BackgroundImage = null;
+                picPreviewSpeaker.Image = null;
                 return;
             }
-            if (!WorkingDirectory.DirectoryExists(@"Images\Portraits\" + name))
+            if (!WorkingDirectory.DirectoryExists(@"\Images\Portraits\" + name))
             {
+                picPreviewSpeaker.BackgroundImage = null;
+                picPreviewSpeaker.Image = null;
                 return;
             }
-            WorkingDirectory.CreateDirectory(@"Images\Portraits\" + name);
             if (!PortraitsBG.ContainsKey(name))
             {
                 PortraitsBG.Add(name, new PalettedImage(WorkingDirectory.LoadImage(@"Portraits\" + name + @"\B") ?? new Bitmap(1, 1)));
