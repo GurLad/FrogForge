@@ -212,7 +212,6 @@ namespace FrogForge.Editors
                     WorkingDirectory.SaveImage(@"Portraits\" + item.Name + @"\B", item.Background.Target);
                 }
             }
-            Cursor.Current = Cursors.Default;
             // Generics save
             lstGenerics.SaveToFile();
             // Generics save images

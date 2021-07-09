@@ -46,6 +46,13 @@ namespace FrogForge
             }
         }
 
+        public Bitmap ToBitmap(Palette palette)
+        {
+            PalettedImage temp = new PalettedImage(new Bitmap(Target));
+            temp.CurrentPalette = palette;
+            return temp.Target;
+        }
+
         public static PalettedImage FromFile(FilesController files, string filename)
         {
             Image target = files.LoadImage(filename);

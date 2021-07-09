@@ -345,6 +345,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FrogForge.ico" />
+    <None Include="Resources\Cursor.png" />
     <Content Include="Resources\NewFolder.png" />
     <None Include="Resources\DeleteFolder.png" />
     <None Include="Resources\Palette.png" />

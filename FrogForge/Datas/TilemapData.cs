@@ -8,9 +8,9 @@ namespace FrogForge.Datas
 {
     public class TilemapData : NamedData
     {
-        public Palette Palette1 { get; set; }
-        public Palette Palette2 { get; set; }
-        public List<TileData> Tiles { get; set; }
+        public Palette Palette1 { get; set; } = Palette.BasePalette;
+        public Palette Palette2 { get; set; } = Palette.BasePalette;
+        public List<TileData> Tiles { get; set; } = new List<TileData>();
         // TBA - battle backgrounds
     }
 }
