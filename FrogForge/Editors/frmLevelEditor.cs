@@ -17,8 +17,8 @@ namespace FrogForge.Editors
     public partial class frmLevelEditor : frmBaseEditor
     {
         private FilesController CurrentDirectory { get; set; }
-        private Tile[,] Tiles;
-        private Tile CurrentSelected = new Tile();
+        private MapTile[,] Tiles;
+        private MapTile CurrentSelected = new MapTile();
         private List<string> PossibleTileSets;
         private List<Image> PossibleImages = new List<Image>();
         private PictureBox[,] Renderers;
@@ -61,13 +61,13 @@ namespace FrogForge.Editors
             // End load files
             // Generate UI
             UpdatePreview();
-            Tiles = new Tile[Size.X, Size.Y];
+            Tiles = new MapTile[Size.X, Size.Y];
             int i;
             for (i = 0; i < Tiles.GetLength(0); i++)
             {
                 for (int j = 0; j < Tiles.GetLength(1); j++)
                 {
-                    Tiles[i, j] = new Tile();
+                    Tiles[i, j] = new MapTile();
                     Tiles[i, j].Pos = new Point(i, j);
                 }
             }
@@ -117,7 +117,7 @@ namespace FrogForge.Editors
             RenderPictureboxFromTile(Renderers[x, y], Tiles[x, y]);
         }
 
-        private void RenderPictureboxFromTile(PictureBox pictureBox, Tile tile)
+        private void RenderPictureboxFromTile(PictureBox pictureBox, MapTile tile)
         {
             pictureBox.BackgroundImage = PossibleImages[tile.TileID];
             Point pos = new Point(pictureBox.Left / 16, pictureBox.Top / 16);
@@ -181,7 +181,7 @@ namespace FrogForge.Editors
             }
         }
 
-        private void FillTile(int x, int y, Tile tile)
+        private void FillTile(int x, int y, MapTile tile)
         {
             int originTileID = Tiles[x, y].TileID;
             if (originTileID == tile.TileID)
@@ -209,7 +209,7 @@ namespace FrogForge.Editors
 
         private void btnTileButton_Click(object sender, EventArgs e)
         {
-            CurrentSelected = CurrentSelected ?? new Tile();
+            CurrentSelected = CurrentSelected ?? new MapTile();
             CurrentSelected.TileID = (int)((Label)sender).Tag;
             UpdatePreview();
         }
@@ -259,11 +259,11 @@ namespace FrogForge.Editors
                 string[] row = rows[i].Split('|');
                 if (Tiles == null)
                 {
-                    Tiles = new Tile[rows.Length, row.Length];
+                    Tiles = new MapTile[rows.Length, row.Length];
                 }
                 for (int j = 0; j < row.Length; j++)
                 {
-                    Tiles[i, j] = new Tile();
+                    Tiles[i, j] = new MapTile();
                     Tiles[i, j].Pos = new Point(i, j);
                     Tiles[i, j].TileID = int.Parse(row[j]);
                 }

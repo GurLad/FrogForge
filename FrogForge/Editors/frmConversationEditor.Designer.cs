@@ -188,7 +188,7 @@
             this.btnNewFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNewFolder.Name = "btnNewFolder";
             this.btnNewFolder.Size = new System.Drawing.Size(23, 22);
-            this.btnNewFolder.Text = "toolStripButton1";
+            this.btnNewFolder.Text = "New folder";
             this.btnNewFolder.Click += new System.EventHandler(this.btnNewFolder_Click);
             // 
             // btnDeleteFolder
@@ -198,7 +198,7 @@
             this.btnDeleteFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDeleteFolder.Name = "btnDeleteFolder";
             this.btnDeleteFolder.Size = new System.Drawing.Size(23, 22);
-            this.btnDeleteFolder.Text = "toolStripButton2";
+            this.btnDeleteFolder.Text = "Delete folder";
             this.btnDeleteFolder.Click += new System.EventHandler(this.btnDeleteFolder_Click);
             // 
             // toolStripSeparator2

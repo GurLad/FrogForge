@@ -45,6 +45,7 @@
             this.lblVoice = new System.Windows.Forms.Label();
             this.cmbVoice = new System.Windows.Forms.ComboBox();
             this.btnLevelMetadataEditor = new System.Windows.Forms.Button();
+            this.btnTilemapEditor = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -80,7 +81,7 @@
             // 
             // btnConversationEditor
             // 
-            this.btnConversationEditor.Location = new System.Drawing.Point(12, 79);
+            this.btnConversationEditor.Location = new System.Drawing.Point(12, 136);
             this.btnConversationEditor.Name = "btnConversationEditor";
             this.btnConversationEditor.Size = new System.Drawing.Size(289, 23);
             this.btnConversationEditor.TabIndex = 2;
@@ -90,9 +91,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.btnChangePath);
             this.groupBox1.Controls.Add(this.txtPath);
-            this.groupBox1.Location = new System.Drawing.Point(12, 195);
+            this.groupBox1.Location = new System.Drawing.Point(12, 223);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(289, 45);
             this.groupBox1.TabIndex = 3;
@@ -129,9 +131,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.btnImport);
             this.groupBox2.Controls.Add(this.btnExport);
-            this.groupBox2.Location = new System.Drawing.Point(12, 246);
+            this.groupBox2.Location = new System.Drawing.Point(12, 274);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(289, 45);
             this.groupBox2.TabIndex = 3;
@@ -160,7 +163,7 @@
             // 
             // btnClassEditor
             // 
-            this.btnClassEditor.Location = new System.Drawing.Point(12, 108);
+            this.btnClassEditor.Location = new System.Drawing.Point(12, 165);
             this.btnClassEditor.Name = "btnClassEditor";
             this.btnClassEditor.Size = new System.Drawing.Size(289, 23);
             this.btnClassEditor.TabIndex = 2;
@@ -170,7 +173,7 @@
             // 
             // btnPortraitEditor
             // 
-            this.btnPortraitEditor.Location = new System.Drawing.Point(12, 137);
+            this.btnPortraitEditor.Location = new System.Drawing.Point(12, 194);
             this.btnPortraitEditor.Name = "btnPortraitEditor";
             this.btnPortraitEditor.Size = new System.Drawing.Size(289, 23);
             this.btnPortraitEditor.TabIndex = 2;
@@ -180,8 +183,9 @@
             // 
             // lblVoice
             // 
+            this.lblVoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblVoice.AutoSize = true;
-            this.lblVoice.Location = new System.Drawing.Point(12, 300);
+            this.lblVoice.Location = new System.Drawing.Point(12, 328);
             this.lblVoice.Name = "lblVoice";
             this.lblVoice.Size = new System.Drawing.Size(81, 13);
             this.lblVoice.TabIndex = 8;
@@ -190,9 +194,10 @@
             // 
             // cmbVoice
             // 
+            this.cmbVoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmbVoice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVoice.FormattingEnabled = true;
-            this.cmbVoice.Location = new System.Drawing.Point(99, 297);
+            this.cmbVoice.Location = new System.Drawing.Point(99, 325);
             this.cmbVoice.Name = "cmbVoice";
             this.cmbVoice.Size = new System.Drawing.Size(202, 21);
             this.cmbVoice.TabIndex = 7;
@@ -201,7 +206,7 @@
             // 
             // btnLevelMetadataEditor
             // 
-            this.btnLevelMetadataEditor.Location = new System.Drawing.Point(12, 166);
+            this.btnLevelMetadataEditor.Location = new System.Drawing.Point(12, 107);
             this.btnLevelMetadataEditor.Name = "btnLevelMetadataEditor";
             this.btnLevelMetadataEditor.Size = new System.Drawing.Size(289, 23);
             this.btnLevelMetadataEditor.TabIndex = 2;
@@ -209,16 +214,27 @@
             this.btnLevelMetadataEditor.UseVisualStyleBackColor = true;
             this.btnLevelMetadataEditor.Click += new System.EventHandler(this.btnLevelMetadataEditor_Click);
             // 
+            // btnTilemapEditor
+            // 
+            this.btnTilemapEditor.Location = new System.Drawing.Point(12, 78);
+            this.btnTilemapEditor.Name = "btnTilemapEditor";
+            this.btnTilemapEditor.Size = new System.Drawing.Size(289, 23);
+            this.btnTilemapEditor.TabIndex = 2;
+            this.btnTilemapEditor.Text = "Tilemap editor";
+            this.btnTilemapEditor.UseVisualStyleBackColor = true;
+            this.btnTilemapEditor.Click += new System.EventHandler(this.btnTilemapEditor_Click);
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(313, 330);
+            this.ClientSize = new System.Drawing.Size(313, 358);
             this.Controls.Add(this.lblVoice);
             this.Controls.Add(this.cmbVoice);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnTilemapEditor);
             this.Controls.Add(this.btnLevelMetadataEditor);
             this.Controls.Add(this.btnPortraitEditor);
             this.Controls.Add(this.btnClassEditor);
@@ -259,5 +275,6 @@
         private System.Windows.Forms.Label lblVoice;
         private System.Windows.Forms.ComboBox cmbVoice;
         private System.Windows.Forms.Button btnLevelMetadataEditor;
+        private System.Windows.Forms.Button btnTilemapEditor;
     }
 }

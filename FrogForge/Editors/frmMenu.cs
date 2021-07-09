@@ -110,6 +110,15 @@ namespace FrogForge.Editors
             levelMetadataEditor.ShowDialog(this);
         }
 
+        private void btnTilemapEditor_Click(object sender, EventArgs e)
+        {
+            frmTilemapEditor tilemapEditor = new frmTilemapEditor();
+            tilemapEditor.DataDirectory = DataDirectory;
+            tilemapEditor.WorkingDirectory = WorkingDirectory;
+            VoiceAssist.Say("Open");
+            tilemapEditor.ShowDialog(this);
+        }
+
         private void btnImport_Click(object sender, EventArgs e)
         {
             if (dlgDataImport.ShowDialog(this) == DialogResult.OK)

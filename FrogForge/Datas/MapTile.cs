@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace FrogForge.Datas
 {
-    class Tile
+    class MapTile
     {
         public Point Pos { get; set; } = new Point(0, 0);
         public int TileID { get; set; }
 
-        public Tile()
+        public MapTile()
         {
         }
 
-        public Tile(int tileID)
+        public MapTile(int tileID)
         {
             TileID = tileID;
         }
