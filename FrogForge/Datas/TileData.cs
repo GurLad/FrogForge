@@ -22,7 +22,7 @@ namespace FrogForge.Datas
             MoveCost = Palette = 1;
         }
 
-        public TileData(Bitmap image, int moveCost, int armorMod, int palette, bool high, string name)
+        public TileData(Image image, int moveCost, int armorMod, int palette, bool high, string name)
         {
             Image = new PalettedImage(image);
             MoveCost = moveCost;

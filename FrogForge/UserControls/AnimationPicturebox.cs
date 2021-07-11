@@ -67,20 +67,9 @@ namespace FrogForge.UserControls
                 if (dlgOpen.ShowDialog() == DialogResult.OK)
                 {
                     // Create image
-                    Image source = System.Drawing.Image.FromFile(dlgOpen.FileName);
-                    FrameDimension dimension = new FrameDimension(source.FrameDimensionsList.First());
-                    int frameCount = source.GetFrameCount(dimension);
-                    Bitmap target = new Bitmap(source.Width * frameCount, source.Height);
-                    Graphics graphics = Graphics.FromImage(target);
-                    Rectangle cloneRect = new Rectangle(0, 0, source.Width, source.Height);
-                    for (int i = 0; i < frameCount; i++)
-                    {
-                        cloneRect.Location = new Point(i * cloneRect.Width, 0);
-                        source.SelectActiveFrame(dimension, i);
-                        graphics.DrawImage(source, cloneRect);
-                    }
+                    Image source = System.Drawing.Image.FromFile(dlgOpen.FileName).SplitGIF();
                     // Color image
-                    Image = new PalettedImage(target);
+                    Image = new PalettedImage(source);
                     Image.CurrentPalette = Palette;
                     // Set dirty
                     Editor.Dirty = true;

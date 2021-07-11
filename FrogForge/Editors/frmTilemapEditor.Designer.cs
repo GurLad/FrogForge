@@ -45,13 +45,14 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.rdbSelectionPush = new System.Windows.Forms.RadioButton();
             this.rdbSelectionSwap = new System.Windows.Forms.RadioButton();
-            this.rdgSelectionSelect = new System.Windows.Forms.RadioButton();
+            this.rdbSelectionSelect = new System.Windows.Forms.RadioButton();
             this.grpSelectedTile = new System.Windows.Forms.GroupBox();
             this.picTileImage = new FrogForge.UserControls.AnimationPicturebox();
             this.btnTileApply = new System.Windows.Forms.Button();
             this.rdbPlt2 = new System.Windows.Forms.RadioButton();
             this.rdbPlt1 = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
+            this.ckbAutoApply = new System.Windows.Forms.CheckBox();
             this.ckbHigh = new System.Windows.Forms.CheckBox();
             this.ckbWall = new System.Windows.Forms.CheckBox();
             this.nudArmorMod = new System.Windows.Forms.NumericUpDown();
@@ -191,14 +192,13 @@
             // 
             this.groupBox4.Controls.Add(this.rdbSelectionPush);
             this.groupBox4.Controls.Add(this.rdbSelectionSwap);
-            this.groupBox4.Controls.Add(this.rdgSelectionSelect);
-            this.groupBox4.Enabled = false;
+            this.groupBox4.Controls.Add(this.rdbSelectionSelect);
             this.groupBox4.Location = new System.Drawing.Point(6, 185);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(268, 54);
             this.groupBox4.TabIndex = 32;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Selection mode (TBA)";
+            this.groupBox4.Text = "Selection mode";
             // 
             // rdbSelectionPush
             // 
@@ -220,17 +220,17 @@
             this.rdbSelectionSwap.Text = "Swap";
             this.rdbSelectionSwap.UseVisualStyleBackColor = true;
             // 
-            // rdgSelectionSelect
+            // rdbSelectionSelect
             // 
-            this.rdgSelectionSelect.AutoSize = true;
-            this.rdgSelectionSelect.Checked = true;
-            this.rdgSelectionSelect.Location = new System.Drawing.Point(6, 19);
-            this.rdgSelectionSelect.Name = "rdgSelectionSelect";
-            this.rdgSelectionSelect.Size = new System.Drawing.Size(55, 17);
-            this.rdgSelectionSelect.TabIndex = 0;
-            this.rdgSelectionSelect.TabStop = true;
-            this.rdgSelectionSelect.Text = "Select";
-            this.rdgSelectionSelect.UseVisualStyleBackColor = true;
+            this.rdbSelectionSelect.AutoSize = true;
+            this.rdbSelectionSelect.Checked = true;
+            this.rdbSelectionSelect.Location = new System.Drawing.Point(6, 19);
+            this.rdbSelectionSelect.Name = "rdbSelectionSelect";
+            this.rdbSelectionSelect.Size = new System.Drawing.Size(55, 17);
+            this.rdbSelectionSelect.TabIndex = 0;
+            this.rdbSelectionSelect.TabStop = true;
+            this.rdbSelectionSelect.Text = "Select";
+            this.rdbSelectionSelect.UseVisualStyleBackColor = true;
             // 
             // grpSelectedTile
             // 
@@ -241,6 +241,7 @@
             this.grpSelectedTile.Controls.Add(this.rdbPlt2);
             this.grpSelectedTile.Controls.Add(this.rdbPlt1);
             this.grpSelectedTile.Controls.Add(this.label7);
+            this.grpSelectedTile.Controls.Add(this.ckbAutoApply);
             this.grpSelectedTile.Controls.Add(this.ckbHigh);
             this.grpSelectedTile.Controls.Add(this.ckbWall);
             this.grpSelectedTile.Controls.Add(this.nudArmorMod);
@@ -271,7 +272,7 @@
             // 
             this.btnTileApply.Location = new System.Drawing.Point(6, 130);
             this.btnTileApply.Name = "btnTileApply";
-            this.btnTileApply.Size = new System.Drawing.Size(152, 23);
+            this.btnTileApply.Size = new System.Drawing.Size(100, 23);
             this.btnTileApply.TabIndex = 28;
             this.btnTileApply.Text = "Apply";
             this.btnTileApply.UseVisualStyleBackColor = true;
@@ -307,6 +308,18 @@
             this.label7.Size = new System.Drawing.Size(43, 13);
             this.label7.TabIndex = 26;
             this.label7.Text = "Palette:";
+            // 
+            // ckbAutoApply
+            // 
+            this.ckbAutoApply.AutoSize = true;
+            this.ckbAutoApply.Checked = true;
+            this.ckbAutoApply.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbAutoApply.Location = new System.Drawing.Point(112, 134);
+            this.ckbAutoApply.Name = "ckbAutoApply";
+            this.ckbAutoApply.Size = new System.Drawing.Size(48, 17);
+            this.ckbAutoApply.TabIndex = 25;
+            this.ckbAutoApply.Text = "Auto";
+            this.ckbAutoApply.UseVisualStyleBackColor = true;
             // 
             // ckbHigh
             // 
@@ -513,9 +526,10 @@
         private System.Windows.Forms.CheckBox ckbHigh;
         private System.Windows.Forms.Button btnTileApply;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RadioButton rdgSelectionSelect;
+        private System.Windows.Forms.RadioButton rdbSelectionSelect;
         private System.Windows.Forms.RadioButton rdbSelectionSwap;
         private System.Windows.Forms.RadioButton rdbSelectionPush;
         private UserControls.AnimationPicturebox picTileImage;
+        private System.Windows.Forms.CheckBox ckbAutoApply;
     }
 }

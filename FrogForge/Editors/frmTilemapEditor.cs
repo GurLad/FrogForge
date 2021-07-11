@@ -38,6 +38,18 @@ namespace FrogForge.Editors
                 }
             }
         }
+        private bool _tileDirty;
+        private bool TileDirty
+        {
+            get
+            {
+                return _tileDirty;
+            }
+            set
+            {
+                btnTileApply.Enabled = _tileDirty = value;
+            }
+        }
 
         public frmTilemapEditor()
         {
@@ -55,12 +67,18 @@ namespace FrogForge.Editors
                 renderer.Left = (i % TILEMAP_SIZE.X) * 16;
                 renderer.Top = (i / TILEMAP_SIZE.X) * 16;
                 renderer.Size = new Size(16, 16);
-                renderer.Click += (sender1, e1) => { if (temp < CurrentTiles.Count) SelectedIndex = temp; }; // TBA: Change depending on mode
+                renderer.Click += (sender1, e1) => Renderer_Click(temp);
                 pnlPossibleTiles.Controls.Add(renderer);
                 Renderers.Add(renderer);
             }
             // Dirty
-            btnTileApply.Click += DirtyFunc;
+            EventHandler tileDirtyFunc = (s, e1) => TileDirty = true;
+            txtTileName.TextChanged += tileDirtyFunc;
+            nudArmorMod.ValueChanged += tileDirtyFunc;
+            nudMoveCost.ValueChanged += tileDirtyFunc;
+            rdbPlt1.CheckedChanged += tileDirtyFunc;
+            ckbHigh.CheckedChanged += tileDirtyFunc;
+            ckbWall.CheckedChanged += tileDirtyFunc;
             // Init stuff
             dlgOpenTiles.Filter = "Image files|*.png;*.gif;*.jpg";
             dlgOpenTiles.Multiselect = true;
@@ -69,6 +87,58 @@ namespace FrogForge.Editors
             picTileImage.Init(dlgOpen, this);
             plt1.Init(this, Render);
             plt2.Init(this, Render);
+        }
+
+        private void Renderer_Click(int rendererIndex)
+        {
+            if (rendererIndex < CurrentTiles.Count)
+            {
+                if (rdbSelectionSelect.Checked)
+                {
+                    if (ckbAutoApply.Checked && SelectedIndex >= 0 && TileDirty)
+                    {
+                        TileDataFromUI(SelectedIndex);
+                        SelectedIndex = rendererIndex;
+                    }
+                    else if (!TileDirty || ConfirmDialog("Discard tile changes?", ""))
+                    {
+                        SelectedIndex = rendererIndex;
+                    }
+                }
+                else if (rdbSelectionSwap.Checked)
+                {
+                    if (SelectedIndex < 0)
+                    {
+                        SelectedIndex = rendererIndex;
+                    }
+                    else
+                    {
+                        TileData temp = CurrentTiles[SelectedIndex];
+                        CurrentTiles[SelectedIndex] = CurrentTiles[rendererIndex];
+                        CurrentTiles[rendererIndex] = temp;
+                        Render(SelectedIndex);
+                        Render(rendererIndex);
+                        SelectedIndex = -1;
+                        Dirty = true;
+                    }
+                }
+                else if (rdbSelectionPush.Checked)
+                {
+                    if (SelectedIndex < 0)
+                    {
+                        SelectedIndex = rendererIndex;
+                    }
+                    else
+                    {
+                        TileData temp = CurrentTiles[SelectedIndex];
+                        CurrentTiles.RemoveAt(SelectedIndex);
+                        CurrentTiles.Insert(rendererIndex, temp);
+                        Render();
+                        SelectedIndex = -1;
+                        Dirty = true;
+                    }
+                }
+            }
         }
 
         private TilemapData TilemapDataFromUI(TilemapData data)
@@ -105,6 +175,8 @@ namespace FrogForge.Editors
             data.Image = picTileImage.Image;
             data.Palette = rdbPlt1.Checked ? 1 : 2;
             Render(index);
+            TileDirty = false;
+            Dirty = true;
             return data;
         }
 
@@ -119,10 +191,16 @@ namespace FrogForge.Editors
             picTileImage.Image = data.Image;
             rdbPlt1.Checked = data.Palette == 1;
             rdbPlt2.Checked = data.Palette != 1;
+            picTileImage.Palette = CurrentTiles[index].Palette == 1 ? plt1.Data : plt2.Data;
+            TileDirty = false;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (ckbAutoApply.Checked && SelectedIndex >= 0)
+            {
+                TileDataFromUI(SelectedIndex);
+            }
             lstTilemaps.Save(txtName.Text);
         }
 
@@ -186,7 +264,7 @@ namespace FrogForge.Editors
             {
                 for (int i = 0; i < dlgOpenTiles.FileNames.Length; i++)
                 {
-                    Bitmap source = new Bitmap(Image.FromFile(dlgOpenTiles.FileNames[i]));
+                    Image source = Image.FromFile(dlgOpenTiles.FileNames[i]);
                     if ((source.Height > 16 || source.Width > 16) &&
                         ConfirmDialog("Auto-crop " + dlgOpenTiles.FileNames[i].Substring(dlgOpenTiles.FileNames[i].LastIndexOf(@"\") + 1) + "?", ""))
                     {
@@ -198,7 +276,7 @@ namespace FrogForge.Editors
                                 for (int k = 0; k < source.Width / 16; k++)
                                 {
                                     g.DrawImage(source, 0, 0, new Rectangle(k * 16, j * 16, 16, 16), GraphicsUnit.Pixel);
-                                    CurrentTiles.Add(new TileData(new Bitmap(target), 1, 0, 1, false, ""));
+                                    CurrentTiles.Add(new TileData(target, 1, 0, 1, false, ""));
                                     Render(CurrentTiles.Count - 1);
                                 }
                             }
@@ -206,7 +284,7 @@ namespace FrogForge.Editors
                     }
                     else
                     {
-                        CurrentTiles.Add(new TileData(source, 1, 0, 1, false, ""));
+                        CurrentTiles.Add(new TileData(source.SplitGIF(), 1, 0, 1, false, ""));
                         Render(CurrentTiles.Count - 1);
                     }
                 }
