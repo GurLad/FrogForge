@@ -1,9 +1,11 @@
 # Frog Forge
 A work-in-progress game editor for [Frogman Gaiden](../../../FrogmanGaiden). Both the editor & game are still in an early beta state, and using them may cause loss of time, data and/or sanity. Use it at your own risk.
-## Available editors (18/3/21)
+## Available editors (22/7/21)
 - Level (map) editor - Create & edit maps, with unit placements and objectives.
+- Tileset editor - Create & edit tilesets, including their graphics, gameplay data and battle backgrounds.
+- Level metadata editor - Edit miscellaneous level data, such as team palettes, team AIs and music.
 - Conversation (event) editor - Create & edit conversations (events), with color-coded parts & commands (without documentation).
-- Class editor - Create & edit classes: name, stats, sprite and battle animations.
+- Class & unit editor - Create & edit classes: name, stats, sprite and battle animations. Also includes a unit editor: name, class, growths and inclination.
 - Portrait editor - Create & edit portraits, both generic and character-based.
 ## Quick-start guide
 I will probably add an easier way to use this tool in the future, but this is the current system:

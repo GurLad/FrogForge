@@ -220,7 +220,7 @@
             this.btnTilemapEditor.Name = "btnTilemapEditor";
             this.btnTilemapEditor.Size = new System.Drawing.Size(289, 23);
             this.btnTilemapEditor.TabIndex = 2;
-            this.btnTilemapEditor.Text = "Tilemap editor";
+            this.btnTilemapEditor.Text = "Tileset editor";
             this.btnTilemapEditor.UseVisualStyleBackColor = true;
             this.btnTilemapEditor.Click += new System.EventHandler(this.btnTilemapEditor_Click);
             // 

@@ -22,9 +22,9 @@ namespace FrogForge.Datas
             MoveCost = Palette = 1;
         }
 
-        public TileData(Image image, int moveCost, int armorMod, int palette, bool high, string name)
+        public TileData(PalettedImage image, int moveCost, int armorMod, int palette, bool high, string name)
         {
-            Image = new PalettedImage(image);
+            Image = image.Clone();
             MoveCost = moveCost;
             ArmorMod = armorMod;
             Palette = palette;
@@ -32,9 +32,14 @@ namespace FrogForge.Datas
             Name = name;
         }
 
+        public TileData(Image image, int moveCost, int armorMod, int palette, bool high, string name)
+        {
+            new TileData(new PalettedImage(image), moveCost, armorMod, palette, high, name);
+        }
+
         public TileData Clone()
         {
-            return new TileData(Image.Target, MoveCost, ArmorMod, Palette, High, Name);
+            return new TileData(Image, MoveCost, ArmorMod, Palette, High, Name);
         }
     }
 }

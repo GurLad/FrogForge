@@ -112,7 +112,7 @@ namespace FrogForge.Editors
 
         private void btnTilemapEditor_Click(object sender, EventArgs e)
         {
-            frmTilemapEditor tilemapEditor = new frmTilemapEditor();
+            frmTilesetEditor tilemapEditor = new frmTilesetEditor();
             tilemapEditor.DataDirectory = DataDirectory;
             tilemapEditor.WorkingDirectory = WorkingDirectory;
             VoiceAssist.Say("Open");

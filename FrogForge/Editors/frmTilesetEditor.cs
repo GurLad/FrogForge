@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace FrogForge.Editors
 {
-    public partial class frmTilemapEditor : frmBaseEditor
+    public partial class frmTilesetEditor : frmBaseEditor
     {
         private static readonly Point TILEMAP_SIZE = new Point(6, 10);
         private List<TileData> CurrentTiles = new List<TileData>();
@@ -51,13 +51,13 @@ namespace FrogForge.Editors
             }
         }
 
-        public frmTilemapEditor()
+        public frmTilesetEditor()
         {
             InitializeComponent();
             BaseName = Text;
         }
 
-        private void frmTilemapEditor_Load(object sender, EventArgs e)
+        private void frmTilesetEditor_Load(object sender, EventArgs e)
         {
             // Generate renderers
             for (int i = 0; i < TILEMAP_SIZE.X * TILEMAP_SIZE.Y; i++)
@@ -83,7 +83,7 @@ namespace FrogForge.Editors
             dlgOpenTiles.Filter = "Image files|*.png;*.gif;*.jpg";
             dlgOpenTiles.Multiselect = true;
             SelectedIndex = -1;
-            lstTilemaps.Init(this, () => new TilemapData(), TilemapDataFromUI, TilemapDataToUI, "Tilemaps");
+            lstTilemaps.Init(this, () => new TilesetData(), TilesetDataFromUI, TilesetDataToUI, "Tilesets");
             picTileImage.Init(dlgOpen, this);
             plt1.Init(this, Render);
             plt2.Init(this, Render);
@@ -141,7 +141,7 @@ namespace FrogForge.Editors
             }
         }
 
-        private TilemapData TilemapDataFromUI(TilemapData data)
+        private TilesetData TilesetDataFromUI(TilesetData data)
         {
             data.Name = txtName.Text;
             data.Palette1 = plt1.Data;
@@ -152,9 +152,9 @@ namespace FrogForge.Editors
             return data;
         }
 
-        private void TilemapDataToUI(TilemapData data)
+        private void TilesetDataToUI(TilesetData data)
         {
-            TileImagesFromTilemapData(data);
+            TileImagesFromTilesetData(data);
             txtName.Text = data.Name;
             plt1.Data = data.Palette1;
             plt2.Data = data.Palette2;
@@ -172,7 +172,7 @@ namespace FrogForge.Editors
             data.MoveCost = ckbWall.Checked ? 99 : (int)nudMoveCost.Value;
             data.ArmorMod = (int)nudArmorMod.Value;
             data.High = ckbHigh.Checked;
-            data.Image = picTileImage.Image;
+            data.Image = picTileImage.Image.Clone();
             data.Palette = rdbPlt1.Checked ? 1 : 2;
             Render(index);
             TileDirty = false;
@@ -188,7 +188,7 @@ namespace FrogForge.Editors
             nudMoveCost.Value = data.MoveCost <= 50 ? data.MoveCost : 1;
             nudArmorMod.Value = data.ArmorMod;
             ckbHigh.Checked = data.High;
-            picTileImage.Image = data.Image;
+            picTileImage.Image = data.Image.Clone();
             rdbPlt1.Checked = data.Palette == 1;
             rdbPlt2.Checked = data.Palette != 1;
             picTileImage.Palette = CurrentTiles[index].Palette == 1 ? plt1.Data : plt2.Data;
@@ -301,36 +301,36 @@ namespace FrogForge.Editors
             }
         }
 
-        private void frmTilemapEditor_FormClosed(object sender, FormClosedEventArgs e)
+        private void frmTilesetEditor_FormClosed(object sender, FormClosedEventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
             // Save tilemaps
             lstTilemaps.SaveToFile();
             // Save tile images
-            foreach (TilemapData item in lstTilemaps.Data)
+            foreach (TilesetData item in lstTilemaps.Data)
             {
-                WorkingDirectory.CreateDirectory(@"Images\Tilemaps\" + item.Name);
+                WorkingDirectory.CreateDirectory(@"Images\Tilesets\" + item.Name);
                 for (int i = 0; i < item.Tiles.Count; i++)
                 {
                     if (item.Tiles[i]?.Image?.Target != null)
                     {
                         item.Tiles[i].Image.CurrentPalette = Palette.BasePalette;
-                        WorkingDirectory.SaveImage(@"Tilemaps\" + item.Name + @"\" + i, item.Tiles[i].Image.Target);
+                        WorkingDirectory.SaveImage(@"Tilesets\" + item.Name + @"\" + i, item.Tiles[i].Image.Target);
                     }
                 }
             }
             Cursor.Current = Cursors.Default;
         }
 
-        private void TileImagesFromTilemapData(TilemapData data)
+        private void TileImagesFromTilesetData(TilesetData data)
         {
-            WorkingDirectory.CreateDirectory(@"Images\Tilemaps\" + data.Name);
+            WorkingDirectory.CreateDirectory(@"Images\Tilesets\" + data.Name);
             for (int i = 0; i < data.Tiles.Count; i++)
             {
                 if (data.Tiles[i].Image == null)
                 {
                     data.Tiles[i].Image =
-                        PalettedImage.FromFile(WorkingDirectory, @"Tilemaps\" + data.Name + @"\" + i);
+                        PalettedImage.FromFile(WorkingDirectory, @"Tilesets\" + data.Name + @"\" + i);
                 }
             }
         }

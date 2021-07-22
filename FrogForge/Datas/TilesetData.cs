@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FrogForge.Datas
 {
-    public class TilemapData : NamedData
+    public class TilesetData : NamedData
     {
         public Palette Palette1 { get; set; } = Palette.BasePalette;
         public Palette Palette2 { get; set; } = Palette.BasePalette;
@@ -17,5 +17,5 @@ namespace FrogForge.Datas
 
 namespace FrogForge.UserControls
 {
-    public class TilemapJSONBrowser : JSONBrowser<Datas.TilemapData> { }
+    public class TilemapJSONBrowser : JSONBrowser<Datas.TilesetData> { }
 }

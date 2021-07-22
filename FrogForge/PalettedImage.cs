@@ -48,9 +48,22 @@ namespace FrogForge
 
         public Bitmap ToBitmap(Palette palette)
         {
-            PalettedImage temp = new PalettedImage(new Bitmap(Target));
+            PalettedImage temp = Clone();
             temp.CurrentPalette = palette;
             return temp.Target;
+        }
+
+        public PalettedImage Clone()
+        {
+            PalettedImage target = new PalettedImage(new Bitmap(Target));
+            for (int i = 0; i < Target.Width; i++)
+            {
+                for (int j = 0; j < Target.Height; j++)
+                {
+                    target.Indexes[i, j] = Indexes[i, j];
+                }
+            }
+            return target;
         }
 
         public static PalettedImage FromFile(FilesController files, string filename)

@@ -1,6 +1,6 @@
 ﻿namespace FrogForge.Editors
 {
-    partial class frmTilemapEditor
+    partial class frmTilesetEditor
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             FrogForge.Palette palette1 = new FrogForge.Palette();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTilemapEditor));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTilesetEditor));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
@@ -456,7 +456,7 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Battle backgrounds data (TBA)";
             // 
-            // frmTilemapEditor
+            // frmTilesetEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -474,11 +474,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "frmTilemapEditor";
+            this.Name = "frmTilesetEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Tilemap Editor";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmTilemapEditor_FormClosed);
-            this.Load += new System.EventHandler(this.frmTilemapEditor_Load);
+            this.Text = "Tileset Editor";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmTilesetEditor_FormClosed);
+            this.Load += new System.EventHandler(this.frmTilesetEditor_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
