@@ -32,7 +32,7 @@
             this.pnlEditorUI = new System.Windows.Forms.Panel();
             this.picSeperator2 = new System.Windows.Forms.PictureBox();
             this.picSeperator1 = new System.Windows.Forms.PictureBox();
-            this.txtText = new FrogForge.UserControls.FixedRichTextBox();
+            this.txtText = new FrogForge.UserControls.EventTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.flbFileBrowser = new FrogForge.UserControls.FileBrowser();
@@ -96,10 +96,6 @@
             this.txtText.Size = new System.Drawing.Size(567, 454);
             this.txtText.TabIndex = 3;
             this.txtText.Text = "Xirveros: 012345678901234567890123456789 01234567890123456789012345678";
-            this.txtText.SelectionChanged += new System.EventHandler(this.txtText_TextChanged);
-            this.txtText.VScroll += new System.EventHandler(this.txtText_TextChanged);
-            this.txtText.TextChanged += new System.EventHandler(this.txtText_TextChanged);
-            this.txtText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtText_KeyPress);
             // 
             // label1
             // 
@@ -257,7 +253,7 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.PictureBox picSeperator2;
         private System.Windows.Forms.PictureBox picSeperator1;
-        private FrogForge.UserControls.FixedRichTextBox txtText;
+        private FrogForge.UserControls.EventTextBox txtText;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnSave;
         private System.Windows.Forms.ToolStripButton btnNew;

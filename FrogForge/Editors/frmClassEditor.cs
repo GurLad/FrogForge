@@ -16,7 +16,7 @@ namespace FrogForge.Editors
 {
     public partial class frmClassEditor : frmBaseEditor
     {
-        private static int[] PageWidths { get; } = new int[] { 602, 422 };
+        private static int[] PageWidths { get; } = new int[] { 602, 652 };
 
         public frmClassEditor()
         {
@@ -48,6 +48,7 @@ namespace FrogForge.Editors
             balBattleAnimations.Init(
                 this, () => new BattleAnimationData(), () => new BattleAnimationPanel(),
                 (bap) => bap.Init(dlgOpen, this), true, () => btnGenerateBase.Visible = balBattleAnimations.Datas.Count <= 0);
+            txtUnitDeathQuote.Init(DataDirectory, this);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -144,6 +145,7 @@ namespace FrogForge.Editors
             data.Class = txtUnitClass.Text;
             data.Inclination = (Inclination)cmbUnitInclination.SelectedIndex;
             data.Growths = gthUnitGrowths.Data;
+            data.DeathQuote = txtUnitDeathQuote.Text;
             CurrentFile = data.Name;
             Dirty = false;
             return data;
@@ -155,6 +157,8 @@ namespace FrogForge.Editors
             txtUnitClass.Text = data.Class;
             cmbUnitInclination.Text = data.Inclination.ToString();
             gthUnitGrowths.Data = data.Growths;
+            txtUnitDeathQuote.Text = data.DeathQuote;
+            txtUnitDeathQuote.ColorText();
             CurrentFile = data.Name;
             Dirty = false;
         }

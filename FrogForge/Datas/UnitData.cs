@@ -11,6 +11,7 @@ namespace FrogForge.Datas
         public string Class { get; set; }
         public Inclination Inclination { get; set; }
         public Growths Growths { get; set; }
+        public string DeathQuote { get; set; } = "";
     }
 }
 

@@ -72,6 +72,8 @@
             this.gthUnitGrowths = new FrogForge.UserControls.GrowthsPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.cmbUnitInclination = new System.Windows.Forms.ComboBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtUnitDeathQuote = new FrogForge.UserControls.EventTextBox();
             this.grpGrowths.SuspendLayout();
             this.grpWeapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponWeight)).BeginInit();
@@ -87,6 +89,7 @@
             this.tbpUnit.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstClasses
@@ -437,6 +440,7 @@
             // 
             // tbpUnit
             // 
+            this.tbpUnit.Controls.Add(this.groupBox3);
             this.tbpUnit.Controls.Add(this.groupBox2);
             this.tbpUnit.Controls.Add(this.lstUnits);
             this.tbpUnit.Controls.Add(this.label10);
@@ -460,7 +464,7 @@
             this.groupBox2.Enabled = false;
             this.groupBox2.Location = new System.Drawing.Point(126, 160);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(246, 39);
+            this.groupBox2.Size = new System.Drawing.Size(246, 44);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dead space";
@@ -557,6 +561,29 @@
             this.cmbUnitInclination.Size = new System.Drawing.Size(182, 21);
             this.cmbUnitInclination.TabIndex = 2;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.txtUnitDeathQuote);
+            this.groupBox3.Location = new System.Drawing.Point(379, 0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(173, 204);
+            this.groupBox3.TabIndex = 16;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Death event";
+            // 
+            // txtUnitDeathQuote
+            // 
+            this.txtUnitDeathQuote.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUnitDeathQuote.Location = new System.Drawing.Point(7, 20);
+            this.txtUnitDeathQuote.Name = "txtUnitDeathQuote";
+            this.txtUnitDeathQuote.Size = new System.Drawing.Size(160, 178);
+            this.txtUnitDeathQuote.TabIndex = 0;
+            // 
             // frmClassEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -592,6 +619,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -641,5 +669,7 @@
         private System.Windows.Forms.TextBox txtUnitClass;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private UserControls.EventTextBox txtUnitDeathQuote;
     }
 }

@@ -17,9 +17,7 @@ namespace FrogForge.Editors
         private FilesController CurrentDirectory;
         private string CurrentFileName;
         private string CurrentFilePath;
-        private Dictionary<Color, string[]> Keywords = new Dictionary<Color, string[]>();
         private int FirstLineWidth;
-        private bool UserInput = false;
         public frmConversationEditor()
         {
             InitializeComponent();
@@ -28,14 +26,6 @@ namespace FrogForge.Editors
 
         private void frmConversationEditor_Load(object sender, EventArgs e)
         {
-            // Load keywords
-            string[] keywordsFile = DataDirectory.LoadFile("Keywords").Replace("\r", "").Split('\n');
-            for (int i = 0; i < keywordsFile.Length; i++)
-            {
-                string[] keyValue = keywordsFile[i].Split(':');
-                string[] values = keyValue[1].Split(',');
-                Keywords.Add(ColorTranslator.FromHtml(keyValue[0]), values);
-            }
             // Find line width
             txtText.Text = new string('-', CHARS_IN_LINE);
             FirstLineWidth = txtText.GetPositionFromCharIndex(txtText.Text.LastIndexOf('-')).X;
@@ -47,9 +37,10 @@ namespace FrogForge.Editors
             flbFileBrowser.Directory = CurrentDirectory;
             flbFileBrowser.OnFileSelected = LoadFile;
             flbFileBrowser.UpdateList();
-            UserInput = true;
-            // Init conversation player
+            txtText.UserInput = true;
+            // Init stuff
             copConversationPlayer.Init(WorkingDirectory, CHARS_IN_LINE, SetPreviewMode);
+            txtText.Init(DataDirectory, this);
             // Load empty conversation
             btnNew_Click(sender, e);
         }
@@ -61,13 +52,13 @@ namespace FrogForge.Editors
                 return;
             }
             CurrentFile = name;
-            UserInput = false;
+            txtText.UserInput = false;
             CurrentFileName = name;
             CurrentFilePath = CurrentDirectory.Path;
             txtText.Text = CurrentDirectory.LoadFile(CurrentFileName);
             txtName.Text = CurrentFileName;
-            ColorText();
-            UserInput = true;
+            txtText.ColorText();
+            txtText.UserInput = true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -112,144 +103,6 @@ namespace FrogForge.Editors
             VoiceAssist.Say("Save");
         }
 
-        private void ColorText(int minIndex = -1, int maxIndex = -1)
-        {
-            UserInput = false;
-            txtText.BeginUpdate();
-            CheckKeyword(":", Color.DarkGoldenrod, minIndex, maxIndex, false);
-            CheckKeyword("{", Color.Red, minIndex, maxIndex, false);
-            CheckKeyword("}", Color.Red, minIndex, maxIndex, false);
-            CheckKeyword(@"\a", Color.DarkViolet, minIndex, maxIndex, false);
-            foreach (Color color in Keywords.Keys)
-            {
-                foreach (string word in Keywords[color])
-                {
-                    CheckKeyword(word, color, minIndex, maxIndex);
-                }
-            }
-            CheckKeywordLine("~", Color.Purple, minIndex, maxIndex);
-            CheckKeywordLine("#", Color.DarkCyan, minIndex, maxIndex);
-            txtText.EndUpdate();
-            txtText.Refresh();
-            UserInput = true;
-        }
-
-        private void CheckKeyword(string word, Color color, int minIndex = -1, int maxIndex = -1, bool keyword = true)
-        {
-            if (txtText.Text.Contains(word))
-            {
-                int index = minIndex;
-                int selectStart = txtText.SelectionStart;
-
-                while ((index = txtText.Text.IndexOf(word, index + 1)) != -1)
-                {
-                    if (!(!keyword || index + word.Length >= txtText.Text.Length || txtText.Text[index + word.Length] == ':'))
-                    {
-                        continue;
-                    }
-                    if (minIndex > 0 && index < minIndex)
-                    {
-                        continue;
-                    }
-                    if (maxIndex > 0 && index > maxIndex)
-                    {
-                        return;
-                    }
-                    txtText.Select(index, word.Length);
-                    txtText.SelectionColor = color;
-                    txtText.Select(selectStart, 0);
-                    txtText.SelectionColor = Color.Black;
-                }
-            }
-        }
-
-        private void CheckKeywordLine(string word, Color color, int minIndex = -1, int maxIndex = -1)
-        {
-            if (txtText.Text.Contains(word))
-            {
-                int index = -1;
-                int selectStart = txtText.SelectionStart;
-
-                while ((index = txtText.Text.IndexOf(word, index + 1)) != -1)
-                {
-                    if (minIndex > 0 && index < minIndex)
-                    {
-                        continue;
-                    }
-                    if (maxIndex > 0 && index > maxIndex)
-                    {
-                        return;
-                    }
-                    txtText.Select(index, txtText.Text.IndexOf('\n', index + word.Length) - index);
-                    txtText.SelectionColor = color;
-                    txtText.Select(selectStart, 0);
-                    txtText.SelectionColor = Color.Black;
-                }
-            }
-        }
-
-        private void txtText_TextChanged(object sender, EventArgs e)
-        {
-            if (!UserInput)
-            {
-                return;
-            }
-            int selectionIndex = FindSelectedNextLineStart();
-            int index = Math.Max(txtText.Text.LastIndexOf(':', selectionIndex) + 2, txtText.Text.LastIndexOf('\n', selectionIndex) + 1);
-            Point pos = txtText.GetPositionFromCharIndex(index);
-            // Seperator stuff - currently removed because of \a, might return in the future. But Preview should be enough.
-            //picSeperator1.Location = txtText.Location;
-            //picSeperator1.Left += pos.X + FirstLineWidth;
-            //picSeperator1.Top += pos.Y + 4;
-            //picSeperator2.Location = picSeperator1.Location;
-            //picSeperator2.Left += FirstLineWidth;
-            //picSeperator2.Visible = picSeperator1.Visible = picSeperator1.Top >= txtText.Top && picSeperator1.Top + picSeperator1.Height <= txtText.Top + txtText.Height;
-        }
-
-        private void txtText_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (ModifierKeys != Keys.Control)
-            {
-                if (!Dirty)
-                {
-                    Dirty = true;
-                }
-                if (txtText.SelectionColor != Color.Black)
-                {
-                    txtText.SelectionColor = Color.Black;
-                }
-            }
-            if (e.KeyChar == '\r' || e.KeyChar == ':') // TODO: Fix coloring
-            {
-                if (e.KeyChar == ':')
-                {
-                    txtText.SelectionColor = Color.DarkGoldenrod;
-                }
-                int selectionIndex = txtText.Text.LastIndexOf('\n', FindSelectedNextLineStart() - 1) + 1;
-                int nextLineIndex = txtText.Text.IndexOf('\n', selectionIndex + 1);
-                ColorText(selectionIndex - 1, nextLineIndex); // Because IndexOf's startIndex is exclusive
-            }
-        }
-
-        private int FindSelectedNextLineStart()
-        {
-            int selectionIndex = txtText.SelectionStart;
-            if (selectionIndex > 0)
-            {
-                selectionIndex--;
-                int lineIndex = txtText.Text.IndexOf('\n', selectionIndex);
-                if (lineIndex > selectionIndex)
-                {
-                    selectionIndex = lineIndex - 1;
-                }
-            }
-            else
-            {
-                selectionIndex = 1; // Fixes crash on empty file
-            }
-            return selectionIndex;
-        }
-
         protected override bool ControlKeyAction(Keys key)
         {
             if (!copConversationPlayer.Preview)
@@ -288,7 +141,7 @@ namespace FrogForge.Editors
             }
             txtName.Text = "";
             txtText.Text = DataDirectory.LoadFile("BaseConversation");
-            ColorText();
+            txtText.ColorText();
             CurrentFile = "";
             CurrentFilePath = "";
             VoiceAssist.Say("New");

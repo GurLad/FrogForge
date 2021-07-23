@@ -178,6 +178,9 @@
     <Compile Include="UserControls\DataEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UserControls\EventTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UserControls\GrowthsPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
