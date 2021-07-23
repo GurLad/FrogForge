@@ -168,7 +168,7 @@ namespace FrogForge.UserControls
                     selectionIndex = lineIndex - 1;
                 }
             }
-            else
+            if (selectionIndex <= 0)
             {
                 selectionIndex = 1; // Fixes crash on empty file
             }
