@@ -33,27 +33,31 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnLevelEditor = new System.Windows.Forms.Button();
             this.btnConversationEditor = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnChangePath = new System.Windows.Forms.Button();
-            this.txtPath = new System.Windows.Forms.TextBox();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnImport = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
             this.btnClassEditor = new System.Windows.Forms.Button();
             this.btnPortraitEditor = new System.Windows.Forms.Button();
             this.lblVoice = new System.Windows.Forms.Label();
             this.cmbVoice = new System.Windows.Forms.ComboBox();
             this.btnLevelMetadataEditor = new System.Windows.Forms.Button();
             this.btnTilemapEditor = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnProjectExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnProjectImport = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.frogForgeDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnBrowse = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDataImport = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDataExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.label3 = new System.Windows.Forms.Label();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(289, 23);
             this.label1.TabIndex = 0;
@@ -62,7 +66,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(13, 32);
+            this.label2.Location = new System.Drawing.Point(13, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(288, 14);
             this.label2.TabIndex = 1;
@@ -71,7 +75,7 @@
             // 
             // btnLevelEditor
             // 
-            this.btnLevelEditor.Location = new System.Drawing.Point(12, 49);
+            this.btnLevelEditor.Location = new System.Drawing.Point(12, 64);
             this.btnLevelEditor.Name = "btnLevelEditor";
             this.btnLevelEditor.Size = new System.Drawing.Size(289, 23);
             this.btnLevelEditor.TabIndex = 2;
@@ -81,7 +85,7 @@
             // 
             // btnConversationEditor
             // 
-            this.btnConversationEditor.Location = new System.Drawing.Point(12, 136);
+            this.btnConversationEditor.Location = new System.Drawing.Point(12, 151);
             this.btnConversationEditor.Name = "btnConversationEditor";
             this.btnConversationEditor.Size = new System.Drawing.Size(289, 23);
             this.btnConversationEditor.TabIndex = 2;
@@ -89,81 +93,19 @@
             this.btnConversationEditor.UseVisualStyleBackColor = true;
             this.btnConversationEditor.Click += new System.EventHandler(this.btnConversationEditor_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.btnChangePath);
-            this.groupBox1.Controls.Add(this.txtPath);
-            this.groupBox1.Location = new System.Drawing.Point(12, 223);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 45);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Project folder";
-            // 
-            // btnChangePath
-            // 
-            this.btnChangePath.Location = new System.Drawing.Point(208, 17);
-            this.btnChangePath.Name = "btnChangePath";
-            this.btnChangePath.Size = new System.Drawing.Size(75, 23);
-            this.btnChangePath.TabIndex = 1;
-            this.btnChangePath.Text = "Browse...";
-            this.btnChangePath.UseVisualStyleBackColor = true;
-            this.btnChangePath.Click += new System.EventHandler(this.btnChangePath_Click);
-            // 
-            // txtPath
-            // 
-            this.txtPath.Location = new System.Drawing.Point(6, 19);
-            this.txtPath.Name = "txtPath";
-            this.txtPath.ReadOnly = true;
-            this.txtPath.Size = new System.Drawing.Size(196, 20);
-            this.txtPath.TabIndex = 0;
-            // 
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("3x5", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(-1, 0);
+            this.lblVersion.Location = new System.Drawing.Point(218, 235);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(83, 6);
             this.lblVersion.TabIndex = 4;
             this.lblVersion.Text = "V.0.5.4.4 26.07.2021";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox2.Controls.Add(this.btnImport);
-            this.groupBox2.Controls.Add(this.btnExport);
-            this.groupBox2.Location = new System.Drawing.Point(12, 274);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(289, 45);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Frog Forge data";
-            // 
-            // btnImport
-            // 
-            this.btnImport.Location = new System.Drawing.Point(6, 17);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(134, 23);
-            this.btnImport.TabIndex = 1;
-            this.btnImport.Text = "Import...";
-            this.btnImport.UseVisualStyleBackColor = true;
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
-            // 
-            // btnExport
-            // 
-            this.btnExport.Location = new System.Drawing.Point(149, 17);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(134, 23);
-            this.btnExport.TabIndex = 1;
-            this.btnExport.Text = "Export...";
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
             // btnClassEditor
             // 
-            this.btnClassEditor.Location = new System.Drawing.Point(12, 165);
+            this.btnClassEditor.Location = new System.Drawing.Point(12, 180);
             this.btnClassEditor.Name = "btnClassEditor";
             this.btnClassEditor.Size = new System.Drawing.Size(289, 23);
             this.btnClassEditor.TabIndex = 2;
@@ -173,7 +115,7 @@
             // 
             // btnPortraitEditor
             // 
-            this.btnPortraitEditor.Location = new System.Drawing.Point(12, 194);
+            this.btnPortraitEditor.Location = new System.Drawing.Point(12, 209);
             this.btnPortraitEditor.Name = "btnPortraitEditor";
             this.btnPortraitEditor.Size = new System.Drawing.Size(289, 23);
             this.btnPortraitEditor.TabIndex = 2;
@@ -185,7 +127,7 @@
             // 
             this.lblVoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblVoice.AutoSize = true;
-            this.lblVoice.Location = new System.Drawing.Point(12, 328);
+            this.lblVoice.Location = new System.Drawing.Point(12, 247);
             this.lblVoice.Name = "lblVoice";
             this.lblVoice.Size = new System.Drawing.Size(81, 13);
             this.lblVoice.TabIndex = 8;
@@ -197,7 +139,7 @@
             this.cmbVoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmbVoice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVoice.FormattingEnabled = true;
-            this.cmbVoice.Location = new System.Drawing.Point(99, 325);
+            this.cmbVoice.Location = new System.Drawing.Point(99, 244);
             this.cmbVoice.Name = "cmbVoice";
             this.cmbVoice.Size = new System.Drawing.Size(202, 21);
             this.cmbVoice.TabIndex = 7;
@@ -206,7 +148,7 @@
             // 
             // btnLevelMetadataEditor
             // 
-            this.btnLevelMetadataEditor.Location = new System.Drawing.Point(12, 107);
+            this.btnLevelMetadataEditor.Location = new System.Drawing.Point(12, 122);
             this.btnLevelMetadataEditor.Name = "btnLevelMetadataEditor";
             this.btnLevelMetadataEditor.Size = new System.Drawing.Size(289, 23);
             this.btnLevelMetadataEditor.TabIndex = 2;
@@ -216,7 +158,7 @@
             // 
             // btnTilemapEditor
             // 
-            this.btnTilemapEditor.Location = new System.Drawing.Point(12, 78);
+            this.btnTilemapEditor.Location = new System.Drawing.Point(12, 93);
             this.btnTilemapEditor.Name = "btnTilemapEditor";
             this.btnTilemapEditor.Size = new System.Drawing.Size(289, 23);
             this.btnTilemapEditor.TabIndex = 2;
@@ -224,16 +166,104 @@
             this.btnTilemapEditor.UseVisualStyleBackColor = true;
             this.btnTilemapEditor.Click += new System.EventHandler(this.btnTilemapEditor_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiFile,
+            this.btnAbout});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(313, 24);
+            this.menuStrip1.TabIndex = 9;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // tsmiFile
+            // 
+            this.tsmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnProjectExport,
+            this.btnProjectImport,
+            this.toolStripSeparator1,
+            this.frogForgeDataToolStripMenuItem});
+            this.tsmiFile.Name = "tsmiFile";
+            this.tsmiFile.Size = new System.Drawing.Size(37, 20);
+            this.tsmiFile.Text = "File";
+            // 
+            // btnProjectExport
+            // 
+            this.btnProjectExport.Name = "btnProjectExport";
+            this.btnProjectExport.Size = new System.Drawing.Size(180, 22);
+            this.btnProjectExport.Text = "Export project...";
+            this.btnProjectExport.Click += new System.EventHandler(this.btnProjectExport_Click);
+            // 
+            // btnProjectImport
+            // 
+            this.btnProjectImport.Name = "btnProjectImport";
+            this.btnProjectImport.Size = new System.Drawing.Size(180, 22);
+            this.btnProjectImport.Text = "Import project...";
+            this.btnProjectImport.Click += new System.EventHandler(this.btnProjectImport_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // frogForgeDataToolStripMenuItem
+            // 
+            this.frogForgeDataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnBrowse,
+            this.btnDataImport,
+            this.btnDataExport});
+            this.frogForgeDataToolStripMenuItem.Name = "frogForgeDataToolStripMenuItem";
+            this.frogForgeDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.frogForgeDataToolStripMenuItem.Text = "Frog Forge data";
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(148, 22);
+            this.btnBrowse.Text = "Game folder...";
+            this.btnBrowse.Click += new System.EventHandler(this.btnChangePath_Click);
+            // 
+            // btnDataImport
+            // 
+            this.btnDataImport.Name = "btnDataImport";
+            this.btnDataImport.Size = new System.Drawing.Size(148, 22);
+            this.btnDataImport.Text = "Import...";
+            this.btnDataImport.Click += new System.EventHandler(this.btnDataImport_Click);
+            // 
+            // btnDataExport
+            // 
+            this.btnDataExport.Name = "btnDataExport";
+            this.btnDataExport.Size = new System.Drawing.Size(148, 22);
+            this.btnDataExport.Text = "Export...";
+            this.btnDataExport.Click += new System.EventHandler(this.btnDataExport_Click);
+            // 
+            // btnAbout
+            // 
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(52, 20);
+            this.btnAbout.Text = "About";
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("3x5", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 235);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 6);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "By Gur Ladizhinsky";
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(313, 358);
+            this.ClientSize = new System.Drawing.Size(313, 277);
             this.Controls.Add(this.lblVoice);
             this.Controls.Add(this.cmbVoice);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.lblVersion);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnTilemapEditor);
             this.Controls.Add(this.btnLevelMetadataEditor);
             this.Controls.Add(this.btnPortraitEditor);
@@ -242,16 +272,17 @@
             this.Controls.Add(this.btnLevelEditor);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "frmMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frog Forge";
             this.Load += new System.EventHandler(this.frmMenu_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,18 +294,23 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnLevelEditor;
         private System.Windows.Forms.Button btnConversationEditor;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnChangePath;
-        private System.Windows.Forms.TextBox txtPath;
         private System.Windows.Forms.Label lblVersion;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnClassEditor;
         private System.Windows.Forms.Button btnPortraitEditor;
         private System.Windows.Forms.Label lblVoice;
         private System.Windows.Forms.ComboBox cmbVoice;
         private System.Windows.Forms.Button btnLevelMetadataEditor;
         private System.Windows.Forms.Button btnTilemapEditor;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFile;
+        private System.Windows.Forms.ToolStripMenuItem btnProjectExport;
+        private System.Windows.Forms.ToolStripMenuItem btnProjectImport;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem frogForgeDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btnBrowse;
+        private System.Windows.Forms.ToolStripMenuItem btnDataImport;
+        private System.Windows.Forms.ToolStripMenuItem btnDataExport;
+        private System.Windows.Forms.ToolStripMenuItem btnAbout;
+        private System.Windows.Forms.Label label3;
     }
 }

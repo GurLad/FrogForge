@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,8 @@ namespace FrogForge.Editors
         private CommonOpenFileDialog dlgFolder = new CommonOpenFileDialog();
         private OpenFileDialog dlgDataImport = new OpenFileDialog();
         private SaveFileDialog dlgDataExport = new SaveFileDialog();
+        private OpenFileDialog dlgProjectImport = new OpenFileDialog();
+        private SaveFileDialog dlgProjectExport = new SaveFileDialog();
         public frmMenu()
         {
             InitializeComponent();
@@ -27,10 +30,11 @@ namespace FrogForge.Editors
         private void frmMenu_Load(object sender, EventArgs e)
         {
             WorkingDirectory.Path = DataDirectory.LoadFile("Path", DataDirectory.Path);
-            txtPath.Text = WorkingDirectory.Path;
             dlgFolder.IsFolderPicker = true;
-            dlgDataImport.Filter = "ZIP files|*.zip";
-            dlgDataExport.Filter = "ZIP files|*.zip";
+            dlgDataImport.Filter = "Frog Forge editor data files|*.ffed";
+            dlgDataExport.Filter = "Frog Forge editor data files|*.ffed";
+            dlgProjectImport.Filter = "Frog Forge project data files|*.ffpd";
+            dlgProjectExport.Filter = "Frog Forge project data files|*.ffpd";
             if (DataDirectory.LoadFile("UseVoiceAssist", "F") == "T") // Joke (voice assist)
             {
                 lblVoice.Visible = true;
@@ -54,7 +58,6 @@ namespace FrogForge.Editors
             {
                 DataDirectory.SaveFile("Path", dlgFolder.FileName);
                 WorkingDirectory.Path = dlgFolder.FileName;
-                txtPath.Text = WorkingDirectory.Path;
                 // Create directories
                 DataDirectory.CreateDirectory("Images");
                 DataDirectory.CreateDirectory(@"Images\Tilesets");
@@ -119,11 +122,12 @@ namespace FrogForge.Editors
             tilemapEditor.ShowDialog(this);
         }
 
-        private void btnImport_Click(object sender, EventArgs e)
+        private void btnDataImport_Click(object sender, EventArgs e)
         {
             if (dlgDataImport.ShowDialog(this) == DialogResult.OK)
             {
                 FilesController tempData = new FilesController("TempData");
+                string tempPath = WorkingDirectory.Path;
                 if (System.IO.Directory.Exists(tempData.Path))
                 {
                     System.IO.Directory.Delete(tempData.Path, true);
@@ -131,13 +135,13 @@ namespace FrogForge.Editors
                 System.IO.Compression.ZipFile.ExtractToDirectory(dlgDataImport.FileName, tempData.Path);
                 System.IO.Directory.Delete(DataDirectory.Path, true);
                 System.IO.Directory.Move(tempData.Path, DataDirectory.Path);
-                WorkingDirectory.Path = txtPath.Text;
-                DataDirectory.SaveFile("Path", txtPath.Text);
+                WorkingDirectory.Path = tempPath;
+                DataDirectory.SaveFile("Path", WorkingDirectory.Path);
                 MessageBox.Show("Done!");
             }
         }
 
-        private void btnExport_Click(object sender, EventArgs e)
+        private void btnDataExport_Click(object sender, EventArgs e)
         {
             if (dlgDataExport.ShowDialog(this) == DialogResult.OK)
             {
@@ -150,12 +154,51 @@ namespace FrogForge.Editors
             }
         }
 
+        private void btnProjectImport_Click(object sender, EventArgs e)
+        {
+            if (dlgProjectImport.ShowDialog(this) == DialogResult.OK)
+            {
+                FilesController tempProject = new FilesController();
+                tempProject.Path = WorkingDirectory.Path.Substring(0, WorkingDirectory.Path.LastIndexOf(@"\"));
+                tempProject.CreateDirectory("TempData", true);
+                if (System.IO.Directory.Exists(tempProject.Path))
+                {
+                    System.IO.Directory.Delete(tempProject.Path, true);
+                }
+                System.IO.Compression.ZipFile.ExtractToDirectory(dlgProjectImport.FileName, tempProject.Path);
+                if (System.IO.Directory.Exists(WorkingDirectory.Path))
+                {
+                    System.IO.Directory.Delete(WorkingDirectory.Path, true);
+                }
+                System.IO.Directory.Move(tempProject.Path, WorkingDirectory.Path);
+                MessageBox.Show("Done!");
+            }
+        }
+
+        private void btnProjectExport_Click(object sender, EventArgs e)
+        {
+            if (dlgProjectExport.ShowDialog(this) == DialogResult.OK)
+            {
+                if (System.IO.File.Exists(dlgProjectExport.FileName))
+                {
+                    System.IO.File.Delete(dlgProjectExport.FileName);
+                }
+                System.IO.Compression.ZipFile.CreateFromDirectory(WorkingDirectory.Path, dlgProjectExport.FileName);
+                MessageBox.Show("Done!");
+            }
+        }
+
         private void cmbVoice_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedVoice = cmbVoice.SelectedItem.ToString() == "None" ? "" : cmbVoice.SelectedItem.ToString();
             VoiceAssist.SelectVoice(selectedVoice);
             DataDirectory.SaveFile("SavedVoice", selectedVoice);
             VoiceAssist.Say("Ready");
+        }
+
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://www.github.com/GurLad/FrogForge");
         }
     }
 }
