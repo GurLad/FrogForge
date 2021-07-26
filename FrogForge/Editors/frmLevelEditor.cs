@@ -19,8 +19,8 @@ namespace FrogForge.Editors
         private FilesController CurrentDirectory { get; set; }
         private MapTile[,] Tiles;
         private MapTile CurrentSelected = new MapTile();
-        private List<string> PossibleTileSets;
-        private List<Image> PossibleImages = new List<Image>();
+        private List<TilesetData> Tilesets;
+        private TilesetData CurrentTileset;
         private PictureBox[,] Renderers;
         private Point Size = new Point(16, 15);
         private List<Unit> Units = new List<Unit>();
@@ -48,16 +48,16 @@ namespace FrogForge.Editors
             flbFiles.ShowDirectories = false;
             flbFiles.UpdateList();
             // Load tiles
-            PossibleTileSets = new List<string>(DataDirectory.AllDirectories(false, @"\Images\Tilesets"));
-            if (PossibleTileSets.Count < 1)
+            Tilesets = WorkingDirectory.LoadFile("Tilesets", "", ".json").JsonToObject<List<TilesetData>>();
+            if (Tilesets.Count < 1)
             {
                 Close();
                 MessageBox.Show("You must have at least 1 tileset!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            cmbTileSets.Items.AddRange(PossibleTileSets.ToArray());
+            cmbTileSets.Items.AddRange(Tilesets.ConvertAll(a => a.Name).ToArray());
             cmbTileSets.SelectedIndex = 0;
-            SetTileSet(PossibleTileSets[0]);
+            SetTileSet(Tilesets[0]);
             // End load files
             // Generate UI
             UpdatePreview();
@@ -84,7 +84,7 @@ namespace FrogForge.Editors
                     pictureBox.MouseMove += TileMouseMove;
                     pictureBox.MouseDown += TileMouseMove;
                     pictureBox.Capture = false;
-                    pictureBox.BackgroundImageLayout = ImageLayout.Stretch;
+                    //pictureBox.BackgroundImageLayout = ImageLayout.Stretch; // Why was this even here?
                     pnlRenderer.Controls.Add(pictureBox);
                     Renderers[i, j] = pictureBox;
                 }
@@ -119,7 +119,7 @@ namespace FrogForge.Editors
 
         private void RenderPictureboxFromTile(PictureBox pictureBox, MapTile tile)
         {
-            pictureBox.BackgroundImage = PossibleImages[tile.TileID];
+            pictureBox.BackgroundImage = CurrentTileset.Tiles[tile.TileID].Image.Target;
             Point pos = new Point(pictureBox.Left / 16, pictureBox.Top / 16);
             int unitIndex = Units.FindIndex(a => a.Pos == pos);
             if (unitIndex >= 0)
@@ -401,23 +401,22 @@ namespace FrogForge.Editors
 
         private void cmbTileSets_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SetTileSet(cmbTileSets.Text);
+            SetTileSet(Tilesets.Find(a => a.Name == cmbTileSets.Text));
         }
 
-        private void SetTileSet(string set)
+        private void SetTileSet(TilesetData set)
         {
-            string[] files = DataDirectory.AllFiles(false, true, @"\Images\Tilesets\" + set);
+            (CurrentTileset = set).LoadImages(WorkingDirectory);
             pnlPossibleTiles.Controls.Clear();
-            PossibleImages.Clear();
-            for (int i = 0; i < files.Length; i++)
+            for (int i = 0; i < set.Tiles.Count; i++)
             {
-                PossibleImages.Add(DataDirectory.LoadImage(@"\Tilesets\" + set + @"\" + files[i], "", false));
                 Label tileButton = new Label();
                 tileButton.Width = 16;
                 tileButton.Height = 16;
                 tileButton.Left = 16 * (i % 6);
                 tileButton.Top = 16 * (i / 6);
-                tileButton.Image = PossibleImages[i];
+                set.Tiles[i].Image.CurrentPalette = set.Tiles[i].Palette == 1 ? set.Palette1 : set.Palette2;
+                tileButton.Image = set.Tiles[i].Image.Target;
                 tileButton.Tag = i;
                 tileButton.Click += btnTileButton_Click;
                 pnlPossibleTiles.Controls.Add(tileButton);
@@ -512,7 +511,7 @@ namespace FrogForge.Editors
                 }
             }
             cmbTileSets.SelectedIndex = 0;
-            SetTileSet(PossibleTileSets[0]);
+            SetTileSet(Tilesets[0]);
             Render();
             CurrentFile = "";
             VoiceAssist.Say("New");

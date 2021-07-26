@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace FrogForge.Datas
 {
@@ -12,6 +13,19 @@ namespace FrogForge.Datas
         public Palette Palette2 { get; set; } = Palette.BasePalette;
         public List<TileData> Tiles { get; set; } = new List<TileData>();
         // TBA - battle backgrounds
+
+        public void LoadImages(FilesController workingDirectory)
+        {
+            workingDirectory.CreateDirectory(@"Images\Tilesets\" + Name);
+            for (int i = 0; i < Tiles.Count; i++)
+            {
+                if (Tiles[i].Image == null)
+                {
+                    Tiles[i].Image =
+                        PalettedImage.FromFile(workingDirectory, @"Tilesets\" + Name + @"\" + i);
+                }
+            }
+        }
     }
 }
 

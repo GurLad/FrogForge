@@ -154,7 +154,7 @@ namespace FrogForge.Editors
 
         private void TilesetDataToUI(TilesetData data)
         {
-            TileImagesFromTilesetData(data);
+            data.LoadImages(WorkingDirectory);
             txtName.Text = data.Name;
             plt1.Data = data.Palette1;
             plt2.Data = data.Palette2;
@@ -320,19 +320,6 @@ namespace FrogForge.Editors
                 }
             }
             Cursor.Current = Cursors.Default;
-        }
-
-        private void TileImagesFromTilesetData(TilesetData data)
-        {
-            WorkingDirectory.CreateDirectory(@"Images\Tilesets\" + data.Name);
-            for (int i = 0; i < data.Tiles.Count; i++)
-            {
-                if (data.Tiles[i].Image == null)
-                {
-                    data.Tiles[i].Image =
-                        PalettedImage.FromFile(WorkingDirectory, @"Tilesets\" + data.Name + @"\" + i);
-                }
-            }
         }
     }
 }
