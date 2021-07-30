@@ -14,7 +14,7 @@ namespace FrogForge.Editors
 {
     public enum Team { Player, Monster, Guard }
     public enum AIType { Charge, Hold, Guard }
-    public partial class frmLevelEditor : frmBaseEditor
+    public partial class frmMapEditor : frmBaseEditor
     {
         private FilesController CurrentDirectory { get; set; }
         private MapTile[,] Tiles;
@@ -29,7 +29,7 @@ namespace FrogForge.Editors
         private PictureBox PreviousHover = null;
         private List<ClassData> CachedSprites = new List<ClassData>();
 
-        public frmLevelEditor()
+        public frmMapEditor()
         {
             InitializeComponent();
             BaseName = Text;
@@ -217,6 +217,8 @@ namespace FrogForge.Editors
         private void btnSave_Click(object sender, EventArgs e)
         {
             Dirty = false;
+            MapData data = new MapData();
+            // Tilemap
             string result = "";
             for (int i = 0; i < Tiles.GetLength(0); i++)
             {
@@ -228,18 +230,13 @@ namespace FrogForge.Editors
                 result += ";";
             }
             result = result.Substring(0, result.Length - 1);
+            data.Tiles = result;
             // Units
-            result += "\n";
-            for (int i = 0; i < Units.Count; i++)
-            {
-                result += Units[i].ToSaveString() + ";";
-            }
-            if (Units.Count > 0)
-            {
-                result = result.Substring(0, result.Length - 1);
-            }
-            result += "\n" + cmbTileSets.Text + "\n" + nudLevelNumber.Value + "\n" + ObjectiveToString();
-            CurrentDirectory.SaveFile(txtLevelName.Text, result);
+            data.Units = Units;
+            data.Tileset = cmbTileSets.Text;
+            data.LevelNumber = (int)nudLevelNumber.Value;
+            data.Objective = ObjectiveToString();
+            CurrentDirectory.SaveFile(txtLevelName.Text, data.ToJson());
             flbFiles.UpdateList();
             VoiceAssist.Say("Save");
         }
@@ -251,9 +248,9 @@ namespace FrogForge.Editors
                 return;
             }
             CurrentFile = fileName;
+            MapData data = CurrentDirectory.LoadFile(txtLevelName.Text = fileName).JsonToObject<MapData>();
             Tiles = null;
-            string[] result = CurrentDirectory.LoadFile(txtLevelName.Text = fileName).Replace("\r\n", "\n").Split('\n');
-            string[] rows = result[0].Split(';');
+            string[] rows = data.Tiles.Split(';');
             for (int i = 0; i < rows.Length; i++)
             {
                 string[] row = rows[i].Split('|');
@@ -268,18 +265,10 @@ namespace FrogForge.Editors
                     Tiles[i, j].TileID = int.Parse(row[j]);
                 }
             }
-            rows = result[1].Split(';');
-            Units.Clear();
-            for (int i = 0; i < rows.Length; i++)
-            {
-                if (rows[i] != "")
-                {
-                    Units.Add(new Unit(rows[i]));
-                }
-            }
-            cmbTileSets.Text = result[2];
-            nudLevelNumber.Value = int.Parse(result[3]);
-            ObjectiveFromString(result[4]);
+            Units = data.Units;
+            cmbTileSets.Text = data.Tileset;
+            nudLevelNumber.Value = data.LevelNumber;
+            ObjectiveFromString(data.Objective);
             Render();
             lstUnits.DataSource = null;
             lstUnits.DataSource = Units;

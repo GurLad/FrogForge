@@ -79,7 +79,7 @@
             this.btnLevelEditor.Name = "btnLevelEditor";
             this.btnLevelEditor.Size = new System.Drawing.Size(289, 23);
             this.btnLevelEditor.TabIndex = 2;
-            this.btnLevelEditor.Text = "Level editor";
+            this.btnLevelEditor.Text = "Map editor";
             this.btnLevelEditor.UseVisualStyleBackColor = true;
             this.btnLevelEditor.Click += new System.EventHandler(this.btnLevelEditor_Click);
             // 
@@ -191,21 +191,21 @@
             // btnProjectExport
             // 
             this.btnProjectExport.Name = "btnProjectExport";
-            this.btnProjectExport.Size = new System.Drawing.Size(180, 22);
+            this.btnProjectExport.Size = new System.Drawing.Size(159, 22);
             this.btnProjectExport.Text = "Export project...";
             this.btnProjectExport.Click += new System.EventHandler(this.btnProjectExport_Click);
             // 
             // btnProjectImport
             // 
             this.btnProjectImport.Name = "btnProjectImport";
-            this.btnProjectImport.Size = new System.Drawing.Size(180, 22);
+            this.btnProjectImport.Size = new System.Drawing.Size(159, 22);
             this.btnProjectImport.Text = "Import project...";
             this.btnProjectImport.Click += new System.EventHandler(this.btnProjectImport_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(156, 6);
             // 
             // frogForgeDataToolStripMenuItem
             // 
@@ -214,7 +214,7 @@
             this.btnDataImport,
             this.btnDataExport});
             this.frogForgeDataToolStripMenuItem.Name = "frogForgeDataToolStripMenuItem";
-            this.frogForgeDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.frogForgeDataToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.frogForgeDataToolStripMenuItem.Text = "Frog Forge data";
             // 
             // btnBrowse

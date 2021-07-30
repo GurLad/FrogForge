@@ -1,7 +1,7 @@
 # Frog Forge
 A work-in-progress game editor for [Frogman Gaiden](../../../FrogmanGaiden). Both the editor & game are still in an early beta state, and using them may cause loss of time, data and/or sanity. Use it at your own risk.
-## Available editors (22/7/21)
-- Level (map) editor - Create & edit maps, with unit placements and objectives.
+## Available editors (30/7/21)
+- Map editor - Create & edit maps, with unit placements and objectives.
 - Tileset editor - Create & edit tilesets, including their graphics, gameplay data and battle backgrounds.
 - Level metadata editor - Edit miscellaneous level data, such as team palettes, team AIs and music.
 - Conversation (event) editor - Create & edit conversations (events), with color-coded parts & commands (without documentation).

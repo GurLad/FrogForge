@@ -131,6 +131,7 @@
     <Compile Include="Datas\CharacterVoice.cs" />
     <Compile Include="Datas\Growths.cs" />
     <Compile Include="Datas\LevelMetadata.cs" />
+    <Compile Include="Datas\MapData.cs" />
     <Compile Include="Datas\TeamData.cs" />
     <Compile Include="Datas\TileData.cs" />
     <Compile Include="Datas\TilesetData.cs" />
@@ -214,11 +215,11 @@
     <Compile Include="Editors\frmClassEditor.Designer.cs">
       <DependentUpon>frmClassEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editors\frmLevelEditor.cs">
+    <Compile Include="Editors\frmMapEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Editors\frmLevelEditor.Designer.cs">
-      <DependentUpon>frmLevelEditor.cs</DependentUpon>
+    <Compile Include="Editors\frmMapEditor.Designer.cs">
+      <DependentUpon>frmMapEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Editors\frmConversationEditor.cs">
       <SubType>Form</SubType>
@@ -295,8 +296,8 @@
     <EmbeddedResource Include="Editors\frmClassEditor.resx">
       <DependentUpon>frmClassEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Editors\frmLevelEditor.resx">
-      <DependentUpon>frmLevelEditor.cs</DependentUpon>
+    <EmbeddedResource Include="Editors\frmMapEditor.resx">
+      <DependentUpon>frmMapEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\frmConversationEditor.resx">
       <DependentUpon>frmConversationEditor.cs</DependentUpon>

@@ -1,6 +1,6 @@
 ﻿namespace FrogForge.Editors
 {
-    partial class frmLevelEditor
+    partial class frmMapEditor
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLevelEditor));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMapEditor));
             this.pnlPossibleTiles = new System.Windows.Forms.Panel();
             this.pnlRenderer = new System.Windows.Forms.Panel();
             this.pnlBG = new System.Windows.Forms.Panel();
@@ -125,7 +125,7 @@
             // 
             // lstUnits
             // 
-            this.lstUnits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.lstUnits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstUnits.FormattingEnabled = true;
             this.lstUnits.Location = new System.Drawing.Point(6, 19);
@@ -513,10 +513,11 @@
             // 
             // flbFiles
             // 
-            this.flbFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.flbFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.flbFiles.Location = new System.Drawing.Point(12, 28);
             this.flbFiles.Name = "flbFiles";
+            this.flbFiles.SelectedFilename = null;
             this.flbFiles.Size = new System.Drawing.Size(109, 266);
             this.flbFiles.TabIndex = 35;
             // 
@@ -571,7 +572,7 @@
             this.label10.TabIndex = 37;
             this.label10.Text = "Name:";
             // 
-            // frmLevelEditor
+            // frmMapEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -588,9 +589,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "frmLevelEditor";
+            this.Name = "frmMapEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Level Editor";
+            this.Text = "Map Editor";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).EndInit();

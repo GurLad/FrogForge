@@ -8,17 +8,18 @@ using System.Threading.Tasks;
 
 namespace FrogForge.Datas
 {
-    class Unit
+    public class Unit
     {
-        public Point Pos;
-        public Team Team;
-        public int Level;
-        public string Class;
-        public AIType AIType;
-        public int ReinforcementTurn;
-        public bool Statue;
+        public Point Pos { get; set; }
+        public Team Team { get; set; }
+        public int Level { get; set; }
+        public string Class { get; set; }
+        public AIType AIType { get; set; }
+        public int ReinforcementTurn { get; set; }
+        public bool Statue { get; set; }
         public Image image; // Editor only
 
+        [System.Text.Json.Serialization.JsonConstructorAttribute]
         public Unit(Team team, int level, string @class, AIType aIType, int reinforcementTurn, bool statue)
         {
             Team = team;
@@ -27,35 +28,6 @@ namespace FrogForge.Datas
             AIType = aIType;
             ReinforcementTurn = reinforcementTurn;
             Statue = statue;
-        }
-
-        public Unit(string source)
-        {
-            FromSaveString(source);
-        }
-
-        public string ToSaveString()
-        {
-            return (int)Team + "," + Class + "," + Level + "," + (int)AIType + "," + Pos.X + "," + Pos.Y + (ReinforcementTurn > 0 ? ("," + ReinforcementTurn + "," + (Statue ? "T" : "F")) : "");
-        }
-        public void FromSaveString(string source)
-        {
-            string[] parts = source.Split(',');
-            Team = (Team)int.Parse(parts[0]);
-            Class = parts[1];
-            Level = int.Parse(parts[2]);
-            AIType = (AIType)int.Parse(parts[3]);
-            Pos.X = int.Parse(parts[4]);
-            Pos.Y = int.Parse(parts[5]);
-            if (parts.Length > 6)
-            {
-                ReinforcementTurn = int.Parse(parts[6]);
-                Statue = parts[7] == "T";
-            }
-            else
-            {
-                ReinforcementTurn = 0;
-            }
         }
 
         public override string ToString()

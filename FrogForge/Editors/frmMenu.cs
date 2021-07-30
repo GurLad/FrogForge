@@ -70,7 +70,7 @@ namespace FrogForge.Editors
 
         private void btnLevelEditor_Click(object sender, EventArgs e)
         {
-            frmLevelEditor levelEditor = new frmLevelEditor();
+            frmMapEditor levelEditor = new frmMapEditor();
             levelEditor.DataDirectory = DataDirectory;
             levelEditor.WorkingDirectory = WorkingDirectory;
             VoiceAssist.Say("Open");
