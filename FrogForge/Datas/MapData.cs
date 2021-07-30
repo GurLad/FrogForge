@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FrogForge.Datas
 {
-    public class MapData
+    public class MapData : NamedData
     {
         public string Tiles { get; set; }
         public List<Unit> Units { get; set; }

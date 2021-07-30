@@ -10,7 +10,19 @@ namespace FrogForge.Datas
 {
     public class Unit
     {
-        public Point Pos { get; set; }
+        private Point _pos;
+        public UnityPoint Pos
+        {
+            get
+            {
+                return _pos;
+            }
+            set
+            {
+                _pos.X = value.x;
+                _pos.Y = value.y;
+            }
+        }
         public Team Team { get; set; }
         public int Level { get; set; }
         public string Class { get; set; }
@@ -32,7 +44,7 @@ namespace FrogForge.Datas
 
         public override string ToString()
         {
-            return Team.ToString()[0] + ",C:" + Class + ",L:" + Level + ";(" + Pos.X + "," + Pos.Y + ")";
+            return Team.ToString()[0] + ",C:" + Class + ",L:" + Level + ";(" + Pos.x + "," + Pos.y + ")";
         }
     }
 }

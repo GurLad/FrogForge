@@ -149,6 +149,7 @@
       <DependentUpon>frmTilesetEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="UnityPoint.cs" />
     <Compile Include="UserControls\AIPrioritiesPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

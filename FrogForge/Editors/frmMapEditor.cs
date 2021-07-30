@@ -236,6 +236,7 @@ namespace FrogForge.Editors
             data.Tileset = cmbTileSets.Text;
             data.LevelNumber = (int)nudLevelNumber.Value;
             data.Objective = ObjectiveToString();
+            data.Name = txtLevelName.Text;
             CurrentDirectory.SaveFile(txtLevelName.Text, data.ToJson());
             flbFiles.UpdateList();
             VoiceAssist.Say("Save");
