@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Utils;
+using static FrogForge.ExtensionMethods;
 
 namespace FrogForge.Editors
 {
@@ -58,12 +59,6 @@ namespace FrogForge.Editors
             KeyPreview = true;
             KeyDown += KeyDownEvent;
             DirtyFunc = (s, e1) => Dirty = true;
-        }
-
-        public bool ConfirmDialog(string text, string title)
-        {
-            VoiceAssist.Say("Confirm");
-            return MessageBox.Show(text, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
         }
 
         public bool HasUnsavedChanges()

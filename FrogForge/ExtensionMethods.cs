@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Utils;
 
 namespace FrogForge
@@ -47,6 +48,12 @@ namespace FrogForge
             }
             graphics.Dispose();
             return target;
+        }
+
+        public static bool ConfirmDialog(string text, string title)
+        {
+            VoiceAssist.Say("Confirm");
+            return MessageBox.Show(text, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
         }
     }
 }

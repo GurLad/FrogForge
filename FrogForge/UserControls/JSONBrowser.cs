@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Text.Json;
 using FrogForge.Datas;
 using FrogForge.Editors;
+using static FrogForge.ExtensionMethods;
 
 namespace FrogForge.UserControls
 {
@@ -67,7 +68,7 @@ namespace FrogForge.UserControls
 
         public T Remove()
         {
-            if (BaseEditor.ConfirmDialog("Are you sure you want to delete " + Data[SelectedIndex].Name + "?", "Delete"))
+            if (ConfirmDialog("Are you sure you want to delete " + Data[SelectedIndex].Name + "?", "Delete"))
             {
                 T temp = Data[SelectedIndex];
                 Data.RemoveAt(SelectedIndex);

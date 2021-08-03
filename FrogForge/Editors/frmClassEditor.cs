@@ -16,7 +16,7 @@ namespace FrogForge.Editors
 {
     public partial class frmClassEditor : frmBaseEditor
     {
-        private static int[] PageWidths { get; } = new int[] { 602, 652 };
+        private static int[] PageWidths { get; } = new int[] { 621, 652 };
 
         public frmClassEditor()
         {
