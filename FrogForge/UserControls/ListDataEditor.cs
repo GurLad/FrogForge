@@ -84,7 +84,7 @@ namespace FrogForge.UserControls
 
         private void vsbDatasScroller_Scroll(object sender, ScrollEventArgs e)
         {
-            pnlControls.Top = -vsbDatasScroller.Value * (GeneratedControls[0].Height + 3);
+            pnlControls.Top = -vsbDatasScroller.Value * (GeneratedControls[0].Height + DATA_SPACING);
         }
 
         private void AddControl(DataType data = null)
@@ -92,14 +92,14 @@ namespace FrogForge.UserControls
             Control toAdd = NewControl();
             toAdd.Top = GeneratedControls.Count * (toAdd.Height + DATA_SPACING);
             toAdd.Left = DELETE_BUTTON_SIZE.X + DATA_SPACING;
-            toAdd.Data = data ?? NewData();
             InitControl(toAdd);
+            toAdd.Data = data ?? NewData();
             Button deleteButton = GenerateDeleteButton(GeneratedControls.Count, toAdd.Top, toAdd.Height);
             GeneratedControls.Add(toAdd);
             GeneratedDeleteButtons.Add(deleteButton);
             pnlControls.Controls.Add(toAdd);
             pnlControls.Controls.Add(deleteButton);
-            pnlControls.Height = GeneratedControls.Count * (toAdd.Height + 3);
+            pnlControls.Height = GeneratedControls.Count * (toAdd.Height + DATA_SPACING);
             UpdateUI();
             if (Editor != null)
             {
@@ -139,7 +139,7 @@ namespace FrogForge.UserControls
             vsbDatasScroller.Value = Math.Min(vsbDatasScroller.Maximum - vsbDatasScroller.LargeChange + 1, vsbDatasScroller.Value);
             if (vsbDatasScroller.Maximum > NumDatasInOneScreen)
             {
-                pnlControls.Top = -vsbDatasScroller.Value * (GeneratedControls[0].Height + 3);
+                pnlControls.Top = -vsbDatasScroller.Value * (GeneratedControls[0].Height + DATA_SPACING);
             }
             else
             {

@@ -132,6 +132,7 @@
     <Compile Include="Datas\Growths.cs" />
     <Compile Include="Datas\LevelMetadata.cs" />
     <Compile Include="Datas\MapData.cs" />
+    <Compile Include="Datas\MapEventData.cs" />
     <Compile Include="Datas\TeamData.cs" />
     <Compile Include="Datas\TileData.cs" />
     <Compile Include="Datas\TilesetData.cs" />
@@ -253,6 +254,12 @@
     <Compile Include="Datas\Unit.cs" />
     <Compile Include="Datas\ClassData.cs" />
     <Compile Include="UnityColor.cs" />
+    <Compile Include="UserControls\MapEventPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\MapEventPanel.Designer.cs">
+      <DependentUpon>MapEventPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\PalettePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -319,6 +326,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\MapEventPanel.resx">
+      <DependentUpon>MapEventPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\PalettePanel.resx">
       <DependentUpon>PalettePanel.cs</DependentUpon>
     </EmbeddedResource>

@@ -99,6 +99,8 @@ namespace FrogForge.Editors
             rdbSurvive.CheckedChanged += DirtyFunc;
             txtLevelName.TextChanged += DirtyFunc;
             nudLevelNumber.ValueChanged += DirtyFunc;
+            // Init stuff
+            melMapEvents.Init(this, () => new MapEventData(), () => new UserControls.MapEventPanel(), (a) => a.Init(this, DataDirectory), false);
         }
 
         private void Render()
@@ -231,8 +233,9 @@ namespace FrogForge.Editors
             }
             result = result.Substring(0, result.Length - 1);
             data.Tiles = result;
-            // Units
+            // Everything else
             data.Units = Units;
+            data.MapEvents = melMapEvents.Datas;
             data.Tileset = cmbTileSets.Text;
             data.LevelNumber = (int)nudLevelNumber.Value;
             data.Objective = ObjectiveToString();
@@ -267,6 +270,7 @@ namespace FrogForge.Editors
                 }
             }
             Units = data.Units;
+            melMapEvents.Datas = data.MapEvents;
             cmbTileSets.Text = data.Tileset;
             nudLevelNumber.Value = data.LevelNumber;
             ObjectiveFromString(data.Objective);

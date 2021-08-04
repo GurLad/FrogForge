@@ -120,6 +120,10 @@ namespace FrogForge.UserControls
                 return;
             }
             int selectionIndex = FindSelectedNextLineStart();
+            if (selectionIndex >= Text.Length)
+            {
+                return;
+            }
             int index = Math.Max(Text.LastIndexOf(':', selectionIndex) + 2, Text.LastIndexOf('\n', selectionIndex) + 1);
             Point pos = GetPositionFromCharIndex(index);
             // Seperator stuff - currently removed because of \a, might return in the future. But Preview should be enough.

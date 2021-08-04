@@ -10,6 +10,7 @@ namespace FrogForge.Datas
     {
         public string Tiles { get; set; }
         public List<Unit> Units { get; set; }
+        public List<MapEventData> MapEvents { get; set; } = new List<MapEventData>();
         public string Tileset { get; set; }
         public int LevelNumber { get; set; }
         public string Objective { get; set; }

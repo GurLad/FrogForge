@@ -67,6 +67,7 @@
             this.rdbEscape = new System.Windows.Forms.RadioButton();
             this.rdbSurvive = new System.Windows.Forms.RadioButton();
             this.rdbRout = new System.Windows.Forms.RadioButton();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.txtLevelName = new System.Windows.Forms.TextBox();
             this.flbFiles = new FrogForge.UserControls.FileBrowser();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -74,6 +75,7 @@
             this.btnNew = new System.Windows.Forms.ToolStripButton();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.label10 = new System.Windows.Forms.Label();
+            this.melMapEvents = new FrogForge.UserControls.MapEventListEditor();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
@@ -86,6 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudEscapePosY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEscapePosX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSurviveTurn)).BeginInit();
+            this.tabPage4.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -218,6 +221,7 @@
             this.tbcUI.Controls.Add(this.tabPage1);
             this.tbcUI.Controls.Add(this.tabPage2);
             this.tbcUI.Controls.Add(this.tabPage3);
+            this.tbcUI.Controls.Add(this.tabPage4);
             this.tbcUI.Location = new System.Drawing.Point(389, 54);
             this.tbcUI.Name = "tbcUI";
             this.tbcUI.SelectedIndex = 0;
@@ -504,6 +508,17 @@
             this.rdbRout.Text = "Rout";
             this.rdbRout.UseVisualStyleBackColor = true;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.melMapEvents);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(248, 214);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Events";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // txtLevelName
             // 
             this.txtLevelName.Location = new System.Drawing.Point(171, 28);
@@ -572,6 +587,13 @@
             this.label10.TabIndex = 37;
             this.label10.Text = "Name:";
             // 
+            // melMapEvents
+            // 
+            this.melMapEvents.Location = new System.Drawing.Point(0, 0);
+            this.melMapEvents.Name = "melMapEvents";
+            this.melMapEvents.Size = new System.Drawing.Size(248, 214);
+            this.melMapEvents.TabIndex = 0;
+            // 
             // frmMapEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -608,6 +630,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudEscapePosY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEscapePosX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSurviveTurn)).EndInit();
+            this.tabPage4.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -662,6 +685,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ToolStripButton btnNew;
         private System.Windows.Forms.ToolStripButton btnDelete;
+        private System.Windows.Forms.TabPage tabPage4;
+        private UserControls.MapEventListEditor melMapEvents;
     }
 }
 
