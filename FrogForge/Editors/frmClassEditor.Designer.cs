@@ -50,7 +50,7 @@
             this.cmbClassInclination = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.grpImage = new System.Windows.Forms.GroupBox();
-            this.picIcon = new FrogForge.UserControls.AnimationPicturebox();
+            this.picIcon = new FrogForge.UserControls.PalettedPicturebox();
             this.grpBattleAnimations = new System.Windows.Forms.GroupBox();
             this.btnGenerateBase = new System.Windows.Forms.Button();
             this.balBattleAnimations = new FrogForge.UserControls.BattleAnimationsListEditor();
@@ -646,7 +646,7 @@
         private System.Windows.Forms.NumericUpDown nudWeaponHit;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown nudWeaponWeight;
-        private FrogForge.UserControls.AnimationPicturebox picIcon;
+        private FrogForge.UserControls.PalettedPicturebox picIcon;
         private System.Windows.Forms.GroupBox grpBattleAnimations;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnSave;

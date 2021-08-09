@@ -88,6 +88,8 @@ namespace FrogForge.Editors
             picTileImage.Init(dlgOpen, this);
             plt1.Init(this, Render);
             plt2.Init(this, Render);
+            partialPalettedPicturebox1.Init(dlgOpen, this);
+            partialPalettedPicturebox2.Init(dlgOpen, this);
         }
 
         private void Renderer_Click(int rendererIndex)

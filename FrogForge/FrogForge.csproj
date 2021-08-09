@@ -133,6 +133,7 @@
     <Compile Include="Datas\LevelMetadata.cs" />
     <Compile Include="Datas\MapData.cs" />
     <Compile Include="Datas\MapEventData.cs" />
+    <Compile Include="PartialPalettedImage.cs" />
     <Compile Include="Datas\TeamData.cs" />
     <Compile Include="Datas\TileData.cs" />
     <Compile Include="Datas\TilesetData.cs" />
@@ -157,7 +158,7 @@
     <Compile Include="UserControls\AIPrioritiesPanel.Designer.cs">
       <DependentUpon>AIPrioritiesPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\AnimationPicturebox.cs">
+    <Compile Include="UserControls\PalettedPicturebox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UserControls\BattleAnimationPanel.cs">

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace FrogForge.UserControls
 {
-    public partial class AnimationPicturebox : PictureBox
+    public partial class BasePalettedPicturebox<T> : PictureBox where T : PalettedImage
     {
         private frmBaseEditor Editor;
         private OpenFileDialog dlgOpen;
@@ -34,8 +34,8 @@ namespace FrogForge.UserControls
                 }
             }
         }
-        private PalettedImage image;
-        public new PalettedImage Image
+        private T image;
+        public new T Image
         {
             get
             {
@@ -69,7 +69,7 @@ namespace FrogForge.UserControls
                     // Create image
                     Image source = System.Drawing.Image.FromFile(dlgOpen.FileName).SplitGIF();
                     // Color image
-                    Image = new PalettedImage(source);
+                    Image = NewT(source);
                     Image.CurrentPalette = Palette;
                     // Set dirty
                     Editor.Dirty = true;
@@ -97,13 +97,34 @@ namespace FrogForge.UserControls
         private void tmrAnimateTick(object sender, EventArgs e)
         {
             int height = Image.Target.Height;
-            int width = height; // Assumes square graphics
+            int width = Width;
             CurrentFrame++;
             CurrentFrame %= Image.Target.Width / width;
-            Image target = new Bitmap(height, width);
+            Image target = new Bitmap(width, height);
             Graphics g = Graphics.FromImage(target);
             g.DrawImage(Image.Target, new PointF(-CurrentFrame * width, 0));
             base.Image = target;
+        }
+
+        protected virtual T NewT(Image source)
+        {
+            throw new Exception("Not implemented!");
+        }
+    }
+
+    public partial class PalettedPicturebox : BasePalettedPicturebox<PalettedImage>
+    {
+        protected override PalettedImage NewT(Image source)
+        {
+            return new PalettedImage(source);
+        }
+    }
+
+    public partial class PartialPalettedPicturebox : BasePalettedPicturebox<PartialPalettedImage>
+    {
+        protected override PartialPalettedImage NewT(Image source)
+        {
+            return new PartialPalettedImage(source);
         }
     }
 }

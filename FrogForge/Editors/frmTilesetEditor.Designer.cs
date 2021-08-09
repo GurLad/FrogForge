@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             FrogForge.Palette palette1 = new FrogForge.Palette();
+            FrogForge.Palette palette2 = new FrogForge.Palette();
+            FrogForge.Palette palette3 = new FrogForge.Palette();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTilesetEditor));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
@@ -47,7 +49,7 @@
             this.rdbSelectionSwap = new System.Windows.Forms.RadioButton();
             this.rdbSelectionSelect = new System.Windows.Forms.RadioButton();
             this.grpSelectedTile = new System.Windows.Forms.GroupBox();
-            this.picTileImage = new FrogForge.UserControls.AnimationPicturebox();
+            this.picTileImage = new FrogForge.UserControls.PalettedPicturebox();
             this.btnTileApply = new System.Windows.Forms.Button();
             this.rdbPlt2 = new System.Windows.Forms.RadioButton();
             this.rdbPlt1 = new System.Windows.Forms.RadioButton();
@@ -65,6 +67,10 @@
             this.btnAddTiles = new System.Windows.Forms.Button();
             this.pnlPossibleTiles = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.partialPalettedPicturebox2 = new FrogForge.UserControls.PartialPalettedPicturebox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.partialPalettedPicturebox1 = new FrogForge.UserControls.PartialPalettedPicturebox();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -72,6 +78,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.picTileImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudArmorMod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMoveCost)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.partialPalettedPicturebox2)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.partialPalettedPicturebox1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -82,7 +93,7 @@
             this.btnDelete});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(628, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(745, 25);
             this.toolStrip1.TabIndex = 18;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -448,19 +459,62 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Enabled = false;
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.groupBox5);
+            this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Location = new System.Drawing.Point(430, 54);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(186, 303);
+            this.groupBox2.Size = new System.Drawing.Size(303, 303);
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Battle backgrounds data (TBA)";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.partialPalettedPicturebox2);
+            this.groupBox5.Location = new System.Drawing.Point(153, 42);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(141, 197);
+            this.groupBox5.TabIndex = 1;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Layer2";
+            // 
+            // partialPalettedPicturebox2
+            // 
+            this.partialPalettedPicturebox2.Image = null;
+            this.partialPalettedPicturebox2.Location = new System.Drawing.Point(6, 19);
+            this.partialPalettedPicturebox2.Name = "partialPalettedPicturebox2";
+            this.partialPalettedPicturebox2.Palette = palette2;
+            this.partialPalettedPicturebox2.Size = new System.Drawing.Size(128, 168);
+            this.partialPalettedPicturebox2.TabIndex = 0;
+            this.partialPalettedPicturebox2.TabStop = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.partialPalettedPicturebox1);
+            this.groupBox3.Location = new System.Drawing.Point(6, 42);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(141, 197);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Layer1";
+            // 
+            // partialPalettedPicturebox1
+            // 
+            this.partialPalettedPicturebox1.Image = null;
+            this.partialPalettedPicturebox1.Location = new System.Drawing.Point(6, 19);
+            this.partialPalettedPicturebox1.Name = "partialPalettedPicturebox1";
+            this.partialPalettedPicturebox1.Palette = palette3;
+            this.partialPalettedPicturebox1.Size = new System.Drawing.Size(128, 168);
+            this.partialPalettedPicturebox1.TabIndex = 0;
+            this.partialPalettedPicturebox1.TabStop = false;
             // 
             // frmTilesetEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(628, 369);
+            this.ClientSize = new System.Drawing.Size(745, 369);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtName);
@@ -489,6 +543,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.picTileImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudArmorMod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMoveCost)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.partialPalettedPicturebox2)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.partialPalettedPicturebox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -529,7 +588,11 @@
         private System.Windows.Forms.RadioButton rdbSelectionSelect;
         private System.Windows.Forms.RadioButton rdbSelectionSwap;
         private System.Windows.Forms.RadioButton rdbSelectionPush;
-        private UserControls.AnimationPicturebox picTileImage;
+        private UserControls.PalettedPicturebox picTileImage;
         private System.Windows.Forms.CheckBox ckbAutoApply;
+        private UserControls.PartialPalettedPicturebox partialPalettedPicturebox1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private UserControls.PartialPalettedPicturebox partialPalettedPicturebox2;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

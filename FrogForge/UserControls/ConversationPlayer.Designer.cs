@@ -33,7 +33,7 @@
             this.picArrow = new System.Windows.Forms.PictureBox();
             this.lblPreviewText = new System.Windows.Forms.Label();
             this.lblPreviewName = new System.Windows.Forms.Label();
-            this.picPreviewSpeaker = new FrogForge.UserControls.AnimationPicturebox();
+            this.picPreviewSpeaker = new FrogForge.UserControls.PalettedPicturebox();
             this.pnlPreview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picArrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPreviewSpeaker)).BeginInit();
@@ -117,6 +117,6 @@
         private System.Windows.Forms.PictureBox picArrow;
         private System.Windows.Forms.Label lblPreviewText;
         private System.Windows.Forms.Label lblPreviewName;
-        private AnimationPicturebox picPreviewSpeaker;
+        private PalettedPicturebox picPreviewSpeaker;
     }
 }

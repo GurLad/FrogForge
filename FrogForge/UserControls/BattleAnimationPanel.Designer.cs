@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.txtName = new System.Windows.Forms.TextBox();
-            this.picAnimation = new FrogForge.UserControls.AnimationPicturebox();
+            this.picAnimation = new FrogForge.UserControls.PalettedPicturebox();
             ((System.ComponentModel.ISupportInitialize)(this.picAnimation)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,7 +66,7 @@
 
         #endregion
 
-        private AnimationPicturebox picAnimation;
+        private PalettedPicturebox picAnimation;
         private System.Windows.Forms.TextBox txtName;
     }
 }
