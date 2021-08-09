@@ -126,6 +126,7 @@
     <Compile Include="Datas\AIPriorities.cs" />
     <Compile Include="Datas\BasePortraitData.cs" />
     <Compile Include="Datas\BattleAnimationData.cs" />
+    <Compile Include="Datas\BattleBackgroundData.cs" />
     <Compile Include="Datas\GenericPortraitData.cs" />
     <Compile Include="Datas\GenericPortraitsGlobalData.cs" />
     <Compile Include="Datas\CharacterVoice.cs" />
@@ -157,6 +158,12 @@
     </Compile>
     <Compile Include="UserControls\AIPrioritiesPanel.Designer.cs">
       <DependentUpon>AIPrioritiesPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BattleBackgroundPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\BattleBackgroundPanel.Designer.cs">
+      <DependentUpon>BattleBackgroundPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\PalettedPicturebox.cs">
       <SubType>Component</SubType>
@@ -289,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="dlgColorSelector.resx">
       <DependentUpon>dlgColorSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\BattleBackgroundPanel.resx">
+      <DependentUpon>BattleBackgroundPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ConversationPlayer.resx">
       <DependentUpon>ConversationPlayer.cs</DependentUpon>

@@ -88,8 +88,9 @@ namespace FrogForge.Editors
             picTileImage.Init(dlgOpen, this);
             plt1.Init(this, Render);
             plt2.Init(this, Render);
-            partialPalettedPicturebox1.Init(dlgOpen, this);
-            partialPalettedPicturebox2.Init(dlgOpen, this);
+            bblBattleBackgrounds.Init(
+                this, () => new BattleBackgroundData(""),
+                () => new BattleBackgroundPanel(), (a) => a.Init(dlgOpen, this), true);
         }
 
         private void Renderer_Click(int rendererIndex)
@@ -150,6 +151,7 @@ namespace FrogForge.Editors
             data.Palette1 = plt1.Data;
             data.Palette2 = plt2.Data;
             data.Tiles = CurrentTiles.ConvertAll(a => a.Clone());
+            data.BattleBackgrounds = bblBattleBackgrounds.Datas;
             CurrentFile = data.Name;
             Dirty = false;
             return data;
@@ -162,6 +164,7 @@ namespace FrogForge.Editors
             plt1.Data = data.Palette1;
             plt2.Data = data.Palette2;
             CurrentTiles = data.Tiles.ConvertAll(a => a.Clone());
+            bblBattleBackgrounds.Datas = data.BattleBackgrounds;
             SelectedIndex = -1;
             Render();
             CurrentFile = data.Name;
@@ -309,7 +312,7 @@ namespace FrogForge.Editors
             Cursor.Current = Cursors.WaitCursor;
             // Save tilemaps
             lstTilemaps.SaveToFile();
-            // Save tile images
+            // Save tile images & battle backgrounds images
             foreach (TilesetData item in lstTilemaps.Data)
             {
                 WorkingDirectory.CreateDirectory(@"Images\Tilesets\" + item.Name);
@@ -319,6 +322,21 @@ namespace FrogForge.Editors
                     {
                         item.Tiles[i].Image.CurrentPalette = Palette.BasePalette;
                         WorkingDirectory.SaveImage(@"Tilesets\" + item.Name + @"\" + i, item.Tiles[i].Image.Target);
+                    }
+                }
+                for (int i = 0; i < item.BattleBackgrounds.Count; i++)
+                {
+                    if (item.BattleBackgrounds[i]?.Layer1?.Target != null)
+                    {
+                        item.BattleBackgrounds[i].Layer1.CurrentPalette = Palette.BasePalette;
+                        WorkingDirectory.SaveImage(
+                            @"BattleBackgrounds\" + item.Name + @"\" + item.BattleBackgrounds[i].Name + "1",item.BattleBackgrounds[i].Layer1.Target);
+                    }
+                    if (item.BattleBackgrounds[i]?.Layer2?.Target != null)
+                    {
+                        item.BattleBackgrounds[i].Layer2.CurrentPalette = Palette.BasePalette;
+                        WorkingDirectory.SaveImage(
+                            @"BattleBackgrounds\" + item.Name + @"\" + item.BattleBackgrounds[i].Name + "2", item.BattleBackgrounds[i].Layer2.Target);
                     }
                 }
             }

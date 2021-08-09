@@ -103,6 +103,7 @@ namespace FrogForge.UserControls
             Image target = new Bitmap(width, height);
             Graphics g = Graphics.FromImage(target);
             g.DrawImage(Image.Target, new PointF(-CurrentFrame * width, 0));
+            g.Dispose();
             base.Image = target;
         }
 

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace FrogForge
 {
@@ -14,6 +15,12 @@ namespace FrogForge
         public PartialPalettedImage(Image target) : base(target) { }
 
         public PartialPalettedImage(Bitmap target) : base(target) { }
+
+        public new static PartialPalettedImage FromFile(FilesController files, string filename)
+        {
+            Image target = files.LoadImage(filename);
+            return target != null ? new PartialPalettedImage(target) : null;
+        }
 
         protected override void SetPalette(Palette palette)
         {
