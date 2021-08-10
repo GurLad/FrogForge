@@ -12,11 +12,11 @@ namespace FrogForge.UserControls
 {
     public partial class BasePalettedPicturebox<T> : PictureBox where T : PalettedImage
     {
+        public Action PostOnClick;
         private frmBaseEditor Editor;
         private OpenFileDialog dlgOpen;
         private Timer tmrAnimate = new Timer();
         private int CurrentFrame;
-        public Action PostOnClick;
         private Palette palette;
         public Palette Palette
         {
@@ -47,6 +47,23 @@ namespace FrogForge.UserControls
                 base.Image = image?.Target;
                 tmrAnimate.Stop();
                 CurrentFrame = 0;
+            }
+        }
+        private int ImageWidth
+        {
+            get
+            {
+                switch (BorderStyle)
+                {
+                    case BorderStyle.None:
+                        return Width;
+                    case BorderStyle.FixedSingle:
+                        return Width - 2;
+                    case BorderStyle.Fixed3D:
+                        return Width - 4;
+                    default:
+                        throw new Exception("What?");
+                }
             }
         }
 
@@ -97,7 +114,7 @@ namespace FrogForge.UserControls
         private void tmrAnimateTick(object sender, EventArgs e)
         {
             int height = Image.Target.Height;
-            int width = Width;
+            int width = ImageWidth;
             CurrentFrame++;
             CurrentFrame %= Image.Target.Width / width;
             Image target = new Bitmap(width, height);

@@ -86,11 +86,11 @@ namespace FrogForge.Editors
             SelectedIndex = -1;
             lstTilemaps.Init(this, () => new TilesetData(), TilesetDataFromUI, TilesetDataToUI, "Tilesets");
             picTileImage.Init(dlgOpen, this);
-            plt1.Init(this, Render);
-            plt2.Init(this, Render);
+            plt1.Init(this, UpdatePalette);
+            plt2.Init(this, UpdatePalette);
             bblBattleBackgrounds.Init(
                 this, () => new BattleBackgroundData(""),
-                () => new BattleBackgroundPanel(), (a) => a.Init(dlgOpen, this), true);
+                () => new BattleBackgroundPanel(), (a) => a.Init(dlgOpen, this, GetPalette), true);
         }
 
         private void Renderer_Click(int rendererIndex)
@@ -197,7 +197,7 @@ namespace FrogForge.Editors
             picTileImage.Image = data.Image.Clone();
             rdbPlt1.Checked = data.Palette == 1;
             rdbPlt2.Checked = data.Palette != 1;
-            picTileImage.Palette = CurrentTiles[index].Palette == 1 ? plt1.Data : plt2.Data;
+            picTileImage.Palette = GetPalette(CurrentTiles[index].Palette);
             TileDirty = false;
         }
 
@@ -238,11 +238,11 @@ namespace FrogForge.Editors
 
         private void Render(int index)
         {
-            Renderers[index].BackgroundImage = CurrentTiles[index].Image.ToBitmap(CurrentTiles[index].Palette == 1 ? plt1.Data : plt2.Data);
+            Renderers[index].BackgroundImage = CurrentTiles[index].Image.ToBitmap(GetPalette(CurrentTiles[index].Palette));
             Renderers[index].Image = index == SelectedIndex ? Properties.Resources.Cursor : null; // I don't know why, but it doesn't work without this line. Weird.
         }
 
-        private void Render(Palette palette = null)
+        private void Render()
         {
             for (int i = 0; i < CurrentTiles.Count; i++)
             {
@@ -252,6 +252,12 @@ namespace FrogForge.Editors
             {
                 Renderers[i].BackgroundImage = null;
             }
+        }
+
+        private void UpdatePalette(Palette palette = null)
+        {
+            Render();
+            bblBattleBackgrounds.Datas = bblBattleBackgrounds.Datas;
         }
 
         private void ckbWall_CheckedChanged(object sender, EventArgs e)
@@ -341,6 +347,11 @@ namespace FrogForge.Editors
                 }
             }
             Cursor.Current = Cursors.Default;
+        }
+
+        private Palette GetPalette(int palette)
+        {
+            return palette == 1 ? plt1.Data : plt2.Data;
         }
     }
 }

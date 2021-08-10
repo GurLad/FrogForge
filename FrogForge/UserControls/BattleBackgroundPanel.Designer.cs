@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            FrogForge.Palette palette1 = new FrogForge.Palette();
-            FrogForge.Palette palette2 = new FrogForge.Palette();
+            FrogForge.Palette palette5 = new FrogForge.Palette();
+            FrogForge.Palette palette6 = new FrogForge.Palette();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.picLayer1 = new FrogForge.UserControls.PartialPalettedPicturebox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -47,38 +47,46 @@
             this.groupBox3.Controls.Add(this.picLayer1);
             this.groupBox3.Location = new System.Drawing.Point(0, 51);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(141, 197);
+            this.groupBox3.Size = new System.Drawing.Size(145, 201);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Layer 1";
             // 
             // picLayer1
             // 
+            this.picLayer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.picLayer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.picLayer1.Image = null;
             this.picLayer1.Location = new System.Drawing.Point(6, 19);
             this.picLayer1.Name = "picLayer1";
-            this.picLayer1.Palette = palette1;
-            this.picLayer1.Size = new System.Drawing.Size(128, 168);
+            this.picLayer1.Palette = palette5;
+            this.picLayer1.Size = new System.Drawing.Size(132, 172);
             this.picLayer1.TabIndex = 0;
             this.picLayer1.TabStop = false;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.picLayer2);
-            this.groupBox1.Location = new System.Drawing.Point(147, 51);
+            this.groupBox1.Location = new System.Drawing.Point(151, 51);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(141, 197);
+            this.groupBox1.Size = new System.Drawing.Size(145, 201);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Layer 2";
             // 
             // picLayer2
             // 
+            this.picLayer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.picLayer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.picLayer2.Image = null;
             this.picLayer2.Location = new System.Drawing.Point(6, 19);
             this.picLayer2.Name = "picLayer2";
-            this.picLayer2.Palette = palette2;
-            this.picLayer2.Size = new System.Drawing.Size(128, 168);
+            this.picLayer2.Palette = palette6;
+            this.picLayer2.Size = new System.Drawing.Size(132, 172);
             this.picLayer2.TabIndex = 0;
             this.picLayer2.TabStop = false;
             // 
@@ -107,7 +115,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
             this.Name = "BattleBackgroundPanel";
-            this.Size = new System.Drawing.Size(288, 248);
+            this.Size = new System.Drawing.Size(296, 252);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLayer1)).EndInit();
             this.groupBox1.ResumeLayout(false);

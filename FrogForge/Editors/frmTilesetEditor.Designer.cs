@@ -84,7 +84,7 @@
             this.btnDelete});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(779, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(789, 25);
             this.toolStrip1.TabIndex = 18;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -455,7 +455,7 @@
             this.groupBox2.Controls.Add(this.bblBattleBackgrounds);
             this.groupBox2.Location = new System.Drawing.Point(430, 54);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(337, 303);
+            this.groupBox2.Size = new System.Drawing.Size(347, 303);
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Battle backgrounds data";
@@ -467,14 +467,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bblBattleBackgrounds.Location = new System.Drawing.Point(6, 19);
             this.bblBattleBackgrounds.Name = "bblBattleBackgrounds";
-            this.bblBattleBackgrounds.Size = new System.Drawing.Size(325, 278);
+            this.bblBattleBackgrounds.Size = new System.Drawing.Size(335, 278);
             this.bblBattleBackgrounds.TabIndex = 1;
             // 
             // frmTilesetEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(779, 369);
+            this.ClientSize = new System.Drawing.Size(789, 369);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtName);

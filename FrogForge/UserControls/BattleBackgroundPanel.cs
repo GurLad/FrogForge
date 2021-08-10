@@ -23,7 +23,9 @@ namespace FrogForge.UserControls
             set
             {
                 picLayer1.Image = value.Layer1;
+                picLayer1.PostOnClick?.Invoke();
                 picLayer2.Image = value.Layer2;
+                picLayer2.PostOnClick?.Invoke();
                 txtTileName.Text = value.Name;
             }
         }
@@ -33,10 +35,12 @@ namespace FrogForge.UserControls
             InitializeComponent();
         }
 
-        public void Init(OpenFileDialog dlgOpen, frmBaseEditor editor)
+        public void Init(OpenFileDialog dlgOpen, frmBaseEditor editor, Func<int, Palette> setPalette)
         {
             picLayer1.Init(dlgOpen, editor);
+            picLayer1.PostOnClick = () => picLayer1.Palette = setPalette(1);
             picLayer2.Init(dlgOpen, editor);
+            picLayer2.PostOnClick = () => picLayer2.Palette = setPalette(2);
             txtTileName.TextChanged += (s, e) => editor.Dirty = true;
         }
     }
