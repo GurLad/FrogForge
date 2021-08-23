@@ -51,7 +51,14 @@
             this.btnDataExport = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnCGEditor = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -75,9 +82,9 @@
             // 
             // btnLevelEditor
             // 
-            this.btnLevelEditor.Location = new System.Drawing.Point(12, 64);
+            this.btnLevelEditor.Location = new System.Drawing.Point(6, 19);
             this.btnLevelEditor.Name = "btnLevelEditor";
-            this.btnLevelEditor.Size = new System.Drawing.Size(289, 23);
+            this.btnLevelEditor.Size = new System.Drawing.Size(277, 23);
             this.btnLevelEditor.TabIndex = 2;
             this.btnLevelEditor.Text = "Map editor";
             this.btnLevelEditor.UseVisualStyleBackColor = true;
@@ -85,9 +92,9 @@
             // 
             // btnConversationEditor
             // 
-            this.btnConversationEditor.Location = new System.Drawing.Point(12, 151);
+            this.btnConversationEditor.Location = new System.Drawing.Point(6, 19);
             this.btnConversationEditor.Name = "btnConversationEditor";
-            this.btnConversationEditor.Size = new System.Drawing.Size(289, 23);
+            this.btnConversationEditor.Size = new System.Drawing.Size(277, 23);
             this.btnConversationEditor.TabIndex = 2;
             this.btnConversationEditor.Text = "Conversation editor";
             this.btnConversationEditor.UseVisualStyleBackColor = true;
@@ -95,19 +102,20 @@
             // 
             // lblVersion
             // 
+            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("3x5", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(218, 235);
+            this.lblVersion.Location = new System.Drawing.Point(218, 339);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(83, 6);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.5.5.1 10.08.2021";
+            this.lblVersion.Text = "V.0.5.5.2 23.08.2021";
             // 
             // btnClassEditor
             // 
-            this.btnClassEditor.Location = new System.Drawing.Point(12, 180);
+            this.btnClassEditor.Location = new System.Drawing.Point(6, 19);
             this.btnClassEditor.Name = "btnClassEditor";
-            this.btnClassEditor.Size = new System.Drawing.Size(289, 23);
+            this.btnClassEditor.Size = new System.Drawing.Size(277, 23);
             this.btnClassEditor.TabIndex = 2;
             this.btnClassEditor.Text = "Class + Unit editor";
             this.btnClassEditor.UseVisualStyleBackColor = true;
@@ -115,9 +123,9 @@
             // 
             // btnPortraitEditor
             // 
-            this.btnPortraitEditor.Location = new System.Drawing.Point(12, 209);
+            this.btnPortraitEditor.Location = new System.Drawing.Point(6, 48);
             this.btnPortraitEditor.Name = "btnPortraitEditor";
-            this.btnPortraitEditor.Size = new System.Drawing.Size(289, 23);
+            this.btnPortraitEditor.Size = new System.Drawing.Size(277, 23);
             this.btnPortraitEditor.TabIndex = 2;
             this.btnPortraitEditor.Text = "Portrait editor";
             this.btnPortraitEditor.UseVisualStyleBackColor = true;
@@ -127,7 +135,7 @@
             // 
             this.lblVoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblVoice.AutoSize = true;
-            this.lblVoice.Location = new System.Drawing.Point(12, 247);
+            this.lblVoice.Location = new System.Drawing.Point(12, 351);
             this.lblVoice.Name = "lblVoice";
             this.lblVoice.Size = new System.Drawing.Size(81, 13);
             this.lblVoice.TabIndex = 8;
@@ -139,7 +147,7 @@
             this.cmbVoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmbVoice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVoice.FormattingEnabled = true;
-            this.cmbVoice.Location = new System.Drawing.Point(99, 244);
+            this.cmbVoice.Location = new System.Drawing.Point(99, 348);
             this.cmbVoice.Name = "cmbVoice";
             this.cmbVoice.Size = new System.Drawing.Size(202, 21);
             this.cmbVoice.TabIndex = 7;
@@ -148,9 +156,9 @@
             // 
             // btnLevelMetadataEditor
             // 
-            this.btnLevelMetadataEditor.Location = new System.Drawing.Point(12, 122);
+            this.btnLevelMetadataEditor.Location = new System.Drawing.Point(6, 77);
             this.btnLevelMetadataEditor.Name = "btnLevelMetadataEditor";
-            this.btnLevelMetadataEditor.Size = new System.Drawing.Size(289, 23);
+            this.btnLevelMetadataEditor.Size = new System.Drawing.Size(277, 23);
             this.btnLevelMetadataEditor.TabIndex = 2;
             this.btnLevelMetadataEditor.Text = "Level metadata editor";
             this.btnLevelMetadataEditor.UseVisualStyleBackColor = true;
@@ -158,9 +166,9 @@
             // 
             // btnTilemapEditor
             // 
-            this.btnTilemapEditor.Location = new System.Drawing.Point(12, 93);
+            this.btnTilemapEditor.Location = new System.Drawing.Point(6, 48);
             this.btnTilemapEditor.Name = "btnTilemapEditor";
-            this.btnTilemapEditor.Size = new System.Drawing.Size(289, 23);
+            this.btnTilemapEditor.Size = new System.Drawing.Size(277, 23);
             this.btnTilemapEditor.TabIndex = 2;
             this.btnTilemapEditor.Text = "Tileset editor";
             this.btnTilemapEditor.UseVisualStyleBackColor = true;
@@ -247,29 +255,71 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("3x5", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 235);
+            this.label3.Location = new System.Drawing.Point(12, 339);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 6);
             this.label3.TabIndex = 4;
             this.label3.Text = "By Gur Ladizhinsky";
             // 
+            // btnCGEditor
+            // 
+            this.btnCGEditor.Location = new System.Drawing.Point(6, 48);
+            this.btnCGEditor.Name = "btnCGEditor";
+            this.btnCGEditor.Size = new System.Drawing.Size(277, 23);
+            this.btnCGEditor.TabIndex = 2;
+            this.btnCGEditor.Text = "CG Editor";
+            this.btnCGEditor.UseVisualStyleBackColor = true;
+            this.btnCGEditor.Click += new System.EventHandler(this.btnCGEditor_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnLevelEditor);
+            this.groupBox1.Controls.Add(this.btnLevelMetadataEditor);
+            this.groupBox1.Controls.Add(this.btnTilemapEditor);
+            this.groupBox1.Location = new System.Drawing.Point(12, 64);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(289, 106);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Maps && Levels";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnConversationEditor);
+            this.groupBox2.Controls.Add(this.btnCGEditor);
+            this.groupBox2.Location = new System.Drawing.Point(12, 259);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(289, 77);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Events";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnClassEditor);
+            this.groupBox3.Controls.Add(this.btnPortraitEditor);
+            this.groupBox3.Location = new System.Drawing.Point(12, 176);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(289, 77);
+            this.groupBox3.TabIndex = 12;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Classes && Units";
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(313, 277);
+            this.ClientSize = new System.Drawing.Size(313, 381);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblVoice);
             this.Controls.Add(this.cmbVoice);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblVersion);
-            this.Controls.Add(this.btnTilemapEditor);
-            this.Controls.Add(this.btnLevelMetadataEditor);
-            this.Controls.Add(this.btnPortraitEditor);
-            this.Controls.Add(this.btnClassEditor);
-            this.Controls.Add(this.btnConversationEditor);
-            this.Controls.Add(this.btnLevelEditor);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
@@ -283,6 +333,9 @@
             this.Load += new System.EventHandler(this.frmMenu_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,5 +365,9 @@
         private System.Windows.Forms.ToolStripMenuItem btnDataExport;
         private System.Windows.Forms.ToolStripMenuItem btnAbout;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnCGEditor;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

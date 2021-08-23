@@ -43,11 +43,15 @@ namespace FrogForge.Editors
                 picCharactersBG.Palette = p;
                 UpdateCharacterPreview();
             });
+            fgpCharactersFGPalette.Init(this, (p) =>
+            {
+                picCharactersFG.Palette = p;
+                UpdateCharacterPreview();
+            });
             Dirty = false;
             // Misc
             cmbVoiceType.SelectedIndex = 0;
             dlgOpen.Filter = "Image files|*.gif;*.png";
-            trkFGPalette_Scroll(sender, e);
             if (WorkingDirectory.CheckFileExist("GenericPortraitsGlobalData.json"))
             {
                 GlobalData = WorkingDirectory.LoadFile("GenericPortraitsGlobalData", "", ".json").JsonToObject<GenericPortraitsGlobalData>();
@@ -58,14 +62,6 @@ namespace FrogForge.Editors
             nudPitch.ValueChanged += DirtyFunc;
             cmbVoiceType.SelectedIndexChanged += DirtyFunc;
             Dirty = false;
-        }
-
-        private void trkFGPalette_Scroll(object sender, EventArgs e)
-        {
-            picCharactersFGPalette.BackColor = Palette.BaseSpritePalettes[trkCharactersFGPalette.Value][1];
-            picCharactersFG.Palette = Palette.BaseSpritePalettes[trkCharactersFGPalette.Value];
-            UpdateCharacterPreview();
-            Dirty = true;
         }
 
         private void UpdateCharacterPreview()
@@ -86,7 +82,7 @@ namespace FrogForge.Editors
         private PortraitData CharacterDataFromUI(PortraitData data)
         {
             data.Name = txtCharactersName.Text;
-            data.ForegroundColorID = trkCharactersFGPalette.Value;
+            data.ForegroundColorID = fgpCharactersFGPalette.Data;
             data.BackgroundColor = pltCharactersBGPalette.Data;
             data.Background = picCharactersBG.Image;
             data.Foreground = picCharactersFG.Image;
@@ -100,14 +96,13 @@ namespace FrogForge.Editors
         private void CharacterDataToUI(PortraitData data)
         {
             txtCharactersName.Text = data.Name;
-            trkCharactersFGPalette.Value = data.ForegroundColorID;
-            picCharactersFGPalette.BackColor = Palette.BaseSpritePalettes[data.ForegroundColorID][1];
+            fgpCharactersFGPalette.Data = data.ForegroundColorID;
             pltCharactersBGPalette.Data = data.BackgroundColor;
             WorkingDirectory.CreateDirectory(@"Images\Portraits\" + data.Name);
             picCharactersBG.Image = data.Background ?? new PalettedImage(WorkingDirectory.LoadImage(@"Portraits\" + data.Name + @"\B") ?? new Bitmap(1, 1));
             picCharactersBG.Palette = data.BackgroundColor;
             picCharactersFG.Image = data.Foreground ?? new PalettedImage(WorkingDirectory.LoadImage(@"Portraits\" + data.Name + @"\F") ?? new Bitmap(1, 1));
-            picCharactersFG.Palette = Palette.BaseSpritePalettes[trkCharactersFGPalette.Value];
+            picCharactersFG.Palette = Palette.BaseSpritePalettes[fgpCharactersFGPalette.Data];
             nudPitch.Value = (decimal)data.Voice.Pitch;
             cmbVoiceType.SelectedIndex = (int)data.Voice.VoiceType;
             UpdateCharacterPreview();

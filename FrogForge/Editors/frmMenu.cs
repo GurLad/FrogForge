@@ -122,6 +122,15 @@ namespace FrogForge.Editors
             tilemapEditor.ShowDialog(this);
         }
 
+        private void btnCGEditor_Click(object sender, EventArgs e)
+        {
+            frmCGEditor cgEditor = new frmCGEditor();
+            cgEditor.DataDirectory = DataDirectory;
+            cgEditor.WorkingDirectory = WorkingDirectory;
+            VoiceAssist.Say("Open");
+            cgEditor.ShowDialog(this);
+        }
+
         private void btnDataImport_Click(object sender, EventArgs e)
         {
             if (dlgDataImport.ShowDialog(this) == DialogResult.OK)

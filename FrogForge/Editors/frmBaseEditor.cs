@@ -59,6 +59,7 @@ namespace FrogForge.Editors
             KeyPreview = true;
             KeyDown += KeyDownEvent;
             DirtyFunc = (s, e1) => Dirty = true;
+            dlgOpen.Filter = "Image files|*.gif;*.png";
         }
 
         public bool HasUnsavedChanges()

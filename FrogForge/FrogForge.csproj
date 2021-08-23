@@ -127,6 +127,7 @@
     <Compile Include="Datas\BasePortraitData.cs" />
     <Compile Include="Datas\BattleAnimationData.cs" />
     <Compile Include="Datas\BattleBackgroundData.cs" />
+    <Compile Include="Datas\CGData.cs" />
     <Compile Include="Datas\GenericPortraitData.cs" />
     <Compile Include="Datas\GenericPortraitsGlobalData.cs" />
     <Compile Include="Datas\CharacterVoice.cs" />
@@ -134,6 +135,12 @@
     <Compile Include="Datas\LevelMetadata.cs" />
     <Compile Include="Datas\MapData.cs" />
     <Compile Include="Datas\MapEventData.cs" />
+    <Compile Include="Editors\frmCGEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\frmCGEditor.Designer.cs">
+      <DependentUpon>frmCGEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="PartialPalettedImage.cs" />
     <Compile Include="Datas\TeamData.cs" />
     <Compile Include="Datas\TileData.cs" />
@@ -164,6 +171,12 @@
     </Compile>
     <Compile Include="UserControls\BattleBackgroundPanel.Designer.cs">
       <DependentUpon>BattleBackgroundPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ForegroundPaletteSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ForegroundPaletteSelector.Designer.cs">
+      <DependentUpon>ForegroundPaletteSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\PalettedPicturebox.cs">
       <SubType>Component</SubType>
@@ -282,6 +295,9 @@
     </Compile>
     <Compile Include="VoiceAssist.cs" />
     <Compile Include="Weapon.cs" />
+    <EmbeddedResource Include="Editors\frmCGEditor.resx">
+      <DependentUpon>frmCGEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Editors\frmLevelMetadataEditor.resx">
       <DependentUpon>frmLevelMetadataEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -302,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ConversationPlayer.resx">
       <DependentUpon>ConversationPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ForegroundPaletteSelector.resx">
+      <DependentUpon>ForegroundPaletteSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ListDataEditor.resx">
       <DependentUpon>ListDataEditor.cs</DependentUpon>

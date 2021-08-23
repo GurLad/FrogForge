@@ -28,6 +28,7 @@ namespace FrogForge.UserControls
                 {
                     BGPaletteSelectors[i].BackColor = value[i];
                 }
+                OnPaletteChange?.Invoke(Data);
             }
         }
         [Browsable(true)]

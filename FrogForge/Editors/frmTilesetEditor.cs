@@ -81,7 +81,7 @@ namespace FrogForge.Editors
             ckbHigh.CheckedChanged += tileDirtyFunc;
             ckbWall.CheckedChanged += tileDirtyFunc;
             // Init stuff
-            dlgOpenTiles.Filter = "Image files|*.png;*.gif;*.jpg";
+            dlgOpenTiles.Filter = "Image files|*.png;*.gif";
             dlgOpenTiles.Multiselect = true;
             SelectedIndex = -1;
             lstTilemaps.Init(this, () => new TilesetData(), TilesetDataFromUI, TilesetDataToUI, "Tilesets");

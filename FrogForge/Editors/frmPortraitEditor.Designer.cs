@@ -39,9 +39,8 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.picCharactersFG = new FrogForge.UserControls.PalettedPicturebox();
             this.grpData = new System.Windows.Forms.GroupBox();
+            this.fgpCharactersFGPalette = new FrogForge.UserControls.ForegroundPaletteSelector();
             this.pltCharactersBGPalette = new FrogForge.UserControls.PalettePanel();
-            this.picCharactersFGPalette = new System.Windows.Forms.PictureBox();
-            this.trkCharactersFGPalette = new System.Windows.Forms.TrackBar();
             this.label3 = new System.Windows.Forms.Label();
             this.txtCharactersName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -89,8 +88,6 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCharactersFG)).BeginInit();
             this.grpData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picCharactersFGPalette)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trkCharactersFGPalette)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPitch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkPitch)).BeginInit();
@@ -186,9 +183,8 @@
             // 
             // grpData
             // 
+            this.grpData.Controls.Add(this.fgpCharactersFGPalette);
             this.grpData.Controls.Add(this.pltCharactersBGPalette);
-            this.grpData.Controls.Add(this.picCharactersFGPalette);
-            this.grpData.Controls.Add(this.trkCharactersFGPalette);
             this.grpData.Controls.Add(this.label3);
             this.grpData.Controls.Add(this.txtCharactersName);
             this.grpData.Controls.Add(this.label2);
@@ -200,34 +196,22 @@
             this.grpData.TabStop = false;
             this.grpData.Text = "Data";
             // 
+            // fgpCharactersFGPalette
+            // 
+            this.fgpCharactersFGPalette.BackColor = System.Drawing.Color.White;
+            this.fgpCharactersFGPalette.Data = 0;
+            this.fgpCharactersFGPalette.Location = new System.Drawing.Point(73, 45);
+            this.fgpCharactersFGPalette.Name = "fgpCharactersFGPalette";
+            this.fgpCharactersFGPalette.Size = new System.Drawing.Size(137, 20);
+            this.fgpCharactersFGPalette.TabIndex = 2;
+            // 
             // pltCharactersBGPalette
             // 
             this.pltCharactersBGPalette.Location = new System.Drawing.Point(73, 71);
             this.pltCharactersBGPalette.Name = "pltCharactersBGPalette";
             this.pltCharactersBGPalette.Size = new System.Drawing.Size(137, 20);
+            this.pltCharactersBGPalette.SpritePalette = false;
             this.pltCharactersBGPalette.TabIndex = 0;
-            // 
-            // picCharactersFGPalette
-            // 
-            this.picCharactersFGPalette.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picCharactersFGPalette.Location = new System.Drawing.Point(190, 45);
-            this.picCharactersFGPalette.Name = "picCharactersFGPalette";
-            this.picCharactersFGPalette.Size = new System.Drawing.Size(20, 20);
-            this.picCharactersFGPalette.TabIndex = 3;
-            this.picCharactersFGPalette.TabStop = false;
-            // 
-            // trkCharactersFGPalette
-            // 
-            this.trkCharactersFGPalette.AutoSize = false;
-            this.trkCharactersFGPalette.BackColor = System.Drawing.Color.White;
-            this.trkCharactersFGPalette.LargeChange = 1;
-            this.trkCharactersFGPalette.Location = new System.Drawing.Point(73, 45);
-            this.trkCharactersFGPalette.Maximum = 3;
-            this.trkCharactersFGPalette.Name = "trkCharactersFGPalette";
-            this.trkCharactersFGPalette.Size = new System.Drawing.Size(111, 20);
-            this.trkCharactersFGPalette.TabIndex = 2;
-            this.trkCharactersFGPalette.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.trkCharactersFGPalette.Scroll += new System.EventHandler(this.trkFGPalette_Scroll);
             // 
             // label3
             // 
@@ -451,7 +435,7 @@
             this.tbpGenerics.Location = new System.Drawing.Point(4, 22);
             this.tbpGenerics.Name = "tbpGenerics";
             this.tbpGenerics.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpGenerics.Size = new System.Drawing.Size(569, 291);
+            this.tbpGenerics.Size = new System.Drawing.Size(344, 291);
             this.tbpGenerics.TabIndex = 1;
             this.tbpGenerics.Text = "Generic Portraits";
             this.tbpGenerics.UseVisualStyleBackColor = true;
@@ -685,8 +669,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picCharactersFG)).EndInit();
             this.grpData.ResumeLayout(false);
             this.grpData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picCharactersFGPalette)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trkCharactersFGPalette)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPitch)).EndInit();
@@ -726,8 +708,6 @@
         private System.Windows.Forms.TextBox txtCharactersName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TrackBar trkCharactersFGPalette;
-        private System.Windows.Forms.PictureBox picCharactersFGPalette;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnSave;
@@ -764,5 +744,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown nudPitch;
         private System.Windows.Forms.Button btnVoicePlay;
+        private UserControls.ForegroundPaletteSelector fgpCharactersFGPalette;
     }
 }

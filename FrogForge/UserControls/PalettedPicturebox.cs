@@ -67,13 +67,14 @@ namespace FrogForge.UserControls
             }
         }
 
-        public void Init(OpenFileDialog dlgOpen, frmBaseEditor editor)
+        public void Init(OpenFileDialog dlgOpen, frmBaseEditor editor, Action postOnClick = null)
         {
             MouseUp += OnClick;
             this.dlgOpen = dlgOpen;
             Editor = editor;
             tmrAnimate.Interval = 400;
             tmrAnimate.Tick += tmrAnimateTick;
+            PostOnClick = postOnClick;
             SizeMode = PictureBoxSizeMode.Normal;
         }
 
