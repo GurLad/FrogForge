@@ -25,22 +25,10 @@ namespace FrogForge.Datas
         public void LoadImages(FilesController workingDirectory)
         {
             workingDirectory.CreateDirectory(@"Images\CGs\" + Name);
-            if (BGImage1 == null)
-            {
-                BGImage1 = PartialPalettedImage.FromFile(workingDirectory, @"CGs\" + Name + @"\BG1");
-            }
-            if (BGImage2 == null)
-            {
-                BGImage2 = PartialPalettedImage.FromFile(workingDirectory, @"CGs\" + Name + @"\BG2");
-            }
-            if (FGImage1 == null)
-            {
-                FGImage1 = PartialPalettedImage.FromFile(workingDirectory, @"CGs\" + Name + @"\FG1");
-            }
-            if (FGImage2 == null)
-            {
-                FGImage2 = PartialPalettedImage.FromFile(workingDirectory, @"CGs\" + Name + @"\FG2");
-            }
+            BGImage1 = BGImage1 ?? PartialPalettedImage.FromFile(workingDirectory, @"CGs\" + Name + @"\BG1");
+            BGImage2 = BGImage2 ?? PartialPalettedImage.FromFile(workingDirectory, @"CGs\" + Name + @"\BG2");
+            FGImage1 = FGImage1 ?? PartialPalettedImage.FromFile(workingDirectory, @"CGs\" + Name + @"\FG1");
+            FGImage2 = FGImage2 ?? PartialPalettedImage.FromFile(workingDirectory, @"CGs\" + Name + @"\FG2");
         }
     }
 }

@@ -73,7 +73,7 @@ namespace FrogForge.Editors
             frmMapEditor levelEditor = new frmMapEditor();
             levelEditor.DataDirectory = DataDirectory;
             levelEditor.WorkingDirectory = WorkingDirectory;
-            VoiceAssist.Say("Open");
+            VoiceAssist.Say("New");
             levelEditor.ShowDialog(this);
         }
 
@@ -82,7 +82,7 @@ namespace FrogForge.Editors
             frmConversationEditor conversationEditor = new frmConversationEditor();
             conversationEditor.DataDirectory = DataDirectory;
             conversationEditor.WorkingDirectory = WorkingDirectory;
-            VoiceAssist.Say("Open");
+            VoiceAssist.Say("New");
             conversationEditor.ShowDialog(this);
         }
 
@@ -91,7 +91,7 @@ namespace FrogForge.Editors
             frmClassEditor classEditor = new frmClassEditor();
             classEditor.DataDirectory = DataDirectory;
             classEditor.WorkingDirectory = WorkingDirectory;
-            VoiceAssist.Say("Open");
+            VoiceAssist.Say("New");
             classEditor.ShowDialog(this);
         }
 
@@ -100,7 +100,7 @@ namespace FrogForge.Editors
             frmPortraitEditor portraitEditor = new frmPortraitEditor();
             portraitEditor.DataDirectory = DataDirectory;
             portraitEditor.WorkingDirectory = WorkingDirectory;
-            VoiceAssist.Say("Open");
+            VoiceAssist.Say("New");
             portraitEditor.ShowDialog(this);
         }
 
@@ -109,7 +109,7 @@ namespace FrogForge.Editors
             frmLevelMetadataEditor levelMetadataEditor = new frmLevelMetadataEditor();
             levelMetadataEditor.DataDirectory = DataDirectory;
             levelMetadataEditor.WorkingDirectory = WorkingDirectory;
-            VoiceAssist.Say("Open");
+            VoiceAssist.Say("New");
             levelMetadataEditor.ShowDialog(this);
         }
 
@@ -118,7 +118,7 @@ namespace FrogForge.Editors
             frmTilesetEditor tilemapEditor = new frmTilesetEditor();
             tilemapEditor.DataDirectory = DataDirectory;
             tilemapEditor.WorkingDirectory = WorkingDirectory;
-            VoiceAssist.Say("Open");
+            VoiceAssist.Say("New");
             tilemapEditor.ShowDialog(this);
         }
 
@@ -127,7 +127,7 @@ namespace FrogForge.Editors
             frmCGEditor cgEditor = new frmCGEditor();
             cgEditor.DataDirectory = DataDirectory;
             cgEditor.WorkingDirectory = WorkingDirectory;
-            VoiceAssist.Say("Open");
+            VoiceAssist.Say("New");
             cgEditor.ShowDialog(this);
         }
 

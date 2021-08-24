@@ -80,6 +80,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.trkGenericsVoiceType = new System.Windows.Forms.TrackBar();
+            this.label9 = new System.Windows.Forms.Label();
+            this.fgpCharacterAccent = new FrogForge.UserControls.ForegroundPaletteSelector();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCharactersBG)).BeginInit();
@@ -110,10 +112,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.Controls.Add(this.groupBox6);
             this.groupBox1.Controls.Add(this.groupBox4);
-            this.groupBox1.Location = new System.Drawing.Point(126, 103);
+            this.groupBox1.Location = new System.Drawing.Point(126, 129);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(216, 102);
             this.groupBox1.TabIndex = 14;
@@ -183,15 +186,19 @@
             // 
             // grpData
             // 
+            this.grpData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.grpData.Controls.Add(this.fgpCharacterAccent);
             this.grpData.Controls.Add(this.fgpCharactersFGPalette);
             this.grpData.Controls.Add(this.pltCharactersBGPalette);
             this.grpData.Controls.Add(this.label3);
+            this.grpData.Controls.Add(this.label9);
             this.grpData.Controls.Add(this.txtCharactersName);
             this.grpData.Controls.Add(this.label2);
             this.grpData.Controls.Add(this.label1);
             this.grpData.Location = new System.Drawing.Point(126, 0);
             this.grpData.Name = "grpData";
-            this.grpData.Size = new System.Drawing.Size(216, 97);
+            this.grpData.Size = new System.Drawing.Size(216, 123);
             this.grpData.TabIndex = 15;
             this.grpData.TabStop = false;
             this.grpData.Text = "Data";
@@ -249,15 +256,14 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox3.Controls.Add(this.btnVoicePlay);
             this.groupBox3.Controls.Add(this.nudPitch);
             this.groupBox3.Controls.Add(this.cmbVoiceType);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.trkPitch);
             this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Location = new System.Drawing.Point(126, 211);
+            this.groupBox3.Location = new System.Drawing.Point(126, 237);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(216, 79);
             this.groupBox3.TabIndex = 16;
@@ -398,7 +404,7 @@
             this.tbcMain.Location = new System.Drawing.Point(12, 28);
             this.tbcMain.Name = "tbcMain";
             this.tbcMain.SelectedIndex = 0;
-            this.tbcMain.Size = new System.Drawing.Size(352, 317);
+            this.tbcMain.Size = new System.Drawing.Size(352, 343);
             this.tbcMain.TabIndex = 10;
             this.tbcMain.SelectedIndexChanged += new System.EventHandler(this.tbcMain_SelectedIndexChanged);
             // 
@@ -411,7 +417,7 @@
             this.tbpPortraits.Location = new System.Drawing.Point(4, 22);
             this.tbpPortraits.Name = "tbpPortraits";
             this.tbpPortraits.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpPortraits.Size = new System.Drawing.Size(344, 291);
+            this.tbpPortraits.Size = new System.Drawing.Size(344, 317);
             this.tbpPortraits.TabIndex = 0;
             this.tbpPortraits.Text = "Character Portraits";
             this.tbpPortraits.UseVisualStyleBackColor = true;
@@ -423,7 +429,7 @@
             this.lstCharacters.FormattingEnabled = true;
             this.lstCharacters.Location = new System.Drawing.Point(0, 0);
             this.lstCharacters.Name = "lstCharacters";
-            this.lstCharacters.Size = new System.Drawing.Size(120, 290);
+            this.lstCharacters.Size = new System.Drawing.Size(120, 316);
             this.lstCharacters.TabIndex = 3;
             // 
             // tbpGenerics
@@ -645,11 +651,29 @@
             this.trkGenericsVoiceType.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trkGenericsVoiceType.ValueChanged += new System.EventHandler(this.trkGenericsVoiceType_ValueChanged);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 101);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(44, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Accent:";
+            // 
+            // fgpCharacterAccent
+            // 
+            this.fgpCharacterAccent.BackColor = System.Drawing.Color.White;
+            this.fgpCharacterAccent.Data = 0;
+            this.fgpCharacterAccent.Location = new System.Drawing.Point(73, 97);
+            this.fgpCharacterAccent.Name = "fgpCharacterAccent";
+            this.fgpCharacterAccent.Size = new System.Drawing.Size(137, 20);
+            this.fgpCharacterAccent.TabIndex = 2;
+            // 
             // frmPortraitEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(377, 357);
+            this.ClientSize = new System.Drawing.Size(377, 383);
             this.Controls.Add(this.tbcMain);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -745,5 +769,7 @@
         private System.Windows.Forms.NumericUpDown nudPitch;
         private System.Windows.Forms.Button btnVoicePlay;
         private UserControls.ForegroundPaletteSelector fgpCharactersFGPalette;
+        private UserControls.ForegroundPaletteSelector fgpCharacterAccent;
+        private System.Windows.Forms.Label label9;
     }
 }

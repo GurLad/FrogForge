@@ -21,24 +21,15 @@ namespace FrogForge.Datas
             workingDirectory.CreateDirectory(@"Images\BattleBackgrounds\" + Name);
             for (int i = 0; i < Tiles.Count; i++)
             {
-                if (Tiles[i].Image == null)
-                {
-                    Tiles[i].Image =
-                        PalettedImage.FromFile(workingDirectory, @"Tilesets\" + Name + @"\" + i);
-                }
+                Tiles[i].Image = Tiles[i].Image ??
+                    PalettedImage.FromFile(workingDirectory, @"Tilesets\" + Name + @"\" + i);
             }
             for (int i = 0; i < BattleBackgrounds.Count; i++)
             {
-                if (BattleBackgrounds[i].Layer1 == null)
-                {
-                    BattleBackgrounds[i].Layer1 =
-                        PartialPalettedImage.FromFile(workingDirectory, @"BattleBackgrounds\" + Name + @"\" + BattleBackgrounds[i].Name + "1");
-                }
-                if (BattleBackgrounds[i].Layer2 == null)
-                {
-                    BattleBackgrounds[i].Layer2 =
-                        PartialPalettedImage.FromFile(workingDirectory, @"BattleBackgrounds\" + Name + @"\" + BattleBackgrounds[i].Name + "2");
-                }
+                BattleBackgrounds[i].Layer1 = BattleBackgrounds[i].Layer1 ??
+                    PartialPalettedImage.FromFile(workingDirectory, @"BattleBackgrounds\" + Name + @"\" + BattleBackgrounds[i].Name + "1");
+                BattleBackgrounds[i].Layer2 = BattleBackgrounds[i].Layer2 ??
+                    PartialPalettedImage.FromFile(workingDirectory, @"BattleBackgrounds\" + Name + @"\" + BattleBackgrounds[i].Name + "2");
             }
         }
     }

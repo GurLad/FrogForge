@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Utils;
+using FrogForge.Datas;
 
 namespace FrogForge.UserControls
 {
@@ -18,8 +19,7 @@ namespace FrogForge.UserControls
         private Action<bool> SetPreviewMode;
         private int CharsInLine = 31;
         private List<string> PreviewLines;
-        private Dictionary<string, PalettedImage> PortraitsFG = new Dictionary<string, PalettedImage>();
-        private Dictionary<string, PalettedImage> PortraitsBG = new Dictionary<string, PalettedImage>();
+        private List<PortraitData> Portraits;
         private string TargetLine = "";
         private int CurrentChar;
 
@@ -33,6 +33,7 @@ namespace FrogForge.UserControls
             WorkingDirectory = workingDirectory;
             CharsInLine = charsInLine;
             SetPreviewMode = setPreviewMode;
+            Portraits = WorkingDirectory.LoadFile("Portraits", "", ".json").JsonToObject<List<PortraitData>>();
         }
 
         public void Play(string text, bool removeParts = true)
@@ -76,22 +77,19 @@ namespace FrogForge.UserControls
                 picPreviewSpeaker.Image = null;
                 return;
             }
-            if (!WorkingDirectory.DirectoryExists(@"\Images\Portraits\" + name))
+            PortraitData portrait = Portraits.Find(a => a.Name == name);
+            if (portrait == null)
             {
                 picPreviewSpeaker.BackgroundImage = null;
                 picPreviewSpeaker.Image = null;
                 return;
             }
-            if (!PortraitsBG.ContainsKey(name))
-            {
-                PortraitsBG.Add(name, new PalettedImage(WorkingDirectory.LoadImage(@"Portraits\" + name + @"\B") ?? new Bitmap(1, 1)));
-                PortraitsFG.Add(name, new PalettedImage(WorkingDirectory.LoadImage(@"Portraits\" + name + @"\F") ?? new Bitmap(1, 1)));
-            }
-            picPreviewSpeaker.Image = PortraitsBG[name];
-            picPreviewSpeaker.Palette = Palette.BasePalette;
+            portrait.LoadImages(WorkingDirectory);
+            picPreviewSpeaker.Image = portrait.Background;
+            picPreviewSpeaker.Palette = portrait.BackgroundColor;
             picPreviewSpeaker.BackgroundImage = picPreviewSpeaker.Image.Target;
-            picPreviewSpeaker.Image = PortraitsFG[name];
-            picPreviewSpeaker.Palette = Palette.BaseSpritePalettes[3];
+            picPreviewSpeaker.Image = portrait.Foreground;
+            picPreviewSpeaker.Palette = Palette.BaseSpritePalettes[portrait.ForegroundColorID];
         }
 
         private void ConversationPlayer_KeyDown(object sender, KeyEventArgs e)

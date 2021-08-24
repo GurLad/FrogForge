@@ -48,6 +48,7 @@ namespace FrogForge.Editors
                 picCharactersFG.Palette = p;
                 UpdateCharacterPreview();
             });
+            fgpCharacterAccent.Init(this);
             Dirty = false;
             // Misc
             cmbVoiceType.SelectedIndex = 0;
@@ -86,6 +87,7 @@ namespace FrogForge.Editors
             data.BackgroundColor = pltCharactersBGPalette.Data;
             data.Background = picCharactersBG.Image;
             data.Foreground = picCharactersFG.Image;
+            data.AccentColor = fgpCharacterAccent.Data;
             data.Voice.Pitch = (float)nudPitch.Value;
             data.Voice.VoiceType = (VoiceType)cmbVoiceType.SelectedIndex;
             CurrentFile = data.Name;
@@ -95,14 +97,15 @@ namespace FrogForge.Editors
 
         private void CharacterDataToUI(PortraitData data)
         {
+            data.LoadImages(WorkingDirectory);
             txtCharactersName.Text = data.Name;
             fgpCharactersFGPalette.Data = data.ForegroundColorID;
             pltCharactersBGPalette.Data = data.BackgroundColor;
-            WorkingDirectory.CreateDirectory(@"Images\Portraits\" + data.Name);
-            picCharactersBG.Image = data.Background ?? new PalettedImage(WorkingDirectory.LoadImage(@"Portraits\" + data.Name + @"\B") ?? new Bitmap(1, 1));
+            picCharactersBG.Image = data.Background ?? new PalettedImage(new Bitmap(1, 1));
             picCharactersBG.Palette = data.BackgroundColor;
-            picCharactersFG.Image = data.Foreground ?? new PalettedImage(WorkingDirectory.LoadImage(@"Portraits\" + data.Name + @"\F") ?? new Bitmap(1, 1));
+            picCharactersFG.Image = data.Foreground ?? new PalettedImage(new Bitmap(1, 1));
             picCharactersFG.Palette = Palette.BaseSpritePalettes[fgpCharactersFGPalette.Data];
+            fgpCharacterAccent.Data = data.AccentColor;
             nudPitch.Value = (decimal)data.Voice.Pitch;
             cmbVoiceType.SelectedIndex = (int)data.Voice.VoiceType;
             UpdateCharacterPreview();
