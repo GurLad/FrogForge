@@ -29,26 +29,22 @@ namespace FrogForge.Editors
 
         private void frmMenu_Load(object sender, EventArgs e)
         {
+            // Init stuff
             WorkingDirectory.Path = DataDirectory.LoadFile("Path", DataDirectory.Path);
             dlgFolder.IsFolderPicker = true;
             dlgDataImport.Filter = "Frog Forge editor data files|*.ffed";
             dlgDataExport.Filter = "Frog Forge editor data files|*.ffed";
             dlgProjectImport.Filter = "Frog Forge project data files|*.ffpd";
             dlgProjectExport.Filter = "Frog Forge project data files|*.ffpd";
-            if (DataDirectory.LoadFile("UseVoiceAssist", "F") == "T") // Joke (voice assist)
+            // Load prefences
+            string json = DataDirectory.LoadFile("Prefernces", "", ".json");
+            MessageBox.Show(json);
+            Preferences.Current = ((json == "" ? null : json)?.JsonToObject<Preferences>()) ?? new Preferences();
+            // Joke (voice assist)
+            if (Preferences.Current.VoiceAssistAvailable)
             {
-                lblVoice.Visible = true;
-                cmbVoice.Visible = true;
-                cmbVoice.Items.Add("None");
-                cmbVoice.Items.AddRange(VoiceAssist.GetAvailableVoices());
-                string selectedVoice = DataDirectory.LoadFile("SavedVoice");
-                VoiceAssist.SelectVoice(selectedVoice);
-                cmbVoice.SelectedItem = selectedVoice == "" ? "None" : selectedVoice;
+                VoiceAssist.SelectVoice(Preferences.Current.VoiceAssist ?? "");
                 VoiceAssist.Say("Ready");
-            }
-            else
-            {
-                Height -= 301 - 268;
             }
         }
 
@@ -197,17 +193,19 @@ namespace FrogForge.Editors
             }
         }
 
-        private void cmbVoice_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedVoice = cmbVoice.SelectedItem.ToString() == "None" ? "" : cmbVoice.SelectedItem.ToString();
-            VoiceAssist.SelectVoice(selectedVoice);
-            DataDirectory.SaveFile("SavedVoice", selectedVoice);
-            VoiceAssist.Say("Ready");
-        }
-
         private void btnAbout_Click(object sender, EventArgs e)
         {
             Process.Start("https://www.github.com/GurLad/FrogForge");
+        }
+
+        private void btnGameSettings_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("TBA");
+        }
+
+        private void btnEditPreferences_Click(object sender, EventArgs e)
+        {
+            new frmPreferences(DataDirectory).ShowDialog();
         }
     }
 }

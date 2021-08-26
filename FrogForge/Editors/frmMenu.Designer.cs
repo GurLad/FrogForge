@@ -36,8 +36,6 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.btnClassEditor = new System.Windows.Forms.Button();
             this.btnPortraitEditor = new System.Windows.Forms.Button();
-            this.lblVoice = new System.Windows.Forms.Label();
-            this.cmbVoice = new System.Windows.Forms.ComboBox();
             this.btnLevelMetadataEditor = new System.Windows.Forms.Button();
             this.btnTilemapEditor = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -55,6 +53,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnEditPreferences = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnGameSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -131,29 +132,6 @@
             this.btnPortraitEditor.UseVisualStyleBackColor = true;
             this.btnPortraitEditor.Click += new System.EventHandler(this.btnPortraitEditor_Click);
             // 
-            // lblVoice
-            // 
-            this.lblVoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblVoice.AutoSize = true;
-            this.lblVoice.Location = new System.Drawing.Point(12, 351);
-            this.lblVoice.Name = "lblVoice";
-            this.lblVoice.Size = new System.Drawing.Size(81, 13);
-            this.lblVoice.TabIndex = 8;
-            this.lblVoice.Text = "Voice assistant:";
-            this.lblVoice.Visible = false;
-            // 
-            // cmbVoice
-            // 
-            this.cmbVoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cmbVoice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbVoice.FormattingEnabled = true;
-            this.cmbVoice.Location = new System.Drawing.Point(99, 348);
-            this.cmbVoice.Name = "cmbVoice";
-            this.cmbVoice.Size = new System.Drawing.Size(202, 21);
-            this.cmbVoice.TabIndex = 7;
-            this.cmbVoice.Visible = false;
-            this.cmbVoice.SelectedIndexChanged += new System.EventHandler(this.cmbVoice_SelectedIndexChanged);
-            // 
             // btnLevelMetadataEditor
             // 
             this.btnLevelMetadataEditor.Location = new System.Drawing.Point(6, 77);
@@ -178,6 +156,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiFile,
+            this.tsmiEdit,
             this.btnAbout});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -199,21 +178,21 @@
             // btnProjectExport
             // 
             this.btnProjectExport.Name = "btnProjectExport";
-            this.btnProjectExport.Size = new System.Drawing.Size(159, 22);
+            this.btnProjectExport.Size = new System.Drawing.Size(180, 22);
             this.btnProjectExport.Text = "Export project...";
             this.btnProjectExport.Click += new System.EventHandler(this.btnProjectExport_Click);
             // 
             // btnProjectImport
             // 
             this.btnProjectImport.Name = "btnProjectImport";
-            this.btnProjectImport.Size = new System.Drawing.Size(159, 22);
+            this.btnProjectImport.Size = new System.Drawing.Size(180, 22);
             this.btnProjectImport.Text = "Import project...";
             this.btnProjectImport.Click += new System.EventHandler(this.btnProjectImport_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(156, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // frogForgeDataToolStripMenuItem
             // 
@@ -222,27 +201,27 @@
             this.btnDataImport,
             this.btnDataExport});
             this.frogForgeDataToolStripMenuItem.Name = "frogForgeDataToolStripMenuItem";
-            this.frogForgeDataToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.frogForgeDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.frogForgeDataToolStripMenuItem.Text = "Frog Forge data";
             // 
             // btnBrowse
             // 
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(148, 22);
+            this.btnBrowse.Size = new System.Drawing.Size(180, 22);
             this.btnBrowse.Text = "Game folder...";
             this.btnBrowse.Click += new System.EventHandler(this.btnChangePath_Click);
             // 
             // btnDataImport
             // 
             this.btnDataImport.Name = "btnDataImport";
-            this.btnDataImport.Size = new System.Drawing.Size(148, 22);
+            this.btnDataImport.Size = new System.Drawing.Size(180, 22);
             this.btnDataImport.Text = "Import...";
             this.btnDataImport.Click += new System.EventHandler(this.btnDataImport_Click);
             // 
             // btnDataExport
             // 
             this.btnDataExport.Name = "btnDataExport";
-            this.btnDataExport.Size = new System.Drawing.Size(148, 22);
+            this.btnDataExport.Size = new System.Drawing.Size(180, 22);
             this.btnDataExport.Text = "Export...";
             this.btnDataExport.Click += new System.EventHandler(this.btnDataExport_Click);
             // 
@@ -308,16 +287,37 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Classes && Units";
             // 
+            // tsmiEdit
+            // 
+            this.tsmiEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnGameSettings,
+            this.btnEditPreferences});
+            this.tsmiEdit.Name = "tsmiEdit";
+            this.tsmiEdit.Size = new System.Drawing.Size(39, 20);
+            this.tsmiEdit.Text = "Edit";
+            // 
+            // btnEditPreferences
+            // 
+            this.btnEditPreferences.Name = "btnEditPreferences";
+            this.btnEditPreferences.Size = new System.Drawing.Size(180, 22);
+            this.btnEditPreferences.Text = "Preferences...";
+            this.btnEditPreferences.Click += new System.EventHandler(this.btnEditPreferences_Click);
+            // 
+            // btnGameSettings
+            // 
+            this.btnGameSettings.Name = "btnGameSettings";
+            this.btnGameSettings.Size = new System.Drawing.Size(180, 22);
+            this.btnGameSettings.Text = "Game settings...";
+            this.btnGameSettings.Click += new System.EventHandler(this.btnGameSettings_Click);
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(313, 381);
+            this.ClientSize = new System.Drawing.Size(313, 354);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.lblVoice);
-            this.Controls.Add(this.cmbVoice);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label2);
@@ -350,8 +350,6 @@
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Button btnClassEditor;
         private System.Windows.Forms.Button btnPortraitEditor;
-        private System.Windows.Forms.Label lblVoice;
-        private System.Windows.Forms.ComboBox cmbVoice;
         private System.Windows.Forms.Button btnLevelMetadataEditor;
         private System.Windows.Forms.Button btnTilemapEditor;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -369,5 +367,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ToolStripMenuItem tsmiEdit;
+        private System.Windows.Forms.ToolStripMenuItem btnEditPreferences;
+        private System.Windows.Forms.ToolStripMenuItem btnGameSettings;
     }
 }

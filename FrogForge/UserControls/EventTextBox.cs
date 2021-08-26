@@ -61,6 +61,10 @@ namespace FrogForge.UserControls
 
         private void CheckKeyword(string word, Color color, int minIndex = -1, int maxIndex = -1, bool keyword = true)
         {
+            if (Preferences.Current.DarkMode)
+            {
+                color = Color.FromArgb(255 - color.R, 255 - color.G, 255 - color.B);
+            }
             if (Text.Contains(word))
             {
                 int index = minIndex;

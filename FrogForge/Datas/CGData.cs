@@ -9,8 +9,8 @@ namespace FrogForge.Datas
 {
     public class CGData : NamedData
     {
-        public Palette BGPalette1 { get; set; }
-        public Palette BGPalette2 { get; set; }
+        public Palette BGPalette1 { get; set; } = new Palette();
+        public Palette BGPalette2 { get; set; } = new Palette();
         public int FGPalette1 { get; set; }
         public int FGPalette2 { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]

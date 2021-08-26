@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrogForge.UserControls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -54,6 +55,7 @@ namespace FrogForge.Editors
 
         protected frmBaseEditor()
         {
+            // Init stuff
             CurrentFile = "";
             FormClosing += FormClosingEvent;
             KeyPreview = true;

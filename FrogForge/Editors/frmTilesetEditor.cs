@@ -91,6 +91,7 @@ namespace FrogForge.Editors
             bblBattleBackgrounds.Init(
                 this, () => new BattleBackgroundData(""),
                 () => new BattleBackgroundPanel(), (a) => a.Init(dlgOpen, this, GetPalette), true);
+            this.ApplyPreferences();
         }
 
         private void Renderer_Click(int rendererIndex)

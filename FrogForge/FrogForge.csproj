@@ -141,6 +141,12 @@
     <Compile Include="Editors\frmCGEditor.Designer.cs">
       <DependentUpon>frmCGEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\frmPreferences.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\frmPreferences.Designer.cs">
+      <DependentUpon>frmPreferences.cs</DependentUpon>
+    </Compile>
     <Compile Include="PartialPalettedImage.cs" />
     <Compile Include="Datas\TeamData.cs" />
     <Compile Include="Datas\TileData.cs" />
@@ -159,6 +165,7 @@
       <DependentUpon>frmTilesetEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Preferences.cs" />
     <Compile Include="UnityPoint.cs" />
     <Compile Include="UserControls\AIPrioritiesPanel.cs">
       <SubType>UserControl</SubType>
@@ -300,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\frmLevelMetadataEditor.resx">
       <DependentUpon>frmLevelMetadataEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\frmPreferences.resx">
+      <DependentUpon>frmPreferences.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\frmTilesetEditor.resx">
       <DependentUpon>frmTilesetEditor.cs</DependentUpon>

@@ -31,6 +31,7 @@ namespace FrogForge.Editors
             picBG2.Init(dlgOpen, this, () => UpdatePreview());
             picFG1.Init(dlgOpen, this, () => UpdatePreview());
             picFG2.Init(dlgOpen, this, () => UpdatePreview());
+            this.ApplyPreferences();
         }
 
         private CGData CGDataFromUI(CGData data)

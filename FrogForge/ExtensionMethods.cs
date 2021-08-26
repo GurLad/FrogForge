@@ -50,6 +50,19 @@ namespace FrogForge
             return target;
         }
 
+        public static void ApplyPreferences(this Control control)
+        {
+            if (Preferences.Current.DarkMode)
+            {
+                control.BackColor = Preferences.Current.DarkModeBackColor;
+                control.ForeColor = Color.White;
+                foreach (Control otherControl in control.Controls)
+                {
+                    otherControl.ApplyPreferences();
+                }
+            }
+        }
+
         public static bool ConfirmDialog(string text, string title)
         {
             VoiceAssist.Say("Confirm");

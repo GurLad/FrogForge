@@ -42,6 +42,7 @@ namespace FrogForge.Editors
             // Init stuff
             copConversationPlayer.Init(WorkingDirectory, CHARS_IN_LINE, SetPreviewMode);
             txtText.Init(DataDirectory, this);
+            this.ApplyPreferences();
             // Load empty conversation
             btnNew_Click(sender, e);
         }
@@ -130,7 +131,7 @@ namespace FrogForge.Editors
         {
             pnlEditorUI.Enabled = !on;
             flbFileBrowser.Enabled = !on;
-            BackColor = on ? SystemColors.ControlDark : SystemColors.Control;
+            BackColor = on ? SystemColors.ControlDark : (Preferences.Current.DarkMode ? (Color)Preferences.Current.DarkModeBackColor : SystemColors.Control);
             copConversationPlayer.Preview = on;
         }
 

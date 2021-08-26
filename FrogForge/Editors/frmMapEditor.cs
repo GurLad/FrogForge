@@ -101,6 +101,7 @@ namespace FrogForge.Editors
             nudLevelNumber.ValueChanged += DirtyFunc;
             // Init stuff
             melMapEvents.Init(this, () => new MapEventData(), () => new UserControls.MapEventPanel(), (a) => a.Init(this, DataDirectory), false);
+            this.ApplyPreferences();
         }
 
         private void Render()

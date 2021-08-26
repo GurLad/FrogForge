@@ -49,6 +49,7 @@ namespace FrogForge.Editors
                 this, () => new BattleAnimationData(), () => new BattleAnimationPanel(),
                 (bap) => bap.Init(dlgOpen, this), true, () => btnGenerateBase.Visible = balBattleAnimations.Datas.Count <= 0);
             txtUnitDeathQuote.Init(DataDirectory, this);
+            this.ApplyPreferences();
         }
 
         private void btnSave_Click(object sender, EventArgs e)

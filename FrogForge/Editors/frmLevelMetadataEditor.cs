@@ -58,6 +58,7 @@ namespace FrogForge.Editors
                 lstLevels.Save(CurrentLevel = "Default");
             }
             LevelMetadataToUI(lstLevels.Data[0]);
+            this.ApplyPreferences();
         }
 
         private LevelMetadata LevelMetadataFromUI(LevelMetadata data)
