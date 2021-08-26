@@ -98,9 +98,9 @@
             this.ckbDarkMode.AutoSize = true;
             this.ckbDarkMode.Location = new System.Drawing.Point(6, 42);
             this.ckbDarkMode.Name = "ckbDarkMode";
-            this.ckbDarkMode.Size = new System.Drawing.Size(149, 17);
+            this.ckbDarkMode.Size = new System.Drawing.Size(78, 17);
             this.ckbDarkMode.TabIndex = 1;
-            this.ckbDarkMode.Text = "Dark mode (currently ugly)";
+            this.ckbDarkMode.Text = "Dark mode";
             this.ckbDarkMode.UseVisualStyleBackColor = true;
             // 
             // btnCancel

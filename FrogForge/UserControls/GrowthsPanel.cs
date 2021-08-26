@@ -46,6 +46,10 @@ namespace FrogForge.UserControls
             Size = new Size(234, 49);
             int nudWidth = 36, lblWidth = 32, height = 23, offset = 6, topOffset = 0, lblTopOffset = 3, leftOffset = 0;
             Color[] colors = new Color[] { Color.Red, Color.Blue, Color.Green };
+            if (Preferences.Current.DarkMode)
+            {
+                colors = new Color[] { Color.FromArgb(255, 100, 100), Color.FromArgb(150, 150, 255), Color.FromArgb(100, 255, 100) };
+            }
             for (int i = 0; i < 6; i++)
             {
                 Label newLbl = new Label();
@@ -53,6 +57,7 @@ namespace FrogForge.UserControls
                 newLbl.Height = height;
                 newLbl.Left = (i / 2) * (lblWidth + nudWidth + offset * 2) + leftOffset;
                 newLbl.Top = (i % 2) * (height + offset) + topOffset + lblTopOffset;
+                newLbl.ApplyPreferences();
                 newLbl.ForeColor = colors[i / 2];
                 newLbl.Text = ((StatNames)i).ToString() + ":";
                 Controls.Add(newLbl);
@@ -61,6 +66,7 @@ namespace FrogForge.UserControls
                 newNud.Height = height;
                 newNud.Left = (i / 2) * (lblWidth + nudWidth + offset * 2) + lblWidth + offset + leftOffset;
                 newNud.Top = (i % 2) * (height + offset) + topOffset;
+                newNud.ApplyPreferences();
                 newNud.ForeColor = colors[i / 2];
                 newNud.Minimum = 0;
                 newNud.Maximum = 5;

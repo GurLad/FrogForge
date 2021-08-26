@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrogForge.UserControls;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -54,8 +55,33 @@ namespace FrogForge
         {
             if (Preferences.Current.DarkMode)
             {
+                if (control is PalettePanel || control is GrowthsPanel)
+                {
+                    return;
+                }
                 control.BackColor = Preferences.Current.DarkModeBackColor;
                 control.ForeColor = Color.White;
+                if (control is Button)
+                {
+                    ((Button)control).FlatStyle = FlatStyle.Flat;
+                    ((Button)control).FlatAppearance.MouseOverBackColor = Color.DarkGray;
+                }
+                else if (control is ComboBox)
+                {
+                    ((ComboBox)control).FlatStyle = FlatStyle.Flat;
+                }
+                else if (control is TextBox)
+                {
+                    ((TextBox)control).BorderStyle = BorderStyle.FixedSingle;
+                }
+                else if (control is ListBox)
+                {
+                    ((ListBox)control).BorderStyle = BorderStyle.FixedSingle;
+                }
+                else if (control is NumericUpDown)
+                {
+                    ((NumericUpDown)control).BorderStyle = BorderStyle.FixedSingle;
+                }
                 foreach (Control otherControl in control.Controls)
                 {
                     otherControl.ApplyPreferences();

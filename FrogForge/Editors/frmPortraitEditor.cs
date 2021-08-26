@@ -50,6 +50,7 @@ namespace FrogForge.Editors
             });
             fgpCharacterAccent.Init(this);
             Dirty = false;
+            this.ApplyPreferences();
             // Misc
             cmbVoiceType.SelectedIndex = 0;
             dlgOpen.Filter = "Image files|*.gif;*.png";
@@ -63,7 +64,6 @@ namespace FrogForge.Editors
             nudPitch.ValueChanged += DirtyFunc;
             cmbVoiceType.SelectedIndexChanged += DirtyFunc;
             Dirty = false;
-            this.ApplyPreferences();
         }
 
         private void UpdateCharacterPreview()

@@ -96,6 +96,7 @@ namespace FrogForge.UserControls
             InitControl(toAdd);
             toAdd.Data = data ?? NewData();
             Button deleteButton = GenerateDeleteButton(GeneratedControls.Count, toAdd.Top, toAdd.Height);
+            deleteButton.ApplyPreferences();
             GeneratedControls.Add(toAdd);
             GeneratedDeleteButtons.Add(deleteButton);
             pnlControls.Controls.Add(toAdd);
