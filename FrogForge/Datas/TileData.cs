@@ -32,10 +32,9 @@ namespace FrogForge.Datas
             Name = name;
         }
 
-        public TileData(Image image, int moveCost, int armorMod, int palette, bool high, string name)
-        {
-            new TileData(new PalettedImage(image), moveCost, armorMod, palette, high, name);
-        }
+        public TileData(Image image, int moveCost, int armorMod, int palette, bool high, string name) :
+            this(new PalettedImage(image), moveCost, armorMod, palette, high, name)
+        { }
 
         public TileData Clone()
         {

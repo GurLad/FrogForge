@@ -47,15 +47,15 @@
             this.btnBrowse = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDataImport = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDataExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnGameSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnEditPreferences = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.label3 = new System.Windows.Forms.Label();
             this.btnCGEditor = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnEditPreferences = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnGameSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -110,7 +110,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(83, 6);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.5.6.0 26.08.2021";
+            this.lblVersion.Text = "V.0.5.6.1 03.09.2021";
             // 
             // btnClassEditor
             // 
@@ -178,21 +178,21 @@
             // btnProjectExport
             // 
             this.btnProjectExport.Name = "btnProjectExport";
-            this.btnProjectExport.Size = new System.Drawing.Size(180, 22);
+            this.btnProjectExport.Size = new System.Drawing.Size(159, 22);
             this.btnProjectExport.Text = "Export project...";
             this.btnProjectExport.Click += new System.EventHandler(this.btnProjectExport_Click);
             // 
             // btnProjectImport
             // 
             this.btnProjectImport.Name = "btnProjectImport";
-            this.btnProjectImport.Size = new System.Drawing.Size(180, 22);
+            this.btnProjectImport.Size = new System.Drawing.Size(159, 22);
             this.btnProjectImport.Text = "Import project...";
             this.btnProjectImport.Click += new System.EventHandler(this.btnProjectImport_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(156, 6);
             // 
             // frogForgeDataToolStripMenuItem
             // 
@@ -201,29 +201,52 @@
             this.btnDataImport,
             this.btnDataExport});
             this.frogForgeDataToolStripMenuItem.Name = "frogForgeDataToolStripMenuItem";
-            this.frogForgeDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.frogForgeDataToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.frogForgeDataToolStripMenuItem.Text = "Frog Forge data";
             // 
             // btnBrowse
             // 
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(180, 22);
+            this.btnBrowse.Size = new System.Drawing.Size(148, 22);
             this.btnBrowse.Text = "Game folder...";
             this.btnBrowse.Click += new System.EventHandler(this.btnChangePath_Click);
             // 
             // btnDataImport
             // 
             this.btnDataImport.Name = "btnDataImport";
-            this.btnDataImport.Size = new System.Drawing.Size(180, 22);
+            this.btnDataImport.Size = new System.Drawing.Size(148, 22);
             this.btnDataImport.Text = "Import...";
             this.btnDataImport.Click += new System.EventHandler(this.btnDataImport_Click);
             // 
             // btnDataExport
             // 
             this.btnDataExport.Name = "btnDataExport";
-            this.btnDataExport.Size = new System.Drawing.Size(180, 22);
+            this.btnDataExport.Size = new System.Drawing.Size(148, 22);
             this.btnDataExport.Text = "Export...";
             this.btnDataExport.Click += new System.EventHandler(this.btnDataExport_Click);
+            // 
+            // tsmiEdit
+            // 
+            this.tsmiEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnGameSettings,
+            this.btnEditPreferences});
+            this.tsmiEdit.Name = "tsmiEdit";
+            this.tsmiEdit.Size = new System.Drawing.Size(39, 20);
+            this.tsmiEdit.Text = "Edit";
+            // 
+            // btnGameSettings
+            // 
+            this.btnGameSettings.Name = "btnGameSettings";
+            this.btnGameSettings.Size = new System.Drawing.Size(158, 22);
+            this.btnGameSettings.Text = "Game settings...";
+            this.btnGameSettings.Click += new System.EventHandler(this.btnGameSettings_Click);
+            // 
+            // btnEditPreferences
+            // 
+            this.btnEditPreferences.Name = "btnEditPreferences";
+            this.btnEditPreferences.Size = new System.Drawing.Size(158, 22);
+            this.btnEditPreferences.Text = "Preferences...";
+            this.btnEditPreferences.Click += new System.EventHandler(this.btnEditPreferences_Click);
             // 
             // btnAbout
             // 
@@ -286,29 +309,6 @@
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Classes && Units";
-            // 
-            // tsmiEdit
-            // 
-            this.tsmiEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnGameSettings,
-            this.btnEditPreferences});
-            this.tsmiEdit.Name = "tsmiEdit";
-            this.tsmiEdit.Size = new System.Drawing.Size(39, 20);
-            this.tsmiEdit.Text = "Edit";
-            // 
-            // btnEditPreferences
-            // 
-            this.btnEditPreferences.Name = "btnEditPreferences";
-            this.btnEditPreferences.Size = new System.Drawing.Size(180, 22);
-            this.btnEditPreferences.Text = "Preferences...";
-            this.btnEditPreferences.Click += new System.EventHandler(this.btnEditPreferences_Click);
-            // 
-            // btnGameSettings
-            // 
-            this.btnGameSettings.Name = "btnGameSettings";
-            this.btnGameSettings.Size = new System.Drawing.Size(180, 22);
-            this.btnGameSettings.Text = "Game settings...";
-            this.btnGameSettings.Click += new System.EventHandler(this.btnGameSettings_Click);
             // 
             // frmMenu
             // 

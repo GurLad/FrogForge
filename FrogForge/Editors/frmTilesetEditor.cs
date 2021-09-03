@@ -288,7 +288,7 @@ namespace FrogForge.Editors
                             {
                                 for (int k = 0; k < source.Width / 16; k++)
                                 {
-                                    g.DrawImage(source, 0, 0, new Rectangle(k * 16, j * 16, 16, 16), GraphicsUnit.Pixel);
+                                    g.DrawImage(source, new Rectangle(0, 0, 16, 16), new Rectangle(k * 16, j * 16, 16, 16), GraphicsUnit.Pixel);
                                     CurrentTiles.Add(new TileData(target, 1, 0, 1, false, ""));
                                     Render(CurrentTiles.Count - 1);
                                 }
@@ -297,10 +297,12 @@ namespace FrogForge.Editors
                     }
                     else
                     {
-                        CurrentTiles.Add(new TileData(source.SplitGIF(), 1, 0, 1, false, ""));
+                        TileData tileData = new TileData(source.SplitGIF(), 1, 0, 1, false, "");
+                        CurrentTiles.Add(tileData);
                         Render(CurrentTiles.Count - 1);
                     }
                 }
+                Dirty = true;
             }
         }
 
@@ -311,6 +313,7 @@ namespace FrogForge.Editors
                 CurrentTiles.RemoveAt(SelectedIndex >= 0 ? SelectedIndex : (CurrentTiles.Count - 1));
                 SelectedIndex = -1;
                 Render();
+                Dirty = true;
             }
         }
 
