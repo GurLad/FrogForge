@@ -24,9 +24,7 @@ namespace FrogForge.UserControls
             set
             {
                 txtRequirement.Text = value.Requirements;
-                txtRequirement.ColorText();
                 txtEvent.Text = value.Event;
-                txtEvent.ColorText();
             }
         }
 

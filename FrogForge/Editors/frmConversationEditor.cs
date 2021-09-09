@@ -38,7 +38,6 @@ namespace FrogForge.Editors
             flbFileBrowser.Directory = CurrentDirectory;
             flbFileBrowser.OnFileSelected = LoadFile;
             flbFileBrowser.UpdateList();
-            txtText.UserInput = true;
             // Init stuff
             copConversationPlayer.Init(WorkingDirectory, CHARS_IN_LINE, SetPreviewMode);
             txtText.Init(DataDirectory, this);
@@ -54,13 +53,10 @@ namespace FrogForge.Editors
                 return;
             }
             CurrentFile = name;
-            txtText.UserInput = false;
             CurrentFileName = name;
             CurrentFilePath = CurrentDirectory.Path;
             txtText.Text = CurrentDirectory.LoadFile(CurrentFileName);
             txtName.Text = CurrentFileName;
-            txtText.ColorText();
-            txtText.UserInput = true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -143,7 +139,6 @@ namespace FrogForge.Editors
             }
             txtName.Text = "";
             txtText.Text = DataDirectory.LoadFile("BaseConversation");
-            txtText.ColorText();
             CurrentFile = "";
             CurrentFilePath = "";
             VoiceAssist.Say("New");

@@ -159,7 +159,6 @@ namespace FrogForge.Editors
             cmbUnitInclination.Text = data.Inclination.ToString();
             gthUnitGrowths.Data = data.Growths;
             txtUnitDeathQuote.Text = data.DeathQuote;
-            txtUnitDeathQuote.ColorText();
             CurrentFile = data.Name;
             Dirty = false;
         }

@@ -86,7 +86,7 @@
             this.btnLevelEditor.Location = new System.Drawing.Point(6, 19);
             this.btnLevelEditor.Name = "btnLevelEditor";
             this.btnLevelEditor.Size = new System.Drawing.Size(277, 23);
-            this.btnLevelEditor.TabIndex = 2;
+            this.btnLevelEditor.TabIndex = 1;
             this.btnLevelEditor.Text = "Map editor";
             this.btnLevelEditor.UseVisualStyleBackColor = true;
             this.btnLevelEditor.Click += new System.EventHandler(this.btnLevelEditor_Click);
@@ -96,7 +96,7 @@
             this.btnConversationEditor.Location = new System.Drawing.Point(6, 19);
             this.btnConversationEditor.Name = "btnConversationEditor";
             this.btnConversationEditor.Size = new System.Drawing.Size(277, 23);
-            this.btnConversationEditor.TabIndex = 2;
+            this.btnConversationEditor.TabIndex = 6;
             this.btnConversationEditor.Text = "Conversation editor";
             this.btnConversationEditor.UseVisualStyleBackColor = true;
             this.btnConversationEditor.Click += new System.EventHandler(this.btnConversationEditor_Click);
@@ -110,14 +110,14 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(83, 6);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.5.6.1 03.09.2021";
+            this.lblVersion.Text = "V.0.5.6.2 09.09.2021";
             // 
             // btnClassEditor
             // 
             this.btnClassEditor.Location = new System.Drawing.Point(6, 19);
             this.btnClassEditor.Name = "btnClassEditor";
             this.btnClassEditor.Size = new System.Drawing.Size(277, 23);
-            this.btnClassEditor.TabIndex = 2;
+            this.btnClassEditor.TabIndex = 4;
             this.btnClassEditor.Text = "Class + Unit editor";
             this.btnClassEditor.UseVisualStyleBackColor = true;
             this.btnClassEditor.Click += new System.EventHandler(this.btnClassEditor_Click);
@@ -127,7 +127,7 @@
             this.btnPortraitEditor.Location = new System.Drawing.Point(6, 48);
             this.btnPortraitEditor.Name = "btnPortraitEditor";
             this.btnPortraitEditor.Size = new System.Drawing.Size(277, 23);
-            this.btnPortraitEditor.TabIndex = 2;
+            this.btnPortraitEditor.TabIndex = 5;
             this.btnPortraitEditor.Text = "Portrait editor";
             this.btnPortraitEditor.UseVisualStyleBackColor = true;
             this.btnPortraitEditor.Click += new System.EventHandler(this.btnPortraitEditor_Click);
@@ -137,7 +137,7 @@
             this.btnLevelMetadataEditor.Location = new System.Drawing.Point(6, 77);
             this.btnLevelMetadataEditor.Name = "btnLevelMetadataEditor";
             this.btnLevelMetadataEditor.Size = new System.Drawing.Size(277, 23);
-            this.btnLevelMetadataEditor.TabIndex = 2;
+            this.btnLevelMetadataEditor.TabIndex = 3;
             this.btnLevelMetadataEditor.Text = "Level metadata editor";
             this.btnLevelMetadataEditor.UseVisualStyleBackColor = true;
             this.btnLevelMetadataEditor.Click += new System.EventHandler(this.btnLevelMetadataEditor_Click);
@@ -271,7 +271,7 @@
             this.btnCGEditor.Location = new System.Drawing.Point(6, 48);
             this.btnCGEditor.Name = "btnCGEditor";
             this.btnCGEditor.Size = new System.Drawing.Size(277, 23);
-            this.btnCGEditor.TabIndex = 2;
+            this.btnCGEditor.TabIndex = 7;
             this.btnCGEditor.Text = "CG Editor";
             this.btnCGEditor.UseVisualStyleBackColor = true;
             this.btnCGEditor.Click += new System.EventHandler(this.btnCGEditor_Click);

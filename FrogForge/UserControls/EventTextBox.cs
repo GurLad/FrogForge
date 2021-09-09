@@ -13,7 +13,23 @@ namespace FrogForge.UserControls
     [System.ComponentModel.Designer(typeof(RichTextBoxExDesigner))]
     public partial class EventTextBox : FixedRichTextBox
     {
-        public bool UserInput = false;
+        public new string Text
+        {
+            get
+            {
+                return base.Text;
+            }
+            set
+            {
+                UserInput = false;
+                base.Text = "";
+                Refresh();
+                base.Text = value;
+                ColorText();
+                UserInput = true;
+            }
+        }
+        private bool UserInput = false;
         private Dictionary<Color, string[]> Keywords = new Dictionary<Color, string[]>();
         private frmBaseEditor Editor;
 
@@ -35,9 +51,10 @@ namespace FrogForge.UserControls
             // Misc
             Editor = editor;
             Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            UserInput = true;
         }
 
-        public void ColorText(int minIndex = -1, int maxIndex = -1)
+        private void ColorText(int minIndex = -1, int maxIndex = -1)
         {
             UserInput = false;
             BeginUpdate();
