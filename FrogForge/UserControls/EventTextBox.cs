@@ -52,6 +52,7 @@ namespace FrogForge.UserControls
             Editor = editor;
             Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             UserInput = true;
+            this.ApplyPreferences();
         }
 
         private void ColorText(int minIndex = -1, int maxIndex = -1)

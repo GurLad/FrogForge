@@ -41,7 +41,11 @@ namespace FrogForge.Editors
             // Init stuff
             copConversationPlayer.Init(WorkingDirectory, CHARS_IN_LINE, SetPreviewMode);
             txtText.Init(DataDirectory, this);
-            this.ApplyPreferences();
+            this.ApplyPreferences(false);
+            if (Preferences.Current.ZoomAmount > 1)
+            {
+                flbFileBrowser.ApplyPreferences();
+            }
             // Load empty conversation
             btnNew_Click(sender, e);
         }

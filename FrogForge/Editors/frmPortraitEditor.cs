@@ -37,7 +37,8 @@ namespace FrogForge.Editors
             // Init base
             lstCharacters.Init(this, () => new PortraitData(), CharacterDataFromUI, CharacterDataToUI, "Portraits");
             lstGenerics.Init(this, () => new GenericPortraitData(), GenericDataFromUI, GenericDataToUI, "GenericPortraits");
-            pleGenericsPossibleBGPalettes.Init(null, () => new Palette(), () => new UserControls.PalettePanel(), (plt) => plt.Init(null), false);
+            pleGenericsPossibleBGPalettes.Init(null, () => new Palette(), () => new UserControls.PalettePanel(),
+                (plt) => { plt.Init(null); plt.ApplyZoomMode(); }, false);
             pltCharactersBGPalette.Init(this, (p) =>
             {
                 picCharactersBG.Palette = p;
@@ -257,6 +258,7 @@ namespace FrogForge.Editors
             //    return;
             //}
             Width = PageWidths[tbcMain.SelectedIndex];
+            this.ResizeByZoom(false, y: false);
             CurrentFile = "";
         }
 

@@ -48,10 +48,10 @@ namespace FrogForge.Editors
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Preferences.Current.ZoomAmount = ckbZoomMode.Checked ? 2 : 1;
+            Preferences.Current.ZoomAmount = ckbZoomMode.Checked ? 1.5 : 1;
             Preferences.Current.DarkMode = ckbDarkMode.Checked;
             Preferences.Current.VoiceAssist = (cmbVoice.SelectedItem?.ToString() ?? "None") == "None" ? "" : cmbVoice.SelectedItem.ToString();
-            DataDirectory.SaveFile("Prefernces", Preferences.Current.ToJson(), ".json");
+            DataDirectory.SaveFile("Preferences", Preferences.Current.ToJson(), ".json");
             Close();
         }
 

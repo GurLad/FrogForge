@@ -68,6 +68,10 @@ namespace FrogForge.Editors
         {
             return Dirty && !ConfirmDialog("Unsaved changes! Discard?", "Unsaved changes");
         }
+        public void RecenterForm()
+        {
+            CenterToScreen();
+        }
 
         protected bool DeleteFile(string fileName, FilesController directory, bool showConfirmDialog = true, string format = null)
         {

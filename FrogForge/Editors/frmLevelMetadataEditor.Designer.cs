@@ -109,6 +109,9 @@
             // 
             // grpTeams
             // 
+            this.grpTeams.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpTeams.Location = new System.Drawing.Point(137, 54);
             this.grpTeams.Name = "grpTeams";
             this.grpTeams.Size = new System.Drawing.Size(630, 341);
@@ -136,6 +139,7 @@
             this.Controls.Add(this.txtMusicName);
             this.Controls.Add(this.lstLevels);
             this.Controls.Add(this.toolStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmLevelMetadataEditor";

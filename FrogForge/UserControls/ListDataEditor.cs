@@ -63,10 +63,11 @@ namespace FrogForge.UserControls
             }
             else
             {
+                int widthCopy = pnlControls.Width;
                 NewControl = () =>
                 {
                     Control t = newControl();
-                    t.Width = pnlControls.Width - (DELETE_BUTTON_SIZE.X + DATA_SPACING);
+                    t.Width = widthCopy - (DELETE_BUTTON_SIZE.X + DATA_SPACING);
                     return t;
                 };
             }

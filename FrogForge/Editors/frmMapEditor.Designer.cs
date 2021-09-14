@@ -68,6 +68,7 @@
             this.rdbSurvive = new System.Windows.Forms.RadioButton();
             this.rdbRout = new System.Windows.Forms.RadioButton();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.melMapEvents = new FrogForge.UserControls.MapEventListEditor();
             this.txtLevelName = new System.Windows.Forms.TextBox();
             this.flbFiles = new FrogForge.UserControls.FileBrowser();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -75,7 +76,6 @@
             this.btnNew = new System.Windows.Forms.ToolStripButton();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.label10 = new System.Windows.Forms.Label();
-            this.melMapEvents = new FrogForge.UserControls.MapEventListEditor();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
@@ -390,7 +390,6 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.label9);
             this.tabPage3.Controls.Add(this.nudEscapePosY);
             this.tabPage3.Controls.Add(this.nudEscapePosX);
             this.tabPage3.Controls.Add(this.nudSurviveTurn);
@@ -399,6 +398,7 @@
             this.tabPage3.Controls.Add(this.rdbEscape);
             this.tabPage3.Controls.Add(this.rdbSurvive);
             this.tabPage3.Controls.Add(this.rdbRout);
+            this.tabPage3.Controls.Add(this.label9);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -519,6 +519,13 @@
             this.tabPage4.Text = "Events";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // melMapEvents
+            // 
+            this.melMapEvents.Location = new System.Drawing.Point(0, 0);
+            this.melMapEvents.Name = "melMapEvents";
+            this.melMapEvents.Size = new System.Drawing.Size(248, 214);
+            this.melMapEvents.TabIndex = 0;
+            // 
             // txtLevelName
             // 
             this.txtLevelName.Location = new System.Drawing.Point(171, 28);
@@ -586,13 +593,6 @@
             this.label10.Size = new System.Drawing.Size(38, 13);
             this.label10.TabIndex = 37;
             this.label10.Text = "Name:";
-            // 
-            // melMapEvents
-            // 
-            this.melMapEvents.Location = new System.Drawing.Point(0, 0);
-            this.melMapEvents.Name = "melMapEvents";
-            this.melMapEvents.Size = new System.Drawing.Size(248, 214);
-            this.melMapEvents.TabIndex = 0;
             // 
             // frmMapEditor
             // 

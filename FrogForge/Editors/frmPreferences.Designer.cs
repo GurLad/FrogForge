@@ -33,8 +33,8 @@
             this.grpVoice = new System.Windows.Forms.GroupBox();
             this.cmbVoice = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ckbZoomMode = new System.Windows.Forms.CheckBox();
             this.ckbDarkMode = new System.Windows.Forms.CheckBox();
+            this.ckbZoomMode = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.grpVoice.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -82,17 +82,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Editor style";
             // 
-            // ckbZoomMode
-            // 
-            this.ckbZoomMode.AutoSize = true;
-            this.ckbZoomMode.Enabled = false;
-            this.ckbZoomMode.Location = new System.Drawing.Point(6, 19);
-            this.ckbZoomMode.Name = "ckbZoomMode";
-            this.ckbZoomMode.Size = new System.Drawing.Size(112, 17);
-            this.ckbZoomMode.TabIndex = 0;
-            this.ckbZoomMode.Text = "Zoom mode (TBA)";
-            this.ckbZoomMode.UseVisualStyleBackColor = true;
-            // 
             // ckbDarkMode
             // 
             this.ckbDarkMode.AutoSize = true;
@@ -102,6 +91,16 @@
             this.ckbDarkMode.TabIndex = 1;
             this.ckbDarkMode.Text = "Dark mode";
             this.ckbDarkMode.UseVisualStyleBackColor = true;
+            // 
+            // ckbZoomMode
+            // 
+            this.ckbZoomMode.AutoSize = true;
+            this.ckbZoomMode.Location = new System.Drawing.Point(6, 19);
+            this.ckbZoomMode.Name = "ckbZoomMode";
+            this.ckbZoomMode.Size = new System.Drawing.Size(82, 17);
+            this.ckbZoomMode.TabIndex = 0;
+            this.ckbZoomMode.Text = "Zoom mode";
+            this.ckbZoomMode.UseVisualStyleBackColor = true;
             // 
             // btnCancel
             // 

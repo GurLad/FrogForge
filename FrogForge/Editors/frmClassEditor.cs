@@ -246,6 +246,7 @@ namespace FrogForge.Editors
             //    return;
             //}
             Width = PageWidths[tbcMain.SelectedIndex];
+            this.ResizeByZoom(false, y: false);
             CurrentFile = "";
         }
     }

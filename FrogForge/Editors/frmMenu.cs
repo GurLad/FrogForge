@@ -37,7 +37,7 @@ namespace FrogForge.Editors
             dlgProjectImport.Filter = "Frog Forge project data files|*.ffpd";
             dlgProjectExport.Filter = "Frog Forge project data files|*.ffpd";
             // Load prefences
-            string json = DataDirectory.LoadFile("Prefernces", "", ".json");
+            string json = DataDirectory.LoadFile("Preferences", "", ".json");
             Preferences.Current = ((json == "" ? null : json)?.JsonToObject<Preferences>()) ?? new Preferences();
             // Joke (voice assist)
             if (Preferences.Current.VoiceAssistAvailable)

@@ -110,7 +110,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(83, 6);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.5.6.2 09.09.2021";
+            this.lblVersion.Text = "V.0.5.6.3 14.09.2021";
             // 
             // btnClassEditor
             // 
@@ -284,7 +284,7 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 64);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(289, 106);
-            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Maps && Levels";
             // 
@@ -295,7 +295,7 @@
             this.groupBox2.Location = new System.Drawing.Point(12, 259);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(289, 77);
-            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Events";
             // 
@@ -306,7 +306,7 @@
             this.groupBox3.Location = new System.Drawing.Point(12, 176);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(289, 77);
-            this.groupBox3.TabIndex = 12;
+            this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Classes && Units";
             // 

@@ -51,6 +51,11 @@ namespace FrogForge.UserControls
             OnPaletteChange = onPaletteChange;
         }
 
+        public void ApplyZoomMode()
+        {
+            GenerateBoxes();
+        }
+
         private void Box_Click(object sender, EventArgs e)
         {
             ((PictureBox)sender).BackColor = dlgColorSelector.Dialog(this) ?? ((PictureBox)sender).BackColor;
@@ -88,7 +93,7 @@ namespace FrogForge.UserControls
                 }
                 if (SpritePalette && i == 3)
                 {
-                    box.BackColor = Color.Magenta;
+                    box.BackColor = Color.Transparent;
                     box.Enabled = false;
                 }
                 Controls.Add(box);

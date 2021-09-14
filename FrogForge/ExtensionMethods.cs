@@ -1,4 +1,5 @@
-﻿using FrogForge.UserControls;
+﻿using FrogForge.Editors;
+using FrogForge.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -51,40 +52,106 @@ namespace FrogForge
             return target;
         }
 
-        public static void ApplyPreferences(this Control control)
+        public static void ApplyPreferences(this Control control, bool zoom = true)
         {
-            if (Preferences.Current.DarkMode)
+            void ApplyDarkMode(Control caller)
             {
-                if (control is PalettePanel || control is GrowthsPanel)
+                if (caller is PalettePanel || caller is GrowthsPanel)
                 {
                     return;
                 }
-                control.BackColor = Preferences.Current.DarkModeBackColor;
-                control.ForeColor = Color.White;
-                if (control is Button)
+                caller.BackColor = Preferences.Current.DarkModeBackColor;
+                caller.ForeColor = Color.White;
+                if (caller is Button)
                 {
-                    ((Button)control).FlatStyle = FlatStyle.Flat;
-                    ((Button)control).FlatAppearance.MouseOverBackColor = Color.DarkGray;
+                    ((Button)caller).FlatStyle = FlatStyle.Flat;
+                    ((Button)caller).FlatAppearance.MouseOverBackColor = Color.DarkGray;
                 }
-                else if (control is ComboBox)
+                else if (caller is ComboBox)
                 {
-                    ((ComboBox)control).FlatStyle = FlatStyle.Flat;
+                    ((ComboBox)caller).FlatStyle = FlatStyle.Flat;
                 }
-                else if (control is TextBox)
+                else if (caller is TextBox)
                 {
-                    ((TextBox)control).BorderStyle = BorderStyle.FixedSingle;
+                    ((TextBox)caller).BorderStyle = BorderStyle.FixedSingle;
                 }
-                else if (control is ListBox)
+                else if (caller is ListBox)
                 {
-                    ((ListBox)control).BorderStyle = BorderStyle.FixedSingle;
+                    ((ListBox)caller).BorderStyle = BorderStyle.FixedSingle;
                 }
-                else if (control is NumericUpDown)
+                else if (caller is NumericUpDown)
                 {
-                    ((NumericUpDown)control).BorderStyle = BorderStyle.FixedSingle;
+                    ((NumericUpDown)caller).BorderStyle = BorderStyle.FixedSingle;
                 }
+                foreach (Control otherControl in caller.Controls)
+                {
+                    ApplyDarkMode(otherControl);
+                }
+            }
+            void ApplyZoomMode(Control caller)
+            {
+                if (caller is PalettePanel)
+                {
+                    ((PalettePanel)caller).ApplyZoomMode();
+                    return;
+                }
+                if (caller is EventTextBox)
+                {
+                    caller.Font = new Font(caller.Font.FontFamily, (int)Math.Round(control.Font.Size * Preferences.Current.ZoomAmount));
+                    return;
+                }
+                if (caller is TeamPanel)
+                {
+                    foreach (Control item in caller.Controls)
+                    {
+                        item.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                    }
+                    caller.Left = (int)Math.Round(caller.Left / Preferences.Current.ZoomAmount);
+                    caller.Width = (int)Math.Round(caller.Width / Preferences.Current.ZoomAmount);
+                }
+                foreach (Control otherControl in caller.Controls)
+                {
+                    ApplyZoomMode(otherControl);
+                }
+            }
+
+            if (Preferences.Current.DarkMode)
+            {
+                ApplyDarkMode(control);
+            }
+            if (Preferences.Current.ZoomAmount > 1 && zoom)
+            {
+                control.Font = new Font(control.Font.FontFamily, (int)Math.Round(control.Font.Size * Preferences.Current.ZoomAmount));
                 foreach (Control otherControl in control.Controls)
                 {
-                    otherControl.ApplyPreferences();
+                    ApplyZoomMode(otherControl);
+                }
+                if (control is frmBaseEditor)
+                {
+                    ((frmBaseEditor)control).RecenterForm();
+                }
+            }
+        }
+
+        public static void ResizeByZoom(this Control control, bool pos = true, bool x = true, bool y = true)
+        {
+            if (x)
+            {
+                control.Width = (int)Math.Round(control.Width * Preferences.Current.ZoomAmount);
+            }
+            if (y)
+            {
+                control.Height = (int)Math.Round(control.Height * Preferences.Current.ZoomAmount);
+            }
+            if (pos)
+            {
+                if (x)
+                {
+                    control.Left = (int)Math.Round(control.Left * Preferences.Current.ZoomAmount);
+                }
+                if (y)
+                {
+                    control.Top = (int)Math.Round(control.Top * Preferences.Current.ZoomAmount);
                 }
             }
         }

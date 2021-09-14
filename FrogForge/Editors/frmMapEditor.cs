@@ -102,6 +102,7 @@ namespace FrogForge.Editors
             // Init stuff
             melMapEvents.Init(this, () => new MapEventData(), () => new UserControls.MapEventPanel(), (a) => a.Init(this, DataDirectory), false);
             this.ApplyPreferences();
+            SetTileSet(Tilesets[0]);
         }
 
         private void Render()
@@ -414,6 +415,7 @@ namespace FrogForge.Editors
                 tileButton.Image = set.Tiles[i].Image.Target;
                 tileButton.Tag = i;
                 tileButton.Click += btnTileButton_Click;
+                tileButton.ResizeByZoom();
                 pnlPossibleTiles.Controls.Add(tileButton);
             }
             if (Tiles != null)
@@ -455,6 +457,7 @@ namespace FrogForge.Editors
                 btnPlace.Width = 124;
                 btnReplace.Enabled = false;
             }
+            btnPlace.ResizeByZoom(false, y: false);
         }
 
         private void RemoveUnit(Unit unit)
