@@ -71,6 +71,7 @@ namespace FrogForge.Editors
         {
             picCharactersPreview.Image = picCharactersFG.Image?.Target;
             picCharactersPreview.BackgroundImage = picCharactersBG.Image?.Target;
+            picCharactersPreview.FixZoom();
         }
 
         private void UpdateGenericPreview()
@@ -80,6 +81,7 @@ namespace FrogForge.Editors
             picGenericsBG.Palette = pleGenericsPossibleBGPalettes.Datas.Count > 0 ?
                 pleGenericsPossibleBGPalettes.Datas[RNG.Next(pleGenericsPossibleBGPalettes.Datas.Count)] : Palette.BasePalette;
             picGenericsFG.Palette = Palette.BaseSpritePalettes[RNG.Next(0, 4)];
+            picGenericsPreview.FixZoom();
         }
 
         private PortraitData CharacterDataFromUI(PortraitData data)

@@ -35,6 +35,7 @@ namespace FrogForge.Editors
                 if (grpSelectedTile.Enabled = ((_selectedIndex = value) >= 0))
                 {
                     Renderers[value].Image = Properties.Resources.Cursor;
+                    Renderers[value].FixZoom(background: false);
                     TileDataToUI(value);
                 }
             }
@@ -92,6 +93,12 @@ namespace FrogForge.Editors
                 this, () => new BattleBackgroundData(""),
                 () => new BattleBackgroundPanel(), (a) => a.Init(dlgOpen, this, GetPalette), true);
             this.ApplyPreferences();
+            // Fix zoom mode~
+            for (int i = 0; i < TILEMAP_SIZE.X * TILEMAP_SIZE.Y; i++)
+            {
+                Renderers[i].Height = Renderers[i].Width;
+                Renderers[i].Top = (i / TILEMAP_SIZE.X) * Renderers[i].Height;
+            }
         }
 
         private void Renderer_Click(int rendererIndex)

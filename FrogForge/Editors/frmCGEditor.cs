@@ -87,6 +87,7 @@ namespace FrogForge.Editors
                 }
             }
             picPreview.Image = source;
+            picPreview.FixZoom();
         }
 
         private void btnSave_Click(object sender, EventArgs e)

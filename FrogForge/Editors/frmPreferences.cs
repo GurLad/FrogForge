@@ -36,7 +36,7 @@ namespace FrogForge.Editors
                 Height -= 46;
             }
             ckbDarkMode.Checked = Preferences.Current.DarkMode;
-            ckbZoomMode.Checked = Preferences.Current.ZoomAmount > 1;
+            nudZoomAmount.Value = (decimal)Preferences.Current.ZoomAmount;
         }
 
         private void cmbVoice_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace FrogForge.Editors
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Preferences.Current.ZoomAmount = ckbZoomMode.Checked ? 1.5 : 1;
+            Preferences.Current.ZoomAmount = (double)nudZoomAmount.Value;
             Preferences.Current.DarkMode = ckbDarkMode.Checked;
             Preferences.Current.VoiceAssist = (cmbVoice.SelectedItem?.ToString() ?? "None") == "None" ? "" : cmbVoice.SelectedItem.ToString();
             DataDirectory.SaveFile("Preferences", Preferences.Current.ToJson(), ".json");

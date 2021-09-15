@@ -3,6 +3,7 @@ using FrogForge.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
@@ -160,25 +161,68 @@ namespace FrogForge
             }
         }
 
-        public static void FixZoom(this PictureBox pictureBox)
+        public static void FixZoom(this PictureBox pictureBox, bool foreground = true, bool background = true)
         {
             if (Preferences.Current.ZoomAmount > 1)
             {
-                if (pictureBox.Image != null)
+                if (pictureBox.Image != null && foreground)
                 {
                     Bitmap origin = new Bitmap(pictureBox.Image);
                     double mod = Preferences.Current.ZoomAmount;
-                    Bitmap resized = new Bitmap(origin, new Size((int)Math.Round(origin.Width * mod), (int)Math.Round(origin.Height * mod)));
+                    Bitmap resized = origin.Resize((int)Math.Round(origin.Width * mod), (int)Math.Round(origin.Height * mod));
                     pictureBox.Image = resized;
+                    if (pictureBox.BorderStyle == BorderStyle.Fixed3D)
+                    {
+                        // Fix weird picturebox size bug
+                        pictureBox.Height = resized.Height + 4;
+                    }
                 }
-                if (pictureBox.BackgroundImage != null)
+                if (pictureBox.BackgroundImage != null && background)
                 {
                     Bitmap origin = new Bitmap(pictureBox.BackgroundImage);
                     double mod = Preferences.Current.ZoomAmount;
-                    Bitmap resized = new Bitmap(origin, new Size((int)Math.Round(origin.Width * mod), (int)Math.Round(origin.Height * mod)));
+                    Bitmap resized = origin.Resize((int)Math.Round(origin.Width * mod), (int)Math.Round(origin.Height * mod));
                     pictureBox.BackgroundImage = resized;
+                    if (pictureBox.BorderStyle == BorderStyle.Fixed3D)
+                    {
+                        // Fix weird picturebox size bug
+                        pictureBox.Height = resized.Height + (pictureBox.Width - resized.Width);
+                    }
                 }
             }
+        }
+
+        /// <summary>
+        /// Resize the image to the specified width and height.
+        /// Modified from https://stackoverflow.com/questions/1922040/how-to-resize-an-image-c-sharp
+        /// </summary>
+        /// <param name="image">The image to resize.</param>
+        /// <param name="width">The width to resize to.</param>
+        /// <param name="height">The height to resize to.</param>
+        /// <returns>The resized image.</returns>
+        private static Bitmap Resize(this Image image, int width, int height)
+        {
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = (Math.Floor(Preferences.Current.ZoomAmount) == Preferences.Current.ZoomAmount) ? InterpolationMode.NearestNeighbor : InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
         }
 
         public static bool ConfirmDialog(string text, string title)

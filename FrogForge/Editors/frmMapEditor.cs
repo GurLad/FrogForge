@@ -109,6 +109,15 @@ namespace FrogForge.Editors
             // Init stuff
             melMapEvents.Init(this, () => new MapEventData(), () => new UserControls.MapEventPanel(), (a) => a.Init(this, DataDirectory), false);
             this.ApplyPreferences();
+            // Fix zoom mode - I don't know why it has so many bugs
+            for (i = 0; i < Size.X; i++)
+            {
+                for (int j = 0; j < Size.Y; j++)
+                {
+                    Renderers[i, j].Height = Renderers[i, j].Width;
+                    Renderers[i, j].Top = Renderers[i, j].Height * j;
+                }
+            }
             SetTileSet(Tilesets[0]);
         }
 
