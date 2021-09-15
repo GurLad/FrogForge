@@ -95,12 +95,12 @@ namespace FrogForge
                     ((PalettePanel)caller).ApplyZoomMode();
                     return;
                 }
-                if (caller is EventTextBox)
+                else if (caller is EventTextBox)
                 {
                     caller.Font = new Font(caller.Font.FontFamily, (int)Math.Round(control.Font.Size * Preferences.Current.ZoomAmount));
                     return;
                 }
-                if (caller is TeamPanel)
+                else if (caller is TeamPanel)
                 {
                     foreach (Control item in caller.Controls)
                     {
@@ -108,6 +108,10 @@ namespace FrogForge
                     }
                     caller.Left = (int)Math.Round(caller.Left / Preferences.Current.ZoomAmount);
                     caller.Width = (int)Math.Round(caller.Width / Preferences.Current.ZoomAmount);
+                }
+                else if (caller is PictureBox)
+                {
+                    ((PictureBox)caller).FixZoom();
                 }
                 foreach (Control otherControl in caller.Controls)
                 {
@@ -152,6 +156,27 @@ namespace FrogForge
                 if (y)
                 {
                     control.Top = (int)Math.Round(control.Top * Preferences.Current.ZoomAmount);
+                }
+            }
+        }
+
+        public static void FixZoom(this PictureBox pictureBox)
+        {
+            if (Preferences.Current.ZoomAmount > 1)
+            {
+                if (pictureBox.Image != null)
+                {
+                    Bitmap origin = new Bitmap(pictureBox.Image);
+                    double mod = Preferences.Current.ZoomAmount;
+                    Bitmap resized = new Bitmap(origin, new Size((int)Math.Round(origin.Width * mod), (int)Math.Round(origin.Height * mod)));
+                    pictureBox.Image = resized;
+                }
+                if (pictureBox.BackgroundImage != null)
+                {
+                    Bitmap origin = new Bitmap(pictureBox.BackgroundImage);
+                    double mod = Preferences.Current.ZoomAmount;
+                    Bitmap resized = new Bitmap(origin, new Size((int)Math.Round(origin.Width * mod), (int)Math.Round(origin.Height * mod)));
+                    pictureBox.BackgroundImage = resized;
                 }
             }
         }

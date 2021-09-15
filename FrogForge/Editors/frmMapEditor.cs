@@ -28,6 +28,13 @@ namespace FrogForge.Editors
         private Unit Selected = null;
         private PictureBox PreviousHover = null;
         private List<ClassData> CachedSprites = new List<ClassData>();
+        private int TILE_SIZE
+        {
+            get
+            {
+                return (int)(16 * Preferences.Current.ZoomAmount);
+            }
+        }
 
         public frmMapEditor()
         {
@@ -124,7 +131,7 @@ namespace FrogForge.Editors
         private void RenderPictureboxFromTile(PictureBox pictureBox, MapTile tile)
         {
             pictureBox.BackgroundImage = CurrentTileset.Tiles[tile.TileID].Image.Target;
-            Point pos = new Point(pictureBox.Left / 16, pictureBox.Top / 16);
+            Point pos = new Point(pictureBox.Left / TILE_SIZE, pictureBox.Top / TILE_SIZE);
             int unitIndex = Units.FindIndex(a => a.Pos == pos);
             if (unitIndex >= 0)
             {
@@ -134,6 +141,7 @@ namespace FrogForge.Editors
             {
                 pictureBox.Image = null;
             }
+            pictureBox.FixZoom();
         }
 
         private void TileMouseMove(object sender, MouseEventArgs e)
@@ -147,14 +155,14 @@ namespace FrogForge.Editors
                 PictureBox pictureBox = (PictureBox)sender;
                 if (e.Button == MouseButtons.Left)
                 {
-                    Placing.Pos = new Point(pictureBox.Left / 16, pictureBox.Top / 16);
+                    Placing.Pos = new Point(pictureBox.Left / TILE_SIZE, pictureBox.Top / TILE_SIZE);
                     tbcUI.Enabled = true;
                     lstUnits.DataSource = null;
                     lstUnits.DataSource = Units;
                     lstUnits.SelectedIndex = lstUnits.Items.Count - 1;
                     SelectUnit(Placing);
                     Placing = null;
-                    RenderTile(pictureBox.Left / 16, pictureBox.Top / 16);
+                    RenderTile(pictureBox.Left / TILE_SIZE, pictureBox.Top / TILE_SIZE);
                     PreviousHover = null;
                     Dirty = true;
                     return;
@@ -171,15 +179,15 @@ namespace FrogForge.Editors
                 {
                     PictureBox pictureBox = (PictureBox)sender;
                     pictureBox.Capture = false;
-                    Tiles[pictureBox.Left / 16, pictureBox.Top / 16].TileID = CurrentSelected.TileID;
-                    RenderTile(pictureBox.Left / 16, pictureBox.Top / 16);
+                    Tiles[pictureBox.Left / TILE_SIZE, pictureBox.Top / TILE_SIZE].TileID = CurrentSelected.TileID;
+                    RenderTile(pictureBox.Left / TILE_SIZE, pictureBox.Top / TILE_SIZE);
                     Dirty = true;
                 }
                 else if (e.Button == MouseButtons.Right)
                 {
                     PictureBox pictureBox = (PictureBox)sender;
                     pictureBox.Capture = false;
-                    FillTile(pictureBox.Left / 16, pictureBox.Top / 16, CurrentSelected);
+                    FillTile(pictureBox.Left / TILE_SIZE, pictureBox.Top / TILE_SIZE, CurrentSelected);
                     Dirty = true;
                 }
             }
@@ -214,7 +222,7 @@ namespace FrogForge.Editors
         private void btnTileButton_Click(object sender, EventArgs e)
         {
             CurrentSelected = CurrentSelected ?? new MapTile();
-            CurrentSelected.TileID = (int)((Label)sender).Tag;
+            CurrentSelected.TileID = (int)((PictureBox)sender).Tag;
             UpdatePreview();
         }
 
@@ -406,7 +414,7 @@ namespace FrogForge.Editors
             pnlPossibleTiles.Controls.Clear();
             for (int i = 0; i < set.Tiles.Count; i++)
             {
-                Label tileButton = new Label();
+                PictureBox tileButton = new PictureBox();
                 tileButton.Width = 16;
                 tileButton.Height = 16;
                 tileButton.Left = 16 * (i % 6);
@@ -417,6 +425,7 @@ namespace FrogForge.Editors
                 tileButton.Click += btnTileButton_Click;
                 tileButton.ResizeByZoom();
                 pnlPossibleTiles.Controls.Add(tileButton);
+                tileButton.FixZoom();
             }
             if (Tiles != null)
             {

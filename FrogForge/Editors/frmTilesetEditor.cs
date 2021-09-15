@@ -241,6 +241,7 @@ namespace FrogForge.Editors
         {
             Renderers[index].BackgroundImage = CurrentTiles[index].Image.ToBitmap(GetPalette(CurrentTiles[index].Palette));
             Renderers[index].Image = index == SelectedIndex ? Properties.Resources.Cursor : null; // I don't know why, but it doesn't work without this line. Weird.
+            Renderers[index].FixZoom();
         }
 
         private void Render()

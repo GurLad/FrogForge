@@ -47,6 +47,7 @@ namespace FrogForge.UserControls
                 base.Image = image?.Target;
                 tmrAnimate.Stop();
                 CurrentFrame = 0;
+                this.FixZoom();
             }
         }
         private int ImageWidth
@@ -115,7 +116,7 @@ namespace FrogForge.UserControls
         private void tmrAnimateTick(object sender, EventArgs e)
         {
             int height = Image.Target.Height;
-            int width = ImageWidth;
+            int width = (int)(ImageWidth / Preferences.Current.ZoomAmount);
             CurrentFrame++;
             CurrentFrame %= Image.Target.Width / width;
             Image target = new Bitmap(width, height);
@@ -123,6 +124,7 @@ namespace FrogForge.UserControls
             g.DrawImage(Image.Target, new PointF(-CurrentFrame * width, 0));
             g.Dispose();
             base.Image = target;
+            this.FixZoom();
         }
 
         protected virtual T NewT(Image source)
