@@ -118,6 +118,7 @@ namespace FrogForge.Editors
                     Renderers[i, j].Top = Renderers[i, j].Height * j;
                 }
             }
+            pnlRenderer.Height = Renderers[0, 0].Height * Size.Y;
             SetTileSet(Tilesets[0]);
         }
 

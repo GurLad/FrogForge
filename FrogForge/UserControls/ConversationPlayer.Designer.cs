@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            FrogForge.Palette palette2 = new FrogForge.Palette();
             this.pnlPreview = new System.Windows.Forms.Panel();
             this.picArrow = new System.Windows.Forms.PictureBox();
             this.lblPreviewText = new System.Windows.Forms.Label();
             this.lblPreviewName = new System.Windows.Forms.Label();
-            this.picPreviewSpeaker = new FrogForge.UserControls.PalettedPicturebox();
+            this.picPreviewSpeaker = new System.Windows.Forms.PictureBox();
             this.pnlPreview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picArrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPreviewSpeaker)).BeginInit();
@@ -85,15 +84,11 @@
             // 
             // picPreviewSpeaker
             // 
-            this.picPreviewSpeaker.BackColor = System.Drawing.Color.Transparent;
-            this.picPreviewSpeaker.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picPreviewSpeaker.Image = null;
+            this.picPreviewSpeaker.BackColor = System.Drawing.Color.Black;
             this.picPreviewSpeaker.Location = new System.Drawing.Point(16, 288);
             this.picPreviewSpeaker.Name = "picPreviewSpeaker";
-            this.picPreviewSpeaker.Palette = palette2;
             this.picPreviewSpeaker.Size = new System.Drawing.Size(96, 96);
-            this.picPreviewSpeaker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picPreviewSpeaker.TabIndex = 3;
+            this.picPreviewSpeaker.TabIndex = 4;
             this.picPreviewSpeaker.TabStop = false;
             // 
             // ConversationPlayer
@@ -117,6 +112,6 @@
         private System.Windows.Forms.PictureBox picArrow;
         private System.Windows.Forms.Label lblPreviewText;
         private System.Windows.Forms.Label lblPreviewName;
-        private PalettedPicturebox picPreviewSpeaker;
+        private System.Windows.Forms.PictureBox picPreviewSpeaker;
     }
 }

@@ -110,7 +110,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(83, 6);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.5.7.0 15.09.2021";
+            this.lblVersion.Text = "V.0.5.7.1 19.09.2021";
             // 
             // btnClassEditor
             // 

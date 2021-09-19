@@ -29,6 +29,17 @@ namespace FrogForge.UserControls
                 UserInput = true;
             }
         }
+        private Color SelectionColor
+        {
+            get
+            {
+                return Preferences.Current.DarkMode ? base.SelectionColor.Invert() : base.SelectionColor;
+            }
+            set
+            {
+                base.SelectionColor = Preferences.Current.DarkMode ? value.Invert() : value;
+            }
+        }
         private bool UserInput = false;
         private Dictionary<Color, string[]> Keywords = new Dictionary<Color, string[]>();
         private frmBaseEditor Editor;
@@ -79,10 +90,6 @@ namespace FrogForge.UserControls
 
         private void CheckKeyword(string word, Color color, int minIndex = -1, int maxIndex = -1, bool keyword = true)
         {
-            if (Preferences.Current.DarkMode)
-            {
-                color = Color.FromArgb(255 - color.R, 255 - color.G, 255 - color.B);
-            }
             if (Text.Contains(word))
             {
                 int index = minIndex;
@@ -127,7 +134,12 @@ namespace FrogForge.UserControls
                     {
                         return;
                     }
-                    Select(index, Text.IndexOf('\n', index + word.Length) - index);
+                    int endIndex = Text.IndexOf('\n', index + word.Length);
+                    if (endIndex < 0)
+                    {
+                        endIndex = Text.Length;
+                    }
+                    Select(index, endIndex - index);
                     SelectionColor = color;
                     Select(selectStart, 0);
                     SelectionColor = Color.Black;
@@ -177,6 +189,10 @@ namespace FrogForge.UserControls
                     SelectionColor = Color.DarkGoldenrod;
                 }
                 int selectionIndex = Text.LastIndexOf('\n', FindSelectedNextLineStart() - 1) + 1;
+                if (selectionIndex >= Text.Length)
+                {
+                    return;
+                }
                 int nextLineIndex = Text.IndexOf('\n', selectionIndex + 1);
                 ColorText(selectionIndex - 1, nextLineIndex); // Because IndexOf's startIndex is exclusive
             }

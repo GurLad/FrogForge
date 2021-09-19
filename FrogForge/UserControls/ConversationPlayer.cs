@@ -88,11 +88,8 @@ namespace FrogForge.UserControls
                 return;
             }
             portrait.LoadImages(WorkingDirectory);
-            picPreviewSpeaker.Image = portrait.Background;
-            picPreviewSpeaker.Palette = portrait.BackgroundColor;
-            picPreviewSpeaker.BackgroundImage = picPreviewSpeaker.Image.Target;
-            picPreviewSpeaker.Image = portrait.Foreground;
-            picPreviewSpeaker.Palette = Palette.BaseSpritePalettes[portrait.ForegroundColorID];
+            picPreviewSpeaker.BackgroundImage = portrait.Background.ToBitmap(portrait.BackgroundColor).Resize(2);
+            picPreviewSpeaker.Image = portrait.Foreground.ToBitmap(Palette.BaseSpritePalettes[portrait.ForegroundColorID]).Resize(2);
         }
 
         private void ConversationPlayer_KeyDown(object sender, KeyEventArgs e)

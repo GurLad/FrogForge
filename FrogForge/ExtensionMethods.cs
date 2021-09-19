@@ -98,7 +98,6 @@ namespace FrogForge
                 }
                 else if (caller is EventTextBox)
                 {
-                    caller.Font = new Font(caller.Font.FontFamily, (int)Math.Round(control.Font.Size * Preferences.Current.ZoomAmount));
                     return;
                 }
                 else if (caller is TeamPanel)
@@ -169,7 +168,7 @@ namespace FrogForge
                 {
                     Bitmap origin = new Bitmap(pictureBox.Image);
                     double mod = Preferences.Current.ZoomAmount;
-                    Bitmap resized = origin.Resize((int)Math.Round(origin.Width * mod), (int)Math.Round(origin.Height * mod));
+                    Bitmap resized = origin.Resize(mod);
                     pictureBox.Image = resized;
                     if (pictureBox.BorderStyle == BorderStyle.Fixed3D)
                     {
@@ -181,7 +180,7 @@ namespace FrogForge
                 {
                     Bitmap origin = new Bitmap(pictureBox.BackgroundImage);
                     double mod = Preferences.Current.ZoomAmount;
-                    Bitmap resized = origin.Resize((int)Math.Round(origin.Width * mod), (int)Math.Round(origin.Height * mod));
+                    Bitmap resized = origin.Resize(mod);
                     pictureBox.BackgroundImage = resized;
                     if (pictureBox.BorderStyle == BorderStyle.Fixed3D)
                     {
@@ -192,16 +191,11 @@ namespace FrogForge
             }
         }
 
-        /// <summary>
-        /// Resize the image to the specified width and height.
-        /// Modified from https://stackoverflow.com/questions/1922040/how-to-resize-an-image-c-sharp
-        /// </summary>
-        /// <param name="image">The image to resize.</param>
-        /// <param name="width">The width to resize to.</param>
-        /// <param name="height">The height to resize to.</param>
-        /// <returns>The resized image.</returns>
-        private static Bitmap Resize(this Image image, int width, int height)
+        // Modified from https://stackoverflow.com/questions/1922040/how-to-resize-an-image-c-sharp
+        public static Bitmap Resize(this Image image, double mod)
         {
+            int width = (int)Math.Round(image.Width * mod);
+            int height = (int)Math.Round(image.Height * mod);
             var destRect = new Rectangle(0, 0, width, height);
             var destImage = new Bitmap(width, height);
 
@@ -211,7 +205,7 @@ namespace FrogForge
             {
                 graphics.CompositingMode = CompositingMode.SourceCopy;
                 graphics.CompositingQuality = CompositingQuality.HighQuality;
-                graphics.InterpolationMode = (Math.Floor(Preferences.Current.ZoomAmount) == Preferences.Current.ZoomAmount) ? InterpolationMode.NearestNeighbor : InterpolationMode.HighQualityBicubic;
+                graphics.InterpolationMode = (Math.Floor(mod) == mod) ? InterpolationMode.NearestNeighbor : InterpolationMode.HighQualityBicubic;
                 graphics.SmoothingMode = SmoothingMode.HighQuality;
                 graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
@@ -223,6 +217,11 @@ namespace FrogForge
             }
 
             return destImage;
+        }
+
+        public static Color Invert(this Color color)
+        {
+            return Color.FromArgb(255 - color.R, 255 - color.G, 255 - color.B);
         }
 
         public static bool ConfirmDialog(string text, string title)
