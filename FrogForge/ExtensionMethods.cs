@@ -194,8 +194,11 @@ namespace FrogForge
         // Modified from https://stackoverflow.com/questions/1922040/how-to-resize-an-image-c-sharp
         public static Bitmap Resize(this Image image, double mod)
         {
-            int width = (int)Math.Round(image.Width * mod);
-            int height = (int)Math.Round(image.Height * mod);
+            return image.Resize((int)Math.Round(image.Width * mod), (int)Math.Round(image.Height * mod), Math.Floor(mod) == mod);
+        }
+
+        public static Bitmap Resize(this Image image, int width, int height, bool nearestPixel = false)
+        {
             var destRect = new Rectangle(0, 0, width, height);
             var destImage = new Bitmap(width, height);
 
@@ -205,7 +208,7 @@ namespace FrogForge
             {
                 graphics.CompositingMode = CompositingMode.SourceCopy;
                 graphics.CompositingQuality = CompositingQuality.HighQuality;
-                graphics.InterpolationMode = (Math.Floor(mod) == mod) ? InterpolationMode.NearestNeighbor : InterpolationMode.HighQualityBicubic;
+                graphics.InterpolationMode = nearestPixel ? InterpolationMode.NearestNeighbor : InterpolationMode.HighQualityBicubic;
                 graphics.SmoothingMode = SmoothingMode.HighQuality;
                 graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 

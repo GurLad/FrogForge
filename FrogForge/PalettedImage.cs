@@ -17,8 +17,7 @@ namespace FrogForge
             get => currentPalette;
             set
             {
-                currentPalette = value ?? Palette.BasePalette;
-                SetPalette(currentPalette);
+                SetPalette(value ?? Palette.BasePalette);
             }
         }
         protected int[,] Indexes;
@@ -28,6 +27,7 @@ namespace FrogForge
         public PalettedImage(Bitmap target)
         {
             SetIndexes(target);
+            currentPalette = Palette.BasePalette;
         }
 
         public static PalettedImage FromFile(FilesController files, string filename)
@@ -58,6 +58,7 @@ namespace FrogForge
 
         protected virtual void SetPalette(Palette palette)
         {
+            currentPalette = palette;
             for (int i = 0; i < Target.Width; i++)
             {
                 for (int j = 0; j < Target.Height; j++)
@@ -80,6 +81,7 @@ namespace FrogForge
                     Indexes[i, j] = color.A == 0 ? 3 : Palette.BasePalette.ClosestColor(color);
                 }
             }
+            //SetPalette(Palette.BasePalette);
         }
     }
 }

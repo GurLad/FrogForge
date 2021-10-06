@@ -50,23 +50,8 @@ namespace FrogForge.UserControls
                 this.FixZoom();
             }
         }
-        private int ImageWidth
-        {
-            get
-            {
-                switch (BorderStyle)
-                {
-                    case BorderStyle.None:
-                        return Width;
-                    case BorderStyle.FixedSingle:
-                        return Width - 2;
-                    case BorderStyle.Fixed3D:
-                        return Width - 4;
-                    default:
-                        throw new Exception("What?");
-                }
-            }
-        }
+        private int ImageWidth { get; set; }
+        private int ImageHeight { get; set; }
 
         public void Init(OpenFileDialog dlgOpen, frmBaseEditor editor, Action postOnClick = null)
         {
@@ -77,6 +62,23 @@ namespace FrogForge.UserControls
             tmrAnimate.Tick += tmrAnimateTick;
             PostOnClick = postOnClick;
             SizeMode = PictureBoxSizeMode.Normal;
+            switch (BorderStyle)
+            {
+                case BorderStyle.None:
+                    ImageWidth = Width;
+                    ImageHeight = Height;
+                    break;
+                case BorderStyle.FixedSingle:
+                    ImageWidth = Width - 2;
+                    ImageHeight = Height - 2;
+                    break;
+                case BorderStyle.Fixed3D:
+                    ImageWidth = Width - 4;
+                    ImageHeight = Height - 4;
+                    break;
+                default:
+                    throw new Exception("What?");
+            }
         }
 
         private void OnClick(object sender, MouseEventArgs e)
@@ -87,9 +89,22 @@ namespace FrogForge.UserControls
                 {
                     // Create image
                     Image source = System.Drawing.Image.FromFile(dlgOpen.FileName).SplitGIF();
+                    // Verify size
+                    if (source.Height != ImageHeight || (source.Width % ImageWidth == 0))
+                    {
+                        if (ExtensionMethods.ConfirmDialog("Wrong image size (should be " +ImageWidth + "x" + ImageHeight + ", got " + source.Width + "x" + source.Height + " instead). Continue anyway?", "Warning"))
+                        {
+                            source = source.Resize(ImageWidth, ImageHeight);
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
                     // Color image
                     Image = NewT(source);
                     Image.CurrentPalette = Palette;
+                    Image = Image;
                     // Set dirty
                     Editor.Dirty = true;
                     PostOnClick?.Invoke();

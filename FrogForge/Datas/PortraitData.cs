@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +18,8 @@ namespace FrogForge.Datas
         public void LoadImages(FilesController workingDirectory)
         {
             workingDirectory.CreateDirectory(@"Images\Portraits\" + Name);
-            Background = Background ?? new PalettedImage(workingDirectory.LoadImage(@"Portraits\" + Name + @"\B"));
-            Foreground = Foreground ?? new PalettedImage(workingDirectory.LoadImage(@"Portraits\" + Name + @"\F"));
+            Background = Background ?? new PalettedImage(workingDirectory.LoadImage(@"Portraits\" + Name + @"\B") ?? new Bitmap(48, 48));
+            Foreground = Foreground ?? new PalettedImage(workingDirectory.LoadImage(@"Portraits\" + Name + @"\F") ?? new Bitmap(48, 48));
         }
 
         public void ApplyPalettes()

@@ -65,6 +65,8 @@ namespace FrogForge.Editors
             nudPitch.ValueChanged += DirtyFunc;
             cmbVoiceType.SelectedIndexChanged += DirtyFunc;
             Dirty = false;
+            // Load empty
+            btnNew_Click(sender, e);
         }
 
         private void UpdateCharacterPreview()
