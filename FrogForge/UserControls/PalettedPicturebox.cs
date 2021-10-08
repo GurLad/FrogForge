@@ -90,7 +90,7 @@ namespace FrogForge.UserControls
                     // Create image
                     Image source = System.Drawing.Image.FromFile(dlgOpen.FileName).SplitGIF();
                     // Verify size
-                    if (source.Height != ImageHeight || (source.Width % ImageWidth == 0))
+                    if (source.Height != ImageHeight || (source.Width % ImageWidth != 0))
                     {
                         if (ExtensionMethods.ConfirmDialog("Wrong image size (should be " +ImageWidth + "x" + ImageHeight + ", got " + source.Width + "x" + source.Height + " instead). Continue anyway?", "Warning"))
                         {
@@ -131,7 +131,22 @@ namespace FrogForge.UserControls
         private void tmrAnimateTick(object sender, EventArgs e)
         {
             int height = Image.Target.Height;
-            int width = (int)(ImageWidth / Preferences.Current.ZoomAmount);
+            int width;
+            switch (BorderStyle)
+            {
+                case BorderStyle.None:
+                    width = Width;
+                    break;
+                case BorderStyle.FixedSingle:
+                    width = Width - 2;
+                    break;
+                case BorderStyle.Fixed3D:
+                    width = Width - 4;
+                    break;
+                default:
+                    throw new Exception("What?");
+            }
+            width = (int)(width / Preferences.Current.ZoomAmount);
             CurrentFrame++;
             CurrentFrame %= Image.Target.Width / width;
             Image target = new Bitmap(width, height);
