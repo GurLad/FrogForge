@@ -60,6 +60,7 @@
             this.btnRemove = new System.Windows.Forms.ToolStripButton();
             this.tbcMain = new System.Windows.Forms.TabControl();
             this.tbpClass = new System.Windows.Forms.TabPage();
+            this.grpAnimationData = new System.Windows.Forms.GroupBox();
             this.tbpUnit = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtUnitDeathQuote = new FrogForge.UserControls.EventTextBox();
@@ -74,6 +75,11 @@
             this.gthUnitGrowths = new FrogForge.UserControls.GrowthsPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.cmbUnitInclination = new System.Windows.Forms.ComboBox();
+            this.cmbClassAnimationModeMelee = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cmbClassAnimationModeRanged = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.grpGrowths.SuspendLayout();
             this.grpWeapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponWeight)).BeginInit();
@@ -86,6 +92,7 @@
             this.toolStrip1.SuspendLayout();
             this.tbcMain.SuspendLayout();
             this.tbpClass.SuspendLayout();
+            this.grpAnimationData.SuspendLayout();
             this.tbpUnit.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -138,8 +145,6 @@
             // 
             // grpWeapon
             // 
-            this.grpWeapon.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.grpWeapon.Controls.Add(this.label7);
             this.grpWeapon.Controls.Add(this.label6);
             this.grpWeapon.Controls.Add(this.nudWeaponWeight);
@@ -328,12 +333,10 @@
             // 
             // grpBattleAnimations
             // 
-            this.grpBattleAnimations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpBattleAnimations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBattleAnimations.Controls.Add(this.btnGenerateBase);
             this.grpBattleAnimations.Controls.Add(this.balBattleAnimations);
-            this.grpBattleAnimations.Location = new System.Drawing.Point(378, 0);
+            this.grpBattleAnimations.Location = new System.Drawing.Point(560, 0);
             this.grpBattleAnimations.Name = "grpBattleAnimations";
             this.grpBattleAnimations.Size = new System.Drawing.Size(193, 204);
             this.grpBattleAnimations.TabIndex = 10;
@@ -370,7 +373,7 @@
             this.btnRemove});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(605, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(787, 25);
             this.toolStrip1.TabIndex = 11;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -414,12 +417,13 @@
             this.tbcMain.Location = new System.Drawing.Point(12, 28);
             this.tbcMain.Name = "tbcMain";
             this.tbcMain.SelectedIndex = 0;
-            this.tbcMain.Size = new System.Drawing.Size(581, 231);
+            this.tbcMain.Size = new System.Drawing.Size(763, 231);
             this.tbcMain.TabIndex = 12;
             this.tbcMain.SelectedIndexChanged += new System.EventHandler(this.tbcMain_SelectedIndexChanged);
             // 
             // tbpClass
             // 
+            this.tbpClass.Controls.Add(this.grpAnimationData);
             this.tbpClass.Controls.Add(this.lstClasses);
             this.tbpClass.Controls.Add(this.label1);
             this.tbpClass.Controls.Add(this.grpBattleAnimations);
@@ -433,10 +437,24 @@
             this.tbpClass.Location = new System.Drawing.Point(4, 22);
             this.tbpClass.Name = "tbpClass";
             this.tbpClass.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpClass.Size = new System.Drawing.Size(573, 205);
+            this.tbpClass.Size = new System.Drawing.Size(755, 205);
             this.tbpClass.TabIndex = 0;
             this.tbpClass.Text = "Class";
             this.tbpClass.UseVisualStyleBackColor = true;
+            // 
+            // grpAnimationData
+            // 
+            this.grpAnimationData.Controls.Add(this.groupBox4);
+            this.grpAnimationData.Controls.Add(this.label13);
+            this.grpAnimationData.Controls.Add(this.label12);
+            this.grpAnimationData.Controls.Add(this.cmbClassAnimationModeRanged);
+            this.grpAnimationData.Controls.Add(this.cmbClassAnimationModeMelee);
+            this.grpAnimationData.Location = new System.Drawing.Point(378, 0);
+            this.grpAnimationData.Name = "grpAnimationData";
+            this.grpAnimationData.Size = new System.Drawing.Size(176, 204);
+            this.grpAnimationData.TabIndex = 11;
+            this.grpAnimationData.TabStop = false;
+            this.grpAnimationData.Text = "Animation data";
             // 
             // tbpUnit
             // 
@@ -453,20 +471,19 @@
             this.tbpUnit.Location = new System.Drawing.Point(4, 22);
             this.tbpUnit.Name = "tbpUnit";
             this.tbpUnit.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpUnit.Size = new System.Drawing.Size(554, 205);
+            this.tbpUnit.Size = new System.Drawing.Size(755, 205);
             this.tbpUnit.TabIndex = 1;
             this.tbpUnit.Text = "Unit";
             this.tbpUnit.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.txtUnitDeathQuote);
-            this.groupBox3.Location = new System.Drawing.Point(379, 0);
+            this.groupBox3.Location = new System.Drawing.Point(378, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(173, 204);
+            this.groupBox3.Size = new System.Drawing.Size(375, 204);
             this.groupBox3.TabIndex = 16;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Death event";
@@ -478,7 +495,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUnitDeathQuote.Location = new System.Drawing.Point(7, 20);
             this.txtUnitDeathQuote.Name = "txtUnitDeathQuote";
-            this.txtUnitDeathQuote.Size = new System.Drawing.Size(160, 178);
+            this.txtUnitDeathQuote.Size = new System.Drawing.Size(362, 178);
             this.txtUnitDeathQuote.TabIndex = 0;
             // 
             // groupBox2
@@ -584,11 +601,57 @@
             this.cmbUnitInclination.Size = new System.Drawing.Size(182, 21);
             this.cmbUnitInclination.TabIndex = 2;
             // 
+            // cmbClassAnimationModeMelee
+            // 
+            this.cmbClassAnimationModeMelee.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbClassAnimationModeMelee.FormattingEnabled = true;
+            this.cmbClassAnimationModeMelee.Location = new System.Drawing.Point(89, 19);
+            this.cmbClassAnimationModeMelee.Name = "cmbClassAnimationModeMelee";
+            this.cmbClassAnimationModeMelee.Size = new System.Drawing.Size(81, 21);
+            this.cmbClassAnimationModeMelee.TabIndex = 0;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 22);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(68, 13);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Melee mode:";
+            // 
+            // cmbClassAnimationModeRanged
+            // 
+            this.cmbClassAnimationModeRanged.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbClassAnimationModeRanged.FormattingEnabled = true;
+            this.cmbClassAnimationModeRanged.Location = new System.Drawing.Point(89, 46);
+            this.cmbClassAnimationModeRanged.Name = "cmbClassAnimationModeRanged";
+            this.cmbClassAnimationModeRanged.Size = new System.Drawing.Size(81, 21);
+            this.cmbClassAnimationModeRanged.TabIndex = 0;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 49);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(77, 13);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "Ranged mode:";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Enabled = false;
+            this.groupBox4.Location = new System.Drawing.Point(6, 73);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(164, 125);
+            this.groupBox4.TabIndex = 2;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Projectile data TBA";
+            // 
             // frmClassEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(605, 271);
+            this.ClientSize = new System.Drawing.Size(787, 271);
             this.Controls.Add(this.tbcMain);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -614,6 +677,8 @@
             this.tbcMain.ResumeLayout(false);
             this.tbpClass.ResumeLayout(false);
             this.tbpClass.PerformLayout();
+            this.grpAnimationData.ResumeLayout(false);
+            this.grpAnimationData.PerformLayout();
             this.tbpUnit.ResumeLayout(false);
             this.tbpUnit.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -671,5 +736,11 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox3;
         private UserControls.EventTextBox txtUnitDeathQuote;
+        private System.Windows.Forms.GroupBox grpAnimationData;
+        private System.Windows.Forms.ComboBox cmbClassAnimationModeMelee;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox cmbClassAnimationModeRanged;
+        private System.Windows.Forms.GroupBox groupBox4;
     }
 }

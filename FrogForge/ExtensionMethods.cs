@@ -55,6 +55,10 @@ namespace FrogForge
 
         public static void ApplyPreferences(this Control control, bool zoom = true)
         {
+            if (System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
+            {
+                return;
+            }
             void ApplyDarkMode(Control caller)
             {
                 if (caller is PalettePanel || caller is GrowthsPanel)
@@ -133,6 +137,10 @@ namespace FrogForge
                 if (control is frmBaseEditor)
                 {
                     ((frmBaseEditor)control).RecenterForm();
+                }
+                else if (control is PalettePanel)
+                {
+                    ((PalettePanel)control).ApplyZoomMode();
                 }
             }
         }

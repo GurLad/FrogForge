@@ -16,7 +16,7 @@ namespace FrogForge.Editors
 {
     public partial class frmClassEditor : frmBaseEditor
     {
-        private static int[] PageWidths { get; } = new int[] { 621, 652 };
+        private static int[] PageWidths { get; } = new int[] { 803, 652 };
 
         public frmClassEditor()
         {
@@ -38,6 +38,8 @@ namespace FrogForge.Editors
             txtWeaponName.TextChanged += DirtyFunc;
             cmbClassInclination.TextChanged += DirtyFunc;
             ckbFlies.CheckedChanged += DirtyFunc;
+            cmbClassAnimationModeMelee.TextChanged += DirtyFunc;
+            cmbClassAnimationModeRanged.TextChanged += DirtyFunc;
             txtUnitClass.TextChanged += DirtyFunc;
             cmbUnitInclination.TextChanged += DirtyFunc;
             // Init base
@@ -49,6 +51,10 @@ namespace FrogForge.Editors
                 this, () => new BattleAnimationData(), () => new BattleAnimationPanel(),
                 (bap) => bap.Init(dlgOpen, this), true, () => btnGenerateBase.Visible = balBattleAnimations.Datas.Count <= 0);
             txtUnitDeathQuote.Init(DataDirectory, this);
+            // Misc
+            string[] battleAnimationModeNames = Enum.GetNames(typeof(BattleAnimationMode));
+            cmbClassAnimationModeMelee.Items.AddRange(battleAnimationModeNames);
+            cmbClassAnimationModeRanged.Items.AddRange(battleAnimationModeNames);
             this.ApplyPreferences();
         }
 
@@ -112,6 +118,8 @@ namespace FrogForge.Editors
             data.Weapon.Damage = (int)nudWeaponDamage.Value;
             data.Weapon.HitStat = (int)nudWeaponHit.Value;
             data.Weapon.Weight = (int)nudWeaponWeight.Value;
+            data.BattleAnimationModeMelee = (BattleAnimationMode)cmbClassAnimationModeMelee.SelectedIndex;
+            data.BattleAnimationModeRanged = (BattleAnimationMode)cmbClassAnimationModeRanged.SelectedIndex;
             // Battle animations
             data.BattleAnimations.Clear();
             foreach (var item in balBattleAnimations.Datas)
@@ -135,6 +143,8 @@ namespace FrogForge.Editors
             nudWeaponDamage.Value = data.Weapon.Damage;
             nudWeaponHit.Value = data.Weapon.HitStat;
             nudWeaponWeight.Value = data.Weapon.Weight;
+            cmbClassAnimationModeMelee.SelectedIndex = (int)data.BattleAnimationModeMelee;
+            cmbClassAnimationModeRanged.SelectedIndex = (int)data.BattleAnimationModeRanged;
             BattleAnimationsFromClassData(data);
             CurrentFile = data.Name;
             Dirty = false;

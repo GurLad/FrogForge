@@ -38,7 +38,7 @@ namespace FrogForge.Editors
             lstCharacters.Init(this, () => new PortraitData(), CharacterDataFromUI, CharacterDataToUI, "Portraits");
             lstGenerics.Init(this, () => new GenericPortraitData(), GenericDataFromUI, GenericDataToUI, "GenericPortraits");
             pleGenericsPossibleBGPalettes.Init(null, () => new Palette(), () => new UserControls.PalettePanel(),
-                (plt) => { plt.Init(null); plt.ApplyZoomMode(); }, false);
+                (plt) => { plt.Init(null); }, false);
             pltCharactersBGPalette.Init(this, (p) =>
             {
                 picCharactersBG.Palette = p;

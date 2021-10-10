@@ -10,6 +10,7 @@ namespace FrogForge.Datas
 {
     public enum Inclination { Physical, Technical, Skillful } // Bad names
     public enum StatNames { Str, End, Pir, Arm, Pre, Eva }
+    public enum BattleAnimationMode { Walk, Projectile, Teleport }
 
     public class ClassData : NamedData
     {
@@ -20,7 +21,9 @@ namespace FrogForge.Datas
         [System.Text.Json.Serialization.JsonIgnore]
         public PalettedImage MapSprite { get; set; }
         public List<BattleAnimationData> BattleAnimations { get; set; } = new List<BattleAnimationData>();
-        
+        public BattleAnimationMode BattleAnimationModeMelee { get; set; }
+        public BattleAnimationMode BattleAnimationModeRanged { get; set; }
+
         public PalettedImage LoadSprite(FilesController files)
         {
             return MapSprite ?? (MapSprite = PalettedImage.FromFile(files, @"ClassMapSprites\" + Name));
