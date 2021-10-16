@@ -17,7 +17,8 @@ namespace FrogForge
             get => currentPalette;
             set
             {
-                SetPalette(value ?? Palette.BasePalette);
+                currentPalette = value ?? Palette.BasePalette;
+                UpdatePalette();
             }
         }
         protected int[,] Indexes;
@@ -56,14 +57,13 @@ namespace FrogForge
             return target;
         }
 
-        protected virtual void SetPalette(Palette palette)
+        protected virtual void UpdatePalette()
         {
-            currentPalette = palette;
             for (int i = 0; i < Target.Width; i++)
             {
                 for (int j = 0; j < Target.Height; j++)
                 {
-                    Target.SetPixel(i, j, currentPalette[Indexes[i, j]]);
+                    Target.SetPixel(i, j, CurrentPalette[Indexes[i, j]]);
                 }
             }
         }

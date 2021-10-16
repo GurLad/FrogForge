@@ -73,7 +73,7 @@ namespace FrogForge.UserControls
             }
             NumDatasInOneScreen = (pnlContainer.Height + DATA_SPACING) / (temp.Height + DATA_SPACING);
             Height = NumDatasInOneScreen * (temp.Height + DATA_SPACING) - DATA_SPACING + btnAdd.Height + btnAdd.Top - vsbDatasScroller.Bottom;
-            vsbDatasScroller.LargeChange = NumDatasInOneScreen + 1;
+            vsbDatasScroller.LargeChange = NumDatasInOneScreen;
             UpdateUI();
             temp.Dispose();
         }
@@ -137,7 +137,8 @@ namespace FrogForge.UserControls
 
         private void UpdateUI()
         {
-            vsbDatasScroller.Maximum = GeneratedControls.Count;
+            vsbDatasScroller.Maximum = GeneratedControls.Count - 1;
+            vsbDatasScroller.Minimum = 0;
             vsbDatasScroller.Visible = GeneratedControls.Count > NumDatasInOneScreen;
             vsbDatasScroller.Value = Math.Min(vsbDatasScroller.Maximum - vsbDatasScroller.LargeChange + 1, vsbDatasScroller.Value);
             if (vsbDatasScroller.Maximum > NumDatasInOneScreen)

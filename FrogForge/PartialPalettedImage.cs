@@ -22,7 +22,7 @@ namespace FrogForge
             return target != null ? new PartialPalettedImage(target) : null;
         }
 
-        protected override void SetPalette(Palette palette)
+        protected override void UpdatePalette()
         {
             for (int i = 0; i < Target.Width / 8; i++)
             {
