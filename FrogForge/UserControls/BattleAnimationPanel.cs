@@ -36,5 +36,10 @@ namespace FrogForge.UserControls
         {
             picAnimation.Init(dlgOpen, editor);
         }
+
+        public void SetPreviewPalette(int palette)
+        {
+            picAnimation.Palette = Palette.BaseSpritePalettes[palette];
+        }
     }
 }

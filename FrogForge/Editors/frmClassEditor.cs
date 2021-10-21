@@ -17,6 +17,8 @@ namespace FrogForge.Editors
     public partial class frmClassEditor : frmBaseEditor
     {
         private static int[] PageWidths { get; } = new int[] { 803, 652 };
+        private Random RNG { get; } = new Random();
+        private int CurrentPreviewPalette = 0;
 
         public frmClassEditor()
         {
@@ -42,6 +44,8 @@ namespace FrogForge.Editors
             cmbClassAnimationModeRanged.TextChanged += DirtyFunc;
             txtUnitClass.TextChanged += DirtyFunc;
             cmbUnitInclination.TextChanged += DirtyFunc;
+            nudProjectileLocationX.ValueChanged += DirtyFunc;
+            nudProjectileLocationY.ValueChanged += DirtyFunc;
             // Init base
             lstClasses.Init(this, () => new ClassData(), ClassDataFromUI, ClassDataToUI, "Classes");
             lstUnits.Init(this, () => new UnitData(), UnitDataFromUI, UnitDataToUI, "Units");
@@ -49,8 +53,10 @@ namespace FrogForge.Editors
             gthUnitGrowths.Init(this);
             balBattleAnimations.Init(
                 this, () => new BattleAnimationData(), () => new BattleAnimationPanel(),
-                (bap) => bap.Init(dlgOpen, this), true, () => btnGenerateBase.Visible = balBattleAnimations.Datas.Count <= 0);
+                (bap) => { bap.Init(dlgOpen, this); bap.SetPreviewPalette(CurrentPreviewPalette); }, true,
+                () => btnGenerateBase.Visible = balBattleAnimations.Datas.Count <= 0);
             txtUnitDeathQuote.Init(DataDirectory, this);
+            picProjectile.Init(dlgOpen, this, () => UpdateProjectileIndicator(true));
             // Misc
             string[] battleAnimationModeNames = Enum.GetNames(typeof(BattleAnimationMode));
             cmbClassAnimationModeMelee.Items.AddRange(battleAnimationModeNames);
@@ -108,6 +114,10 @@ namespace FrogForge.Editors
 
         private ClassData ClassDataFromUI(ClassData data)
         {
+            if (txtClassName.Text == "_Projectiles") // AKA someone tries to break this program
+            {
+                txtClassName.Text = "Projectiles";
+            }
             data.Name = txtClassName.Text;
             data.MapSprite = picIcon.Image;
             data.Inclination = (Inclination)cmbClassInclination.SelectedIndex;
@@ -118,14 +128,16 @@ namespace FrogForge.Editors
             data.Weapon.Damage = (int)nudWeaponDamage.Value;
             data.Weapon.HitStat = (int)nudWeaponHit.Value;
             data.Weapon.Weight = (int)nudWeaponWeight.Value;
-            data.BattleAnimationModeMelee = (BattleAnimationMode)cmbClassAnimationModeMelee.SelectedIndex;
-            data.BattleAnimationModeRanged = (BattleAnimationMode)cmbClassAnimationModeRanged.SelectedIndex;
             // Battle animations
             data.BattleAnimations.Clear();
             foreach (var item in balBattleAnimations.Datas)
             {
                 data.BattleAnimations.Add(item);
             }
+            data.BattleAnimationModeMelee = (BattleAnimationMode)cmbClassAnimationModeMelee.SelectedIndex;
+            data.BattleAnimationModeRanged = (BattleAnimationMode)cmbClassAnimationModeRanged.SelectedIndex;
+            data.ProjectileImage = picProjectile.Image;
+            data.ProjectilePos = new UnityPoint((int)nudProjectileLocationX.Value, (int)nudProjectileLocationY.Value);
             CurrentFile = data.Name;
             Dirty = false;
             return data;
@@ -143,9 +155,14 @@ namespace FrogForge.Editors
             nudWeaponDamage.Value = data.Weapon.Damage;
             nudWeaponHit.Value = data.Weapon.HitStat;
             nudWeaponWeight.Value = data.Weapon.Weight;
+            BattleAnimationsFromClassData(data);
             cmbClassAnimationModeMelee.SelectedIndex = (int)data.BattleAnimationModeMelee;
             cmbClassAnimationModeRanged.SelectedIndex = (int)data.BattleAnimationModeRanged;
-            BattleAnimationsFromClassData(data);
+            picProjectile.Image = data.LoadProjectile(WorkingDirectory);
+            nudProjectileLocationX.Value = data.ProjectilePos.x;
+            nudProjectileLocationY.Value = data.ProjectilePos.y;
+            SetPreviewPalette(RNG.Next(4));
+            UpdateProjectileIndicator(true, true);
             CurrentFile = data.Name;
             Dirty = false;
         }
@@ -182,15 +199,20 @@ namespace FrogForge.Editors
             {
                 if (item.MapSprite != null)
                 {
-                    WorkingDirectory.SaveImage(@"ClassMapSprites\" + item.Name, item.MapSprite.Target);
+                    WorkingDirectory.SaveImage(@"ClassMapSprites\" + item.Name, item.MapSprite.ToBitmap(Palette.BasePalette));
                 }
                 WorkingDirectory.CreateDirectory(@"Images\ClassBattleAnimations\" + item.Name);
                 for (int i = 0; i < item.BattleAnimations.Count; i++)
                 {
                     if (item.BattleAnimations[i]?.Image?.Target != null)
                     {
-                        WorkingDirectory.SaveImage(@"ClassBattleAnimations\" + item.Name + @"\" + item.BattleAnimations[i].Name, item.BattleAnimations[i].Image.Target);
+                        WorkingDirectory.SaveImage(@"ClassBattleAnimations\" + item.Name + @"\" + item.BattleAnimations[i].Name, item.BattleAnimations[i].Image.ToBitmap(Palette.BasePalette));
                     }
+                }
+                if (item.ProjectileImage != null)
+                {
+                    WorkingDirectory.CreateDirectory(@"Images\ClassBattleAnimations\_Projectiles");
+                    WorkingDirectory.SaveImage(@"ClassBattleAnimations\_Projectiles\" + item.Name, item.ProjectileImage.ToBitmap(Palette.BasePalette));
                 }
             }
             // Save units
@@ -258,6 +280,50 @@ namespace FrogForge.Editors
             Width = PageWidths[tbcMain.SelectedIndex];
             this.ResizeByZoom(false, y: false);
             CurrentFile = "";
+        }
+
+        private void SetPreviewPalette(int palette)
+        {
+            CurrentPreviewPalette = palette;
+            picIcon.Palette = picProjectile.Palette = Palette.BaseSpritePalettes[palette];
+            balBattleAnimations.ForEachControl(a => a.SetPreviewPalette(palette));
+        }
+
+        private void nudProjectileLocationX_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateProjectileIndicator();
+        }
+
+        private void btnProjectileLoad_Click(object sender, EventArgs e)
+        {
+            UpdateProjectileIndicator(true, true);
+        }
+
+        private void UpdateProjectileIndicator(bool updateProjectile = false, bool updateSprite = false)
+        {
+            double zoomMod = Preferences.Current.ZoomAmount;
+            picProjectileIndicator.Left = (int)(((int)nudProjectileLocationX.Value + 8) * zoomMod);
+            picProjectileIndicator.Top = (int)(((int)nudProjectileLocationY.Value) * zoomMod);
+            if (updateProjectile)
+            {
+                picProjectileIndicator.Image = picProjectile.Image?.Target?.Resize(zoomMod);
+            }
+            if (updateSprite)
+            {
+                PalettedImage attackEndSprite = (balBattleAnimations.Datas.Find(a => a.Name == "AttackRangeEnd") ?? (balBattleAnimations.Datas.Count > 0 ? balBattleAnimations.Datas[0] : null))?.Image;
+                Image target = new Bitmap(40, 32); 
+                if (attackEndSprite != null)
+                {
+                    Graphics g = Graphics.FromImage(target);
+                    g.DrawImage(attackEndSprite.Target, new PointF(8, 0));
+                    g.Dispose();
+                }
+                pnlProjectilePos.BackgroundImage = target.Resize(zoomMod);
+            }
+            // Fix zoom mode bugs
+            pnlProjectilePos.Height = (int)(32 * zoomMod) + 4;
+            picProjectileIndicator.Height = (int)(8 * zoomMod);
+            picProjectileIndicator.BackColor = Color.Transparent;
         }
     }
 }

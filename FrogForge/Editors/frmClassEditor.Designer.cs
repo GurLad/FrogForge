@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             FrogForge.Palette palette1 = new FrogForge.Palette();
+            FrogForge.Palette palette2 = new FrogForge.Palette();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClassEditor));
             this.lstClasses = new FrogForge.UserControls.ClassJSONBrowser();
             this.label1 = new System.Windows.Forms.Label();
@@ -61,6 +62,16 @@
             this.tbcMain = new System.Windows.Forms.TabControl();
             this.tbpClass = new System.Windows.Forms.TabPage();
             this.grpAnimationData = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.nudProjectileLocationX = new System.Windows.Forms.NumericUpDown();
+            this.pnlProjectilePos = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.picProjectile = new FrogForge.UserControls.PalettedPicturebox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cmbClassAnimationModeRanged = new System.Windows.Forms.ComboBox();
+            this.cmbClassAnimationModeMelee = new System.Windows.Forms.ComboBox();
             this.tbpUnit = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtUnitDeathQuote = new FrogForge.UserControls.EventTextBox();
@@ -75,11 +86,11 @@
             this.gthUnitGrowths = new FrogForge.UserControls.GrowthsPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.cmbUnitInclination = new System.Windows.Forms.ComboBox();
-            this.cmbClassAnimationModeMelee = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.cmbClassAnimationModeRanged = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.nudProjectileLocationY = new System.Windows.Forms.NumericUpDown();
+            this.label17 = new System.Windows.Forms.Label();
+            this.btnProjectileLoad = new System.Windows.Forms.Button();
+            this.picProjectileIndicator = new System.Windows.Forms.PictureBox();
             this.grpGrowths.SuspendLayout();
             this.grpWeapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponWeight)).BeginInit();
@@ -93,10 +104,16 @@
             this.tbcMain.SuspendLayout();
             this.tbpClass.SuspendLayout();
             this.grpAnimationData.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationX)).BeginInit();
+            this.pnlProjectilePos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picProjectile)).BeginInit();
             this.tbpUnit.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picProjectileIndicator)).BeginInit();
             this.SuspendLayout();
             // 
             // lstClasses
@@ -456,6 +473,117 @@
             this.grpAnimationData.TabStop = false;
             this.grpAnimationData.Text = "Animation data";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnProjectileLoad);
+            this.groupBox4.Controls.Add(this.label17);
+            this.groupBox4.Controls.Add(this.label16);
+            this.groupBox4.Controls.Add(this.nudProjectileLocationY);
+            this.groupBox4.Controls.Add(this.nudProjectileLocationX);
+            this.groupBox4.Controls.Add(this.pnlProjectilePos);
+            this.groupBox4.Controls.Add(this.label15);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.picProjectile);
+            this.groupBox4.Location = new System.Drawing.Point(6, 73);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(164, 125);
+            this.groupBox4.TabIndex = 2;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Projectile data";
+            // 
+            // nudProjectileLocationX
+            // 
+            this.nudProjectileLocationX.Location = new System.Drawing.Point(83, 60);
+            this.nudProjectileLocationX.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.nudProjectileLocationX.Minimum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            -2147483648});
+            this.nudProjectileLocationX.Name = "nudProjectileLocationX";
+            this.nudProjectileLocationX.Size = new System.Drawing.Size(44, 20);
+            this.nudProjectileLocationX.TabIndex = 3;
+            this.nudProjectileLocationX.ValueChanged += new System.EventHandler(this.nudProjectileLocationX_ValueChanged);
+            // 
+            // pnlProjectilePos
+            // 
+            this.pnlProjectilePos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlProjectilePos.Controls.Add(this.picProjectileIndicator);
+            this.pnlProjectilePos.Location = new System.Drawing.Point(10, 60);
+            this.pnlProjectilePos.Name = "pnlProjectilePos";
+            this.pnlProjectilePos.Size = new System.Drawing.Size(44, 36);
+            this.pnlProjectilePos.TabIndex = 2;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(7, 41);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(51, 13);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "Location:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(7, 20);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(53, 13);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Projectile:";
+            // 
+            // picProjectile
+            // 
+            this.picProjectile.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picProjectile.Image = null;
+            this.picProjectile.Location = new System.Drawing.Point(83, 21);
+            this.picProjectile.Name = "picProjectile";
+            this.picProjectile.Palette = palette2;
+            this.picProjectile.Size = new System.Drawing.Size(12, 12);
+            this.picProjectile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picProjectile.TabIndex = 0;
+            this.picProjectile.TabStop = false;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 49);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(77, 13);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "Ranged mode:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 22);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(68, 13);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Melee mode:";
+            // 
+            // cmbClassAnimationModeRanged
+            // 
+            this.cmbClassAnimationModeRanged.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbClassAnimationModeRanged.FormattingEnabled = true;
+            this.cmbClassAnimationModeRanged.Location = new System.Drawing.Point(89, 46);
+            this.cmbClassAnimationModeRanged.Name = "cmbClassAnimationModeRanged";
+            this.cmbClassAnimationModeRanged.Size = new System.Drawing.Size(81, 21);
+            this.cmbClassAnimationModeRanged.TabIndex = 0;
+            // 
+            // cmbClassAnimationModeMelee
+            // 
+            this.cmbClassAnimationModeMelee.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbClassAnimationModeMelee.FormattingEnabled = true;
+            this.cmbClassAnimationModeMelee.Location = new System.Drawing.Point(89, 19);
+            this.cmbClassAnimationModeMelee.Name = "cmbClassAnimationModeMelee";
+            this.cmbClassAnimationModeMelee.Size = new System.Drawing.Size(81, 21);
+            this.cmbClassAnimationModeMelee.TabIndex = 0;
+            // 
             // tbpUnit
             // 
             this.tbpUnit.Controls.Add(this.groupBox3);
@@ -601,51 +729,54 @@
             this.cmbUnitInclination.Size = new System.Drawing.Size(182, 21);
             this.cmbUnitInclination.TabIndex = 2;
             // 
-            // cmbClassAnimationModeMelee
+            // label16
             // 
-            this.cmbClassAnimationModeMelee.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbClassAnimationModeMelee.FormattingEnabled = true;
-            this.cmbClassAnimationModeMelee.Location = new System.Drawing.Point(89, 19);
-            this.cmbClassAnimationModeMelee.Name = "cmbClassAnimationModeMelee";
-            this.cmbClassAnimationModeMelee.Size = new System.Drawing.Size(81, 21);
-            this.cmbClassAnimationModeMelee.TabIndex = 0;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(60, 62);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(17, 13);
+            this.label16.TabIndex = 4;
+            this.label16.Text = "X:";
             // 
-            // label12
+            // nudProjectileLocationY
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 22);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(68, 13);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "Melee mode:";
+            this.nudProjectileLocationY.Location = new System.Drawing.Point(83, 86);
+            this.nudProjectileLocationY.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.nudProjectileLocationY.Name = "nudProjectileLocationY";
+            this.nudProjectileLocationY.Size = new System.Drawing.Size(44, 20);
+            this.nudProjectileLocationY.TabIndex = 3;
+            this.nudProjectileLocationY.ValueChanged += new System.EventHandler(this.nudProjectileLocationX_ValueChanged);
             // 
-            // cmbClassAnimationModeRanged
+            // label17
             // 
-            this.cmbClassAnimationModeRanged.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbClassAnimationModeRanged.FormattingEnabled = true;
-            this.cmbClassAnimationModeRanged.Location = new System.Drawing.Point(89, 46);
-            this.cmbClassAnimationModeRanged.Name = "cmbClassAnimationModeRanged";
-            this.cmbClassAnimationModeRanged.Size = new System.Drawing.Size(81, 21);
-            this.cmbClassAnimationModeRanged.TabIndex = 0;
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(60, 88);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(17, 13);
+            this.label17.TabIndex = 4;
+            this.label17.Text = "Y:";
             // 
-            // label13
+            // btnProjectileLoad
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 49);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(77, 13);
-            this.label13.TabIndex = 1;
-            this.label13.Text = "Ranged mode:";
+            this.btnProjectileLoad.Location = new System.Drawing.Point(10, 96);
+            this.btnProjectileLoad.Name = "btnProjectileLoad";
+            this.btnProjectileLoad.Size = new System.Drawing.Size(44, 23);
+            this.btnProjectileLoad.TabIndex = 5;
+            this.btnProjectileLoad.Text = "Load";
+            this.btnProjectileLoad.UseVisualStyleBackColor = true;
+            this.btnProjectileLoad.Click += new System.EventHandler(this.btnProjectileLoad_Click);
             // 
-            // groupBox4
+            // picProjectileIndicator
             // 
-            this.groupBox4.Enabled = false;
-            this.groupBox4.Location = new System.Drawing.Point(6, 73);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(164, 125);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Projectile data TBA";
+            this.picProjectileIndicator.Location = new System.Drawing.Point(0, 0);
+            this.picProjectileIndicator.Name = "picProjectileIndicator";
+            this.picProjectileIndicator.Size = new System.Drawing.Size(8, 8);
+            this.picProjectileIndicator.TabIndex = 0;
+            this.picProjectileIndicator.TabStop = false;
             // 
             // frmClassEditor
             // 
@@ -679,12 +810,19 @@
             this.tbpClass.PerformLayout();
             this.grpAnimationData.ResumeLayout(false);
             this.grpAnimationData.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationX)).EndInit();
+            this.pnlProjectilePos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picProjectile)).EndInit();
             this.tbpUnit.ResumeLayout(false);
             this.tbpUnit.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picProjectileIndicator)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -742,5 +880,15 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cmbClassAnimationModeRanged;
         private System.Windows.Forms.GroupBox groupBox4;
+        private UserControls.PalettedPicturebox picProjectile;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Panel pnlProjectilePos;
+        private System.Windows.Forms.NumericUpDown nudProjectileLocationX;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.NumericUpDown nudProjectileLocationY;
+        private System.Windows.Forms.Button btnProjectileLoad;
+        private System.Windows.Forms.PictureBox picProjectileIndicator;
     }
 }

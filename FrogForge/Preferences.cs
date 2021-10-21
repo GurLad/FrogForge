@@ -9,7 +9,7 @@ namespace FrogForge
 {
     public class Preferences
     {
-        public static Preferences Current;
+        public static Preferences Current = new Preferences();
 
         public double ZoomAmount { get; set; }
         public bool DarkMode { get; set; }

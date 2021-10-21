@@ -78,6 +78,11 @@ namespace FrogForge.UserControls
             temp.Dispose();
         }
 
+        public void ForEachControl(Action<Control> action)
+        {
+            GeneratedControls.ForEach(a => action(a));
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             AddControl();

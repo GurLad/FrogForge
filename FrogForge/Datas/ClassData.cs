@@ -23,10 +23,18 @@ namespace FrogForge.Datas
         public List<BattleAnimationData> BattleAnimations { get; set; } = new List<BattleAnimationData>();
         public BattleAnimationMode BattleAnimationModeMelee { get; set; }
         public BattleAnimationMode BattleAnimationModeRanged { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
+        public PalettedImage ProjectileImage { get; set; }
+        public UnityPoint ProjectilePos { get; set; } = new UnityPoint(0, 0);
 
         public PalettedImage LoadSprite(FilesController files)
         {
             return MapSprite ?? (MapSprite = PalettedImage.FromFile(files, @"ClassMapSprites\" + Name));
+        }
+
+        public PalettedImage LoadProjectile(FilesController files)
+        {
+            return ProjectileImage ?? (ProjectileImage = PalettedImage.FromFile(files, @"ClassBattleAnimations\_Projectiles\" + Name));
         }
     }
 }
