@@ -45,6 +45,31 @@ namespace FrogForge.Editors
             if (Preferences.Current.ZoomAmount > 1)
             {
                 flbFileBrowser.ApplyPreferences();
+                // Save anchors, move
+                Dictionary<Control, AnchorStyles> anchors = new Dictionary<Control, AnchorStyles>();
+                foreach (Control control in Controls)
+                {
+                    if (control != flbFileBrowser)
+                    {
+                        anchors.Add(control, control.Anchor);
+                        control.Left += flbFileBrowser.Width;
+                        control.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                    }
+                }
+                // Resize
+                Width += flbFileBrowser.Width;
+                // Restore anchors
+                foreach (Control control in Controls)
+                {
+                    if (control != flbFileBrowser)
+                    {
+                        control.Anchor = anchors[control];
+                    }
+                }
+                flbFileBrowser.Width = (int)(flbFileBrowser.Width * Preferences.Current.ZoomAmount);
+                Width = (int)(Width * Preferences.Current.ZoomAmount);
+                Height = (int)(Height * Preferences.Current.ZoomAmount);
+                RecenterForm();
             }
             // Load empty conversation
             btnNew_Click(sender, e);

@@ -98,6 +98,7 @@ namespace FrogForge.Editors
             {
                 Renderers[i].Height = Renderers[i].Width;
                 Renderers[i].Top = (i / TILEMAP_SIZE.X) * Renderers[i].Height;
+                Renderers[i].BackColor = Color.Transparent;
             }
         }
 

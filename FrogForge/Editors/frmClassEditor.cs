@@ -62,6 +62,7 @@ namespace FrogForge.Editors
             cmbClassAnimationModeMelee.Items.AddRange(battleAnimationModeNames);
             cmbClassAnimationModeRanged.Items.AddRange(battleAnimationModeNames);
             this.ApplyPreferences();
+            pnlProjectilePos.BackColor = picProjectileIndicator.BackColor;
         }
 
         private void btnSave_Click(object sender, EventArgs e)

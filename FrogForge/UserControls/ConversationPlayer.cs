@@ -38,9 +38,6 @@ namespace FrogForge.UserControls
 
         public void Play(string text, bool removeParts = true)
         {
-            // Fix in dark mode
-            lblPreviewName.BackColor = Color.Black;
-            lblPreviewText.BackColor = Color.Black;
             // Only preview text
             PreviewLines = new List<string>();
             PreviewLines.Add("");

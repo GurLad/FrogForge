@@ -61,7 +61,7 @@ namespace FrogForge
             }
             void ApplyDarkMode(Control caller)
             {
-                if (caller is PalettePanel || caller is GrowthsPanel)
+                if (caller is PalettePanel || caller is GrowthsPanel || caller is ConversationPlayer)
                 {
                     return;
                 }
@@ -87,6 +87,10 @@ namespace FrogForge
                 else if (caller is NumericUpDown)
                 {
                     ((NumericUpDown)caller).BorderStyle = BorderStyle.FixedSingle;
+                }
+                else if (caller is PictureBox)
+                {
+                    ((PictureBox)caller).BackColor = Color.FromArgb(60, 60, 60);
                 }
                 foreach (Control otherControl in caller.Controls)
                 {
