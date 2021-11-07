@@ -39,6 +39,11 @@ namespace FrogForge.Editors
             // Load prefences
             string json = DataDirectory.LoadFile("Preferences", "", ".json");
             Preferences.Current = ((json == "" ? null : json)?.JsonToObject<Preferences>()) ?? new Preferences();
+            // Apply them
+            this.ApplyPreferences();
+            CenterToScreen();
+            lblVersion.Font = lblCredits.Font = new Font(lblCredits.Font.FontFamily, (int)Math.Round(lblCredits.Font.Size * Preferences.Current.ZoomAmount));
+            lblTitle.Font = new Font(lblTitle.Font.FontFamily, (int)Math.Round(lblTitle.Font.Size * Preferences.Current.ZoomAmount));
             // Joke (voice assist)
             if (Preferences.Current.VoiceAssistAvailable)
             {

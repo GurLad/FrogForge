@@ -119,6 +119,8 @@ namespace FrogForge.Editors
                 }
             }
             pnlRenderer.Height = Renderers[0, 0].Height * Size.Y;
+            picPreview.Top = -1;
+            picPreview.Height = picPreview.Width;
             SetTileSet(Tilesets[0]);
         }
 
@@ -140,6 +142,10 @@ namespace FrogForge.Editors
 
         private void RenderPictureboxFromTile(PictureBox pictureBox, MapTile tile)
         {
+            if (tile.TileID >= CurrentTileset.Tiles.Count)
+            {
+                tile.TileID = CurrentTileset.Tiles.Count - 1;
+            }
             pictureBox.BackgroundImage = CurrentTileset.Tiles[tile.TileID].Image.Target;
             Point pos = new Point(pictureBox.Left / TILE_SIZE, pictureBox.Top / TILE_SIZE);
             int unitIndex = Units.FindIndex(a => a.Pos == pos);
@@ -440,6 +446,7 @@ namespace FrogForge.Editors
             if (Tiles != null)
             {
                 Render();
+                UpdatePreview();
             }
         }
 
