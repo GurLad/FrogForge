@@ -128,6 +128,7 @@
     <Compile Include="Datas\BattleAnimationData.cs" />
     <Compile Include="Datas\BattleBackgroundData.cs" />
     <Compile Include="Datas\CGData.cs" />
+    <Compile Include="Datas\DisplayNamedData.cs" />
     <Compile Include="Datas\GenericPortraitData.cs" />
     <Compile Include="Datas\GenericPortraitsGlobalData.cs" />
     <Compile Include="Datas\CharacterVoice.cs" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FrogForge.Datas
 {
-    public class BasePortraitData : NamedData
+    public class BasePortraitData : DisplayNamedData
     {
         [System.Text.Json.Serialization.JsonIgnore]
         public PalettedImage Background { get; set; }

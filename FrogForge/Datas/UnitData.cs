@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FrogForge.Datas
 {
-    public class UnitData : NamedData
+    public class UnitData : DisplayNamedData
     {
         public string Class { get; set; }
         public Inclination Inclination { get; set; }

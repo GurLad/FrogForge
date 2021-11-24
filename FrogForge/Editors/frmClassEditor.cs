@@ -171,6 +171,7 @@ namespace FrogForge.Editors
         private UnitData UnitDataFromUI(UnitData data)
         {
             data.Name = txtUnitName.Text;
+            data.DisplayName = txtUnitDisplayName.Text;
             data.Class = txtUnitClass.Text;
             data.Inclination = (Inclination)cmbUnitInclination.SelectedIndex;
             data.Growths = gthUnitGrowths.Data;
@@ -183,6 +184,7 @@ namespace FrogForge.Editors
         private void UnitDataToUI(UnitData data)
         {
             txtUnitName.Text = data.Name;
+            txtUnitDisplayName.Text = data.DisplayName;
             txtUnitClass.Text = data.Class;
             cmbUnitInclination.Text = data.Inclination.ToString();
             gthUnitGrowths.Data = data.Growths;
@@ -325,6 +327,11 @@ namespace FrogForge.Editors
             pnlProjectilePos.Height = (int)(32 * zoomMod) + 4;
             picProjectileIndicator.Height = (int)(8 * zoomMod);
             picProjectileIndicator.BackColor = Color.Transparent;
+        }
+
+        private void txtUnitName_TextChanged(object sender, EventArgs e)
+        {
+            txtUnitDisplayName.Text = txtUnitName.Text;
         }
     }
 }

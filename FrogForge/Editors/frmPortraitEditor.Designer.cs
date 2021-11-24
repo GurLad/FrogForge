@@ -39,10 +39,14 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.picCharactersFG = new FrogForge.UserControls.PalettedPicturebox();
             this.grpData = new System.Windows.Forms.GroupBox();
+            this.fgpCharacterAccent = new FrogForge.UserControls.ForegroundPaletteSelector();
             this.fgpCharactersFGPalette = new FrogForge.UserControls.ForegroundPaletteSelector();
             this.pltCharactersBGPalette = new FrogForge.UserControls.PalettePanel();
             this.label3 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtCharactersDisplayName = new System.Windows.Forms.TextBox();
             this.txtCharactersName = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -80,8 +84,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.trkGenericsVoiceType = new System.Windows.Forms.TrackBar();
-            this.label9 = new System.Windows.Forms.Label();
-            this.fgpCharacterAccent = new FrogForge.UserControls.ForegroundPaletteSelector();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCharactersBG)).BeginInit();
@@ -116,7 +118,7 @@
             this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.Controls.Add(this.groupBox6);
             this.groupBox1.Controls.Add(this.groupBox4);
-            this.groupBox1.Location = new System.Drawing.Point(126, 129);
+            this.groupBox1.Location = new System.Drawing.Point(126, 155);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(216, 102);
             this.groupBox1.TabIndex = 14;
@@ -193,53 +195,90 @@
             this.grpData.Controls.Add(this.pltCharactersBGPalette);
             this.grpData.Controls.Add(this.label3);
             this.grpData.Controls.Add(this.label9);
+            this.grpData.Controls.Add(this.txtCharactersDisplayName);
             this.grpData.Controls.Add(this.txtCharactersName);
+            this.grpData.Controls.Add(this.label10);
             this.grpData.Controls.Add(this.label2);
             this.grpData.Controls.Add(this.label1);
             this.grpData.Location = new System.Drawing.Point(126, 0);
             this.grpData.Name = "grpData";
-            this.grpData.Size = new System.Drawing.Size(216, 123);
+            this.grpData.Size = new System.Drawing.Size(216, 149);
             this.grpData.TabIndex = 15;
             this.grpData.TabStop = false;
             this.grpData.Text = "Data";
+            // 
+            // fgpCharacterAccent
+            // 
+            this.fgpCharacterAccent.BackColor = System.Drawing.Color.White;
+            this.fgpCharacterAccent.Data = 0;
+            this.fgpCharacterAccent.Location = new System.Drawing.Point(85, 123);
+            this.fgpCharacterAccent.Name = "fgpCharacterAccent";
+            this.fgpCharacterAccent.Size = new System.Drawing.Size(125, 20);
+            this.fgpCharacterAccent.TabIndex = 2;
             // 
             // fgpCharactersFGPalette
             // 
             this.fgpCharactersFGPalette.BackColor = System.Drawing.Color.White;
             this.fgpCharactersFGPalette.Data = 0;
-            this.fgpCharactersFGPalette.Location = new System.Drawing.Point(73, 45);
+            this.fgpCharactersFGPalette.Location = new System.Drawing.Point(85, 71);
             this.fgpCharactersFGPalette.Name = "fgpCharactersFGPalette";
-            this.fgpCharactersFGPalette.Size = new System.Drawing.Size(137, 20);
+            this.fgpCharactersFGPalette.Size = new System.Drawing.Size(125, 20);
             this.fgpCharactersFGPalette.TabIndex = 2;
             // 
             // pltCharactersBGPalette
             // 
-            this.pltCharactersBGPalette.Location = new System.Drawing.Point(73, 71);
+            this.pltCharactersBGPalette.Location = new System.Drawing.Point(85, 97);
             this.pltCharactersBGPalette.Name = "pltCharactersBGPalette";
-            this.pltCharactersBGPalette.Size = new System.Drawing.Size(137, 20);
+            this.pltCharactersBGPalette.Size = new System.Drawing.Size(125, 20);
             this.pltCharactersBGPalette.SpritePalette = false;
             this.pltCharactersBGPalette.TabIndex = 0;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 75);
+            this.label3.Location = new System.Drawing.Point(6, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 13);
             this.label3.TabIndex = 0;
             this.label3.Text = "BG Palette:";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 127);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(44, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Accent:";
+            // 
+            // txtCharactersDisplayName
+            // 
+            this.txtCharactersDisplayName.Location = new System.Drawing.Point(85, 45);
+            this.txtCharactersDisplayName.Name = "txtCharactersDisplayName";
+            this.txtCharactersDisplayName.Size = new System.Drawing.Size(125, 20);
+            this.txtCharactersDisplayName.TabIndex = 1;
+            // 
             // txtCharactersName
             // 
-            this.txtCharactersName.Location = new System.Drawing.Point(73, 19);
+            this.txtCharactersName.Location = new System.Drawing.Point(85, 19);
             this.txtCharactersName.Name = "txtCharactersName";
-            this.txtCharactersName.Size = new System.Drawing.Size(137, 20);
+            this.txtCharactersName.Size = new System.Drawing.Size(125, 20);
             this.txtCharactersName.TabIndex = 1;
+            this.txtCharactersName.TextChanged += new System.EventHandler(this.txtCharactersName_TextChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 48);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(73, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Display name:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 49);
+            this.label2.Location = new System.Drawing.Point(6, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 13);
             this.label2.TabIndex = 0;
@@ -263,7 +302,7 @@
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.trkPitch);
             this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Location = new System.Drawing.Point(126, 237);
+            this.groupBox3.Location = new System.Drawing.Point(126, 263);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(216, 79);
             this.groupBox3.TabIndex = 16;
@@ -404,7 +443,7 @@
             this.tbcMain.Location = new System.Drawing.Point(12, 28);
             this.tbcMain.Name = "tbcMain";
             this.tbcMain.SelectedIndex = 0;
-            this.tbcMain.Size = new System.Drawing.Size(352, 343);
+            this.tbcMain.Size = new System.Drawing.Size(352, 369);
             this.tbcMain.TabIndex = 10;
             this.tbcMain.SelectedIndexChanged += new System.EventHandler(this.tbcMain_SelectedIndexChanged);
             // 
@@ -417,7 +456,7 @@
             this.tbpPortraits.Location = new System.Drawing.Point(4, 22);
             this.tbpPortraits.Name = "tbpPortraits";
             this.tbpPortraits.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpPortraits.Size = new System.Drawing.Size(344, 317);
+            this.tbpPortraits.Size = new System.Drawing.Size(344, 343);
             this.tbpPortraits.TabIndex = 0;
             this.tbpPortraits.Text = "Character Portraits";
             this.tbpPortraits.UseVisualStyleBackColor = true;
@@ -429,7 +468,7 @@
             this.lstCharacters.FormattingEnabled = true;
             this.lstCharacters.Location = new System.Drawing.Point(0, 0);
             this.lstCharacters.Name = "lstCharacters";
-            this.lstCharacters.Size = new System.Drawing.Size(120, 316);
+            this.lstCharacters.Size = new System.Drawing.Size(120, 342);
             this.lstCharacters.TabIndex = 3;
             // 
             // tbpGenerics
@@ -441,7 +480,7 @@
             this.tbpGenerics.Location = new System.Drawing.Point(4, 22);
             this.tbpGenerics.Name = "tbpGenerics";
             this.tbpGenerics.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpGenerics.Size = new System.Drawing.Size(344, 291);
+            this.tbpGenerics.Size = new System.Drawing.Size(344, 343);
             this.tbpGenerics.TabIndex = 1;
             this.tbpGenerics.Text = "Generic Portraits";
             this.tbpGenerics.UseVisualStyleBackColor = true;
@@ -450,18 +489,18 @@
             // 
             this.groupBox11.Controls.Add(this.groupBox13);
             this.groupBox11.Controls.Add(this.groupBox12);
-            this.groupBox11.Location = new System.Drawing.Point(348, 0);
+            this.groupBox11.Location = new System.Drawing.Point(126, 108);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(162, 290);
+            this.groupBox11.Size = new System.Drawing.Size(432, 234);
             this.groupBox11.TabIndex = 19;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Global Data";
             // 
             // groupBox13
             // 
-            this.groupBox13.Location = new System.Drawing.Point(6, 149);
+            this.groupBox13.Location = new System.Drawing.Point(162, 19);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(150, 135);
+            this.groupBox13.Size = new System.Drawing.Size(264, 209);
             this.groupBox13.TabIndex = 2;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Voices TBA";
@@ -471,7 +510,7 @@
             this.groupBox12.Controls.Add(this.pleGenericsPossibleBGPalettes);
             this.groupBox12.Location = new System.Drawing.Point(6, 19);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(150, 124);
+            this.groupBox12.Size = new System.Drawing.Size(150, 209);
             this.groupBox12.TabIndex = 1;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "BG Palettes";
@@ -483,7 +522,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pleGenericsPossibleBGPalettes.Location = new System.Drawing.Point(6, 19);
             this.pleGenericsPossibleBGPalettes.Name = "pleGenericsPossibleBGPalettes";
-            this.pleGenericsPossibleBGPalettes.Size = new System.Drawing.Size(138, 99);
+            this.pleGenericsPossibleBGPalettes.Size = new System.Drawing.Size(138, 184);
             this.pleGenericsPossibleBGPalettes.TabIndex = 0;
             // 
             // lstGenerics
@@ -493,18 +532,17 @@
             this.lstGenerics.FormattingEnabled = true;
             this.lstGenerics.Location = new System.Drawing.Point(0, 0);
             this.lstGenerics.Name = "lstGenerics";
-            this.lstGenerics.Size = new System.Drawing.Size(120, 290);
+            this.lstGenerics.Size = new System.Drawing.Size(120, 342);
             this.lstGenerics.TabIndex = 4;
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.groupBox7);
             this.groupBox2.Controls.Add(this.groupBox8);
             this.groupBox2.Controls.Add(this.groupBox9);
-            this.groupBox2.Location = new System.Drawing.Point(126, 188);
+            this.groupBox2.Location = new System.Drawing.Point(336, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(216, 102);
+            this.groupBox2.Size = new System.Drawing.Size(222, 102);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Images";
@@ -572,8 +610,6 @@
             // 
             // groupBox10
             // 
-            this.groupBox10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox10.Controls.Add(this.lblVoiceType);
             this.groupBox10.Controls.Add(this.txtGenericsTags);
             this.groupBox10.Controls.Add(this.txtGenericsID);
@@ -583,14 +619,14 @@
             this.groupBox10.Controls.Add(this.trkGenericsVoiceType);
             this.groupBox10.Location = new System.Drawing.Point(126, 0);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(216, 182);
+            this.groupBox10.Size = new System.Drawing.Size(204, 102);
             this.groupBox10.TabIndex = 18;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Data";
             // 
             // lblVoiceType
             // 
-            this.lblVoiceType.Location = new System.Drawing.Point(180, 71);
+            this.lblVoiceType.Location = new System.Drawing.Point(168, 71);
             this.lblVoiceType.Name = "lblVoiceType";
             this.lblVoiceType.Size = new System.Drawing.Size(30, 20);
             this.lblVoiceType.TabIndex = 3;
@@ -601,14 +637,14 @@
             // 
             this.txtGenericsTags.Location = new System.Drawing.Point(73, 45);
             this.txtGenericsTags.Name = "txtGenericsTags";
-            this.txtGenericsTags.Size = new System.Drawing.Size(137, 20);
+            this.txtGenericsTags.Size = new System.Drawing.Size(125, 20);
             this.txtGenericsTags.TabIndex = 2;
             // 
             // txtGenericsID
             // 
             this.txtGenericsID.Location = new System.Drawing.Point(73, 19);
             this.txtGenericsID.Name = "txtGenericsID";
-            this.txtGenericsID.Size = new System.Drawing.Size(137, 20);
+            this.txtGenericsID.Size = new System.Drawing.Size(125, 20);
             this.txtGenericsID.TabIndex = 1;
             // 
             // label4
@@ -646,34 +682,16 @@
             this.trkGenericsVoiceType.Location = new System.Drawing.Point(73, 71);
             this.trkGenericsVoiceType.Maximum = 1;
             this.trkGenericsVoiceType.Name = "trkGenericsVoiceType";
-            this.trkGenericsVoiceType.Size = new System.Drawing.Size(111, 20);
+            this.trkGenericsVoiceType.Size = new System.Drawing.Size(89, 20);
             this.trkGenericsVoiceType.TabIndex = 3;
             this.trkGenericsVoiceType.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trkGenericsVoiceType.ValueChanged += new System.EventHandler(this.trkGenericsVoiceType_ValueChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 101);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(44, 13);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Accent:";
-            // 
-            // fgpCharacterAccent
-            // 
-            this.fgpCharacterAccent.BackColor = System.Drawing.Color.White;
-            this.fgpCharacterAccent.Data = 0;
-            this.fgpCharacterAccent.Location = new System.Drawing.Point(73, 97);
-            this.fgpCharacterAccent.Name = "fgpCharacterAccent";
-            this.fgpCharacterAccent.Size = new System.Drawing.Size(137, 20);
-            this.fgpCharacterAccent.TabIndex = 2;
             // 
             // frmPortraitEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(377, 383);
+            this.ClientSize = new System.Drawing.Size(377, 409);
             this.Controls.Add(this.tbcMain);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -771,5 +789,7 @@
         private UserControls.ForegroundPaletteSelector fgpCharactersFGPalette;
         private UserControls.ForegroundPaletteSelector fgpCharacterAccent;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtCharactersDisplayName;
+        private System.Windows.Forms.Label label10;
     }
 }

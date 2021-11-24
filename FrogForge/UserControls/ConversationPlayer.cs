@@ -87,6 +87,7 @@ namespace FrogForge.UserControls
             portrait.LoadImages(WorkingDirectory);
             picPreviewSpeaker.BackgroundImage = portrait.Background.ToBitmap(portrait.BackgroundColor).Resize(2);
             picPreviewSpeaker.Image = portrait.Foreground.ToBitmap(Palette.BaseSpritePalettes[portrait.ForegroundColorID]).Resize(2);
+            lblPreviewName.Text = portrait.DisplayName;
         }
 
         private void ConversationPlayer_KeyDown(object sender, KeyEventArgs e)
@@ -123,7 +124,7 @@ namespace FrogForge.UserControls
                     string[] parts = line.Split(':')[0].Split('|');
                     // TBA - set speaker pos and stuff
                     LoadPortrait(parts[0]);
-                    lblPreviewName.Text = parts.Length > 1 ? parts[1] : parts[0];
+                    lblPreviewName.Text = (parts.Length > 1 && parts[1] != "") ? parts[1] : lblPreviewName.Text;
                 }
                 // Find the line break
                 line = line.Replace(@"\a", "\a");

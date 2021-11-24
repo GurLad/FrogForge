@@ -15,7 +15,7 @@ namespace FrogForge.Editors
 {
     public partial class frmPortraitEditor : frmBaseEditor
     {
-        private static int[] PageWidths { get; } = new int[] { 393, 561 };
+        private static int[] PageWidths { get; } = new int[] { 393, 609 };
         private Random RNG { get; } = new Random();
         private GenericPortraitsGlobalData GlobalData = new GenericPortraitsGlobalData();
 
@@ -89,6 +89,7 @@ namespace FrogForge.Editors
         private PortraitData CharacterDataFromUI(PortraitData data)
         {
             data.Name = txtCharactersName.Text;
+            data.DisplayName = txtCharactersDisplayName.Text;
             data.ForegroundColorID = fgpCharactersFGPalette.Data;
             data.BackgroundColor = pltCharactersBGPalette.Data;
             data.Background = picCharactersBG.Image;
@@ -105,6 +106,7 @@ namespace FrogForge.Editors
         {
             data.LoadImages(WorkingDirectory);
             txtCharactersName.Text = data.Name;
+            txtCharactersDisplayName.Text = data.DisplayName;
             fgpCharactersFGPalette.Data = data.ForegroundColorID;
             pltCharactersBGPalette.Data = data.BackgroundColor;
             picCharactersBG.Image = data.Background ?? new PalettedImage(new Bitmap(1, 1));
@@ -307,6 +309,11 @@ namespace FrogForge.Editors
                     System.Threading.Thread.Sleep(400);
                 }
             }
+        }
+
+        private void txtCharactersName_TextChanged(object sender, EventArgs e)
+        {
+            txtCharactersDisplayName.Text = txtCharactersName.Text;
         }
     }
 }

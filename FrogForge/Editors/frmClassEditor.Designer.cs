@@ -63,8 +63,13 @@
             this.tbpClass = new System.Windows.Forms.TabPage();
             this.grpAnimationData = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnProjectileLoad = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.nudProjectileLocationY = new System.Windows.Forms.NumericUpDown();
             this.nudProjectileLocationX = new System.Windows.Forms.NumericUpDown();
             this.pnlProjectilePos = new System.Windows.Forms.Panel();
+            this.picProjectileIndicator = new System.Windows.Forms.PictureBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.picProjectile = new FrogForge.UserControls.PalettedPicturebox();
@@ -75,22 +80,17 @@
             this.tbpUnit = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtUnitDeathQuote = new FrogForge.UserControls.EventTextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.lstUnits = new FrogForge.UserControls.UnitJSONBrowser();
             this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtUnitClass = new System.Windows.Forms.TextBox();
+            this.txtUnitDisplayName = new System.Windows.Forms.TextBox();
             this.txtUnitName = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gthUnitGrowths = new FrogForge.UserControls.GrowthsPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.cmbUnitInclination = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.nudProjectileLocationY = new System.Windows.Forms.NumericUpDown();
-            this.label17 = new System.Windows.Forms.Label();
-            this.btnProjectileLoad = new System.Windows.Forms.Button();
-            this.picProjectileIndicator = new System.Windows.Forms.PictureBox();
             this.grpGrowths.SuspendLayout();
             this.grpWeapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponWeight)).BeginInit();
@@ -105,15 +105,14 @@
             this.tbpClass.SuspendLayout();
             this.grpAnimationData.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationX)).BeginInit();
             this.pnlProjectilePos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picProjectileIndicator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picProjectile)).BeginInit();
             this.tbpUnit.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picProjectileIndicator)).BeginInit();
             this.SuspendLayout();
             // 
             // lstClasses
@@ -491,6 +490,47 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Projectile data";
             // 
+            // btnProjectileLoad
+            // 
+            this.btnProjectileLoad.Location = new System.Drawing.Point(10, 96);
+            this.btnProjectileLoad.Name = "btnProjectileLoad";
+            this.btnProjectileLoad.Size = new System.Drawing.Size(44, 23);
+            this.btnProjectileLoad.TabIndex = 5;
+            this.btnProjectileLoad.Text = "Load";
+            this.btnProjectileLoad.UseVisualStyleBackColor = true;
+            this.btnProjectileLoad.Click += new System.EventHandler(this.btnProjectileLoad_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(60, 88);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(17, 13);
+            this.label17.TabIndex = 4;
+            this.label17.Text = "Y:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(60, 62);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(17, 13);
+            this.label16.TabIndex = 4;
+            this.label16.Text = "X:";
+            // 
+            // nudProjectileLocationY
+            // 
+            this.nudProjectileLocationY.Location = new System.Drawing.Point(83, 86);
+            this.nudProjectileLocationY.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.nudProjectileLocationY.Name = "nudProjectileLocationY";
+            this.nudProjectileLocationY.Size = new System.Drawing.Size(44, 20);
+            this.nudProjectileLocationY.TabIndex = 3;
+            this.nudProjectileLocationY.ValueChanged += new System.EventHandler(this.nudProjectileLocationX_ValueChanged);
+            // 
             // nudProjectileLocationX
             // 
             this.nudProjectileLocationX.Location = new System.Drawing.Point(83, 60);
@@ -517,6 +557,14 @@
             this.pnlProjectilePos.Name = "pnlProjectilePos";
             this.pnlProjectilePos.Size = new System.Drawing.Size(44, 36);
             this.pnlProjectilePos.TabIndex = 2;
+            // 
+            // picProjectileIndicator
+            // 
+            this.picProjectileIndicator.Location = new System.Drawing.Point(0, 0);
+            this.picProjectileIndicator.Name = "picProjectileIndicator";
+            this.picProjectileIndicator.Size = new System.Drawing.Size(8, 8);
+            this.picProjectileIndicator.TabIndex = 0;
+            this.picProjectileIndicator.TabStop = false;
             // 
             // label15
             // 
@@ -587,11 +635,12 @@
             // tbpUnit
             // 
             this.tbpUnit.Controls.Add(this.groupBox3);
-            this.tbpUnit.Controls.Add(this.groupBox2);
             this.tbpUnit.Controls.Add(this.lstUnits);
             this.tbpUnit.Controls.Add(this.label10);
+            this.tbpUnit.Controls.Add(this.label11);
             this.tbpUnit.Controls.Add(this.label8);
             this.tbpUnit.Controls.Add(this.txtUnitClass);
+            this.tbpUnit.Controls.Add(this.txtUnitDisplayName);
             this.tbpUnit.Controls.Add(this.txtUnitName);
             this.tbpUnit.Controls.Add(this.groupBox1);
             this.tbpUnit.Controls.Add(this.label9);
@@ -626,26 +675,6 @@
             this.txtUnitDeathQuote.Size = new System.Drawing.Size(362, 178);
             this.txtUnitDeathQuote.TabIndex = 0;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Enabled = false;
-            this.groupBox2.Location = new System.Drawing.Point(126, 160);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(246, 44);
-            this.groupBox2.TabIndex = 15;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Dead space";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 20);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(100, 13);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Nothing to see here";
-            // 
             // lstUnits
             // 
             this.lstUnits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -659,11 +688,20 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(126, 29);
+            this.label10.Location = new System.Drawing.Point(126, 55);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(35, 13);
             this.label10.TabIndex = 10;
             this.label10.Text = "Class:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(126, 29);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(73, 13);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Display name:";
             // 
             // label8
             // 
@@ -676,24 +714,33 @@
             // 
             // txtUnitClass
             // 
-            this.txtUnitClass.Location = new System.Drawing.Point(190, 26);
+            this.txtUnitClass.Location = new System.Drawing.Point(205, 52);
             this.txtUnitClass.MaxLength = 8;
             this.txtUnitClass.Name = "txtUnitClass";
-            this.txtUnitClass.Size = new System.Drawing.Size(182, 20);
+            this.txtUnitClass.Size = new System.Drawing.Size(167, 20);
             this.txtUnitClass.TabIndex = 1;
+            // 
+            // txtUnitDisplayName
+            // 
+            this.txtUnitDisplayName.Location = new System.Drawing.Point(205, 26);
+            this.txtUnitDisplayName.MaxLength = 8;
+            this.txtUnitDisplayName.Name = "txtUnitDisplayName";
+            this.txtUnitDisplayName.Size = new System.Drawing.Size(167, 20);
+            this.txtUnitDisplayName.TabIndex = 0;
             // 
             // txtUnitName
             // 
-            this.txtUnitName.Location = new System.Drawing.Point(190, 0);
+            this.txtUnitName.Location = new System.Drawing.Point(205, 0);
             this.txtUnitName.MaxLength = 8;
             this.txtUnitName.Name = "txtUnitName";
-            this.txtUnitName.Size = new System.Drawing.Size(182, 20);
+            this.txtUnitName.Size = new System.Drawing.Size(167, 20);
             this.txtUnitName.TabIndex = 0;
+            this.txtUnitName.TextChanged += new System.EventHandler(this.txtUnitName_TextChanged);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.gthUnitGrowths);
-            this.groupBox1.Location = new System.Drawing.Point(126, 79);
+            this.groupBox1.Location = new System.Drawing.Point(126, 105);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(246, 75);
             this.groupBox1.TabIndex = 3;
@@ -710,7 +757,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(126, 55);
+            this.label9.Location = new System.Drawing.Point(126, 81);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(58, 13);
             this.label9.TabIndex = 14;
@@ -724,59 +771,10 @@
             "Physical",
             "Technical",
             "Skillful"});
-            this.cmbUnitInclination.Location = new System.Drawing.Point(190, 52);
+            this.cmbUnitInclination.Location = new System.Drawing.Point(205, 78);
             this.cmbUnitInclination.Name = "cmbUnitInclination";
-            this.cmbUnitInclination.Size = new System.Drawing.Size(182, 21);
+            this.cmbUnitInclination.Size = new System.Drawing.Size(167, 21);
             this.cmbUnitInclination.TabIndex = 2;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(60, 62);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(17, 13);
-            this.label16.TabIndex = 4;
-            this.label16.Text = "X:";
-            // 
-            // nudProjectileLocationY
-            // 
-            this.nudProjectileLocationY.Location = new System.Drawing.Point(83, 86);
-            this.nudProjectileLocationY.Maximum = new decimal(new int[] {
-            32,
-            0,
-            0,
-            0});
-            this.nudProjectileLocationY.Name = "nudProjectileLocationY";
-            this.nudProjectileLocationY.Size = new System.Drawing.Size(44, 20);
-            this.nudProjectileLocationY.TabIndex = 3;
-            this.nudProjectileLocationY.ValueChanged += new System.EventHandler(this.nudProjectileLocationX_ValueChanged);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(60, 88);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(17, 13);
-            this.label17.TabIndex = 4;
-            this.label17.Text = "Y:";
-            // 
-            // btnProjectileLoad
-            // 
-            this.btnProjectileLoad.Location = new System.Drawing.Point(10, 96);
-            this.btnProjectileLoad.Name = "btnProjectileLoad";
-            this.btnProjectileLoad.Size = new System.Drawing.Size(44, 23);
-            this.btnProjectileLoad.TabIndex = 5;
-            this.btnProjectileLoad.Text = "Load";
-            this.btnProjectileLoad.UseVisualStyleBackColor = true;
-            this.btnProjectileLoad.Click += new System.EventHandler(this.btnProjectileLoad_Click);
-            // 
-            // picProjectileIndicator
-            // 
-            this.picProjectileIndicator.Location = new System.Drawing.Point(0, 0);
-            this.picProjectileIndicator.Name = "picProjectileIndicator";
-            this.picProjectileIndicator.Size = new System.Drawing.Size(8, 8);
-            this.picProjectileIndicator.TabIndex = 0;
-            this.picProjectileIndicator.TabStop = false;
             // 
             // frmClassEditor
             // 
@@ -812,17 +810,15 @@
             this.grpAnimationData.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationX)).EndInit();
             this.pnlProjectilePos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picProjectileIndicator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picProjectile)).EndInit();
             this.tbpUnit.ResumeLayout(false);
             this.tbpUnit.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picProjectileIndicator)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -870,8 +866,6 @@
         private System.Windows.Forms.ComboBox cmbUnitInclination;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtUnitClass;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox3;
         private UserControls.EventTextBox txtUnitDeathQuote;
         private System.Windows.Forms.GroupBox grpAnimationData;
@@ -890,5 +884,7 @@
         private System.Windows.Forms.NumericUpDown nudProjectileLocationY;
         private System.Windows.Forms.Button btnProjectileLoad;
         private System.Windows.Forms.PictureBox picProjectileIndicator;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtUnitDisplayName;
     }
 }
