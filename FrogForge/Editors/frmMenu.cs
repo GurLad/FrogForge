@@ -22,6 +22,8 @@ namespace FrogForge.Editors
         private SaveFileDialog dlgDataExport = new SaveFileDialog();
         private OpenFileDialog dlgProjectImport = new OpenFileDialog();
         private SaveFileDialog dlgProjectExport = new SaveFileDialog();
+        private string GamePath = "";
+
         public frmMenu()
         {
             InitializeComponent();
@@ -30,12 +32,44 @@ namespace FrogForge.Editors
         private void frmMenu_Load(object sender, EventArgs e)
         {
             // Init stuff
-            WorkingDirectory.Path = DataDirectory.LoadFile("Path", DataDirectory.Path);
             dlgFolder.IsFolderPicker = true;
             dlgDataImport.Filter = "Frog Forge editor data files|*.ffed";
             dlgDataExport.Filter = "Frog Forge editor data files|*.ffed";
             dlgProjectImport.Filter = "Frog Forge project data files|*.ffpd";
             dlgProjectExport.Filter = "Frog Forge project data files|*.ffpd";
+            GamePath = DataDirectory.LoadFile("GamePath", "");
+            string workingPath = DataDirectory.LoadFile("Path", "");
+            if (workingPath == "")
+            {
+                if (WorkingDirectory.DirectoryExists(@"\Game\Data"))
+                {
+                    GamePath = WorkingDirectory.Path + @"\Game\";
+                    DataDirectory.SaveFile("GamePath", GamePath);
+                    WorkingDirectory.Path += @"\Game\Data";
+                    DataDirectory.SaveFile("Path", WorkingDirectory.Path);
+                }
+                else
+                {
+                    if (ExtensionMethods.ConfirmDialog("Game directory not found. Locate manually?", "Missing game files"))
+                    {
+                        btnChangePath_Click(sender, e);
+                    }
+                    else
+                    {
+                        Close();
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                WorkingDirectory.Path = workingPath;
+            }
+            if (GamePath == "")
+            {
+                btnPlay.Visible = false;
+                Height -= 30;
+            }
             // Load prefences
             string json = DataDirectory.LoadFile("Preferences", "", ".json");
             Preferences.Current = ((json == "" ? null : json)?.JsonToObject<Preferences>()) ?? new Preferences();
@@ -210,6 +244,11 @@ namespace FrogForge.Editors
         private void btnEditPreferences_Click(object sender, EventArgs e)
         {
             new frmPreferences(DataDirectory).ShowDialog();
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            Process.Start(GamePath + "Frogman Magmaborn.exe");
         }
     }
 }
