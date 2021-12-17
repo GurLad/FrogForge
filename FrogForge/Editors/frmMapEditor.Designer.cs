@@ -58,7 +58,6 @@
             this.nudReinforcementTurn = new System.Windows.Forms.NumericUpDown();
             this.ckbStatue = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
             this.nudEscapePosY = new System.Windows.Forms.NumericUpDown();
             this.nudEscapePosX = new System.Windows.Forms.NumericUpDown();
             this.nudSurviveTurn = new System.Windows.Forms.NumericUpDown();
@@ -67,6 +66,7 @@
             this.rdbEscape = new System.Windows.Forms.RadioButton();
             this.rdbSurvive = new System.Windows.Forms.RadioButton();
             this.rdbRout = new System.Windows.Forms.RadioButton();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.melMapEvents = new FrogForge.UserControls.MapEventListEditor();
             this.txtLevelName = new System.Windows.Forms.TextBox();
@@ -195,6 +195,7 @@
             this.nudLevelNumber.Name = "nudLevelNumber";
             this.nudLevelNumber.Size = new System.Drawing.Size(49, 20);
             this.nudLevelNumber.TabIndex = 33;
+            this.nudLevelNumber.ValueChanged += new System.EventHandler(this.nudLevelNumber_ValueChanged);
             // 
             // cmbTileSets
             // 
@@ -407,15 +408,6 @@
             this.tabPage3.Text = "Objective";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(127, 92);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(10, 13);
-            this.label9.TabIndex = 3;
-            this.label9.Text = ",";
-            // 
             // nudEscapePosY
             // 
             this.nudEscapePosY.Enabled = false;
@@ -507,6 +499,15 @@
             this.rdbRout.TabStop = true;
             this.rdbRout.Text = "Rout";
             this.rdbRout.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(127, 92);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(10, 13);
+            this.label9.TabIndex = 3;
+            this.label9.Text = ",";
             // 
             // tabPage4
             // 

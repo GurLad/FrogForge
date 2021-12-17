@@ -28,6 +28,7 @@ namespace FrogForge.Editors
         private Unit Selected = null;
         private PictureBox PreviousHover = null;
         private List<ClassData> CachedSprites = new List<ClassData>();
+        private List<List<Palette>> CachedSpritePalettes;
         private int TILE_SIZE
         {
             get
@@ -65,6 +66,9 @@ namespace FrogForge.Editors
             cmbTileSets.Items.AddRange(Tilesets.ConvertAll(a => a.Name).ToArray());
             cmbTileSets.SelectedIndex = 0;
             SetTileSet(Tilesets[0]);
+            // Load palettes
+            CachedSpritePalettes = Palette.GetLevelSpritePalettes(WorkingDirectory);
+            nudLevelNumber.Maximum = CachedSpritePalettes.Count - 1;
             // End load files
             // Generate UI
             UpdatePreview();
@@ -411,7 +415,7 @@ namespace FrogForge.Editors
 
         private Palette PaletteFromTeam(Team team)
         {
-            return Palette.BaseSpritePalettes[(int)team];
+            return CachedSpritePalettes[(int)nudLevelNumber.Value][(int)team];
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -552,6 +556,23 @@ namespace FrogForge.Editors
                     VoiceAssist.Say("Delete");
                 }
             }
+        }
+
+        private int previousValue = 0;
+        private void nudLevelNumber_ValueChanged(object sender, EventArgs e)
+        {
+            // Only re-render if the sprite palettes were changed, to reduce renderings
+            List<Palette> previousSpritePalettes = CachedSpritePalettes[previousValue];
+            List<Palette> nextSpritePalettes = CachedSpritePalettes[previousValue = (int)nudLevelNumber.Value];
+            for (int i = 0; i < 4; i++)
+            {
+                if (previousSpritePalettes[i] != nextSpritePalettes[i])
+                {
+                    Render();
+                    return;
+                }
+            }
+            
         }
     }
 }

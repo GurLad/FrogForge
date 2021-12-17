@@ -19,6 +19,7 @@ namespace FrogForge.Editors
         private static int[] PageWidths { get; } = new int[] { 803, 652 };
         private Random RNG { get; } = new Random();
         private int CurrentPreviewPalette = 0;
+        private List<Palette> BaseSpritePalettes;
 
         public frmClassEditor()
         {
@@ -32,6 +33,7 @@ namespace FrogForge.Editors
             dlgOpen.Filter = "Animated image files|*.gif;*.png";
             picIcon.Init(dlgOpen, this);
             cmbClassInclination.SelectedIndex = 0;
+            BaseSpritePalettes = Palette.GetBaseSpritePalettes(WorkingDirectory);
             // Set dirty
             nudWeaponDamage.ValueChanged += DirtyFunc;
             nudWeaponWeight.ValueChanged += DirtyFunc;
@@ -53,7 +55,7 @@ namespace FrogForge.Editors
             gthUnitGrowths.Init(this);
             balBattleAnimations.Init(
                 this, () => new BattleAnimationData(), () => new BattleAnimationPanel(),
-                (bap) => { bap.Init(dlgOpen, this); bap.SetPreviewPalette(CurrentPreviewPalette); }, true,
+                (bap) => { bap.Init(dlgOpen, this); bap.SetPreviewPalette(CurrentPreviewPalette, BaseSpritePalettes); }, true,
                 () => btnGenerateBase.Visible = balBattleAnimations.Datas.Count <= 0);
             txtUnitDeathQuote.Init(DataDirectory, this);
             picProjectile.Init(dlgOpen, this, () => UpdateProjectileIndicator(true));
@@ -288,8 +290,8 @@ namespace FrogForge.Editors
         private void SetPreviewPalette(int palette)
         {
             CurrentPreviewPalette = palette;
-            picIcon.Palette = picProjectile.Palette = Palette.BaseSpritePalettes[palette];
-            balBattleAnimations.ForEachControl(a => a.SetPreviewPalette(palette));
+            picIcon.Palette = picProjectile.Palette = BaseSpritePalettes[palette];
+            balBattleAnimations.ForEachControl(a => a.SetPreviewPalette(palette, BaseSpritePalettes));
         }
 
         private void nudProjectileLocationX_ValueChanged(object sender, EventArgs e)

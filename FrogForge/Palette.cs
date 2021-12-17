@@ -9,7 +9,7 @@ namespace FrogForge
 {
     public class Palette
     {
-        public static List<Palette> BaseSpritePalettes { get; } = new List<Palette>(new Palette[]
+        private static List<Palette> BaseSpritePalettes { get; } = new List<Palette>(new Palette[]
         {
             new Palette(
                 ColorTranslator.FromHtml("#FF000000"),
@@ -37,6 +37,25 @@ namespace FrogForge
             ColorTranslator.FromHtml("#FFFFFFFF"),
             ColorTranslator.FromHtml("#FFBCC0C4"),
             ColorTranslator.FromHtml("#FF788084"));
+
+        public static List<Palette> GetBaseSpritePalettes(Utils.FilesController workingDirectory)
+        {
+            List<Palette> result = workingDirectory.LoadFile("LevelMetadata", "", ".json").JsonToObject<List<Datas.LevelMetadata>>()[0].TeamDatas.Select(a => a.Palette).ToList();
+            result.Add(BaseSpritePalettes[3]);
+            return result;
+        }
+
+        public static List<List<Palette>> GetLevelSpritePalettes(Utils.FilesController workingDirectory)
+        {
+            List<Palette> GetPaletteFromLevelMetadata(Datas.LevelMetadata levelMetadata)
+            {
+                List<Palette> result = levelMetadata.TeamDatas.Select(b => b.Palette).ToList();
+                result.Add(BaseSpritePalettes[3]);
+                return result;
+            }
+
+            return workingDirectory.LoadFile("LevelMetadata", "", ".json").JsonToObject<List<Datas.LevelMetadata>>().Select(a => GetPaletteFromLevelMetadata(a)).ToList();
+        }
 
         // For JSON convertion from FrogForge to FrogmanGaiden
         public UnityColor[] Colors

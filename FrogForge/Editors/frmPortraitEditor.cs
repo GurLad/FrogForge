@@ -18,6 +18,7 @@ namespace FrogForge.Editors
         private static int[] PageWidths { get; } = new int[] { 393, 609 };
         private Random RNG { get; } = new Random();
         private GenericPortraitsGlobalData GlobalData = new GenericPortraitsGlobalData();
+        private List<Palette> BaseSpritePalettes;
 
         public frmPortraitEditor()
         {
@@ -27,6 +28,8 @@ namespace FrogForge.Editors
 
         private void frmPortraitEditor_Load(object sender, EventArgs e)
         {
+            // Init palettes
+            BaseSpritePalettes = Palette.GetBaseSpritePalettes(WorkingDirectory);
             // Init animation pictureboxes
             picCharactersBG.Init(dlgOpen, this);
             picCharactersFG.Init(dlgOpen, this);
@@ -44,12 +47,12 @@ namespace FrogForge.Editors
                 picCharactersBG.Palette = p;
                 UpdateCharacterPreview();
             });
-            fgpCharactersFGPalette.Init(this, (p) =>
+            fgpCharactersFGPalette.Init(this, BaseSpritePalettes, (p) =>
             {
                 picCharactersFG.Palette = p;
                 UpdateCharacterPreview();
             });
-            fgpCharacterAccent.Init(this);
+            fgpCharacterAccent.Init(this, BaseSpritePalettes);
             Dirty = false;
             this.ApplyPreferences();
             // Misc
@@ -82,7 +85,7 @@ namespace FrogForge.Editors
             picGenericsPreview.BackgroundImage = picGenericsBG.Image?.Target;
             picGenericsBG.Palette = pleGenericsPossibleBGPalettes.Datas.Count > 0 ?
                 pleGenericsPossibleBGPalettes.Datas[RNG.Next(pleGenericsPossibleBGPalettes.Datas.Count)] : Palette.BasePalette;
-            picGenericsFG.Palette = Palette.BaseSpritePalettes[RNG.Next(0, 4)];
+            picGenericsFG.Palette = BaseSpritePalettes[RNG.Next(0, 4)];
             picGenericsPreview.FixZoom();
         }
 
@@ -112,7 +115,7 @@ namespace FrogForge.Editors
             picCharactersBG.Image = data.Background ?? new PalettedImage(new Bitmap(1, 1));
             picCharactersBG.Palette = data.BackgroundColor;
             picCharactersFG.Image = data.Foreground ?? new PalettedImage(new Bitmap(1, 1));
-            picCharactersFG.Palette = Palette.BaseSpritePalettes[fgpCharactersFGPalette.Data];
+            picCharactersFG.Palette = BaseSpritePalettes[fgpCharactersFGPalette.Data];
             fgpCharacterAccent.Data = data.AccentColor;
             nudPitch.Value = (decimal)data.Voice.Pitch;
             cmbVoiceType.SelectedIndex = (int)data.Voice.VoiceType;

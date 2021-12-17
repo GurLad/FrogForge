@@ -27,6 +27,10 @@ namespace FrogForge.UserControls
                 for (int i = 0; i < 4; i++)
                 {
                     BGPaletteSelectors[i].BackColor = value[i];
+                    if (SpritePalette && i == 3) // Fix non-transparent JSONs
+                    {
+                        BGPaletteSelectors[i].BackColor = Color.Transparent;
+                    }
                 }
                 OnPaletteChange?.Invoke(Data);
             }
@@ -87,13 +91,12 @@ namespace FrogForge.UserControls
                 box.Size = new Size(boxSize, Height);
                 box.BorderStyle = BorderStyle.Fixed3D;
                 box.BackColor = Palette.BasePalette[i];
-                if (i != 0)
+                if (i != (SpritePalette ? 3 : 0)) // Sprites can modify the Black color, because I misread how NES palettes work initially
                 {
                     box.Click += Box_Click;
                 }
-                if (SpritePalette && i == 3)
+                else
                 {
-                    box.BackColor = Color.Transparent;
                     box.Enabled = false;
                 }
                 Controls.Add(box);

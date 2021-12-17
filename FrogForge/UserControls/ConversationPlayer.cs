@@ -22,6 +22,7 @@ namespace FrogForge.UserControls
         private List<PortraitData> Portraits;
         private string TargetLine = "";
         private int CurrentChar;
+        private List<Palette> BaseSpritePalettes;
 
         public ConversationPlayer()
         {
@@ -33,6 +34,7 @@ namespace FrogForge.UserControls
             WorkingDirectory = workingDirectory;
             CharsInLine = charsInLine;
             SetPreviewMode = setPreviewMode;
+            BaseSpritePalettes = Palette.GetBaseSpritePalettes(WorkingDirectory);
             Portraits = WorkingDirectory.LoadFile("Portraits", "", ".json").JsonToObject<List<PortraitData>>();
         }
 
@@ -86,7 +88,7 @@ namespace FrogForge.UserControls
             }
             portrait.LoadImages(WorkingDirectory);
             picPreviewSpeaker.BackgroundImage = portrait.Background.ToBitmap(portrait.BackgroundColor).Resize(2);
-            picPreviewSpeaker.Image = portrait.Foreground.ToBitmap(Palette.BaseSpritePalettes[portrait.ForegroundColorID]).Resize(2);
+            picPreviewSpeaker.Image = portrait.Foreground.ToBitmap(BaseSpritePalettes[portrait.ForegroundColorID]).Resize(2);
             lblPreviewName.Text = portrait.DisplayName;
         }
 

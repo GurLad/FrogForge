@@ -16,7 +16,7 @@ namespace FrogForge.Datas
             Name = name;
             for (int i = 0; i < 3; i++)
             {
-                TeamDatas[i] = new TeamData("", Palette.BaseSpritePalettes[3], true, PortraitLoadingMode.Name, new AIPriorities(0, 0, 0));
+                TeamDatas[i] = new TeamData("", Palette.BasePalette, true, PortraitLoadingMode.Name, new AIPriorities(0, 0, 0));
             }
         }
     }

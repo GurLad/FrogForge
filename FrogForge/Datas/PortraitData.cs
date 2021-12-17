@@ -22,10 +22,10 @@ namespace FrogForge.Datas
             Foreground = Foreground ?? new PalettedImage(workingDirectory.LoadImage(@"Portraits\" + Name + @"\F") ?? new Bitmap(48, 48));
         }
 
-        public void ApplyPalettes()
+        public void ApplyPalettes(List<Palette> baseSpritePalettes)
         {
             Background.CurrentPalette = BackgroundColor;
-            Foreground.CurrentPalette = Palette.BaseSpritePalettes[ForegroundColorID];
+            Foreground.CurrentPalette = baseSpritePalettes[ForegroundColorID];
         }
     }
 }
