@@ -33,6 +33,12 @@ namespace FrogForge.Editors
             dlgOpen.Filter = "Animated image files|*.gif;*.png";
             picIcon.Init(dlgOpen, this);
             cmbClassInclination.SelectedIndex = 0;
+            cmbUnitInclination.SelectedIndex = 0;
+            string[] battleAnimationModeNames = Enum.GetNames(typeof(BattleAnimationMode));
+            cmbClassAnimationModeMelee.Items.AddRange(battleAnimationModeNames);
+            cmbClassAnimationModeRanged.Items.AddRange(battleAnimationModeNames);
+            cmbClassAnimationModeMelee.SelectedIndex = 0;
+            cmbClassAnimationModeRanged.SelectedIndex = 0;
             BaseSpritePalettes = Palette.GetBaseSpritePalettes(WorkingDirectory);
             // Set dirty
             nudWeaponDamage.ValueChanged += DirtyFunc;
@@ -60,9 +66,6 @@ namespace FrogForge.Editors
             txtUnitDeathQuote.Init(DataDirectory, this);
             picProjectile.Init(dlgOpen, this, () => UpdateProjectileIndicator(true));
             // Misc
-            string[] battleAnimationModeNames = Enum.GetNames(typeof(BattleAnimationMode));
-            cmbClassAnimationModeMelee.Items.AddRange(battleAnimationModeNames);
-            cmbClassAnimationModeRanged.Items.AddRange(battleAnimationModeNames);
             this.ApplyPreferences();
             pnlProjectilePos.BackColor = picProjectileIndicator.BackColor;
         }

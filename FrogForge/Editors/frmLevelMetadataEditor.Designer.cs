@@ -36,9 +36,23 @@
             this.lstLevels = new FrogForge.UserControls.LevelMetadataJSONBrowser();
             this.label10 = new System.Windows.Forms.Label();
             this.txtMusicName = new System.Windows.Forms.TextBox();
-            this.grpTeams = new System.Windows.Forms.GroupBox();
+            this.pnlTeams = new System.Windows.Forms.Panel();
             this.lblEditing = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ckbAllies13 = new System.Windows.Forms.CheckBox();
+            this.ckbAllies23 = new System.Windows.Forms.CheckBox();
+            this.ckbAllies12 = new System.Windows.Forms.CheckBox();
+            this.lstUnitReplacements = new FrogForge.UserControls.UnitReplacementListEditor();
             this.toolStrip1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -49,7 +63,7 @@
             this.btnDelete});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(779, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(777, 25);
             this.toolStrip1.TabIndex = 34;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -107,17 +121,13 @@
             this.txtMusicName.Size = new System.Drawing.Size(109, 20);
             this.txtMusicName.TabIndex = 38;
             // 
-            // grpTeams
+            // pnlTeams
             // 
-            this.grpTeams.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpTeams.Location = new System.Drawing.Point(137, 54);
-            this.grpTeams.Name = "grpTeams";
-            this.grpTeams.Size = new System.Drawing.Size(630, 341);
-            this.grpTeams.TabIndex = 40;
-            this.grpTeams.TabStop = false;
-            this.grpTeams.Text = "Teams";
+            this.pnlTeams.BackColor = System.Drawing.Color.Transparent;
+            this.pnlTeams.Location = new System.Drawing.Point(0, 2);
+            this.pnlTeams.Name = "pnlTeams";
+            this.pnlTeams.Size = new System.Drawing.Size(618, 316);
+            this.pnlTeams.TabIndex = 0;
             // 
             // lblEditing
             // 
@@ -128,17 +138,112 @@
             this.lblEditing.TabIndex = 41;
             this.lblEditing.Text = "label1";
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(137, 54);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(628, 344);
+            this.tabControl1.TabIndex = 42;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.pnlTeams);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(620, 318);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Teams";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.groupBox2);
+            this.tabPage2.Controls.Add(this.groupBox1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(620, 318);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Everything else";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lstUnitReplacements);
+            this.groupBox2.Location = new System.Drawing.Point(0, 97);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(200, 221);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Replacements";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.ckbAllies13);
+            this.groupBox1.Controls.Add(this.ckbAllies23);
+            this.groupBox1.Controls.Add(this.ckbAllies12);
+            this.groupBox1.Location = new System.Drawing.Point(0, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 88);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Alliances";
+            // 
+            // ckbAllies13
+            // 
+            this.ckbAllies13.AutoSize = true;
+            this.ckbAllies13.Location = new System.Drawing.Point(6, 65);
+            this.ckbAllies13.Name = "ckbAllies13";
+            this.ckbAllies13.Size = new System.Drawing.Size(110, 17);
+            this.ckbAllies13.TabIndex = 1;
+            this.ckbAllies13.Text = "Team 1 && Team 3";
+            this.ckbAllies13.UseVisualStyleBackColor = true;
+            // 
+            // ckbAllies23
+            // 
+            this.ckbAllies23.AutoSize = true;
+            this.ckbAllies23.Location = new System.Drawing.Point(6, 42);
+            this.ckbAllies23.Name = "ckbAllies23";
+            this.ckbAllies23.Size = new System.Drawing.Size(110, 17);
+            this.ckbAllies23.TabIndex = 1;
+            this.ckbAllies23.Text = "Team 2 && Team 3";
+            this.ckbAllies23.UseVisualStyleBackColor = true;
+            // 
+            // ckbAllies12
+            // 
+            this.ckbAllies12.AutoSize = true;
+            this.ckbAllies12.Location = new System.Drawing.Point(6, 19);
+            this.ckbAllies12.Name = "ckbAllies12";
+            this.ckbAllies12.Size = new System.Drawing.Size(110, 17);
+            this.ckbAllies12.TabIndex = 1;
+            this.ckbAllies12.Text = "Team 1 && Team 2";
+            this.ckbAllies12.UseVisualStyleBackColor = true;
+            // 
+            // lstUnitReplacements
+            // 
+            this.lstUnitReplacements.Location = new System.Drawing.Point(7, 20);
+            this.lstUnitReplacements.Name = "lstUnitReplacements";
+            this.lstUnitReplacements.Size = new System.Drawing.Size(187, 195);
+            this.lstUnitReplacements.TabIndex = 0;
+            // 
             // frmLevelMetadataEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(779, 408);
+            this.ClientSize = new System.Drawing.Size(777, 410);
             this.Controls.Add(this.lblEditing);
-            this.Controls.Add(this.grpTeams);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtMusicName);
             this.Controls.Add(this.lstLevels);
             this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -149,6 +254,12 @@
             this.Load += new System.EventHandler(this.frmLevelMetadataEditor_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,7 +274,16 @@
         private UserControls.LevelMetadataJSONBrowser lstLevels;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtMusicName;
-        private System.Windows.Forms.GroupBox grpTeams;
         private System.Windows.Forms.Label lblEditing;
+        private System.Windows.Forms.Panel pnlTeams;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox ckbAllies12;
+        private System.Windows.Forms.CheckBox ckbAllies23;
+        private System.Windows.Forms.CheckBox ckbAllies13;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private UserControls.UnitReplacementListEditor lstUnitReplacements;
     }
 }

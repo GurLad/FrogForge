@@ -136,6 +136,7 @@
     <Compile Include="Datas\LevelMetadata.cs" />
     <Compile Include="Datas\MapData.cs" />
     <Compile Include="Datas\MapEventData.cs" />
+    <Compile Include="Datas\UnitReplacementData.cs" />
     <Compile Include="Editors\frmCGEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +180,12 @@
     </Compile>
     <Compile Include="UserControls\BattleBackgroundPanel.Designer.cs">
       <DependentUpon>BattleBackgroundPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DataTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\DataTextBox.Designer.cs">
+      <DependentUpon>DataTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ForegroundPaletteSelector.cs">
       <SubType>UserControl</SubType>
@@ -301,6 +308,12 @@
     <Compile Include="UserControls\TeamPanel.Designer.cs">
       <DependentUpon>TeamPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UnitReplacementPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UnitReplacementPanel.Designer.cs">
+      <DependentUpon>UnitReplacementPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="VoiceAssist.cs" />
     <Compile Include="Weapon.cs" />
     <EmbeddedResource Include="Editors\frmCGEditor.resx">
@@ -329,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ConversationPlayer.resx">
       <DependentUpon>ConversationPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\DataTextBox.resx">
+      <DependentUpon>DataTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ForegroundPaletteSelector.resx">
       <DependentUpon>ForegroundPaletteSelector.cs</DependentUpon>
@@ -375,6 +391,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TeamPanel.resx">
       <DependentUpon>TeamPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UnitReplacementPanel.resx">
+      <DependentUpon>UnitReplacementPanel.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

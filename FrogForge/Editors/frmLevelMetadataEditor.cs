@@ -38,19 +38,20 @@ namespace FrogForge.Editors
         private void frmLevelMetadataEditor_Load(object sender, EventArgs e)
         {
             // Generate team panels
-            int baseX = 6, baseY = 19, offset = 346 - 138;
+            int baseX = 0, baseY = 0, offset = 346 - 138;
             for (int i = 0; i < 3; i++)
             {
                 TeamDatas[i] = new TeamPanel();
                 TeamDatas[i].Left = baseX + offset * i;
                 TeamDatas[i].Top = baseY;
                 TeamDatas[i].Init(this);
-                grpTeams.Controls.Add(TeamDatas[i]);
+                pnlTeams.Controls.Add(TeamDatas[i]);
             }
             // Dirty
             txtMusicName.TextChanged += DirtyFunc;
             // Init stuff
             lstLevels.Init(this, () => lstLevels.Data[0].ToJson().JsonToObject<LevelMetadata>(), LevelMetadataFromUI, LevelMetadataToUI, "LevelMetadata");
+            lstUnitReplacements.Init(this, () => new UnitReplacementData(), () => new UnitReplacementPanel(), a => a.Init(this), false);
             // Load default
             if (lstLevels.Items.Count == 0)
             {
