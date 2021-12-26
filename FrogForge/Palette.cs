@@ -40,21 +40,12 @@ namespace FrogForge
 
         public static List<Palette> GetBaseSpritePalettes(Utils.FilesController workingDirectory)
         {
-            List<Palette> result = workingDirectory.LoadFile("LevelMetadata", "", ".json").JsonToObject<List<Datas.LevelMetadata>>()[0].TeamDatas.Select(a => a.Palette).ToList();
-            result.Add(BaseSpritePalettes[3]);
-            return result;
+            return workingDirectory.LoadFile("LevelMetadata", "", ".json").JsonToObject<List<Datas.LevelMetadata>>()[0].GetPalettes();
         }
 
         public static List<List<Palette>> GetLevelSpritePalettes(Utils.FilesController workingDirectory)
         {
-            List<Palette> GetPaletteFromLevelMetadata(Datas.LevelMetadata levelMetadata)
-            {
-                List<Palette> result = levelMetadata.TeamDatas.Select(b => b.Palette).ToList();
-                result.Add(BaseSpritePalettes[3]);
-                return result;
-            }
-
-            return workingDirectory.LoadFile("LevelMetadata", "", ".json").JsonToObject<List<Datas.LevelMetadata>>().Select(a => GetPaletteFromLevelMetadata(a)).ToList();
+            return workingDirectory.LoadFile("LevelMetadata", "", ".json").JsonToObject<List<Datas.LevelMetadata>>().Select(a => a.GetPalettes()).ToList();
         }
 
         // For JSON convertion from FrogForge to FrogmanGaiden

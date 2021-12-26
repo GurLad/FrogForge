@@ -38,17 +38,19 @@
             this.txtMusicName = new System.Windows.Forms.TextBox();
             this.pnlTeams = new System.Windows.Forms.Panel();
             this.lblEditing = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tbcMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lstUnitReplacements = new FrogForge.UserControls.UnitReplacementListEditor();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ckbAllies13 = new System.Windows.Forms.CheckBox();
             this.ckbAllies23 = new System.Windows.Forms.CheckBox();
             this.ckbAllies12 = new System.Windows.Forms.CheckBox();
-            this.lstUnitReplacements = new FrogForge.UserControls.UnitReplacementListEditor();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pltPalette4 = new FrogForge.UserControls.PalettePanel();
             this.toolStrip1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tbcMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -108,7 +110,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(138, 31);
+            this.label10.Location = new System.Drawing.Point(243, 31);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(38, 13);
             this.label10.TabIndex = 39;
@@ -116,7 +118,7 @@
             // 
             // txtMusicName
             // 
-            this.txtMusicName.Location = new System.Drawing.Point(182, 28);
+            this.txtMusicName.Location = new System.Drawing.Point(287, 28);
             this.txtMusicName.Name = "txtMusicName";
             this.txtMusicName.Size = new System.Drawing.Size(109, 20);
             this.txtMusicName.TabIndex = 38;
@@ -132,24 +134,25 @@
             // lblEditing
             // 
             this.lblEditing.AutoSize = true;
-            this.lblEditing.Location = new System.Drawing.Point(297, 31);
+            this.lblEditing.Location = new System.Drawing.Point(138, 31);
             this.lblEditing.Name = "lblEditing";
             this.lblEditing.Size = new System.Drawing.Size(35, 13);
             this.lblEditing.TabIndex = 41;
             this.lblEditing.Text = "label1";
             // 
-            // tabControl1
+            // tbcMain
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tbcMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(137, 54);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(628, 344);
-            this.tabControl1.TabIndex = 42;
+            this.tbcMain.Controls.Add(this.tabPage1);
+            this.tbcMain.Controls.Add(this.tabPage2);
+            this.tbcMain.Location = new System.Drawing.Point(137, 54);
+            this.tbcMain.Name = "tbcMain";
+            this.tbcMain.SelectedIndex = 0;
+            this.tbcMain.Size = new System.Drawing.Size(628, 344);
+            this.tbcMain.TabIndex = 42;
+            this.tbcMain.SelectedIndexChanged += new System.EventHandler(this.tbcMain_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -184,6 +187,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Replacements";
             // 
+            // lstUnitReplacements
+            // 
+            this.lstUnitReplacements.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstUnitReplacements.Location = new System.Drawing.Point(7, 20);
+            this.lstUnitReplacements.Name = "lstUnitReplacements";
+            this.lstUnitReplacements.Size = new System.Drawing.Size(187, 195);
+            this.lstUnitReplacements.TabIndex = 0;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.ckbAllies13);
@@ -199,7 +212,7 @@
             // ckbAllies13
             // 
             this.ckbAllies13.AutoSize = true;
-            this.ckbAllies13.Location = new System.Drawing.Point(6, 65);
+            this.ckbAllies13.Location = new System.Drawing.Point(6, 42);
             this.ckbAllies13.Name = "ckbAllies13";
             this.ckbAllies13.Size = new System.Drawing.Size(110, 17);
             this.ckbAllies13.TabIndex = 1;
@@ -209,7 +222,7 @@
             // ckbAllies23
             // 
             this.ckbAllies23.AutoSize = true;
-            this.ckbAllies23.Location = new System.Drawing.Point(6, 42);
+            this.ckbAllies23.Location = new System.Drawing.Point(6, 65);
             this.ckbAllies23.Name = "ckbAllies23";
             this.ckbAllies23.Size = new System.Drawing.Size(110, 17);
             this.ckbAllies23.TabIndex = 1;
@@ -226,24 +239,36 @@
             this.ckbAllies12.Text = "Team 1 && Team 2";
             this.ckbAllies12.UseVisualStyleBackColor = true;
             // 
-            // lstUnitReplacements
+            // label1
             // 
-            this.lstUnitReplacements.Location = new System.Drawing.Point(7, 20);
-            this.lstUnitReplacements.Name = "lstUnitReplacements";
-            this.lstUnitReplacements.Size = new System.Drawing.Size(187, 195);
-            this.lstUnitReplacements.TabIndex = 0;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(402, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "4th palette:";
+            // 
+            // pltPalette4
+            // 
+            this.pltPalette4.Location = new System.Drawing.Point(468, 28);
+            this.pltPalette4.Name = "pltPalette4";
+            this.pltPalette4.Size = new System.Drawing.Size(100, 20);
+            this.pltPalette4.SpritePalette = true;
+            this.pltPalette4.TabIndex = 43;
             // 
             // frmLevelMetadataEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 410);
+            this.Controls.Add(this.pltPalette4);
             this.Controls.Add(this.lblEditing);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtMusicName);
             this.Controls.Add(this.lstLevels);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tbcMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -254,7 +279,7 @@
             this.Load += new System.EventHandler(this.frmLevelMetadataEditor_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.tbcMain.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -276,7 +301,7 @@
         private System.Windows.Forms.TextBox txtMusicName;
         private System.Windows.Forms.Label lblEditing;
         private System.Windows.Forms.Panel pnlTeams;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tbcMain;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -285,5 +310,7 @@
         private System.Windows.Forms.CheckBox ckbAllies13;
         private System.Windows.Forms.GroupBox groupBox2;
         private UserControls.UnitReplacementListEditor lstUnitReplacements;
+        private System.Windows.Forms.Label label1;
+        private UserControls.PalettePanel pltPalette4;
     }
 }

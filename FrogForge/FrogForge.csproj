@@ -119,7 +119,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="Utils, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Documents\GitHub\Utils\Utils.dll</HintPath>
+      <HintPath>..\..\Utils\Utils.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -14,6 +14,7 @@ namespace FrogForge.Editors
 {
     public partial class frmLevelMetadataEditor : frmBaseEditor
     {
+        private static int[] PageWidths { get; } = new int[] { 793, 596 };
         private TeamPanel[] TeamDatas = new TeamPanel[3];
         private string _currentLevel;
         private string CurrentLevel
@@ -49,9 +50,13 @@ namespace FrogForge.Editors
             }
             // Dirty
             txtMusicName.TextChanged += DirtyFunc;
+            ckbAllies12.CheckedChanged += DirtyFunc;
+            ckbAllies13.CheckedChanged += DirtyFunc;
+            ckbAllies23.CheckedChanged += DirtyFunc;
             // Init stuff
             lstLevels.Init(this, () => lstLevels.Data[0].ToJson().JsonToObject<LevelMetadata>(), LevelMetadataFromUI, LevelMetadataToUI, "LevelMetadata");
             lstUnitReplacements.Init(this, () => new UnitReplacementData(), () => new UnitReplacementPanel(), a => a.Init(this), false);
+            pltPalette4.Init(this);
             // Load default
             if (lstLevels.Items.Count == 0)
             {
@@ -69,6 +74,9 @@ namespace FrogForge.Editors
                 data.TeamDatas[i] = TeamDatas[i].Data;
             }
             data.MusicName = txtMusicName.Text;
+            data.Palette4 = pltPalette4.Data;
+            data.Alliances = new bool[] { ckbAllies12.Checked, ckbAllies13.Checked, ckbAllies23.Checked };
+            data.UnitReplacements = lstUnitReplacements.Datas;
             data.Name = CurrentLevel;
             CurrentFile = data.Name;
             Dirty = false;
@@ -82,6 +90,11 @@ namespace FrogForge.Editors
                 TeamDatas[i].Data = data.TeamDatas[i];
             }
             txtMusicName.Text = data.MusicName;
+            pltPalette4.Data = data.Palette4;
+            ckbAllies12.Checked = data.Alliances[0];
+            ckbAllies13.Checked = data.Alliances[1];
+            ckbAllies23.Checked = data.Alliances[2];
+            lstUnitReplacements.Datas = data.UnitReplacements;
             CurrentLevel = data.Name;
             CurrentFile = data.Name;
             Dirty = false;
@@ -125,6 +138,13 @@ namespace FrogForge.Editors
                     break;
             }
             return false;
+        }
+
+        private void tbcMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Width = PageWidths[tbcMain.SelectedIndex];
+            this.ResizeByZoom(false, y: false);
+            CurrentFile = "";
         }
     }
 }
