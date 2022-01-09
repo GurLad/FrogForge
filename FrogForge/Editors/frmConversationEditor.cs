@@ -36,6 +36,7 @@ namespace FrogForge.Editors
             CurrentDirectory.Path = WorkingDirectory.Path;
             CurrentDirectory.CreateDirectory("Conversations", true);
             flbFileBrowser.Directory = CurrentDirectory;
+            flbFileBrowser.TopMostDirectory = CurrentDirectory.Path;
             flbFileBrowser.OnFileSelected = LoadFile;
             flbFileBrowser.UpdateList();
             // Init stuff
@@ -189,19 +190,18 @@ namespace FrogForge.Editors
 
         private void btnNewFolder_Click(object sender, EventArgs e)
         {
-            if (txtName.Text == "")
+            string folderName = InputBox.Show("New folder", "Enter folder name:", this);
+            if ((folderName ?? "") == "")
             {
-                MessageBox.Show("You must enter a folder name.");
                 return;
             }
-            CurrentDirectory.CreateDirectory(txtName.Text);
+            CurrentDirectory.CreateDirectory(folderName);
             flbFileBrowser.UpdateList();
         }
 
         private void btnDeleteFolder_Click(object sender, EventArgs e)
         {
-            // TBA: Update Utils to add directory support
-            string toDelete = flbFileBrowser.SelectedFilename ?? (txtName.Text != "" ? @"\" + txtName.Text : "");
+            string toDelete = flbFileBrowser.SelectedFilename ?? @"\";
             string toDeleteName = toDelete != "" ? toDelete.Replace(@"\", "") : CurrentDirectory.Path.Substring(CurrentDirectory.Path.LastIndexOf(@"\") + 1);
             if (CurrentDirectory.DirectoryExists(toDelete) &&
                 ConfirmDialog("Are you sure you want to delete folder " + toDeleteName + "?", "Warning") &&

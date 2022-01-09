@@ -76,6 +76,9 @@
             this.btnNew = new System.Windows.Forms.ToolStripButton();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.label10 = new System.Windows.Forms.Label();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnNewFolder = new System.Windows.Forms.ToolStripButton();
+            this.btnDeleteFolder = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
@@ -549,7 +552,10 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnSave,
             this.btnNew,
-            this.btnDelete});
+            this.btnDelete,
+            this.toolStripSeparator1,
+            this.btnNewFolder,
+            this.btnDeleteFolder});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(657, 25);
@@ -594,6 +600,31 @@
             this.label10.Size = new System.Drawing.Size(38, 13);
             this.label10.TabIndex = 37;
             this.label10.Text = "Name:";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnNewFolder
+            // 
+            this.btnNewFolder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNewFolder.Image = global::FrogForge.Properties.Resources.NewFolder;
+            this.btnNewFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNewFolder.Name = "btnNewFolder";
+            this.btnNewFolder.Size = new System.Drawing.Size(23, 22);
+            this.btnNewFolder.Text = "New folder";
+            this.btnNewFolder.Click += new System.EventHandler(this.btnNewFolder_Click);
+            // 
+            // btnDeleteFolder
+            // 
+            this.btnDeleteFolder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnDeleteFolder.Image = global::FrogForge.Properties.Resources.DeleteFolder;
+            this.btnDeleteFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDeleteFolder.Name = "btnDeleteFolder";
+            this.btnDeleteFolder.Size = new System.Drawing.Size(23, 22);
+            this.btnDeleteFolder.Text = "Delete folder";
+            this.btnDeleteFolder.Click += new System.EventHandler(this.btnDeleteFolder_Click);
             // 
             // frmMapEditor
             // 
@@ -688,6 +719,9 @@
         private System.Windows.Forms.ToolStripButton btnDelete;
         private System.Windows.Forms.TabPage tabPage4;
         private UserControls.MapEventListEditor melMapEvents;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btnNewFolder;
+        private System.Windows.Forms.ToolStripButton btnDeleteFolder;
     }
 }
 

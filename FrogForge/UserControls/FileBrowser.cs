@@ -19,6 +19,7 @@ namespace FrogForge.UserControls
         /// </summary>
         public Action<string> OnFileSelected;
         public bool ShowDirectories = true;
+        public string TopMostDirectory;
         public string SelectedFilename
         {
             get
@@ -30,6 +31,7 @@ namespace FrogForge.UserControls
                 lstFiles.SelectedItem = value;
             }
         }
+
         public FileBrowser()
         {
             InitializeComponent();
@@ -41,7 +43,10 @@ namespace FrogForge.UserControls
             string selectedItem = "";
             if (ShowDirectories)
             {
-                items.Add("..");
+                if (Directory.Path != TopMostDirectory)
+                {
+                    items.Add("..");
+                }
                 items.AddRange(Directory.AllDirectories());
                 for (int i = 0; i < items.Count; i++)
                 {
@@ -80,7 +85,14 @@ namespace FrogForge.UserControls
             {
                 if (place == @"\..")
                 {
-                    Directory.Path = Directory.Path.Substring(0, Directory.Path.LastIndexOf(Directory.Seperator));
+                    if (Directory.Path != TopMostDirectory)
+                    {
+                        Directory.Path = Directory.Path.Substring(0, Directory.Path.LastIndexOf(Directory.Seperator));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error: trying to delete the base directory!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {

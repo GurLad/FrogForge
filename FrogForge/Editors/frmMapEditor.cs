@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Utils;
+using static FrogForge.ExtensionMethods;
 
 namespace FrogForge.Editors
 {
@@ -52,8 +53,9 @@ namespace FrogForge.Editors
             // Load levels
             CurrentDirectory.DefultFileFormat = ".txt";
             flbFiles.Directory = CurrentDirectory;
+            flbFiles.TopMostDirectory = CurrentDirectory.Path;
             flbFiles.OnFileSelected = LoadFile;
-            flbFiles.ShowDirectories = false;
+            flbFiles.ShowDirectories = true;
             flbFiles.UpdateList();
             // Load tiles
             Tilesets = WorkingDirectory.LoadFile("Tilesets", "", ".json").JsonToObject<List<TilesetData>>();
@@ -573,6 +575,35 @@ namespace FrogForge.Editors
                 }
             }
             
+        }
+
+        private void btnNewFolder_Click(object sender, EventArgs e)
+        {
+            string folderName = InputBox.Show("New folder", "Enter folder name:", this);
+            if ((folderName ?? "") == "")
+            {
+                return;
+            }
+            CurrentDirectory.CreateDirectory(folderName);
+            flbFiles.UpdateList();
+        }
+
+        private void btnDeleteFolder_Click(object sender, EventArgs e)
+        {
+            string toDelete = flbFiles.SelectedFilename ?? @"\";
+            string toDeleteName = toDelete != "" ? toDelete.Replace(@"\", "") : CurrentDirectory.Path.Substring(CurrentDirectory.Path.LastIndexOf(@"\") + 1);
+            if (CurrentDirectory.DirectoryExists(toDelete) &&
+                ConfirmDialog("Are you sure you want to delete folder " + toDeleteName + "?", "Warning") &&
+                (CurrentDirectory.AllFiles(false, true, toDelete).Length == 0 ||
+                 ConfirmDialog("Warning! " + toDeleteName + " contains files. Continue anyway?", "Warning")))
+            {
+                CurrentDirectory.DeleteDirectory(toDelete);
+                if (toDelete == "")
+                {
+                    flbFiles.Navigate(@"\..");
+                }
+                flbFiles.UpdateList();
+            }
         }
     }
 }
