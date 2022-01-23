@@ -9,8 +9,12 @@ A work-in-progress game editor for [Frogman Magmaborn](../../../FrogmanMagmaborn
 - Conversation (event) editor - Create & edit conversations (events), with color-coded parts & commands (without documentation) and a built-in preview player.
 - CG editor - Create & edit conversation backgrounds.
 ## Using Frog Forge
-Currently, using Frog Forge requires building it and installing Unity. I will add a moddable version of Frogman Magmaborn in the future, which won't require Unity.
-For now, however, here's a "quick"-start guide:
+### With a release
+For the moddable build, simply download the `FrogForge.zip` file from the latest release.
+
+For the standalone Frog Forge, download the `FrogForgeGameless.zip` file from the latest release, and locate the Frogman Magmabron data folder from `file -> Frog Forge data -> Game folder...`.
+### Building it yourself
+Not recommended unless you want to test unstable versions for some reason. Anyway, here's the complete guide:
 1. Install Visual Studio, Unity, and clone [Utils](../../../Utils).
 2. Clone [Frogman Magmaborn](../../../FrogmanMagmaborn) and Frog Forge (this repository).
 3. Build Frog Forge with Visual Studio (import Utils and any other dependency).
