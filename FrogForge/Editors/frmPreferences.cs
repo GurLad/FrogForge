@@ -37,6 +37,8 @@ namespace FrogForge.Editors
             }
             ckbDarkMode.Checked = Preferences.Current.DarkMode;
             nudZoomAmount.Value = (decimal)Preferences.Current.ZoomAmount;
+            this.ApplyPreferences();
+            CenterToParent();
         }
 
         private void cmbVoice_SelectedIndexChanged(object sender, EventArgs e)

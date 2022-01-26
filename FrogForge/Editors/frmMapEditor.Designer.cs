@@ -46,17 +46,18 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.picPreview = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.grpUnitList = new System.Windows.Forms.GroupBox();
+            this.btnMoveDown = new System.Windows.Forms.Button();
+            this.btnMoveUp = new System.Windows.Forms.Button();
             this.cmbAIType = new System.Windows.Forms.ComboBox();
-            this.btnReplace = new System.Windows.Forms.Button();
             this.nudReinforcementTurn = new System.Windows.Forms.NumericUpDown();
             this.ckbStatue = new System.Windows.Forms.CheckBox();
+            this.btnReplace = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.nudEscapePosY = new System.Windows.Forms.NumericUpDown();
             this.nudEscapePosX = new System.Windows.Forms.NumericUpDown();
@@ -75,10 +76,10 @@
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
-            this.label10 = new System.Windows.Forms.Label();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnNewFolder = new System.Windows.Forms.ToolStripButton();
             this.btnDeleteFolder = new System.Windows.Forms.ToolStripButton();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
@@ -121,9 +122,9 @@
             // btnRemove
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemove.Location = new System.Drawing.Point(6, 179);
+            this.btnRemove.Location = new System.Drawing.Point(141, 19);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(106, 23);
+            this.btnRemove.Size = new System.Drawing.Size(101, 23);
             this.btnRemove.TabIndex = 5;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
@@ -136,16 +137,16 @@
             this.lstUnits.FormattingEnabled = true;
             this.lstUnits.Location = new System.Drawing.Point(6, 19);
             this.lstUnits.Name = "lstUnits";
-            this.lstUnits.Size = new System.Drawing.Size(106, 147);
+            this.lstUnits.Size = new System.Drawing.Size(129, 108);
             this.lstUnits.TabIndex = 4;
             this.lstUnits.SelectedIndexChanged += new System.EventHandler(this.lstUnits_SelectedIndexChanged);
             this.lstUnits.DoubleClick += new System.EventHandler(this.lstUnits_DoubleClick);
             // 
             // btnPlace
             // 
-            this.btnPlace.Location = new System.Drawing.Point(0, 191);
+            this.btnPlace.Location = new System.Drawing.Point(141, 54);
             this.btnPlace.Name = "btnPlace";
-            this.btnPlace.Size = new System.Drawing.Size(124, 23);
+            this.btnPlace.Size = new System.Drawing.Size(108, 23);
             this.btnPlace.TabIndex = 3;
             this.btnPlace.Text = "Place";
             this.btnPlace.UseVisualStyleBackColor = true;
@@ -155,19 +156,19 @@
             // 
             this.txtClass.Location = new System.Drawing.Point(40, 0);
             this.txtClass.Name = "txtClass";
-            this.txtClass.Size = new System.Drawing.Size(84, 20);
+            this.txtClass.Size = new System.Drawing.Size(95, 20);
             this.txtClass.TabIndex = 2;
             // 
             // nudLevel
             // 
-            this.nudLevel.Location = new System.Drawing.Point(40, 53);
+            this.nudLevel.Location = new System.Drawing.Point(40, 28);
             this.nudLevel.Maximum = new decimal(new int[] {
             16,
             0,
             0,
             0});
             this.nudLevel.Name = "nudLevel";
-            this.nudLevel.Size = new System.Drawing.Size(84, 20);
+            this.nudLevel.Size = new System.Drawing.Size(95, 20);
             this.nudLevel.TabIndex = 1;
             // 
             // cmbUnitTeam
@@ -178,9 +179,9 @@
             "Player",
             "Monster",
             "Guard"});
-            this.cmbUnitTeam.Location = new System.Drawing.Point(40, 26);
+            this.cmbUnitTeam.Location = new System.Drawing.Point(181, 0);
             this.cmbUnitTeam.Name = "cmbUnitTeam";
-            this.cmbUnitTeam.Size = new System.Drawing.Size(84, 21);
+            this.cmbUnitTeam.Size = new System.Drawing.Size(67, 21);
             this.cmbUnitTeam.TabIndex = 0;
             // 
             // label2
@@ -257,8 +258,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.btnPlace);
-            this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.label6);
@@ -267,11 +266,12 @@
             this.tabPage2.Controls.Add(this.grpUnitList);
             this.tabPage2.Controls.Add(this.cmbAIType);
             this.tabPage2.Controls.Add(this.cmbUnitTeam);
-            this.tabPage2.Controls.Add(this.btnReplace);
             this.tabPage2.Controls.Add(this.nudReinforcementTurn);
             this.tabPage2.Controls.Add(this.nudLevel);
             this.tabPage2.Controls.Add(this.txtClass);
             this.tabPage2.Controls.Add(this.ckbStatue);
+            this.tabPage2.Controls.Add(this.btnPlace);
+            this.tabPage2.Controls.Add(this.btnReplace);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -280,20 +280,10 @@
             this.tabPage2.Text = "Units";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label8
-            // 
-            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label8.Enabled = false;
-            this.label8.Location = new System.Drawing.Point(3, 129);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(121, 59);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "TBA:\r\n-Change data\r\n-Group (for group AI)";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(-3, 108);
+            this.label7.Location = new System.Drawing.Point(-3, 59);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(32, 13);
             this.label7.TabIndex = 7;
@@ -302,7 +292,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(-3, 55);
+            this.label5.Location = new System.Drawing.Point(-3, 30);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 13);
             this.label5.TabIndex = 7;
@@ -311,7 +301,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(-3, 82);
+            this.label6.Location = new System.Drawing.Point(138, 30);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(26, 13);
             this.label6.TabIndex = 7;
@@ -320,7 +310,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(-3, 29);
+            this.label4.Location = new System.Drawing.Point(138, 3);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 7;
@@ -338,13 +328,37 @@
             // grpUnitList
             // 
             this.grpUnitList.Controls.Add(this.lstUnits);
+            this.grpUnitList.Controls.Add(this.btnMoveDown);
+            this.grpUnitList.Controls.Add(this.btnMoveUp);
             this.grpUnitList.Controls.Add(this.btnRemove);
-            this.grpUnitList.Location = new System.Drawing.Point(130, 0);
+            this.grpUnitList.Location = new System.Drawing.Point(0, 83);
             this.grpUnitList.Name = "grpUnitList";
-            this.grpUnitList.Size = new System.Drawing.Size(118, 208);
+            this.grpUnitList.Size = new System.Drawing.Size(248, 131);
             this.grpUnitList.TabIndex = 6;
             this.grpUnitList.TabStop = false;
             this.grpUnitList.Text = "List";
+            // 
+            // btnMoveDown
+            // 
+            this.btnMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnMoveDown.Location = new System.Drawing.Point(141, 77);
+            this.btnMoveDown.Name = "btnMoveDown";
+            this.btnMoveDown.Size = new System.Drawing.Size(101, 23);
+            this.btnMoveDown.TabIndex = 5;
+            this.btnMoveDown.Text = "Move down";
+            this.btnMoveDown.UseVisualStyleBackColor = true;
+            this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
+            // 
+            // btnMoveUp
+            // 
+            this.btnMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnMoveUp.Location = new System.Drawing.Point(141, 48);
+            this.btnMoveUp.Name = "btnMoveUp";
+            this.btnMoveUp.Size = new System.Drawing.Size(101, 23);
+            this.btnMoveUp.TabIndex = 5;
+            this.btnMoveUp.Text = "Move up";
+            this.btnMoveUp.UseVisualStyleBackColor = true;
+            this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
             // 
             // cmbAIType
             // 
@@ -354,25 +368,14 @@
             "Charge",
             "Hold",
             "Guard"});
-            this.cmbAIType.Location = new System.Drawing.Point(40, 79);
+            this.cmbAIType.Location = new System.Drawing.Point(181, 27);
             this.cmbAIType.Name = "cmbAIType";
-            this.cmbAIType.Size = new System.Drawing.Size(84, 21);
+            this.cmbAIType.Size = new System.Drawing.Size(67, 21);
             this.cmbAIType.TabIndex = 0;
-            // 
-            // btnReplace
-            // 
-            this.btnReplace.Enabled = false;
-            this.btnReplace.Location = new System.Drawing.Point(65, 191);
-            this.btnReplace.Name = "btnReplace";
-            this.btnReplace.Size = new System.Drawing.Size(59, 23);
-            this.btnReplace.TabIndex = 3;
-            this.btnReplace.Text = "Replace";
-            this.btnReplace.UseVisualStyleBackColor = true;
-            this.btnReplace.Click += new System.EventHandler(this.btnReplace_Click);
             // 
             // nudReinforcementTurn
             // 
-            this.nudReinforcementTurn.Location = new System.Drawing.Point(40, 106);
+            this.nudReinforcementTurn.Location = new System.Drawing.Point(40, 57);
             this.nudReinforcementTurn.Maximum = new decimal(new int[] {
             16,
             0,
@@ -385,12 +388,23 @@
             // ckbStatue
             // 
             this.ckbStatue.AutoSize = true;
-            this.ckbStatue.Location = new System.Drawing.Point(78, 107);
+            this.ckbStatue.Location = new System.Drawing.Point(78, 58);
             this.ckbStatue.Name = "ckbStatue";
             this.ckbStatue.Size = new System.Drawing.Size(57, 17);
             this.ckbStatue.TabIndex = 8;
             this.ckbStatue.Text = "Statue";
             this.ckbStatue.UseVisualStyleBackColor = true;
+            // 
+            // btnReplace
+            // 
+            this.btnReplace.Enabled = false;
+            this.btnReplace.Location = new System.Drawing.Point(192, 54);
+            this.btnReplace.Name = "btnReplace";
+            this.btnReplace.Size = new System.Drawing.Size(57, 23);
+            this.btnReplace.TabIndex = 3;
+            this.btnReplace.Text = "Replace";
+            this.btnReplace.UseVisualStyleBackColor = true;
+            this.btnReplace.Click += new System.EventHandler(this.btnReplace_Click);
             // 
             // tabPage3
             // 
@@ -592,15 +606,6 @@
             this.btnDelete.Text = "Delete";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(127, 31);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 13);
-            this.label10.TabIndex = 37;
-            this.label10.Text = "Name:";
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -625,6 +630,15 @@
             this.btnDeleteFolder.Size = new System.Drawing.Size(23, 22);
             this.btnDeleteFolder.Text = "Delete folder";
             this.btnDeleteFolder.Click += new System.EventHandler(this.btnDeleteFolder_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(127, 31);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(38, 13);
+            this.label10.TabIndex = 37;
+            this.label10.Text = "Name:";
             // 
             // frmMapEditor
             // 
@@ -703,7 +717,6 @@
         private System.Windows.Forms.RadioButton rdbRout;
         private FrogForge.UserControls.FileBrowser flbFiles;
         private System.Windows.Forms.TextBox txtLevelName;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnReplace;
         private System.Windows.Forms.PictureBox picPreview;
         private System.Windows.Forms.RadioButton rdbSurvive;
@@ -722,6 +735,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnNewFolder;
         private System.Windows.Forms.ToolStripButton btnDeleteFolder;
+        private System.Windows.Forms.Button btnMoveUp;
+        private System.Windows.Forms.Button btnMoveDown;
     }
 }
 

@@ -178,9 +178,9 @@ namespace FrogForge.Editors
                 if (e.Button == MouseButtons.Left)
                 {
                     Placing.Pos = new Point(pictureBox.Left / TILE_SIZE, pictureBox.Top / TILE_SIZE);
+                    Placing.image = null;
                     tbcUI.Enabled = true;
-                    lstUnits.DataSource = null;
-                    lstUnits.DataSource = Units;
+                    UpdateUnitListBox();
                     lstUnits.SelectedIndex = lstUnits.Items.Count - 1;
                     SelectUnit(Placing);
                     Placing = null;
@@ -307,8 +307,7 @@ namespace FrogForge.Editors
             nudLevelNumber.Value = data.LevelNumber;
             ObjectiveFromString(data.Objective);
             Render();
-            lstUnits.DataSource = null;
-            lstUnits.DataSource = Units;
+            UpdateUnitListBox();
             Dirty = false;
         }
 
@@ -386,7 +385,7 @@ namespace FrogForge.Editors
         private void btnPlace_Click(object sender, EventArgs e)
         {
             Units.Add(Placing = new Unit((Team)Enum.Parse(typeof(Team), cmbUnitTeam.Text), (int)nudLevel.Value, txtClass.Text, (AIType)Enum.Parse(typeof(AIType), cmbAIType.Text), (int)nudReinforcementTurn.Value, ckbStatue.Checked));
-            Placing.image = GetUnitImage(Placing);
+            Placing.image = GetUnitImage(Placing).Resize(Preferences.Current.ZoomAmount);
             CurrentSelected = null;
             picPreview.BackgroundImage = null;
             tbcUI.Enabled = false;
@@ -423,6 +422,7 @@ namespace FrogForge.Editors
         private void btnRemove_Click(object sender, EventArgs e)
         {
             RemoveUnit(Units[lstUnits.SelectedIndex]);
+            Dirty = true;
         }
 
         private void cmbTileSets_SelectedIndexChanged(object sender, EventArgs e)
@@ -481,12 +481,12 @@ namespace FrogForge.Editors
                 cmbAIType.Text = unit.AIType.ToString();
                 nudReinforcementTurn.Value = unit.ReinforcementTurn;
                 ckbStatue.Checked = unit.Statue;
-                btnPlace.Width = 59;
+                btnPlace.Width = 45;
                 btnReplace.Enabled = true;
             }
             else
             {
-                btnPlace.Width = 124;
+                btnPlace.Width = 108;
                 btnReplace.Enabled = false;
             }
             btnPlace.ResizeByZoom(false, y: false);
@@ -496,8 +496,7 @@ namespace FrogForge.Editors
         {
             Point pos = unit.Pos;
             Units.Remove(unit);
-            lstUnits.DataSource = null;
-            lstUnits.DataSource = Units;
+            UpdateUnitListBox();
             RenderTile(pos.X, pos.Y);
         }
 
@@ -528,8 +527,7 @@ namespace FrogForge.Editors
                 return;
             }
             Units.Clear();
-            lstUnits.DataSource = null;
-            lstUnits.DataSource = Units;
+            UpdateUnitListBox();
             txtLevelName.Text = "";
             nudLevelNumber.Value = 0;
             rdbRout.Checked = true;
@@ -591,18 +589,70 @@ namespace FrogForge.Editors
         private void btnDeleteFolder_Click(object sender, EventArgs e)
         {
             string toDelete = flbFiles.SelectedFilename ?? @"\";
-            string toDeleteName = toDelete != "" ? toDelete.Replace(@"\", "") : CurrentDirectory.Path.Substring(CurrentDirectory.Path.LastIndexOf(@"\") + 1);
+            if (flbFiles.IsAtTopMostDirectory && toDelete == @"\")
+            {
+                return;
+            }
+            string toDeleteName = toDelete != @"\" ? toDelete.Replace(@"\", "") : CurrentDirectory.Path.Substring(CurrentDirectory.Path.LastIndexOf(@"\") + 1);
             if (CurrentDirectory.DirectoryExists(toDelete) &&
                 ConfirmDialog("Are you sure you want to delete folder " + toDeleteName + "?", "Warning") &&
                 (CurrentDirectory.AllFiles(false, true, toDelete).Length == 0 ||
                  ConfirmDialog("Warning! " + toDeleteName + " contains files. Continue anyway?", "Warning")))
             {
                 CurrentDirectory.DeleteDirectory(toDelete);
-                if (toDelete == "")
+                if (toDelete == @"\")
                 {
                     flbFiles.Navigate(@"\..");
                 }
                 flbFiles.UpdateList();
+            }
+        }
+
+        private void btnMoveUp_Click(object sender, EventArgs e)
+        {
+            if (lstUnits.SelectedIndex > 0 && lstUnits.SelectedIndex < Units.Count)
+            {
+                Unit temp = Units[lstUnits.SelectedIndex];
+                int scrollPos = lstUnits.TopIndex;
+                Units[lstUnits.SelectedIndex] = Units[lstUnits.SelectedIndex - 1];
+                Units[lstUnits.SelectedIndex - 1] = temp;
+                lstUnits.BeginUpdate();
+                UpdateUnitListBox(false);
+                lstUnits.TopIndex = scrollPos;
+                lstUnits.EndUpdate();
+                lstUnits.SelectedIndex--;
+                Dirty = true;
+            }
+        }
+
+        private void btnMoveDown_Click(object sender, EventArgs e)
+        {
+            if (lstUnits.SelectedIndex >= 0 && lstUnits.SelectedIndex < Units.Count - 1)
+            {
+                Unit temp = Units[lstUnits.SelectedIndex];
+                int scrollPos = lstUnits.TopIndex;
+                Units[lstUnits.SelectedIndex] = Units[lstUnits.SelectedIndex + 1];
+                Units[lstUnits.SelectedIndex + 1] = temp;
+                lstUnits.BeginUpdate();
+                UpdateUnitListBox(false);
+                lstUnits.TopIndex = scrollPos;
+                lstUnits.EndUpdate();
+                lstUnits.SelectedIndex++;
+                Dirty = true;
+            }
+        }
+
+        private void UpdateUnitListBox(bool hideUpdate = true)
+        {
+            if (hideUpdate)
+            {
+                lstUnits.BeginUpdate();
+            }
+            lstUnits.DataSource = null;
+            lstUnits.DataSource = Units;
+            if (hideUpdate)
+            {
+                lstUnits.EndUpdate();
             }
         }
     }

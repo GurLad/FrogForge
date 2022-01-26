@@ -71,6 +71,11 @@ namespace FrogForge.Editors
                 Width = (int)(Width * Preferences.Current.ZoomAmount);
                 Height = (int)(Height * Preferences.Current.ZoomAmount);
                 RecenterForm();
+                // Maximize if too big
+                if (Width > Screen.GetWorkingArea(this).Width || Height > Screen.GetWorkingArea(this).Height)
+                {
+                    WindowState = FormWindowState.Maximized;
+                }
             }
             // Load empty conversation
             btnNew_Click(sender, e);
@@ -202,14 +207,18 @@ namespace FrogForge.Editors
         private void btnDeleteFolder_Click(object sender, EventArgs e)
         {
             string toDelete = flbFileBrowser.SelectedFilename ?? @"\";
-            string toDeleteName = toDelete != "" ? toDelete.Replace(@"\", "") : CurrentDirectory.Path.Substring(CurrentDirectory.Path.LastIndexOf(@"\") + 1);
+            if (flbFileBrowser.IsAtTopMostDirectory && toDelete == @"\")
+            {
+                return;
+            }
+            string toDeleteName = toDelete != @"\" ? toDelete.Replace(@"\", "") : CurrentDirectory.Path.Substring(CurrentDirectory.Path.LastIndexOf(@"\") + 1);
             if (CurrentDirectory.DirectoryExists(toDelete) &&
                 ConfirmDialog("Are you sure you want to delete folder " + toDeleteName + "?", "Warning") &&
                 (CurrentDirectory.AllFiles(false, true, toDelete).Length == 0 ||
                  ConfirmDialog("Warning! " + toDeleteName + " contains files. Continue anyway?", "Warning")))
             {
                 CurrentDirectory.DeleteDirectory(toDelete);
-                if (toDelete == "")
+                if (toDelete == @"\")
                 {
                     flbFileBrowser.Navigate(@"\..");
                 }

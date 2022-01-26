@@ -31,6 +31,13 @@ namespace FrogForge.UserControls
                 lstFiles.SelectedItem = value;
             }
         }
+        public bool IsAtTopMostDirectory
+        {
+            get
+            {
+                return Directory.Path == TopMostDirectory;
+            }
+        }
 
         public FileBrowser()
         {
@@ -85,14 +92,7 @@ namespace FrogForge.UserControls
             {
                 if (place == @"\..")
                 {
-                    if (Directory.Path != TopMostDirectory)
-                    {
-                        Directory.Path = Directory.Path.Substring(0, Directory.Path.LastIndexOf(Directory.Seperator));
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error: trying to delete the base directory!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    Directory.Path = Directory.Path.Substring(0, Directory.Path.LastIndexOf(Directory.Seperator));
                 }
                 else
                 {
