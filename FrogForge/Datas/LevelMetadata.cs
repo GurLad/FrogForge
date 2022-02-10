@@ -33,6 +33,11 @@ namespace FrogForge.Datas
             result.Add(Palette4);
             return result;
         }
+
+        public LevelMetadata Clone()
+        {
+            return this.ToJson().JsonToObject<LevelMetadata>(); // Very lazy implementation
+        }
     }
 }
 

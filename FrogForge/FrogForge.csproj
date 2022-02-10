@@ -429,8 +429,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FrogForge.ico" />
+    <None Include="Resources\Reset.png" />
+    <None Include="Resources\Remove.png" />
     <None Include="Resources\Cursor.png" />
     <None Include="Resources\MiniDelete.png" />
+    <None Include="Resources\Add.png" />
     <Content Include="Resources\NewFolder.png" />
     <None Include="Resources\DeleteFolder.png" />
     <None Include="Resources\Palette.png" />

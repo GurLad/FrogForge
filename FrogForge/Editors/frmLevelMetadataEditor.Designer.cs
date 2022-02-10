@@ -30,9 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLevelMetadataEditor));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnSave = new System.Windows.Forms.ToolStripButton();
-            this.btnNew = new System.Windows.Forms.ToolStripButton();
-            this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.lstLevels = new FrogForge.UserControls.LevelMetadataJSONBrowser();
             this.label10 = new System.Windows.Forms.Label();
             this.txtMusicName = new System.Windows.Forms.TextBox();
@@ -49,6 +46,11 @@
             this.ckbAllies12 = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pltPalette4 = new FrogForge.UserControls.PalettePanel();
+            this.btnSave = new System.Windows.Forms.ToolStripButton();
+            this.btnNew = new System.Windows.Forms.ToolStripButton();
+            this.btnDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnReset = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.tbcMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -61,6 +63,8 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnSave,
+            this.btnReset,
+            this.toolStripSeparator1,
             this.btnNew,
             this.btnDelete});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -68,36 +72,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(777, 25);
             this.toolStrip1.TabIndex = 34;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btnSave
-            // 
-            this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSave.Image = global::FrogForge.Properties.Resources.Save;
-            this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(23, 22);
-            this.btnSave.Text = "Save";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnNew
-            // 
-            this.btnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnNew.Image = global::FrogForge.Properties.Resources.New;
-            this.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(23, 22);
-            this.btnNew.Text = "New";
-            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnDelete.Image = global::FrogForge.Properties.Resources.Delete;
-            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(23, 22);
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // lstLevels
             // 
@@ -256,6 +230,51 @@
             this.pltPalette4.SpritePalette = true;
             this.pltPalette4.TabIndex = 43;
             // 
+            // btnSave
+            // 
+            this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSave.Image = global::FrogForge.Properties.Resources.Save;
+            this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(23, 22);
+            this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnNew
+            // 
+            this.btnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNew.Image = global::FrogForge.Properties.Resources.Add;
+            this.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(23, 22);
+            this.btnNew.Text = "Increase level amount";
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnDelete.Image = global::FrogForge.Properties.Resources.Remove;
+            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(23, 22);
+            this.btnDelete.Text = "Decrease level amount";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnReset
+            // 
+            this.btnReset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnReset.Image = global::FrogForge.Properties.Resources.Reset;
+            this.btnReset.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(23, 22);
+            this.btnReset.Text = "Reset to default";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // frmLevelMetadataEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -312,5 +331,7 @@
         private UserControls.UnitReplacementListEditor lstUnitReplacements;
         private System.Windows.Forms.Label label1;
         private UserControls.PalettePanel pltPalette4;
+        private System.Windows.Forms.ToolStripButton btnReset;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

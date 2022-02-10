@@ -54,7 +54,7 @@ namespace FrogForge.Editors
             ckbAllies13.CheckedChanged += DirtyFunc;
             ckbAllies23.CheckedChanged += DirtyFunc;
             // Init stuff
-            lstLevels.Init(this, () => lstLevels.Data[0].ToJson().JsonToObject<LevelMetadata>(), LevelMetadataFromUI, LevelMetadataToUI, "LevelMetadata");
+            lstLevels.Init(this, () => lstLevels.Data[0].Clone(), LevelMetadataFromUI, LevelMetadataToUI, "LevelMetadata");
             lstUnitReplacements.Init(this, () => new UnitReplacementData(), () => new UnitReplacementPanel(), a => a.Init(this), false);
             pltPalette4.Init(this);
             // Load default
@@ -65,6 +65,7 @@ namespace FrogForge.Editors
             }
             this.ApplyPreferences();
             LevelMetadataToUI(lstLevels.Data[0]);
+            lstLevels.SelectedIndex = 0;
         }
 
         private LevelMetadata LevelMetadataFromUI(LevelMetadata data)
@@ -116,12 +117,24 @@ namespace FrogForge.Editors
             lstLevels.New();
             CurrentLevel = lstLevels.Data.Count.ToString();
             lstLevels.Save(CurrentLevel);
+            lstLevels.SelectedIndex = lstLevels.Data.Count - 1;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            lstLevels.SelectedIndex = lstLevels.Data.Count - 1;
-            lstLevels.Remove();
+            if (lstLevels.Data.Count > 2)
+            {
+                lstLevels.SelectedIndex = lstLevels.Data.Count - 1;
+                lstLevels.Remove();
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            string theLevel = CurrentLevel;
+            lstLevels.New();
+            CurrentLevel = theLevel;
+            Dirty = true;
         }
 
         protected override bool ControlKeyAction(Keys key)
