@@ -143,6 +143,12 @@
     <Compile Include="Editors\frmCGEditor.Designer.cs">
       <DependentUpon>frmCGEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\frmMusicEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\frmMusicEditor.Designer.cs">
+      <DependentUpon>frmMusicEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\frmPreferences.cs">
       <SubType>Form</SubType>
     </Compile>

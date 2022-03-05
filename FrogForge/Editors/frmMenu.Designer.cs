@@ -57,6 +57,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnPlay = new System.Windows.Forms.Button();
+            this.btnMusicEditor = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -106,7 +107,7 @@
             // 
             this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblVersion.Font = new System.Drawing.Font("3x5", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(12, 369);
+            this.lblVersion.Location = new System.Drawing.Point(12, 398);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(289, 11);
             this.lblVersion.TabIndex = 4;
@@ -139,7 +140,7 @@
             this.btnLevelMetadataEditor.Name = "btnLevelMetadataEditor";
             this.btnLevelMetadataEditor.Size = new System.Drawing.Size(277, 23);
             this.btnLevelMetadataEditor.TabIndex = 3;
-            this.btnLevelMetadataEditor.Text = "Level metadata editor";
+            this.btnLevelMetadataEditor.Text = "Level Metadata editor";
             this.btnLevelMetadataEditor.UseVisualStyleBackColor = true;
             this.btnLevelMetadataEditor.Click += new System.EventHandler(this.btnLevelMetadataEditor_Click);
             // 
@@ -261,7 +262,7 @@
             this.lblCredits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCredits.AutoSize = true;
             this.lblCredits.Font = new System.Drawing.Font("3x5", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.lblCredits.Location = new System.Drawing.Point(12, 369);
+            this.lblCredits.Location = new System.Drawing.Point(12, 398);
             this.lblCredits.Name = "lblCredits";
             this.lblCredits.Size = new System.Drawing.Size(75, 6);
             this.lblCredits.TabIndex = 4;
@@ -273,7 +274,7 @@
             this.btnCGEditor.Name = "btnCGEditor";
             this.btnCGEditor.Size = new System.Drawing.Size(277, 23);
             this.btnCGEditor.TabIndex = 7;
-            this.btnCGEditor.Text = "CG Editor";
+            this.btnCGEditor.Text = "CG editor";
             this.btnCGEditor.UseVisualStyleBackColor = true;
             this.btnCGEditor.Click += new System.EventHandler(this.btnCGEditor_Click);
             // 
@@ -294,13 +295,14 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.btnConversationEditor);
+            this.groupBox2.Controls.Add(this.btnMusicEditor);
             this.groupBox2.Controls.Add(this.btnCGEditor);
             this.groupBox2.Location = new System.Drawing.Point(12, 289);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(289, 77);
+            this.groupBox2.Size = new System.Drawing.Size(289, 106);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Events";
+            this.groupBox2.Text = "Events && Miscellaneous";
             // 
             // groupBox3
             // 
@@ -324,11 +326,21 @@
             this.btnPlay.UseVisualStyleBackColor = true;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
+            // btnMusicEditor
+            // 
+            this.btnMusicEditor.Location = new System.Drawing.Point(6, 77);
+            this.btnMusicEditor.Name = "btnMusicEditor";
+            this.btnMusicEditor.Size = new System.Drawing.Size(277, 23);
+            this.btnMusicEditor.TabIndex = 8;
+            this.btnMusicEditor.Text = "Music editor";
+            this.btnMusicEditor.UseVisualStyleBackColor = true;
+            this.btnMusicEditor.Click += new System.EventHandler(this.btnMusicEditor_Click);
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(313, 384);
+            this.ClientSize = new System.Drawing.Size(313, 413);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -386,5 +398,6 @@
         private System.Windows.Forms.ToolStripMenuItem btnEditPreferences;
         private System.Windows.Forms.ToolStripMenuItem btnGameSettings;
         private System.Windows.Forms.Button btnPlay;
+        private System.Windows.Forms.Button btnMusicEditor;
     }
 }

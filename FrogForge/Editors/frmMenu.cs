@@ -149,11 +149,11 @@ namespace FrogForge.Editors
 
         private void btnTilemapEditor_Click(object sender, EventArgs e)
         {
-            frmTilesetEditor tilemapEditor = new frmTilesetEditor();
-            tilemapEditor.DataDirectory = DataDirectory;
-            tilemapEditor.WorkingDirectory = WorkingDirectory;
+            frmTilesetEditor tilesetEditor = new frmTilesetEditor();
+            tilesetEditor.DataDirectory = DataDirectory;
+            tilesetEditor.WorkingDirectory = WorkingDirectory;
             VoiceAssist.Say("New");
-            tilemapEditor.ShowDialog(this);
+            tilesetEditor.ShowDialog(this);
         }
 
         private void btnCGEditor_Click(object sender, EventArgs e)
@@ -163,6 +163,15 @@ namespace FrogForge.Editors
             cgEditor.WorkingDirectory = WorkingDirectory;
             VoiceAssist.Say("New");
             cgEditor.ShowDialog(this);
+        }
+
+        private void btnMusicEditor_Click(object sender, EventArgs e)
+        {
+            frmTilesetEditor tilesetEditor = new frmTilesetEditor();
+            tilesetEditor.DataDirectory = DataDirectory;
+            tilesetEditor.WorkingDirectory = WorkingDirectory;
+            VoiceAssist.Say("New");
+            tilesetEditor.ShowDialog(this);
         }
 
         private void btnDataImport_Click(object sender, EventArgs e)
