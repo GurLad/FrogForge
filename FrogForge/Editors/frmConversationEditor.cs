@@ -162,7 +162,7 @@ namespace FrogForge.Editors
         {
             pnlEditorUI.Enabled = !on;
             flbFileBrowser.Enabled = !on;
-            BackColor = on ? SystemColors.ControlDark : (Preferences.Current.DarkMode ? (Color)Preferences.Current.DarkModeBackColor : SystemColors.Control);
+            BackColor = on ? SystemColors.ControlDark : (Preferences.Current.DarkMode ? Preferences.Current.DarkModeBackColor : SystemColors.Control);
             copConversationPlayer.Preview = on;
         }
 

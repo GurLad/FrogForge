@@ -88,17 +88,9 @@ namespace FrogForge
             RealColors = new List<Color>(colors);
         }
 
-        public int ClosestColor( Color target)
+        public int ClosestColor(Color target)
         {
-            var colorDiffs = RealColors.Select(n => ColorDiff(n, target)).Min(n => n);
-            return RealColors.FindIndex(n => ColorDiff(n, target) == colorDiffs);
-        }
-
-        private int ColorDiff(Color c1, Color c2)
-        {
-            return (int)Math.Sqrt((c1.R - c2.R) * (c1.R - c2.R)
-                                   + (c1.G - c2.G) * (c1.G - c2.G)
-                                   + (c1.B - c2.B) * (c1.B - c2.B));
+            return target.ClosestColorIndex(RealColors);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace FrogForge
 
         public double ZoomAmount { get; set; }
         public bool DarkMode { get; set; }
-        public UnityColor DarkModeBackColor { get; set; } = Color.FromArgb(25, 25, 25);
+        public Color DarkModeBackColor { get; } = Color.FromArgb(25, 25, 25);
         public bool VoiceAssistAvailable { get; set; }
         public string VoiceAssist { get; set; }
     }

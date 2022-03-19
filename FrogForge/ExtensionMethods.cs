@@ -239,6 +239,19 @@ namespace FrogForge
             return Color.FromArgb(255 - color.R, 255 - color.G, 255 - color.B);
         }
 
+        public static int ClosestColorIndex(this Color origin, List<Color> options)
+        {
+            int ColorDiff(Color c1, Color c2)
+            {
+                return (int)Math.Sqrt((c1.R - c2.R) * (c1.R - c2.R)
+                                       + (c1.G - c2.G) * (c1.G - c2.G)
+                                       + (c1.B - c2.B) * (c1.B - c2.B));
+            }
+
+            var colorDiffs = options.Select(n => ColorDiff(n, origin)).Min(n => n);
+            return options.FindIndex(n => ColorDiff(n, origin) == colorDiffs);
+        }
+
         public static bool ConfirmDialog(string text, string title)
         {
             VoiceAssist.Say("Confirm");
