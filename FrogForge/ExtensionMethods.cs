@@ -126,6 +126,17 @@ namespace FrogForge
                     ApplyZoomMode(otherControl);
                 }
             }
+            void ApplyFont(Control caller)
+            {
+                if (caller is Label || caller is TextBox || caller is ComboBox || caller is CheckBox || caller is ListBox)
+                {
+                    control.Font = new Font(Preferences.Current.FontFamily, control.Font.Size, control.Font.Style);
+                }
+                foreach (Control otherControl in caller.Controls)
+                {
+                    ApplyFont(otherControl);
+                }
+            }
 
             if (Preferences.Current.DarkMode)
             {
@@ -133,7 +144,7 @@ namespace FrogForge
             }
             if (Preferences.Current.ZoomAmount > 1 && zoom)
             {
-                control.Font = new Font(control.Font.FontFamily, (int)Math.Round(control.Font.Size * Preferences.Current.ZoomAmount));
+                control.Font = new Font(control.Font.FontFamily, (int)Math.Round(control.Font.Size * Preferences.Current.ZoomAmount), control.Font.Style);
                 foreach (Control otherControl in control.Controls)
                 {
                     ApplyZoomMode(otherControl);
@@ -146,6 +157,10 @@ namespace FrogForge
                 {
                     ((PalettePanel)control).ApplyZoomMode();
                 }
+            }
+            foreach (Control otherControl in control.Controls)
+            {
+                ApplyFont(otherControl);
             }
         }
 

@@ -16,5 +16,6 @@ namespace FrogForge
         public Color DarkModeBackColor { get; } = Color.FromArgb(25, 25, 25);
         public bool VoiceAssistAvailable { get; set; }
         public string VoiceAssist { get; set; }
+        public string FontFamily { get; set; } = "Microsoft Sans Serif";
     }
 }
