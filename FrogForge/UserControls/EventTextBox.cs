@@ -59,6 +59,7 @@ namespace FrogForge.UserControls
             SelectionChanged += EventTextBox_TextChanged;
             VScroll += EventTextBox_TextChanged;
             KeyPress += EventTextBox_KeyPress;
+            KeyDown += EventTextBox_KeyDown;
             // Misc
             Editor = editor;
             Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -195,6 +196,22 @@ namespace FrogForge.UserControls
                 }
                 int nextLineIndex = Text.IndexOf('\n', selectionIndex + 1);
                 ColorText(selectionIndex - 1, nextLineIndex); // Because IndexOf's startIndex is exclusive
+            }
+        }
+
+        private void EventTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+                if (CanPaste(DataFormats.GetFormat("Text")))
+                {
+                    SelectionColor = Color.Black;
+                    int minIndex = SelectionStart;
+                    int maxIndex = SelectionStart + Clipboard.GetText().Length;
+                    Paste(DataFormats.GetFormat("Text"));
+                    ColorText(minIndex, maxIndex);
+                }
+                e.Handled = true;
             }
         }
 
