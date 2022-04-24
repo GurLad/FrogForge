@@ -283,6 +283,12 @@ namespace FrogForge.Editors
             {
                 return;
             }
+            // Cancel the current placing operation
+            CurrentSelected = CurrentSelected ?? new MapTile();
+            tbcUI.Enabled = true;
+            Placing = null;
+            PreviousHover = null;
+            // Load the new level;
             CurrentFile = fileName;
             MapData data = CurrentDirectory.LoadFile(txtLevelName.Text = fileName).JsonToObject<MapData>();
             Tiles = null;
