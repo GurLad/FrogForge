@@ -247,7 +247,7 @@ namespace FrogForge.Editors
 
         private void btnGameSettings_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("TBA");
+            new frmGameSettingsEditor(WorkingDirectory).ShowDialog();
         }
 
         private void btnEditPreferences_Click(object sender, EventArgs e)

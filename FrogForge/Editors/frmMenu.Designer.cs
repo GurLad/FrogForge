@@ -111,7 +111,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(289, 11);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.5.8.9 24.04.2022";
+            this.lblVersion.Text = "V.0.5.9.0 27.04.2022";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnClassEditor
@@ -239,14 +239,14 @@
             // btnGameSettings
             // 
             this.btnGameSettings.Name = "btnGameSettings";
-            this.btnGameSettings.Size = new System.Drawing.Size(158, 22);
+            this.btnGameSettings.Size = new System.Drawing.Size(180, 22);
             this.btnGameSettings.Text = "Game settings...";
             this.btnGameSettings.Click += new System.EventHandler(this.btnGameSettings_Click);
             // 
             // btnEditPreferences
             // 
             this.btnEditPreferences.Name = "btnEditPreferences";
-            this.btnEditPreferences.Size = new System.Drawing.Size(158, 22);
+            this.btnEditPreferences.Size = new System.Drawing.Size(180, 22);
             this.btnEditPreferences.Text = "Preferences...";
             this.btnEditPreferences.Click += new System.EventHandler(this.btnEditPreferences_Click);
             // 

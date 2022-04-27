@@ -129,6 +129,7 @@
     <Compile Include="Datas\BattleBackgroundData.cs" />
     <Compile Include="Datas\CGData.cs" />
     <Compile Include="Datas\DisplayNamedData.cs" />
+    <Compile Include="Datas\GameSettingsData.cs" />
     <Compile Include="Datas\GenericPortraitData.cs" />
     <Compile Include="Datas\GenericPortraitsGlobalData.cs" />
     <Compile Include="Datas\CharacterVoice.cs" />
@@ -142,6 +143,12 @@
     </Compile>
     <Compile Include="Editors\frmCGEditor.Designer.cs">
       <DependentUpon>frmCGEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\frmGameSettingsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\frmGameSettingsEditor.Designer.cs">
+      <DependentUpon>frmGameSettingsEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Editors\frmMusicEditor.cs">
       <SubType>Form</SubType>
@@ -330,6 +337,9 @@
     <Compile Include="Weapon.cs" />
     <EmbeddedResource Include="Editors\frmCGEditor.resx">
       <DependentUpon>frmCGEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\frmGameSettingsEditor.resx">
+      <DependentUpon>frmGameSettingsEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\frmLevelMetadataEditor.resx">
       <DependentUpon>frmLevelMetadataEditor.cs</DependentUpon>
