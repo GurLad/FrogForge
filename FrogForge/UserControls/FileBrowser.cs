@@ -31,6 +31,13 @@ namespace FrogForge.UserControls
                 lstFiles.SelectedItem = value;
             }
         }
+        public string CurrentSubDirectory
+        {
+            get
+            {
+                return Directory.Path.Substring(TopMostDirectory.Length);
+            }
+        }
         public bool IsAtTopMostDirectory
         {
             get

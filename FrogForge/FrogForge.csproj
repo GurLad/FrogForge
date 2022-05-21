@@ -344,6 +344,9 @@
     <EmbeddedResource Include="Editors\frmLevelMetadataEditor.resx">
       <DependentUpon>frmLevelMetadataEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Editors\frmMusicEditor.resx">
+      <DependentUpon>frmMusicEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Editors\frmPreferences.resx">
       <DependentUpon>frmPreferences.cs</DependentUpon>
     </EmbeddedResource>
