@@ -35,7 +35,7 @@ namespace FrogForge.UserControls
         {
             get
             {
-                return Directory.Path.Substring(TopMostDirectory.Length);
+                return Directory.Path.Substring(TopMostDirectory.Length + 1);
             }
         }
         public bool IsAtTopMostDirectory

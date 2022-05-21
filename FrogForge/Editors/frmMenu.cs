@@ -167,11 +167,11 @@ namespace FrogForge.Editors
 
         private void btnMusicEditor_Click(object sender, EventArgs e)
         {
-            frmTilesetEditor tilesetEditor = new frmTilesetEditor();
-            tilesetEditor.DataDirectory = DataDirectory;
-            tilesetEditor.WorkingDirectory = WorkingDirectory;
+            frmMusicEditor musicEditor = new frmMusicEditor();
+            musicEditor.DataDirectory = DataDirectory;
+            musicEditor.WorkingDirectory = WorkingDirectory;
             VoiceAssist.Say("New");
-            tilesetEditor.ShowDialog(this);
+            musicEditor.ShowDialog(this);
         }
 
         private void btnDataImport_Click(object sender, EventArgs e)

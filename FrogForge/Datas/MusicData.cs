@@ -9,20 +9,26 @@ namespace FrogForge.Datas
     public class MusicData : NamedData
     {
         public string FullFileName { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public string FileName
         {
             get
             {
-                return FullFileName.Substring(FullFileName.LastIndexOf(@"\"));
+                int index = FullFileName.LastIndexOf(@"\");
+                return index >= 0 ? FullFileName.Substring(index + 1) : FullFileName;
             }
         }
+        [System.Text.Json.Serialization.JsonIgnore]
         public string Directory
         {
             get
             {
-                return FullFileName.Substring(0, FullFileName.LastIndexOf(@"\"));
+                int index = FullFileName.LastIndexOf(@"\");
+                return index >= 0 ? FullFileName.Substring(0, index) : "";
             }
         }
+
+        public MusicData() { }
 
         public MusicData(string internalName, string fullFileName)
         {

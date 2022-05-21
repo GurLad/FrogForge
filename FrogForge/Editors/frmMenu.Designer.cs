@@ -107,11 +107,11 @@
             // 
             this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblVersion.Font = new System.Drawing.Font("3x5", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(12, 369);
+            this.lblVersion.Location = new System.Drawing.Point(12, 398);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(289, 11);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.5.9.0 27.04.2022";
+            this.lblVersion.Text = "V.0.6.0.1 21.05.2022";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnClassEditor
@@ -239,14 +239,14 @@
             // btnGameSettings
             // 
             this.btnGameSettings.Name = "btnGameSettings";
-            this.btnGameSettings.Size = new System.Drawing.Size(180, 22);
+            this.btnGameSettings.Size = new System.Drawing.Size(158, 22);
             this.btnGameSettings.Text = "Game settings...";
             this.btnGameSettings.Click += new System.EventHandler(this.btnGameSettings_Click);
             // 
             // btnEditPreferences
             // 
             this.btnEditPreferences.Name = "btnEditPreferences";
-            this.btnEditPreferences.Size = new System.Drawing.Size(180, 22);
+            this.btnEditPreferences.Size = new System.Drawing.Size(158, 22);
             this.btnEditPreferences.Text = "Preferences...";
             this.btnEditPreferences.Click += new System.EventHandler(this.btnEditPreferences_Click);
             // 
@@ -262,7 +262,7 @@
             this.lblCredits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCredits.AutoSize = true;
             this.lblCredits.Font = new System.Drawing.Font("3x5", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.lblCredits.Location = new System.Drawing.Point(12, 369);
+            this.lblCredits.Location = new System.Drawing.Point(12, 398);
             this.lblCredits.Name = "lblCredits";
             this.lblCredits.Size = new System.Drawing.Size(75, 6);
             this.lblCredits.TabIndex = 4;
@@ -295,23 +295,23 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.btnConversationEditor);
+            this.groupBox2.Controls.Add(this.btnMusicEditor);
             this.groupBox2.Controls.Add(this.btnCGEditor);
             this.groupBox2.Location = new System.Drawing.Point(12, 289);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(289, 77);
+            this.groupBox2.Size = new System.Drawing.Size(289, 106);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Events && Miscellaneous";
             // 
             // btnMusicEditor
             // 
-            this.btnMusicEditor.Location = new System.Drawing.Point(178, 412);
+            this.btnMusicEditor.Location = new System.Drawing.Point(6, 77);
             this.btnMusicEditor.Name = "btnMusicEditor";
             this.btnMusicEditor.Size = new System.Drawing.Size(277, 23);
             this.btnMusicEditor.TabIndex = 8;
             this.btnMusicEditor.Text = "Music editor";
             this.btnMusicEditor.UseVisualStyleBackColor = true;
-            this.btnMusicEditor.Visible = false;
             this.btnMusicEditor.Click += new System.EventHandler(this.btnMusicEditor_Click);
             // 
             // groupBox3
@@ -340,9 +340,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(313, 384);
+            this.ClientSize = new System.Drawing.Size(313, 413);
             this.Controls.Add(this.btnPlay);
-            this.Controls.Add(this.btnMusicEditor);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

@@ -1,4 +1,5 @@
 ﻿using FrogForge.Datas;
+using FrogForge.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +17,14 @@ namespace FrogForge.Editors
     public partial class frmMusicEditor : frmBaseEditor
     {
         private FilesController CurrentDirectory { get; set; }
-        private List<MusicData> Musics;
+        private JSONBrowser<MusicData> lstMusics { get; set; } = new JSONBrowser<MusicData>(); // A very bad workaround to add convinient JSON support
+        private List<MusicData> Musics
+        {
+            get
+            {
+                return lstMusics.Data;
+            }
+        }
         private MusicData _current;
         private MusicData Current
         {
@@ -27,7 +35,9 @@ namespace FrogForge.Editors
             set
             {
                 _current = value;
-                btnSave.Enabled = _current != null;
+                btnSave.Enabled = Current != null;
+                txtName.Text = CurrentFile = Current?.FileName ?? "";
+                txtInternalName.Text = Current?.Name ?? "";
             }
         }
 
@@ -53,15 +63,7 @@ namespace FrogForge.Editors
             // Set dirty
             txtInternalName.TextChanged += DirtyFunc;
             // Init stuff
-            if (WorkingDirectory.CheckFileExist("Musics.json"))
-            {
-                Musics = WorkingDirectory.LoadFile("Musics", "", ".json").JsonToObject<List<MusicData>>();
-                flbFiles.UpdateList();
-            }
-            else
-            {
-                Musics = new List<MusicData>();
-            }
+            lstMusics.Init(this, null, null, null, "Musics");
             Current = null;
             this.ApplyPreferences();
         }
@@ -72,9 +74,7 @@ namespace FrogForge.Editors
             {
                 return;
             }
-            Current = Musics.Find(a => a.FullFileName == flbFiles.CurrentSubDirectory + fileName);
-            txtName.Text = fileName;
-            txtInternalName.Text = Current.Name;
+            Current = Musics.Find(a => a.FullFileName == flbFiles.CurrentSubDirectory + @"\" + fileName);
             Dirty = false;
         }
 
@@ -88,8 +88,13 @@ namespace FrogForge.Editors
             {
                 if (ConfirmDialog("It appears that you're trying to save an existing file in another directory. Is this intended?", ""))
                 {
-                    // TBA - copy the file
-                    return;
+                    string tempInternalName = txtInternalName.Text;
+                    Current = Musics.Find(a => a.FullFileName == flbFiles.CurrentSubDirectory + @"\" + Current.FileName) ?? new MusicData(tempInternalName, Current.FileName);
+                    Current.Name = txtInternalName.Text = tempInternalName;
+                    if (!System.IO.File.Exists(CurrentDirectory.Path + @"\" + Current.FileName))
+                    {
+                        System.IO.File.Copy(WorkingDirectory.Path + @"\" + Current.Directory + @"\" + Current.FileName, CurrentDirectory.Path + @"\" + Current.FileName);
+                    }
                 }
                 else
                 {
@@ -98,6 +103,7 @@ namespace FrogForge.Editors
             }
             Dirty = false;
             flbFiles.UpdateList();
+            flbFiles.SelectedFilename = Current.FileName;
             Current.Name = txtInternalName.Text;
             VoiceAssist.Say("Save");
         }
@@ -111,8 +117,8 @@ namespace FrogForge.Editors
                 {
                     flbFiles.UpdateList();
                     Current = null;
-                    txtInternalName.Text = txtName.Text = "";
                     VoiceAssist.Say("Delete");
+                    Dirty = false;
                 }
             }
         }
@@ -122,20 +128,57 @@ namespace FrogForge.Editors
             // TBA: Add support for mp3/wav
             if (dlgOpen.ShowDialog() == DialogResult.OK)
             {
-                System.IO.File.Copy(dlgOpen.FileName, CurrentDirectory.Path + dlgOpen.SafeFileName);
+                if (System.IO.File.Exists(CurrentDirectory.Path + @"\" + dlgOpen.SafeFileName))
+                {
+                    MessageBox.Show("There is already a music file called " + dlgOpen.SafeFileName + " in this directory!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                System.IO.File.Copy(dlgOpen.FileName, CurrentDirectory.Path + @"\" + dlgOpen.SafeFileName);
                 string fileName = dlgOpen.SafeFileName.Replace(".ogg", "");
-                MusicData newData = new MusicData(fileName, flbFiles.CurrentSubDirectory + fileName);
+                MusicData newData = new MusicData(fileName, flbFiles.CurrentSubDirectory + @"\" + fileName);
                 Musics.Add(newData);
                 Current = newData;
-                txtName.Text = Current.FileName;
-                txtInternalName.Text = Current.Name;
                 flbFiles.UpdateList();
+                Dirty = false;
             }
         }
 
         private void frmMusicEditor_FormClosed(object sender, FormClosedEventArgs e)
         {
-            WorkingDirectory.SaveFile("Musics", Musics.ToJson(), ".json");
+            lstMusics.SaveToFile();
+        }
+
+        private void btnNewFolder_Click(object sender, EventArgs e)
+        {
+            string folderName = InputBox.Show("New folder", "Enter folder name:", this);
+            if ((folderName ?? "") == "")
+            {
+                return;
+            }
+            CurrentDirectory.CreateDirectory(folderName);
+            flbFiles.UpdateList();
+        }
+
+        private void btnDeleteFolder_Click(object sender, EventArgs e)
+        {
+            string toDelete = flbFiles.SelectedFilename ?? @"\";
+            if (flbFiles.IsAtTopMostDirectory && toDelete == @"\")
+            {
+                return;
+            }
+            string toDeleteName = toDelete != @"\" ? toDelete.Replace(@"\", "") : CurrentDirectory.Path.Substring(CurrentDirectory.Path.LastIndexOf(@"\") + 1);
+            if (CurrentDirectory.DirectoryExists(toDelete) &&
+                ConfirmDialog("Are you sure you want to delete folder " + toDeleteName + "?", "Warning") &&
+                (CurrentDirectory.AllFiles(false, true, toDelete).Length == 0 ||
+                 ConfirmDialog("Warning! " + toDeleteName + " contains files. Continue anyway?", "Warning")))
+            {
+                CurrentDirectory.DeleteDirectory(toDelete);
+                if (toDelete == @"\")
+                {
+                    flbFiles.Navigate(@"\..");
+                }
+                flbFiles.UpdateList();
+            }
         }
     }
 }

@@ -108,6 +108,7 @@ namespace FrogForge.Editors
             this.btnNewFolder.Name = "btnNewFolder";
             this.btnNewFolder.Size = new System.Drawing.Size(23, 22);
             this.btnNewFolder.Text = "New folder";
+            this.btnNewFolder.Click += new System.EventHandler(this.btnNewFolder_Click);
             // 
             // btnDeleteFolder
             // 
@@ -117,6 +118,7 @@ namespace FrogForge.Editors
             this.btnDeleteFolder.Name = "btnDeleteFolder";
             this.btnDeleteFolder.Size = new System.Drawing.Size(23, 22);
             this.btnDeleteFolder.Text = "Delete folder";
+            this.btnDeleteFolder.Click += new System.EventHandler(this.btnDeleteFolder_Click);
             // 
             // flbFiles
             // 
