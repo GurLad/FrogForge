@@ -128,16 +128,20 @@ namespace FrogForge.Editors
             // TBA: Add support for mp3/wav
             if (dlgOpen.ShowDialog() == DialogResult.OK)
             {
-                if (System.IO.File.Exists(CurrentDirectory.Path + @"\" + dlgOpen.SafeFileName))
+                for (int i = 0; i < dlgOpen.FileNames.Length; i++)
                 {
-                    MessageBox.Show("There is already a music file called " + dlgOpen.SafeFileName + " in this directory!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    string fileName = dlgOpen.SafeFileNames[i];
+                    if (System.IO.File.Exists(CurrentDirectory.Path + @"\" + fileName))
+                    {
+                        MessageBox.Show("There is already a music file called " + fileName + " in this directory!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    System.IO.File.Copy(dlgOpen.FileNames[i], CurrentDirectory.Path + @"\" + fileName);
+                    fileName = fileName.Replace(".ogg", "");
+                    MusicData newData = new MusicData(fileName, flbFiles.CurrentSubDirectory + @"\" + fileName);
+                    Musics.Add(newData);
+                    Current = newData;
                 }
-                System.IO.File.Copy(dlgOpen.FileName, CurrentDirectory.Path + @"\" + dlgOpen.SafeFileName);
-                string fileName = dlgOpen.SafeFileName.Replace(".ogg", "");
-                MusicData newData = new MusicData(fileName, flbFiles.CurrentSubDirectory + @"\" + fileName);
-                Musics.Add(newData);
-                Current = newData;
                 flbFiles.UpdateList();
                 Dirty = false;
             }
@@ -179,6 +183,22 @@ namespace FrogForge.Editors
                 }
                 flbFiles.UpdateList();
             }
+        }
+
+        protected override bool ControlKeyAction(Keys key)
+        {
+            switch (key)
+            {
+                case Keys.S:
+                    btnSave_Click(this, new EventArgs());
+                    return true;
+                //case Keys.N:
+                //    btnNew_Click(this, new EventArgs());
+                //    return true;
+                default:
+                    break;
+            }
+            return false;
         }
     }
 }

@@ -49,6 +49,7 @@ namespace FrogForge.Editors
             // dlgOpen
             // 
             this.dlgOpen.Filter = "Music files|*.ogg";
+            this.dlgOpen.Multiselect = true;
             // 
             // toolStrip1
             // 
