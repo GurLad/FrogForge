@@ -18,6 +18,7 @@ namespace FrogForge.Editors
     {
         private FilesController CurrentDirectory { get; set; }
         private JSONBrowser<MusicData> lstMusics { get; set; } = new JSONBrowser<MusicData>(); // A very bad workaround to add convinient JSON support
+        private NAudio.Wave.WaveOut WaveOut = new NAudio.Wave.WaveOut();
         private List<MusicData> Musics
         {
             get
@@ -35,7 +36,7 @@ namespace FrogForge.Editors
             set
             {
                 _current = value;
-                btnSave.Enabled = Current != null;
+                btnSave.Enabled = btnPlay.Enabled = Current != null;
                 txtName.Text = CurrentFile = Current?.FileName ?? "";
                 txtInternalName.Text = Current?.Name ?? "";
             }
@@ -150,6 +151,8 @@ namespace FrogForge.Editors
         private void frmMusicEditor_FormClosed(object sender, FormClosedEventArgs e)
         {
             lstMusics.SaveToFile();
+            WaveOut.Stop();
+            WaveOut.Dispose();
         }
 
         private void btnNewFolder_Click(object sender, EventArgs e)
@@ -199,6 +202,20 @@ namespace FrogForge.Editors
                     break;
             }
             return false;
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            if (Current == null) // Failsafe, although this should be impossible
+            {
+                return;
+            }
+            WaveOut.Stop();
+            WaveOut.Dispose();
+            WaveOut = new NAudio.Wave.WaveOut();
+            var vorbisStream = new NAudio.Vorbis.VorbisWaveReader(flbFiles.TopMostDirectory + @"\" + Current.FullFileName + ".ogg");
+            WaveOut.Init(vorbisStream);
+            WaveOut.Play();       
         }
     }
 }
