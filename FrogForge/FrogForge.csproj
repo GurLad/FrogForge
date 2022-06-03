@@ -136,6 +136,7 @@
     <Compile Include="Datas\CGData.cs" />
     <Compile Include="Datas\DisplayNamedData.cs" />
     <Compile Include="Datas\GameSettingsData.cs" />
+    <Compile Include="Datas\GenericCharacterVoice.cs" />
     <Compile Include="Datas\GenericPortraitData.cs" />
     <Compile Include="Datas\GenericPortraitsGlobalData.cs" />
     <Compile Include="Datas\CharacterVoice.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Preferences.cs" />
     <Compile Include="UnityPoint.cs" />
+    <Compile Include="UnityVector2.cs" />
     <Compile Include="UserControls\AIPrioritiesPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -340,6 +342,18 @@
     <Compile Include="UserControls\UnitReplacementPanel.Designer.cs">
       <DependentUpon>UnitReplacementPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\GenericCharacterVoicePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\GenericCharacterVoicePanel.Designer.cs">
+      <DependentUpon>GenericCharacterVoicePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VoicePitchSlider.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\VoicePitchSlider.Designer.cs">
+      <DependentUpon>VoicePitchSlider.cs</DependentUpon>
+    </Compile>
     <Compile Include="VoiceAssist.cs" />
     <Compile Include="Weapon.cs" />
     <EmbeddedResource Include="Editors\frmCGEditor.resx">
@@ -429,6 +443,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UnitReplacementPanel.resx">
       <DependentUpon>UnitReplacementPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\GenericCharacterVoicePanel.resx">
+      <DependentUpon>GenericCharacterVoicePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\VoicePitchSlider.resx">
+      <DependentUpon>VoicePitchSlider.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

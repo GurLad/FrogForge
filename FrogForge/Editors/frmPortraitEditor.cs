@@ -42,6 +42,7 @@ namespace FrogForge.Editors
             lstGenerics.Init(this, () => new GenericPortraitData(), GenericDataFromUI, GenericDataToUI, "GenericPortraits");
             pleGenericsPossibleBGPalettes.Init(null, () => new Palette(), () => new UserControls.PalettePanel(),
                 (plt) => { plt.Init(null); }, false);
+            pleGenericsCharacterVoices.Init(null, () => new GenericCharacterVoice(), () => new UserControls.GenericCharacterVoicePanel(), (gcv) => gcv.Init());
             pltCharactersBGPalette.Init(this, (p) =>
             {
                 picCharactersBG.Palette = p;
@@ -53,6 +54,7 @@ namespace FrogForge.Editors
                 UpdateCharacterPreview();
             });
             fgpCharacterAccent.Init(this, BaseSpritePalettes);
+            vpsVoicePitch.Init(this);
             Dirty = false;
             this.ApplyPreferences();
             // Misc
@@ -62,10 +64,10 @@ namespace FrogForge.Editors
             {
                 GlobalData = WorkingDirectory.LoadFile("GenericPortraitsGlobalData", "", ".json").JsonToObject<GenericPortraitsGlobalData>();
                 pleGenericsPossibleBGPalettes.Datas = GlobalData.GenericPossibleBackgroundColors;
+                pleGenericsCharacterVoices.Datas = GlobalData.GenericVoicesAndNames;
             }
             // Set dirty
             txtGenericsTags.TextChanged += DirtyFunc;
-            nudPitch.ValueChanged += DirtyFunc;
             cmbVoiceType.SelectedIndexChanged += DirtyFunc;
             Dirty = false;
             // Load empty
@@ -98,7 +100,7 @@ namespace FrogForge.Editors
             data.Background = picCharactersBG.Image;
             data.Foreground = picCharactersFG.Image;
             data.AccentColor = fgpCharacterAccent.Data;
-            data.Voice.Pitch = (float)nudPitch.Value;
+            data.Voice.Pitch = (float)vpsVoicePitch.Pitch;
             data.Voice.VoiceType = (VoiceType)cmbVoiceType.SelectedIndex;
             CurrentFile = data.Name;
             Dirty = false;
@@ -117,7 +119,7 @@ namespace FrogForge.Editors
             picCharactersFG.Image = data.Foreground ?? new PalettedImage(new Bitmap(1, 1));
             picCharactersFG.Palette = BaseSpritePalettes[fgpCharactersFGPalette.Data];
             fgpCharacterAccent.Data = data.AccentColor;
-            nudPitch.Value = (decimal)data.Voice.Pitch;
+            vpsVoicePitch.Pitch = data.Voice.Pitch;
             cmbVoiceType.SelectedIndex = (int)data.Voice.VoiceType;
             UpdateCharacterPreview();
             CurrentFile = data.Name;
@@ -240,6 +242,7 @@ namespace FrogForge.Editors
             }
             // Generics global data save
             GlobalData.GenericPossibleBackgroundColors = pleGenericsPossibleBGPalettes.Datas;
+            GlobalData.GenericVoicesAndNames = pleGenericsCharacterVoices.Datas;
             WorkingDirectory.SaveFile("GenericPortraitsGlobalData", GlobalData.ToJson(), ".json");
             Cursor.Current = Cursors.Default;
         }
@@ -277,16 +280,6 @@ namespace FrogForge.Editors
             Dirty = true;
         }
 
-        private void trkPitch_Scroll(object sender, EventArgs e)
-        {
-            nudPitch.Value = trkPitch.Value / (decimal)100;
-        }
-
-        private void nudPitch_ValueChanged(object sender, EventArgs e)
-        {
-            trkPitch.Value = (int)(nudPitch.Value * 100);
-        }
-
         private void cmbVoiceType_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
@@ -299,7 +292,7 @@ namespace FrogForge.Editors
             double semitone = Math.Pow(2, 1.0 / 12);
             double upOneTone = semitone * semitone;
             double downOneTone = 1.0 / upOneTone;
-            double targetPitch = ((double)nudPitch.Value + (-0.1 + RNG.NextDouble() / 5)) * semitone;
+            double targetPitch = ((double)vpsVoicePitch.Pitch + (-0.1 + RNG.NextDouble() / 5)) * semitone;
             using (var reader = new MediaFoundationReader(inPath))
             {
                 var pitch = new SmbPitchShiftingSampleProvider(reader.ToSampleProvider());

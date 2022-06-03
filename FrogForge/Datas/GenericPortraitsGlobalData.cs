@@ -8,6 +8,7 @@ namespace FrogForge.Datas
 {
     class GenericPortraitsGlobalData
     {
+        public List<GenericCharacterVoice> GenericVoicesAndNames { get; set; } = new List<GenericCharacterVoice>();
         public List<Palette> GenericPossibleBackgroundColors { get; set; }
     }
 }
