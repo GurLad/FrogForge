@@ -144,7 +144,6 @@ namespace FrogForge.Editors
             // 
             this.txtName.Location = new System.Drawing.Point(236, 28);
             this.txtName.Name = "txtName";
-            this.txtName.ReadOnly = true;
             this.txtName.Size = new System.Drawing.Size(100, 20);
             this.txtName.TabIndex = 38;
             // 

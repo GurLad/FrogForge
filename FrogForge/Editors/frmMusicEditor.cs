@@ -19,6 +19,7 @@ namespace FrogForge.Editors
         private FilesController CurrentDirectory { get; set; }
         private JSONBrowser<MusicData> lstMusics { get; set; } = new JSONBrowser<MusicData>(); // A very bad workaround to add convinient JSON support
         private NAudio.Wave.WaveOut WaveOut = new NAudio.Wave.WaveOut();
+        private NAudio.Vorbis.VorbisWaveReader WaveReader = null;
         private List<MusicData> Musics
         {
             get
@@ -85,21 +86,27 @@ namespace FrogForge.Editors
             {
                 return;
             }
-            if (Current.Directory != flbFiles.CurrentSubDirectory)
+            if (Current.Directory != flbFiles.CurrentSubDirectory || Current.FileName != txtName.Text)
             {
-                if (ConfirmDialog("It appears that you're trying to save an existing file in another directory. Is this intended?", ""))
+                if (ConfirmDialog("It appears that you're trying to save an existing file in another directory or with another name. Is this intended?", ""))
                 {
                     string tempInternalName = txtInternalName.Text;
-                    Current = Musics.Find(a => a.FullFileName == flbFiles.CurrentSubDirectory + @"\" + Current.FileName) ?? new MusicData(tempInternalName, Current.FileName);
+                    string previousFileName = Current.FullFileName;
+                    Current = new MusicData(tempInternalName, flbFiles.CurrentSubDirectory + @"\" + txtName.Text);
                     Current.Name = txtInternalName.Text = tempInternalName;
-                    if (!System.IO.File.Exists(CurrentDirectory.Path + @"\" + Current.FileName))
+                    if (Musics.Find(a => a.FullFileName == Current.FullFileName) != null)
                     {
-                        System.IO.File.Copy(WorkingDirectory.Path + @"\" + Current.Directory + @"\" + Current.FileName, CurrentDirectory.Path + @"\" + Current.FileName);
+                        WaveReader?.Dispose();
+                        CurrentDirectory.DeleteFile(Current.FileName);
+                        Musics.RemoveAll(a => a.FullFileName == Current.FullFileName);
                     }
+                    System.IO.File.Copy(flbFiles.TopMostDirectory + @"\" + previousFileName + ".ogg", CurrentDirectory.Path + @"\" + Current.FileName + ".ogg");
+                    Musics.Add(Current);
                 }
                 else
                 {
                     CurrentDirectory.Path = flbFiles.TopMostDirectory + Current.Directory;
+                    txtName.Text = Current.FileName;
                 }
             }
             Dirty = false;
@@ -114,9 +121,11 @@ namespace FrogForge.Editors
             string toDelete = flbFiles.SelectedFilename ?? txtName.Text;
             if (CurrentDirectory.CheckFileExist(toDelete + CurrentDirectory.DefultFileFormat))
             {
+                WaveReader?.Dispose();
                 if (DeleteFile(toDelete, CurrentDirectory))
                 {
                     flbFiles.UpdateList();
+                    Musics.Remove(Current);
                     Current = null;
                     VoiceAssist.Say("Delete");
                     Dirty = false;
@@ -153,6 +162,7 @@ namespace FrogForge.Editors
             lstMusics.SaveToFile();
             WaveOut.Stop();
             WaveOut.Dispose();
+            WaveReader?.Dispose();
         }
 
         private void btnNewFolder_Click(object sender, EventArgs e)
@@ -179,6 +189,7 @@ namespace FrogForge.Editors
                 (CurrentDirectory.AllFiles(false, true, toDelete).Length == 0 ||
                  ConfirmDialog("Warning! " + toDeleteName + " contains files. Continue anyway?", "Warning")))
             {
+                WaveReader?.Dispose();
                 CurrentDirectory.DeleteDirectory(toDelete);
                 if (toDelete == @"\")
                 {
@@ -212,9 +223,10 @@ namespace FrogForge.Editors
             }
             WaveOut.Stop();
             WaveOut.Dispose();
+            WaveReader?.Dispose();
             WaveOut = new NAudio.Wave.WaveOut();
-            var vorbisStream = new NAudio.Vorbis.VorbisWaveReader(flbFiles.TopMostDirectory + @"\" + Current.FullFileName + ".ogg");
-            WaveOut.Init(vorbisStream);
+            WaveReader = new NAudio.Vorbis.VorbisWaveReader(flbFiles.TopMostDirectory + @"\" + Current.FullFileName + ".ogg");
+            WaveOut.Init(WaveReader);
             WaveOut.Play();       
         }
     }
