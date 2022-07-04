@@ -10,7 +10,7 @@ namespace FrogForge.Datas
 {
     public enum Inclination { Physical, Technical, Skillful } // Bad names
     public enum StatNames { Str, End, Pir, Arm, Pre, Eva }
-    public enum BattleAnimationMode { Walk, Projectile, Teleport }
+    public enum BattleAnimationMode { Walk, Projectile, Teleport, Charge }
 
     public class ClassData : NamedData
     {
