@@ -67,6 +67,7 @@ namespace FrogForge.Editors
             }
             if (GamePath == "")
             {
+                btnFrogForgeData.Visible = true;
                 btnPlay.Visible = false;
                 Height -= 30;
             }
@@ -240,11 +241,6 @@ namespace FrogForge.Editors
             }
         }
 
-        private void btnAbout_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://www.github.com/GurLad/FrogForge");
-        }
-
         private void btnGameSettings_Click(object sender, EventArgs e)
         {
             new frmGameSettingsEditor(WorkingDirectory).ShowDialog();
@@ -258,6 +254,22 @@ namespace FrogForge.Editors
         private void btnPlay_Click(object sender, EventArgs e)
         {
             Process.Start(GamePath + "Frogman Magmaborn.exe");
+        }
+
+        private void btnHelpColorsResolutions_Click(object sender, EventArgs e)
+        {
+            frmColorsHelp colorsHelp = new frmColorsHelp();
+            colorsHelp.ShowDialog(this);
+        }
+
+        private void btnHelpOnlineWiki_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://www.github.com/GurLad/FrogForge/wiki");
+        }
+
+        private void btnHelpSourceCode_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://www.github.com/GurLad/FrogForge");
         }
     }
 }
