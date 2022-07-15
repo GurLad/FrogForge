@@ -125,7 +125,7 @@ namespace FrogForge.Editors
                 if (DeleteFile(toDelete, CurrentDirectory))
                 {
                     flbFiles.UpdateList();
-                    Musics.Remove(Current);
+                    Musics.Remove(Musics.Find(a => a.FullFileName == flbFiles.CurrentSubDirectory + @"\" + toDelete));
                     Current = null;
                     VoiceAssist.Say("Delete");
                     Dirty = false;
