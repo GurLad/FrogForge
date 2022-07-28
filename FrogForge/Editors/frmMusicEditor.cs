@@ -190,6 +190,11 @@ namespace FrogForge.Editors
                  ConfirmDialog("Warning! " + toDeleteName + " contains files. Continue anyway?", "Warning")))
             {
                 WaveReader?.Dispose();
+                string[] allFiles = CurrentDirectory.AllFiles(false, false, toDelete);
+                foreach (string file in allFiles)
+                {
+                    Musics.Remove(Musics.Find(a => a.FullFileName == toDelete.Substring(1) + @"\" + file));
+                }
                 CurrentDirectory.DeleteDirectory(toDelete);
                 if (toDelete == @"\")
                 {
