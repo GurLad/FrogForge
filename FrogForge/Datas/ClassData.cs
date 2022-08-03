@@ -10,7 +10,7 @@ namespace FrogForge.Datas
 {
     public enum Inclination { Physical, Technical, Skillful } // Bad names
     public enum StatNames { Str, End, Pir, Arm, Pre, Eva }
-    public enum BattleAnimationMode { Walk, Projectile, Teleport, Charge }
+    public enum BattleAnimationMode { Walk, Projectile, Teleport }
 
     public class ClassData : NamedData
     {
@@ -23,9 +23,10 @@ namespace FrogForge.Datas
         public List<BattleAnimationData> BattleAnimations { get; set; } = new List<BattleAnimationData>();
         public BattleAnimationMode BattleAnimationModeMelee { get; set; }
         public BattleAnimationMode BattleAnimationModeRanged { get; set; }
-        [System.Text.Json.Serialization.JsonIgnore]
-        public PalettedImage ProjectileImage { get; set; }
-        public UnityPoint ProjectilePos { get; set; } = new UnityPoint(0, 0);
+        public BADWalk WalkExtraData { get; set; } = new BADWalk();
+        public BADProjectile ProjectileExtraData { get; set; } = new BADProjectile();
+        public BADTeleport TeleportExtraData { get; set; } = new BADTeleport();
+        public UnityPoint ProjectilePos { get => ProjectileExtraData.Pos; set => ProjectileExtraData.Pos = value; }
 
         public PalettedImage LoadSprite(FilesController files)
         {
@@ -34,8 +35,44 @@ namespace FrogForge.Datas
 
         public PalettedImage LoadProjectile(FilesController files)
         {
-            return ProjectileImage ?? (ProjectileImage = PalettedImage.FromFile(files, @"ClassBattleAnimations\_Projectiles\" + Name));
+            return ProjectileExtraData.Image ?? (ProjectileExtraData.Image = PalettedImage.FromFile(files, @"ClassBattleAnimations\_Projectiles\" + Name));
         }
+    }
+
+    public class BADWalk
+    {
+        public const float DEFAULT_SPEED = 2;
+        public float Speed { get; set; } = -1;
+        public bool CustomSpeed
+        {
+            get
+            {
+                return Speed >= 1;
+            }
+            set
+            {
+                if (!value)
+                {
+                    Speed = -1;
+                }
+                else if (value && Speed < 1)
+                {
+                    Speed = DEFAULT_SPEED;
+                }
+            }
+        }
+    }
+
+    public class BADProjectile
+    {
+        [System.Text.Json.Serialization.JsonIgnore]
+        public PalettedImage Image { get; set; }
+        public UnityPoint Pos { get; set; } = new UnityPoint(0, 0);
+    }
+
+    public class BADTeleport
+    {
+        public bool Backstab { get; set; } = true;
     }
 }
 

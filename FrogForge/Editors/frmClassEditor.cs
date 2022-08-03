@@ -142,8 +142,10 @@ namespace FrogForge.Editors
             }
             data.BattleAnimationModeMelee = (BattleAnimationMode)cmbClassAnimationModeMelee.SelectedIndex;
             data.BattleAnimationModeRanged = (BattleAnimationMode)cmbClassAnimationModeRanged.SelectedIndex;
-            data.ProjectileImage = picProjectile.Image;
-            data.ProjectilePos = new UnityPoint((int)nudProjectileLocationX.Value, (int)nudProjectileLocationY.Value);
+            data.WalkExtraData.Speed = ckbWalkCustomSpeed.Checked ? (float)nudWalkSpeed.Value : -1;
+            data.ProjectileExtraData.Image = picProjectile.Image;
+            data.ProjectileExtraData.Pos = new UnityPoint((int)nudProjectileLocationX.Value, (int)nudProjectileLocationY.Value);
+            data.TeleportExtraData.Backstab = ckbTeleportBackstab.Checked;
             CurrentFile = data.Name;
             Dirty = false;
             return data;
@@ -164,9 +166,13 @@ namespace FrogForge.Editors
             BattleAnimationsFromClassData(data);
             cmbClassAnimationModeMelee.SelectedIndex = (int)data.BattleAnimationModeMelee;
             cmbClassAnimationModeRanged.SelectedIndex = (int)data.BattleAnimationModeRanged;
+            ckbWalkCustomSpeed.Checked = data.WalkExtraData.CustomSpeed;
+            nudWalkSpeed.Value = (decimal)(data.WalkExtraData.Speed >= 1 ? data.WalkExtraData.Speed : BADWalk.DEFAULT_SPEED);
             picProjectile.Image = data.LoadProjectile(WorkingDirectory);
             nudProjectileLocationX.Value = data.ProjectilePos.x;
             nudProjectileLocationY.Value = data.ProjectilePos.y;
+            ckbTeleportBackstab.Checked = data.TeleportExtraData.Backstab;
+            tbcAnimationExtraData.SelectedIndex = (int)data.BattleAnimationModeRanged;
             SetPreviewPalette(RNG.Next(4));
             UpdateProjectileIndicator(true, true);
             CurrentFile = data.Name;
@@ -217,10 +223,10 @@ namespace FrogForge.Editors
                         WorkingDirectory.SaveImage(@"ClassBattleAnimations\" + item.Name + @"\" + item.BattleAnimations[i].Name, item.BattleAnimations[i].Image.ToBitmap(Palette.BasePalette));
                     }
                 }
-                if (item.ProjectileImage != null)
+                if (item.ProjectileExtraData.Image != null)
                 {
                     WorkingDirectory.CreateDirectory(@"Images\ClassBattleAnimations\_Projectiles");
-                    WorkingDirectory.SaveImage(@"ClassBattleAnimations\_Projectiles\" + item.Name, item.ProjectileImage.ToBitmap(Palette.BasePalette));
+                    WorkingDirectory.SaveImage(@"ClassBattleAnimations\_Projectiles\" + item.Name, item.ProjectileExtraData.Image.ToBitmap(Palette.BasePalette));
                 }
             }
             // Save units
@@ -337,6 +343,11 @@ namespace FrogForge.Editors
         private void txtUnitName_TextChanged(object sender, EventArgs e)
         {
             txtUnitDisplayName.Text = txtUnitName.Text;
+        }
+
+        private void ckbWalkCustomSpeed_CheckedChanged(object sender, EventArgs e)
+        {
+            nudWalkSpeed.Enabled = ckbWalkCustomSpeed.Checked;
         }
     }
 }
