@@ -290,14 +290,19 @@ namespace FrogForge.Editors
                     if ((source.Height > 16 || source.Width > 16) &&
                         ConfirmDialog("Auto-crop " + dlgOpenTiles.FileNames[i].Substring(dlgOpenTiles.FileNames[i].LastIndexOf(@"\") + 1) + "?", ""))
                     {
-                        Bitmap target = new Bitmap(16, 16);
+                        int frameCount = source.GetFrameCount();
+                        Image splitSource = source.SplitGIF();
+                        Bitmap target = new Bitmap(16 * frameCount, 16);
                         using (var g = Graphics.FromImage(target))
                         {
                             for (int j = 0; j < source.Height / 16; j++)
                             {
                                 for (int k = 0; k < source.Width / 16; k++)
                                 {
-                                    g.DrawImage(source, new Rectangle(0, 0, 16, 16), new Rectangle(k * 16, j * 16, 16, 16), GraphicsUnit.Pixel);
+                                    for (int m = 0; m < frameCount; m++)
+                                    {
+                                        g.DrawImage(splitSource, new Rectangle(m * 16, 0, 16, 16), new Rectangle(k * 16 + m * source.Width, j * 16, 16, 16), GraphicsUnit.Pixel);
+                                    }
                                     CurrentTiles.Add(new TileData(target, 1, 0, 1, false, ""));
                                     Render(CurrentTiles.Count - 1);
                                 }

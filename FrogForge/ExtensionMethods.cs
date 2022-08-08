@@ -36,6 +36,12 @@ namespace FrogForge
             System.IO.Directory.Delete(files.Path + toDelete, recursive);
         }
 
+        public static int GetFrameCount(this Image source)
+        {
+            FrameDimension dimension = new FrameDimension(source.FrameDimensionsList.First());
+            return source.GetFrameCount(dimension);
+        }
+
         public static Image SplitGIF(this Image source)
         {
             FrameDimension dimension = new FrameDimension(source.FrameDimensionsList.First());
