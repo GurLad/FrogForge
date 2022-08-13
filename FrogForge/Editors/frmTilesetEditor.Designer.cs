@@ -66,6 +66,7 @@
             this.pnlPossibleTiles = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.bblBattleBackgrounds = new FrogForge.UserControls.BattleBackgroundsListEditor();
+            this.rdbSelectionMulti = new System.Windows.Forms.RadioButton();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -192,6 +193,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.rdbSelectionMulti);
             this.groupBox4.Controls.Add(this.rdbSelectionPush);
             this.groupBox4.Controls.Add(this.rdbSelectionSwap);
             this.groupBox4.Controls.Add(this.rdbSelectionSelect);
@@ -470,6 +472,17 @@
             this.bblBattleBackgrounds.Size = new System.Drawing.Size(335, 278);
             this.bblBattleBackgrounds.TabIndex = 1;
             // 
+            // rdbSelectionMulti
+            // 
+            this.rdbSelectionMulti.AutoSize = true;
+            this.rdbSelectionMulti.Location = new System.Drawing.Point(180, 19);
+            this.rdbSelectionMulti.Name = "rdbSelectionMulti";
+            this.rdbSelectionMulti.Size = new System.Drawing.Size(47, 17);
+            this.rdbSelectionMulti.TabIndex = 0;
+            this.rdbSelectionMulti.Text = "Multi";
+            this.rdbSelectionMulti.UseVisualStyleBackColor = true;
+            this.rdbSelectionMulti.CheckedChanged += new System.EventHandler(this.rdbSelectionMulti_CheckedChanged);
+            // 
             // frmTilesetEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -547,5 +560,6 @@
         private UserControls.PalettedPicturebox picTileImage;
         private System.Windows.Forms.CheckBox ckbAutoApply;
         private UserControls.BattleBackgroundsListEditor bblBattleBackgrounds;
+        private System.Windows.Forms.RadioButton rdbSelectionMulti;
     }
 }

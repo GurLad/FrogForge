@@ -1,6 +1,7 @@
 ﻿using FrogForge.Datas;
 using FrogForge.UserControls;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,31 +16,12 @@ namespace FrogForge.Editors
 {
     public partial class frmTilesetEditor : frmBaseEditor
     {
+        private enum SelectionMode { Select, Swap, Push, Multi }
         private static readonly Point TILEMAP_SIZE = new Point(6, 10);
         private List<TileData> CurrentTiles = new List<TileData>();
         private List<PictureBox> Renderers = new List<PictureBox>(TILEMAP_SIZE.X * TILEMAP_SIZE.Y);
         private OpenFileDialog dlgOpenTiles = new OpenFileDialog();
-        private int _selectedIndex = 0;
-        private int SelectedIndex
-        {
-            get
-            {
-                return _selectedIndex;
-            }
-            set
-            {
-                if (_selectedIndex >= 0)
-                {
-                    Renderers[_selectedIndex].Image = null;
-                }
-                if (grpSelectedTile.Enabled = ((_selectedIndex = value) >= 0))
-                {
-                    Renderers[value].Image = Properties.Resources.Cursor;
-                    Renderers[value].FixZoom(background: false);
-                    TileDataToUI(value);
-                }
-            }
-        }
+        private Selection Selected;
         private bool _tileDirty;
         private bool TileDirty
         {
@@ -50,6 +32,32 @@ namespace FrogForge.Editors
             set
             {
                 btnTileApply.Enabled = _tileDirty = value;
+            }
+        }
+        private SelectionMode Mode
+        {
+            get
+            {
+                if (rdbSelectionSelect.Checked)
+                {
+                    return SelectionMode.Select;
+                }
+                else if (rdbSelectionSwap.Checked)
+                {
+                    return SelectionMode.Swap;
+                }
+                else if (rdbSelectionPush.Checked)
+                {
+                    return SelectionMode.Push;
+                }
+                else if (rdbSelectionMulti.Checked)
+                {
+                    return SelectionMode.Multi;
+                }
+                else
+                {
+                    throw new Exception("Impossible");
+                }
             }
         }
 
@@ -84,7 +92,7 @@ namespace FrogForge.Editors
             // Init stuff
             dlgOpenTiles.Filter = "Image files|*.png;*.gif";
             dlgOpenTiles.Multiselect = true;
-            SelectedIndex = -1;
+            (Selected = new Selection(this)).Set(-1);
             lstTilemaps.Init(this, () => new TilesetData(), TilesetDataFromUI, TilesetDataToUI, "Tilesets");
             picTileImage.Init(dlgOpen, this);
             plt1.Init(this, UpdatePalette);
@@ -106,50 +114,62 @@ namespace FrogForge.Editors
         {
             if (rendererIndex < CurrentTiles.Count)
             {
-                if (rdbSelectionSelect.Checked)
+                switch (Mode)
                 {
-                    if (ckbAutoApply.Checked && SelectedIndex >= 0 && TileDirty)
-                    {
-                        TileDataFromUI(SelectedIndex);
-                        SelectedIndex = rendererIndex;
-                    }
-                    else if (!TileDirty || ConfirmDialog("Discard tile changes?", ""))
-                    {
-                        SelectedIndex = rendererIndex;
-                    }
-                }
-                else if (rdbSelectionSwap.Checked)
-                {
-                    if (SelectedIndex < 0)
-                    {
-                        SelectedIndex = rendererIndex;
-                    }
-                    else
-                    {
-                        TileData temp = CurrentTiles[SelectedIndex];
-                        CurrentTiles[SelectedIndex] = CurrentTiles[rendererIndex];
-                        CurrentTiles[rendererIndex] = temp;
-                        Render(SelectedIndex);
-                        Render(rendererIndex);
-                        SelectedIndex = -1;
-                        Dirty = true;
-                    }
-                }
-                else if (rdbSelectionPush.Checked)
-                {
-                    if (SelectedIndex < 0)
-                    {
-                        SelectedIndex = rendererIndex;
-                    }
-                    else
-                    {
-                        TileData temp = CurrentTiles[SelectedIndex];
-                        CurrentTiles.RemoveAt(SelectedIndex);
-                        CurrentTiles.Insert(rendererIndex, temp);
-                        Render();
-                        SelectedIndex = -1;
-                        Dirty = true;
-                    }
+                    case SelectionMode.Select:
+                        if (ckbAutoApply.Checked && !Selected.IsEmpty() && TileDirty)
+                        {
+                            TileDataFromUI(Selected[0]);
+                            Selected.Set(rendererIndex);
+                        }
+                        else if (!TileDirty || ConfirmDialog("Discard tile changes?", ""))
+                        {
+                            Selected.Set(rendererIndex);
+                        }
+                        break;
+                    case SelectionMode.Swap:
+                        if (Selected.IsEmpty())
+                        {
+                            Selected.Set(rendererIndex);
+                        }
+                        else
+                        {
+                            TileData temp = CurrentTiles[Selected[0]];
+                            CurrentTiles[Selected[0]] = CurrentTiles[rendererIndex];
+                            CurrentTiles[rendererIndex] = temp;
+                            Render(Selected[0]);
+                            Render(rendererIndex);
+                            Selected.Set(-1);
+                            Dirty = true;
+                        }
+                        break;
+                    case SelectionMode.Push:
+                        if (Selected.IsEmpty())
+                        {
+                            Selected.Set(rendererIndex);
+                        }
+                        else
+                        {
+                            TileData temp = CurrentTiles[Selected[0]];
+                            CurrentTiles.RemoveAt(Selected[0]);
+                            CurrentTiles.Insert(rendererIndex, temp);
+                            Render();
+                            Selected.Set(-1);
+                            Dirty = true;
+                        }
+                        break;
+                    case SelectionMode.Multi:
+                        if (!Selected.Contains(rendererIndex))
+                        {
+                            Selected.Add(rendererIndex);
+                        }
+                        else
+                        {
+                            Selected.Remove(rendererIndex);
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
         }
@@ -174,7 +194,7 @@ namespace FrogForge.Editors
             plt2.Data = data.Palette2;
             CurrentTiles = data.Tiles.ConvertAll(a => a.Clone());
             bblBattleBackgrounds.Datas = data.BattleBackgrounds;
-            SelectedIndex = -1;
+            Selected.Clear();
             Render();
             CurrentFile = data.Name;
             Dirty = false;
@@ -187,8 +207,11 @@ namespace FrogForge.Editors
             data.MoveCost = ckbWall.Checked ? 99 : (int)nudMoveCost.Value;
             data.ArmorMod = (int)nudArmorMod.Value;
             data.High = ckbHigh.Checked;
-            data.Image = picTileImage.Image.Clone();
-            data.Palette = rdbPlt1.Checked ? 1 : 2;
+            if (Mode != SelectionMode.Multi) // Multi-setting the image doesn't make sense
+            {
+                data.Image = picTileImage.Image.Clone();
+                data.Palette = rdbPlt1.Checked ? 1 : 2;
+            }
             Render(index);
             TileDirty = false;
             Dirty = true;
@@ -212,9 +235,12 @@ namespace FrogForge.Editors
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (ckbAutoApply.Checked && SelectedIndex >= 0)
+            if (ckbAutoApply.Checked && !Selected.IsEmpty())
             {
-                TileDataFromUI(SelectedIndex);
+                foreach (int index in Selected)
+                {
+                    TileDataFromUI(index);
+                }
             }
             lstTilemaps.Save(txtName.Text);
         }
@@ -248,7 +274,7 @@ namespace FrogForge.Editors
         private void Render(int index)
         {
             Renderers[index].BackgroundImage = CurrentTiles[index].Image.ToBitmap(GetPalette(CurrentTiles[index].Palette));
-            Renderers[index].Image = index == SelectedIndex ? Properties.Resources.Cursor : null; // I don't know why, but it doesn't work without this line. Weird.
+            Renderers[index].Image = Selected.Contains(index) ? Properties.Resources.Cursor : null; // I don't know why, but it doesn't work without this line. Weird.
             Renderers[index].FixZoom();
         }
 
@@ -277,7 +303,10 @@ namespace FrogForge.Editors
 
         private void btnTileApply_Click(object sender, EventArgs e)
         {
-            TileDataFromUI(SelectedIndex);
+            foreach (int index in Selected)
+            {
+                TileDataFromUI(index);
+            }
         }
 
         private void btnAddTiles_Click(object sender, EventArgs e)
@@ -324,8 +353,11 @@ namespace FrogForge.Editors
         {
             if (CurrentTiles.Count > 0)
             {
-                CurrentTiles.RemoveAt(SelectedIndex >= 0 ? SelectedIndex : (CurrentTiles.Count - 1));
-                SelectedIndex = -1;
+                foreach (int index in Selected)
+                {
+                    CurrentTiles.RemoveAt(index >= 0 ? index : (CurrentTiles.Count - 1));
+                }
+                Selected.Set(-1);
                 Render();
                 Dirty = true;
             }
@@ -370,6 +402,80 @@ namespace FrogForge.Editors
         private Palette GetPalette(int palette)
         {
             return palette == 1 ? plt1.Data : plt2.Data;
+        }
+
+        private void rdbSelectionMulti_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!rdbSelectionMulti.Checked)
+            {
+                Selected.Clear();
+            }
+        }
+
+        private class Selection : IEnumerable<int>
+        {
+            private List<int> SelectedIndexes = new List<int>();
+            private frmTilesetEditor Editor;
+            public int this[int i]
+            {
+                get
+                {
+                    return SelectedIndexes[i];
+                }
+            }
+
+            public Selection(frmTilesetEditor editor)
+            {
+                Editor = editor;
+            }
+
+            public bool IsEmpty()
+            {
+                return SelectedIndexes.Count <= 0;
+            }
+
+            public void Set(int index)
+            {
+                Clear();
+                if (index >= 0)
+                {
+                    Add(index);
+                }
+            }
+
+            public void Add(int index)
+            {
+                SelectedIndexes.Add(index);
+                Editor.Renderers[index].Image = Properties.Resources.Cursor;
+                Editor.Renderers[index].FixZoom(background: false);
+                Editor.TileDataToUI(index);
+                Editor.grpSelectedTile.Enabled = !IsEmpty();
+            }
+
+            public void Remove(int index)
+            {
+                SelectedIndexes.Remove(index);
+                Editor.Renderers[index].Image = null;
+                Editor.grpSelectedTile.Enabled = !IsEmpty();
+            }
+
+            public void Clear()
+            {
+                while (!IsEmpty())
+                {
+                    Remove(this[0]);
+                }
+            }
+
+            public IEnumerator<int> GetEnumerator()
+            {
+                return SelectedIndexes.GetEnumerator();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return SelectedIndexes.GetEnumerator();
+            }
         }
     }
 }
