@@ -19,12 +19,13 @@ namespace FrogForge.UserControls
         {
             get
             {
-                return new MapEventData(txtRequirement.Text, txtEvent.Text);
+                return new MapEventData(txtRequirement.Text, txtEvent.Text, ckbRepeatable.Checked);
             }
             set
             {
                 txtRequirement.Text = value.Requirements;
                 txtEvent.Text = value.Event;
+                ckbRepeatable.Checked = value.Repeatable;
             }
         }
 

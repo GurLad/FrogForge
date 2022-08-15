@@ -32,6 +32,7 @@
             this.txtRequirement = new FrogForge.UserControls.EventTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtEvent = new FrogForge.UserControls.EventTextBox();
+            this.ckbRepeatable = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -73,10 +74,22 @@
             this.txtEvent.Size = new System.Drawing.Size(274, 115);
             this.txtEvent.TabIndex = 1;
             // 
+            // ckbRepeatable
+            // 
+            this.ckbRepeatable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ckbRepeatable.AutoSize = true;
+            this.ckbRepeatable.Location = new System.Drawing.Point(193, -1);
+            this.ckbRepeatable.Name = "ckbRepeatable";
+            this.ckbRepeatable.Size = new System.Drawing.Size(81, 17);
+            this.ckbRepeatable.TabIndex = 2;
+            this.ckbRepeatable.Text = "Repeatable";
+            this.ckbRepeatable.UseVisualStyleBackColor = true;
+            // 
             // MapEventPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ckbRepeatable);
             this.Controls.Add(this.txtEvent);
             this.Controls.Add(this.txtRequirement);
             this.Controls.Add(this.label2);
@@ -94,5 +107,6 @@
         private EventTextBox txtRequirement;
         private System.Windows.Forms.Label label2;
         private EventTextBox txtEvent;
+        private System.Windows.Forms.CheckBox ckbRepeatable;
     }
 }
