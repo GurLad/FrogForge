@@ -427,8 +427,11 @@ namespace FrogForge.Editors
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            RemoveUnit(Units[lstUnits.SelectedIndex]);
-            Dirty = true;
+            if (lstUnits.SelectedIndex >= 0)
+            {
+                RemoveUnit(Units[lstUnits.SelectedIndex]);
+                Dirty = true;
+            }
         }
 
         private void cmbTileSets_SelectedIndexChanged(object sender, EventArgs e)

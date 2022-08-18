@@ -62,6 +62,23 @@
             this.tbcMain = new System.Windows.Forms.TabControl();
             this.tbpClass = new System.Windows.Forms.TabPage();
             this.grpAnimationData = new System.Windows.Forms.GroupBox();
+            this.tbcAnimationExtraData = new System.Windows.Forms.TabControl();
+            this.tbpWalk = new System.Windows.Forms.TabPage();
+            this.nudWalkSpeed = new System.Windows.Forms.NumericUpDown();
+            this.ckbWalkCustomSpeed = new System.Windows.Forms.CheckBox();
+            this.tbpProjectile = new System.Windows.Forms.TabPage();
+            this.btnProjectileLoad = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.nudProjectileLocationY = new System.Windows.Forms.NumericUpDown();
+            this.nudProjectileLocationX = new System.Windows.Forms.NumericUpDown();
+            this.pnlProjectilePos = new System.Windows.Forms.Panel();
+            this.picProjectileIndicator = new System.Windows.Forms.PictureBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.picProjectile = new FrogForge.UserControls.PalettedPicturebox();
+            this.tbpTeleport = new System.Windows.Forms.TabPage();
+            this.ckbTeleportBackstab = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.cmbClassAnimationModeRanged = new System.Windows.Forms.ComboBox();
@@ -80,23 +97,6 @@
             this.gthUnitGrowths = new FrogForge.UserControls.GrowthsPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.cmbUnitInclination = new System.Windows.Forms.ComboBox();
-            this.tbcAnimationExtraData = new System.Windows.Forms.TabControl();
-            this.tbpWalk = new System.Windows.Forms.TabPage();
-            this.tbpProjectile = new System.Windows.Forms.TabPage();
-            this.picProjectile = new FrogForge.UserControls.PalettedPicturebox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.pnlProjectilePos = new System.Windows.Forms.Panel();
-            this.picProjectileIndicator = new System.Windows.Forms.PictureBox();
-            this.nudProjectileLocationX = new System.Windows.Forms.NumericUpDown();
-            this.nudProjectileLocationY = new System.Windows.Forms.NumericUpDown();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.btnProjectileLoad = new System.Windows.Forms.Button();
-            this.tbpTeleport = new System.Windows.Forms.TabPage();
-            this.ckbWalkCustomSpeed = new System.Windows.Forms.CheckBox();
-            this.nudWalkSpeed = new System.Windows.Forms.NumericUpDown();
-            this.ckbTeleportBackstab = new System.Windows.Forms.CheckBox();
             this.grpGrowths.SuspendLayout();
             this.grpWeapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponWeight)).BeginInit();
@@ -110,19 +110,19 @@
             this.tbcMain.SuspendLayout();
             this.tbpClass.SuspendLayout();
             this.grpAnimationData.SuspendLayout();
+            this.tbcAnimationExtraData.SuspendLayout();
+            this.tbpWalk.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWalkSpeed)).BeginInit();
+            this.tbpProjectile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationX)).BeginInit();
+            this.pnlProjectilePos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picProjectileIndicator)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picProjectile)).BeginInit();
+            this.tbpTeleport.SuspendLayout();
             this.tbpUnit.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.tbcAnimationExtraData.SuspendLayout();
-            this.tbpWalk.SuspendLayout();
-            this.tbpProjectile.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picProjectile)).BeginInit();
-            this.pnlProjectilePos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picProjectileIndicator)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationY)).BeginInit();
-            this.tbpTeleport.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudWalkSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // lstClasses
@@ -482,6 +482,211 @@
             this.grpAnimationData.TabStop = false;
             this.grpAnimationData.Text = "Animation data";
             // 
+            // tbcAnimationExtraData
+            // 
+            this.tbcAnimationExtraData.Controls.Add(this.tbpWalk);
+            this.tbcAnimationExtraData.Controls.Add(this.tbpProjectile);
+            this.tbcAnimationExtraData.Controls.Add(this.tbpTeleport);
+            this.tbcAnimationExtraData.Location = new System.Drawing.Point(6, 73);
+            this.tbcAnimationExtraData.Name = "tbcAnimationExtraData";
+            this.tbcAnimationExtraData.SelectedIndex = 0;
+            this.tbcAnimationExtraData.Size = new System.Drawing.Size(164, 125);
+            this.tbcAnimationExtraData.TabIndex = 3;
+            // 
+            // tbpWalk
+            // 
+            this.tbpWalk.Controls.Add(this.nudWalkSpeed);
+            this.tbpWalk.Controls.Add(this.ckbWalkCustomSpeed);
+            this.tbpWalk.Location = new System.Drawing.Point(4, 22);
+            this.tbpWalk.Name = "tbpWalk";
+            this.tbpWalk.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpWalk.Size = new System.Drawing.Size(156, 99);
+            this.tbpWalk.TabIndex = 1;
+            this.tbpWalk.Text = "Walk";
+            this.tbpWalk.UseVisualStyleBackColor = true;
+            // 
+            // nudWalkSpeed
+            // 
+            this.nudWalkSpeed.DecimalPlaces = 1;
+            this.nudWalkSpeed.Enabled = false;
+            this.nudWalkSpeed.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.nudWalkSpeed.Location = new System.Drawing.Point(99, 0);
+            this.nudWalkSpeed.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.nudWalkSpeed.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudWalkSpeed.Name = "nudWalkSpeed";
+            this.nudWalkSpeed.Size = new System.Drawing.Size(57, 20);
+            this.nudWalkSpeed.TabIndex = 1;
+            this.nudWalkSpeed.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // ckbWalkCustomSpeed
+            // 
+            this.ckbWalkCustomSpeed.AutoSize = true;
+            this.ckbWalkCustomSpeed.Location = new System.Drawing.Point(0, 0);
+            this.ckbWalkCustomSpeed.Name = "ckbWalkCustomSpeed";
+            this.ckbWalkCustomSpeed.Size = new System.Drawing.Size(93, 17);
+            this.ckbWalkCustomSpeed.TabIndex = 0;
+            this.ckbWalkCustomSpeed.Text = "Custom speed";
+            this.ckbWalkCustomSpeed.UseVisualStyleBackColor = true;
+            this.ckbWalkCustomSpeed.CheckedChanged += new System.EventHandler(this.ckbWalkCustomSpeed_CheckedChanged);
+            // 
+            // tbpProjectile
+            // 
+            this.tbpProjectile.Controls.Add(this.btnProjectileLoad);
+            this.tbpProjectile.Controls.Add(this.label17);
+            this.tbpProjectile.Controls.Add(this.label16);
+            this.tbpProjectile.Controls.Add(this.nudProjectileLocationY);
+            this.tbpProjectile.Controls.Add(this.nudProjectileLocationX);
+            this.tbpProjectile.Controls.Add(this.pnlProjectilePos);
+            this.tbpProjectile.Controls.Add(this.label15);
+            this.tbpProjectile.Controls.Add(this.label14);
+            this.tbpProjectile.Controls.Add(this.picProjectile);
+            this.tbpProjectile.Location = new System.Drawing.Point(4, 22);
+            this.tbpProjectile.Name = "tbpProjectile";
+            this.tbpProjectile.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpProjectile.Size = new System.Drawing.Size(156, 99);
+            this.tbpProjectile.TabIndex = 0;
+            this.tbpProjectile.Text = "Projectile";
+            this.tbpProjectile.UseVisualStyleBackColor = true;
+            // 
+            // btnProjectileLoad
+            // 
+            this.btnProjectileLoad.Location = new System.Drawing.Point(2, 76);
+            this.btnProjectileLoad.Name = "btnProjectileLoad";
+            this.btnProjectileLoad.Size = new System.Drawing.Size(44, 23);
+            this.btnProjectileLoad.TabIndex = 14;
+            this.btnProjectileLoad.Text = "Load";
+            this.btnProjectileLoad.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(52, 68);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(17, 13);
+            this.label17.TabIndex = 12;
+            this.label17.Text = "Y:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(52, 42);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(17, 13);
+            this.label16.TabIndex = 13;
+            this.label16.Text = "X:";
+            // 
+            // nudProjectileLocationY
+            // 
+            this.nudProjectileLocationY.Location = new System.Drawing.Point(75, 66);
+            this.nudProjectileLocationY.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.nudProjectileLocationY.Name = "nudProjectileLocationY";
+            this.nudProjectileLocationY.Size = new System.Drawing.Size(44, 20);
+            this.nudProjectileLocationY.TabIndex = 10;
+            // 
+            // nudProjectileLocationX
+            // 
+            this.nudProjectileLocationX.Location = new System.Drawing.Point(75, 40);
+            this.nudProjectileLocationX.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.nudProjectileLocationX.Minimum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            -2147483648});
+            this.nudProjectileLocationX.Name = "nudProjectileLocationX";
+            this.nudProjectileLocationX.Size = new System.Drawing.Size(44, 20);
+            this.nudProjectileLocationX.TabIndex = 11;
+            // 
+            // pnlProjectilePos
+            // 
+            this.pnlProjectilePos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlProjectilePos.Controls.Add(this.picProjectileIndicator);
+            this.pnlProjectilePos.Location = new System.Drawing.Point(2, 40);
+            this.pnlProjectilePos.Name = "pnlProjectilePos";
+            this.pnlProjectilePos.Size = new System.Drawing.Size(44, 36);
+            this.pnlProjectilePos.TabIndex = 9;
+            // 
+            // picProjectileIndicator
+            // 
+            this.picProjectileIndicator.Location = new System.Drawing.Point(0, 0);
+            this.picProjectileIndicator.Name = "picProjectileIndicator";
+            this.picProjectileIndicator.Size = new System.Drawing.Size(8, 8);
+            this.picProjectileIndicator.TabIndex = 0;
+            this.picProjectileIndicator.TabStop = false;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(-1, 21);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(51, 13);
+            this.label15.TabIndex = 7;
+            this.label15.Text = "Location:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(-1, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(53, 13);
+            this.label14.TabIndex = 8;
+            this.label14.Text = "Projectile:";
+            // 
+            // picProjectile
+            // 
+            this.picProjectile.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picProjectile.Image = null;
+            this.picProjectile.Location = new System.Drawing.Point(75, 1);
+            this.picProjectile.Name = "picProjectile";
+            this.picProjectile.Palette = palette2;
+            this.picProjectile.Size = new System.Drawing.Size(12, 12);
+            this.picProjectile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picProjectile.TabIndex = 6;
+            this.picProjectile.TabStop = false;
+            // 
+            // tbpTeleport
+            // 
+            this.tbpTeleport.Controls.Add(this.ckbTeleportBackstab);
+            this.tbpTeleport.Location = new System.Drawing.Point(4, 22);
+            this.tbpTeleport.Name = "tbpTeleport";
+            this.tbpTeleport.Size = new System.Drawing.Size(156, 99);
+            this.tbpTeleport.TabIndex = 2;
+            this.tbpTeleport.Text = "Teleport";
+            this.tbpTeleport.UseVisualStyleBackColor = true;
+            // 
+            // ckbTeleportBackstab
+            // 
+            this.ckbTeleportBackstab.AutoSize = true;
+            this.ckbTeleportBackstab.Location = new System.Drawing.Point(0, 0);
+            this.ckbTeleportBackstab.Name = "ckbTeleportBackstab";
+            this.ckbTeleportBackstab.Size = new System.Drawing.Size(71, 17);
+            this.ckbTeleportBackstab.TabIndex = 0;
+            this.ckbTeleportBackstab.Text = "Backstab";
+            this.ckbTeleportBackstab.UseVisualStyleBackColor = true;
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -617,7 +822,6 @@
             // txtUnitName
             // 
             this.txtUnitName.Location = new System.Drawing.Point(205, 0);
-            this.txtUnitName.MaxLength = 8;
             this.txtUnitName.Name = "txtUnitName";
             this.txtUnitName.Size = new System.Drawing.Size(167, 20);
             this.txtUnitName.TabIndex = 0;
@@ -662,211 +866,6 @@
             this.cmbUnitInclination.Size = new System.Drawing.Size(167, 21);
             this.cmbUnitInclination.TabIndex = 2;
             // 
-            // tbcAnimationExtraData
-            // 
-            this.tbcAnimationExtraData.Controls.Add(this.tbpWalk);
-            this.tbcAnimationExtraData.Controls.Add(this.tbpProjectile);
-            this.tbcAnimationExtraData.Controls.Add(this.tbpTeleport);
-            this.tbcAnimationExtraData.Location = new System.Drawing.Point(6, 73);
-            this.tbcAnimationExtraData.Name = "tbcAnimationExtraData";
-            this.tbcAnimationExtraData.SelectedIndex = 0;
-            this.tbcAnimationExtraData.Size = new System.Drawing.Size(164, 125);
-            this.tbcAnimationExtraData.TabIndex = 3;
-            // 
-            // tbpWalk
-            // 
-            this.tbpWalk.Controls.Add(this.nudWalkSpeed);
-            this.tbpWalk.Controls.Add(this.ckbWalkCustomSpeed);
-            this.tbpWalk.Location = new System.Drawing.Point(4, 22);
-            this.tbpWalk.Name = "tbpWalk";
-            this.tbpWalk.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpWalk.Size = new System.Drawing.Size(156, 99);
-            this.tbpWalk.TabIndex = 1;
-            this.tbpWalk.Text = "Walk";
-            this.tbpWalk.UseVisualStyleBackColor = true;
-            // 
-            // tbpProjectile
-            // 
-            this.tbpProjectile.Controls.Add(this.btnProjectileLoad);
-            this.tbpProjectile.Controls.Add(this.label17);
-            this.tbpProjectile.Controls.Add(this.label16);
-            this.tbpProjectile.Controls.Add(this.nudProjectileLocationY);
-            this.tbpProjectile.Controls.Add(this.nudProjectileLocationX);
-            this.tbpProjectile.Controls.Add(this.pnlProjectilePos);
-            this.tbpProjectile.Controls.Add(this.label15);
-            this.tbpProjectile.Controls.Add(this.label14);
-            this.tbpProjectile.Controls.Add(this.picProjectile);
-            this.tbpProjectile.Location = new System.Drawing.Point(4, 22);
-            this.tbpProjectile.Name = "tbpProjectile";
-            this.tbpProjectile.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpProjectile.Size = new System.Drawing.Size(156, 99);
-            this.tbpProjectile.TabIndex = 0;
-            this.tbpProjectile.Text = "Projectile";
-            this.tbpProjectile.UseVisualStyleBackColor = true;
-            // 
-            // picProjectile
-            // 
-            this.picProjectile.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picProjectile.Image = null;
-            this.picProjectile.Location = new System.Drawing.Point(75, 1);
-            this.picProjectile.Name = "picProjectile";
-            this.picProjectile.Palette = palette2;
-            this.picProjectile.Size = new System.Drawing.Size(12, 12);
-            this.picProjectile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picProjectile.TabIndex = 6;
-            this.picProjectile.TabStop = false;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(-1, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(53, 13);
-            this.label14.TabIndex = 8;
-            this.label14.Text = "Projectile:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(-1, 21);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(51, 13);
-            this.label15.TabIndex = 7;
-            this.label15.Text = "Location:";
-            // 
-            // pnlProjectilePos
-            // 
-            this.pnlProjectilePos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlProjectilePos.Controls.Add(this.picProjectileIndicator);
-            this.pnlProjectilePos.Location = new System.Drawing.Point(2, 40);
-            this.pnlProjectilePos.Name = "pnlProjectilePos";
-            this.pnlProjectilePos.Size = new System.Drawing.Size(44, 36);
-            this.pnlProjectilePos.TabIndex = 9;
-            // 
-            // picProjectileIndicator
-            // 
-            this.picProjectileIndicator.Location = new System.Drawing.Point(0, 0);
-            this.picProjectileIndicator.Name = "picProjectileIndicator";
-            this.picProjectileIndicator.Size = new System.Drawing.Size(8, 8);
-            this.picProjectileIndicator.TabIndex = 0;
-            this.picProjectileIndicator.TabStop = false;
-            // 
-            // nudProjectileLocationX
-            // 
-            this.nudProjectileLocationX.Location = new System.Drawing.Point(75, 40);
-            this.nudProjectileLocationX.Maximum = new decimal(new int[] {
-            32,
-            0,
-            0,
-            0});
-            this.nudProjectileLocationX.Minimum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            -2147483648});
-            this.nudProjectileLocationX.Name = "nudProjectileLocationX";
-            this.nudProjectileLocationX.Size = new System.Drawing.Size(44, 20);
-            this.nudProjectileLocationX.TabIndex = 11;
-            // 
-            // nudProjectileLocationY
-            // 
-            this.nudProjectileLocationY.Location = new System.Drawing.Point(75, 66);
-            this.nudProjectileLocationY.Maximum = new decimal(new int[] {
-            32,
-            0,
-            0,
-            0});
-            this.nudProjectileLocationY.Name = "nudProjectileLocationY";
-            this.nudProjectileLocationY.Size = new System.Drawing.Size(44, 20);
-            this.nudProjectileLocationY.TabIndex = 10;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(52, 42);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(17, 13);
-            this.label16.TabIndex = 13;
-            this.label16.Text = "X:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(52, 68);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(17, 13);
-            this.label17.TabIndex = 12;
-            this.label17.Text = "Y:";
-            // 
-            // btnProjectileLoad
-            // 
-            this.btnProjectileLoad.Location = new System.Drawing.Point(2, 76);
-            this.btnProjectileLoad.Name = "btnProjectileLoad";
-            this.btnProjectileLoad.Size = new System.Drawing.Size(44, 23);
-            this.btnProjectileLoad.TabIndex = 14;
-            this.btnProjectileLoad.Text = "Load";
-            this.btnProjectileLoad.UseVisualStyleBackColor = true;
-            // 
-            // tbpTeleport
-            // 
-            this.tbpTeleport.Controls.Add(this.ckbTeleportBackstab);
-            this.tbpTeleport.Location = new System.Drawing.Point(4, 22);
-            this.tbpTeleport.Name = "tbpTeleport";
-            this.tbpTeleport.Size = new System.Drawing.Size(156, 99);
-            this.tbpTeleport.TabIndex = 2;
-            this.tbpTeleport.Text = "Teleport";
-            this.tbpTeleport.UseVisualStyleBackColor = true;
-            // 
-            // ckbWalkCustomSpeed
-            // 
-            this.ckbWalkCustomSpeed.AutoSize = true;
-            this.ckbWalkCustomSpeed.Location = new System.Drawing.Point(0, 0);
-            this.ckbWalkCustomSpeed.Name = "ckbWalkCustomSpeed";
-            this.ckbWalkCustomSpeed.Size = new System.Drawing.Size(93, 17);
-            this.ckbWalkCustomSpeed.TabIndex = 0;
-            this.ckbWalkCustomSpeed.Text = "Custom speed";
-            this.ckbWalkCustomSpeed.UseVisualStyleBackColor = true;
-            this.ckbWalkCustomSpeed.CheckedChanged += new System.EventHandler(this.ckbWalkCustomSpeed_CheckedChanged);
-            // 
-            // nudWalkSpeed
-            // 
-            this.nudWalkSpeed.DecimalPlaces = 1;
-            this.nudWalkSpeed.Enabled = false;
-            this.nudWalkSpeed.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.nudWalkSpeed.Location = new System.Drawing.Point(99, 0);
-            this.nudWalkSpeed.Maximum = new decimal(new int[] {
-            32,
-            0,
-            0,
-            0});
-            this.nudWalkSpeed.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudWalkSpeed.Name = "nudWalkSpeed";
-            this.nudWalkSpeed.Size = new System.Drawing.Size(57, 20);
-            this.nudWalkSpeed.TabIndex = 1;
-            this.nudWalkSpeed.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // ckbTeleportBackstab
-            // 
-            this.ckbTeleportBackstab.AutoSize = true;
-            this.ckbTeleportBackstab.Location = new System.Drawing.Point(0, 0);
-            this.ckbTeleportBackstab.Name = "ckbTeleportBackstab";
-            this.ckbTeleportBackstab.Size = new System.Drawing.Size(71, 17);
-            this.ckbTeleportBackstab.TabIndex = 0;
-            this.ckbTeleportBackstab.Text = "Backstab";
-            this.ckbTeleportBackstab.UseVisualStyleBackColor = true;
-            // 
             // frmClassEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -899,23 +898,23 @@
             this.tbpClass.PerformLayout();
             this.grpAnimationData.ResumeLayout(false);
             this.grpAnimationData.PerformLayout();
+            this.tbcAnimationExtraData.ResumeLayout(false);
+            this.tbpWalk.ResumeLayout(false);
+            this.tbpWalk.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWalkSpeed)).EndInit();
+            this.tbpProjectile.ResumeLayout(false);
+            this.tbpProjectile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationX)).EndInit();
+            this.pnlProjectilePos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picProjectileIndicator)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picProjectile)).EndInit();
+            this.tbpTeleport.ResumeLayout(false);
+            this.tbpTeleport.PerformLayout();
             this.tbpUnit.ResumeLayout(false);
             this.tbpUnit.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.tbcAnimationExtraData.ResumeLayout(false);
-            this.tbpWalk.ResumeLayout(false);
-            this.tbpWalk.PerformLayout();
-            this.tbpProjectile.ResumeLayout(false);
-            this.tbpProjectile.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picProjectile)).EndInit();
-            this.pnlProjectilePos.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picProjectileIndicator)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudProjectileLocationY)).EndInit();
-            this.tbpTeleport.ResumeLayout(false);
-            this.tbpTeleport.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudWalkSpeed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -342,7 +342,7 @@ namespace FrogForge.Editors
 
         private void txtUnitName_TextChanged(object sender, EventArgs e)
         {
-            txtUnitDisplayName.Text = txtUnitName.Text;
+            txtUnitDisplayName.Text = txtUnitName.Text.Length <= 8 ? txtUnitName.Text : txtUnitName.Text.Substring(0, 8);
         }
 
         private void ckbWalkCustomSpeed_CheckedChanged(object sender, EventArgs e)

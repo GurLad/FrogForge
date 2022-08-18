@@ -309,7 +309,7 @@ namespace FrogForge.Editors
 
         private void txtCharactersName_TextChanged(object sender, EventArgs e)
         {
-            txtCharactersDisplayName.Text = txtCharactersName.Text;
+            txtCharactersDisplayName.Text = txtCharactersName.Text.Length <= 8 ? txtCharactersName.Text : txtCharactersName.Text.Substring(0, 8);
         }
     }
 }
