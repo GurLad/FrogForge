@@ -175,69 +175,117 @@ namespace FrogForge.Editors
             musicEditor.ShowDialog(this);
         }
 
-        private void btnDataImport_Click(object sender, EventArgs e)
+        private async void btnDataImport_Click(object sender, EventArgs e)
         {
             if (dlgDataImport.ShowDialog(this) == DialogResult.OK)
             {
+                PreWork();
+                frmWorkProgress workProgress = frmWorkProgress.Show("Extracting...", "importing", true, false, this);
                 FilesController tempData = new FilesController("TempData");
+                // Delete current TempData (shouldn't exist, but just in case)
                 string tempPath = WorkingDirectory.Path;
                 if (System.IO.Directory.Exists(tempData.Path))
                 {
-                    System.IO.Directory.Delete(tempData.Path, true);
+                    await Task.Run(() => System.IO.Directory.Delete(tempData.Path, true));
                 }
-                System.IO.Compression.ZipFile.ExtractToDirectory(dlgDataImport.FileName, tempData.Path);
-                System.IO.Directory.Delete(DataDirectory.Path, true);
-                System.IO.Directory.Move(tempData.Path, DataDirectory.Path);
+                if (workProgress.Canceled)
+                {
+                    workProgress.End();
+                    PostWork(false);
+                    return;
+                }
+                // Extract the data
+                await Task.Run(() => System.IO.Compression.ZipFile.ExtractToDirectory(dlgDataImport.FileName, tempData.Path));
+                workProgress.Cancelable = false; // After we delete the current data (next command), it's impossible to cancel the import
+                await workProgress.FinishCanceling();
+                if (workProgress.Canceled)
+                {
+                    workProgress.End();
+                    PostWork(false);
+                    return;
+                }
+                // Move the TempData to the real Data folder
+                workProgress.LabelText = "Importing...";
+                await Task.Run(() => System.IO.Directory.Delete(DataDirectory.Path, true));
+                await Task.Run(() => System.IO.Directory.Move(tempData.Path, DataDirectory.Path));
                 WorkingDirectory.Path = tempPath;
                 DataDirectory.SaveFile("Path", WorkingDirectory.Path);
-                MessageBox.Show("Done!");
+                workProgress.End();
+                PostWork();
             }
         }
 
-        private void btnDataExport_Click(object sender, EventArgs e)
+        private async void btnDataExport_Click(object sender, EventArgs e)
         {
             if (dlgDataExport.ShowDialog(this) == DialogResult.OK)
             {
+                PreWork();
+                frmWorkProgress workProgress = frmWorkProgress.Show("Exporting...", "exporting", false, false, this);
                 if (System.IO.File.Exists(dlgDataExport.FileName))
                 {
-                    System.IO.File.Delete(dlgDataExport.FileName);
+                    await Task.Run(() => System.IO.File.Delete(dlgDataExport.FileName));
                 }
-                System.IO.Compression.ZipFile.CreateFromDirectory(DataDirectory.Path, dlgDataExport.FileName);
-                MessageBox.Show("Done!");
+                await Task.Run(() => System.IO.Compression.ZipFile.CreateFromDirectory(DataDirectory.Path, dlgDataExport.FileName));
+                workProgress.End();
+                PostWork();
             }
         }
 
-        private void btnProjectImport_Click(object sender, EventArgs e)
+        private async void btnProjectImport_Click(object sender, EventArgs e)
         {
             if (dlgProjectImport.ShowDialog(this) == DialogResult.OK)
             {
+                PreWork();
+                frmWorkProgress workProgress = frmWorkProgress.Show("Extracting...", "importing", true, false, this);
                 FilesController tempProject = new FilesController();
+                // Delete current TempData (shouldn't exist, but just in case)
                 tempProject.Path = WorkingDirectory.Path.Substring(0, WorkingDirectory.Path.LastIndexOf(@"\"));
                 tempProject.CreateDirectory("TempData", true);
                 if (System.IO.Directory.Exists(tempProject.Path))
                 {
-                    System.IO.Directory.Delete(tempProject.Path, true);
+                    await Task.Run(() => System.IO.Directory.Delete(tempProject.Path, true));
                 }
-                System.IO.Compression.ZipFile.ExtractToDirectory(dlgProjectImport.FileName, tempProject.Path);
+                if (workProgress.Canceled)
+                {
+                    workProgress.End();
+                    PostWork(false);
+                    return;
+                }
+                // Extract the project
+                await Task.Run(() => System.IO.Compression.ZipFile.ExtractToDirectory(dlgProjectImport.FileName, tempProject.Path));
+                workProgress.Cancelable = false; // After we delete the current project (next command), it's impossible to cancel the import
+                await workProgress.FinishCanceling();
+                if (workProgress.Canceled)
+                {
+                    workProgress.End();
+                    PostWork(false);
+                    return;
+                }
+                // Move the project to the real Data folder
+                workProgress.LabelText = "Importing...";
                 if (System.IO.Directory.Exists(WorkingDirectory.Path))
                 {
-                    System.IO.Directory.Delete(WorkingDirectory.Path, true);
+                    await Task.Run(() => System.IO.Directory.Delete(WorkingDirectory.Path, true));
                 }
-                System.IO.Directory.Move(tempProject.Path, WorkingDirectory.Path);
-                MessageBox.Show("Done!");
+                await Task.Run(() => System.IO.Directory.Move(tempProject.Path, WorkingDirectory.Path));
+                workProgress.End();
+                PostWork();
             }
         }
 
-        private void btnProjectExport_Click(object sender, EventArgs e)
+        private async void btnProjectExport_Click(object sender, EventArgs e)
         {
             if (dlgProjectExport.ShowDialog(this) == DialogResult.OK)
             {
+                PreWork();
+                frmWorkProgress workProgress = frmWorkProgress.Show("Exporting...", "exporting", false, false, this);
                 if (System.IO.File.Exists(dlgProjectExport.FileName))
                 {
-                    System.IO.File.Delete(dlgProjectExport.FileName);
+                    await Task.Run(() => System.IO.File.Delete(dlgProjectExport.FileName));
                 }
-                System.IO.Compression.ZipFile.CreateFromDirectory(WorkingDirectory.Path, dlgProjectExport.FileName);
-                MessageBox.Show("Done!");
+                await Task.Run(() => System.IO.Compression.ZipFile.CreateFromDirectory(WorkingDirectory.Path, dlgProjectExport.FileName));
+                workProgress.End();
+                PostWork();
             }
         }
 
@@ -270,6 +318,21 @@ namespace FrogForge.Editors
         private void btnHelpSourceCode_Click(object sender, EventArgs e)
         {
             Process.Start("https://www.github.com/GurLad/FrogForge");
+        }
+
+        private void PreWork()
+        {
+            Enabled = false;
+        }
+
+        private void PostWork(bool success = true)
+        {
+            if (success)
+            {
+                MessageBox.Show("Done!");
+            }
+            Enabled = true;
+            Focus();
         }
     }
 }

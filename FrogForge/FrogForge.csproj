@@ -182,6 +182,12 @@
     <Compile Include="frmInputBox.Designer.cs">
       <DependentUpon>frmInputBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmWorkProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWorkProgress.Designer.cs">
+      <DependentUpon>frmWorkProgress.cs</DependentUpon>
+    </Compile>
     <Compile Include="PartialPalettedImage.cs" />
     <Compile Include="Datas\TeamData.cs" />
     <Compile Include="Datas\TileData.cs" />
@@ -385,6 +391,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmInputBox.resx">
       <DependentUpon>frmInputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWorkProgress.resx">
+      <DependentUpon>frmWorkProgress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AIPrioritiesPanel.resx">
       <DependentUpon>AIPrioritiesPanel.cs</DependentUpon>
