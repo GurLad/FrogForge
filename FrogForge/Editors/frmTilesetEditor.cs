@@ -353,11 +353,7 @@ namespace FrogForge.Editors
         {
             if (CurrentTiles.Count > 0)
             {
-                foreach (int index in Selected)
-                {
-                    CurrentTiles.RemoveAt(index >= 0 ? index : (CurrentTiles.Count - 1));
-                }
-                Selected.Set(-1);
+                Selected.DeleteAll(CurrentTiles);
                 Render();
                 Dirty = true;
             }
@@ -465,6 +461,28 @@ namespace FrogForge.Editors
                 {
                     Remove(this[0]);
                 }
+            }
+
+            public void DeleteAll(List<TileData> currentTiles)
+            {
+                for (int i = 0; i < SelectedIndexes.Count; i++)
+                {
+                    Editor.Renderers[this[i]].Image = null;
+                }
+                while (!IsEmpty())
+                {
+                    int index = this[0];
+                    currentTiles.RemoveAt(index >= 0 ? index : (currentTiles.Count - 1));
+                    SelectedIndexes.Remove(index);
+                    for (int i = 0; i < SelectedIndexes.Count; i++)
+                    {
+                        if (SelectedIndexes[i] > index)
+                        {
+                            SelectedIndexes[i]--;
+                        }
+                    }
+                }
+                Editor.grpSelectedTile.Enabled = false;
             }
 
             public IEnumerator<int> GetEnumerator()

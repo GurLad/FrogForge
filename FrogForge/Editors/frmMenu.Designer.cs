@@ -115,7 +115,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(289, 11);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.6.2.1 18.08.2022";
+            this.lblVersion.Text = "V.0.6.2.2 22.08.2022";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnClassEditor
@@ -184,21 +184,21 @@
             // btnProjectExport
             // 
             this.btnProjectExport.Name = "btnProjectExport";
-            this.btnProjectExport.Size = new System.Drawing.Size(180, 22);
+            this.btnProjectExport.Size = new System.Drawing.Size(159, 22);
             this.btnProjectExport.Text = "Export project...";
             this.btnProjectExport.Click += new System.EventHandler(this.btnProjectExport_Click);
             // 
             // btnProjectImport
             // 
             this.btnProjectImport.Name = "btnProjectImport";
-            this.btnProjectImport.Size = new System.Drawing.Size(180, 22);
+            this.btnProjectImport.Size = new System.Drawing.Size(159, 22);
             this.btnProjectImport.Text = "Import project...";
             this.btnProjectImport.Click += new System.EventHandler(this.btnProjectImport_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(156, 6);
             // 
             // btnFrogForgeData
             // 
@@ -207,7 +207,7 @@
             this.btnDataImport,
             this.btnDataExport});
             this.btnFrogForgeData.Name = "btnFrogForgeData";
-            this.btnFrogForgeData.Size = new System.Drawing.Size(180, 22);
+            this.btnFrogForgeData.Size = new System.Drawing.Size(159, 22);
             this.btnFrogForgeData.Text = "Frog Forge data";
             this.btnFrogForgeData.Visible = false;
             // 
