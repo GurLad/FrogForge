@@ -207,6 +207,7 @@
     </Compile>
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Preferences.cs" />
+    <Compile Include="ProjectPart.cs" />
     <Compile Include="UnityPoint.cs" />
     <Compile Include="UnityVector2.cs" />
     <Compile Include="UserControls\AIPrioritiesPanel.cs">
@@ -500,6 +501,8 @@
     <None Include="Resources\Cursor.png" />
     <None Include="Resources\MiniDelete.png" />
     <None Include="Resources\Add.png" />
+    <None Include="Resources\Export.png" />
+    <None Include="Resources\Import.png" />
     <Content Include="Resources\NewFolder.png" />
     <None Include="Resources\DeleteFolder.png" />
     <None Include="Resources\Palette.png" />

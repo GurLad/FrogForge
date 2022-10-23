@@ -50,6 +50,8 @@ namespace FrogForge.Editors
             }
         }
         protected OpenFileDialog dlgOpen = new OpenFileDialog();
+        protected SaveFileDialog dlgExport = new SaveFileDialog();
+        protected OpenFileDialog dlgImport = new OpenFileDialog();
         protected string BaseName;
         protected EventHandler DirtyFunc;
 
@@ -62,6 +64,9 @@ namespace FrogForge.Editors
             KeyDown += KeyDownEvent;
             DirtyFunc = (s, e1) => Dirty = true;
             dlgOpen.Filter = "Image files|*.gif;*.png";
+            dlgExport.Filter = dlgImport.Filter = "ERROR|*.*"; // Need to be set for each editor
+            dlgExport.SupportMultiDottedExtensions = dlgImport.SupportMultiDottedExtensions = true;
+            dlgImport.Multiselect = true;
         }
 
         public bool HasUnsavedChanges()

@@ -311,5 +311,57 @@ namespace FrogForge.Editors
         {
             txtCharactersDisplayName.Text = txtCharactersName.Text.Length <= 8 ? txtCharactersName.Text : txtCharactersName.Text.Substring(0, 8);
         }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if (tbcMain.SelectedIndex == 0)
+            {
+                dlgExport.Filter = "Portrait data files|*.portrait.ffpp";
+                PortraitData data = CharacterDataFromUI(new PortraitData());
+                ProjectPart.Export(
+                    dlgExport, "Portrait", data,
+                    data.Foreground.ToBitmap(Palette.BasePalette),
+                    data.Background.ToBitmap(Palette.BasePalette));
+            }
+            else
+            {
+                dlgExport.Filter = "Generic portrait data files|*.generic.ffpp";
+                GenericPortraitData data = GenericDataFromUI(new GenericPortraitData());
+                ProjectPart.Export(
+                    dlgExport, "Generic", data,
+                    data.Foreground.ToBitmap(Palette.BasePalette),
+                    data.Background.ToBitmap(Palette.BasePalette));
+            }
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            if (tbcMain.SelectedIndex == 0)
+            {
+                dlgImport.Filter = "Portrait data files|*.portrait.ffpp";
+                ProjectPart.Import<PortraitData>(
+                    dlgImport, "Portrait",
+                    (p) =>
+                    {
+                        CharacterDataToUI(p);
+                        btnSave_Click(sender, e);
+                    },
+                    (p, img) => p.Foreground = new PalettedImage(img),
+                    (p, img) => p.Background = new PalettedImage(img));
+            }
+            else
+            {
+                dlgImport.Filter = "Generic portrait data files|*.generic.ffpp";
+                ProjectPart.Import<GenericPortraitData>(
+                    dlgImport, "Generic",
+                    (p) =>
+                    {
+                        GenericDataToUI(p);
+                        btnSave_Click(sender, e);
+                    },
+                    (p, img) => p.Foreground = new PalettedImage(img),
+                    (p, img) => p.Background = new PalettedImage(img));
+            }
+        }
     }
 }
