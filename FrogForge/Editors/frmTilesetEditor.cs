@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static FrogForge.ExtensionMethods;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
 namespace FrogForge.Editors
 {
@@ -90,6 +91,7 @@ namespace FrogForge.Editors
             ckbHigh.CheckedChanged += tileDirtyFunc;
             ckbWall.CheckedChanged += tileDirtyFunc;
             // Init stuff
+            dlgImport.Filter = dlgExport.Filter = "Tileset data files|*.tileset.ffpp";
             dlgOpenTiles.Filter = "Image files|*.png;*.gif";
             dlgOpenTiles.Multiselect = true;
             (Selected = new Selection(this)).Set(-1);
@@ -406,6 +408,76 @@ namespace FrogForge.Editors
             {
                 Selected.Clear();
             }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            TilesetData data = TilesetDataFromUI(new TilesetData());
+            List<Image> images = new List<Image>();
+            images.AddRange(data.Tiles.ConvertAll(a => a.Image.ToBitmap(Palette.BasePalette)));
+            foreach (BattleBackgroundData background in data.BattleBackgrounds)
+            {
+                background.HasLayers = BattleBackgroundData.Layers.Unkown;
+                if ((background.HasLayers & BattleBackgroundData.Layers.L1) != 0)
+                {
+                    images.Add(background.Layer1.ToBitmap(Palette.BasePalette));
+                }
+                if ((background.HasLayers & BattleBackgroundData.Layers.L2) != 0)
+                {
+                    images.Add(background.Layer2.ToBitmap(Palette.BasePalette));
+                }
+            }
+            ProjectPart.Export(dlgExport, "Tileset", data, images.ToArray());
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            ProjectPart.Import<TilesetData>(
+                dlgImport, "Tileset",
+                (ts) =>
+                {
+                    TilesetDataToUI(ts);
+                    btnSave_Click(sender, e);
+                },
+                (i, ts, img) =>
+                {
+                    if (i >= ts.Tiles.Count)
+                    {
+                        int target = i - ts.Tiles.Count;
+                        for (int j = 0; j < ts.BattleBackgrounds.Count; j++)
+                        {
+                            if ((ts.BattleBackgrounds[j].HasLayers & BattleBackgroundData.Layers.L1) != 0)
+                            {
+                                if (target == 0)
+                                {
+                                    ts.BattleBackgrounds[j].Layer1 = new PartialPalettedImage(img);
+                                    return;
+                                }
+                                else
+                                {
+                                    target--;
+                                }
+                            }
+                            if ((ts.BattleBackgrounds[j].HasLayers & BattleBackgroundData.Layers.L2) != 0)
+                            {
+                                if (target == 0)
+                                {
+                                    ts.BattleBackgrounds[j].Layer2 = new PartialPalettedImage(img);
+                                    return;
+                                }
+                                else
+                                {
+                                    target--;
+                                }
+                            }
+                        }
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        ts.Tiles[i].Image = new PalettedImage(img);
+                    }
+                });
         }
 
         private class Selection : IEnumerable<int>

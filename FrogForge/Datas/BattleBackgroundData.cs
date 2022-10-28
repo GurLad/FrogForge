@@ -10,10 +10,23 @@ namespace FrogForge.Datas
 {
     public class BattleBackgroundData : NamedData
     {
+        public enum Layers { None = 0, L1 = 1, L2 = 2, Unkown = -1 }
         [System.Text.Json.Serialization.JsonIgnore]
         public PartialPalettedImage Layer1 { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
         public PartialPalettedImage Layer2 { get; set; }
+        private Layers _hasLayers;
+        public Layers HasLayers
+        {
+            get
+            {
+                return _hasLayers != Layers.Unkown ? _hasLayers : (Layer1 != null ? Layers.L1 : Layers.None) | (Layer2 != null ? Layers.L2 : Layers.None);
+            }
+            set
+            {
+                _hasLayers = value;
+            }
+        }
 
         [JsonConstructorAttribute]
         public BattleBackgroundData(string name)

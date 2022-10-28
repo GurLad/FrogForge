@@ -26,20 +26,25 @@ namespace FrogForge
             }
         }
 
-        public static void Import<T>(OpenFileDialog dlgImport, string magic, Action<T> saveAction, params Action<T, Image>[] setters)
+        public static void Import<T>(OpenFileDialog dlgImport, string magic, Action<T> saveAction, Action<int, T, Image> setter)
         {
             if (dlgImport.ShowDialog() == DialogResult.OK)
             {
                 for (int i = 0; i < dlgImport.FileNames.Length; i++)
                 {
                     string source = File.ReadAllText(dlgImport.FileNames[i]);
-                    T data = ImportString<T>(magic, source, setters);
+                    T data = ImportString(magic, source, setter);
                     if (data != null)
                     {
                         saveAction(data);
                     }
                 }
             }
+        }
+
+        public static void Import<T>(OpenFileDialog dlgImport, string magic, Action<T> saveAction, params Action<T, Image>[] setters)
+        {
+            Import(dlgImport, magic, saveAction, (i, data, image) => setters[i](data, image));
         }
 
         private static string ExportString<T>(string magic, T data, params Image[] images)
@@ -75,7 +80,7 @@ namespace FrogForge
             return firstLine + result;
         }
 
-        private static T ImportString<T>(string magic, string source, params Action<T, Image>[] setters)
+        private static T ImportString<T>(string magic, string source, Action<int, T, Image> setter)
         {
             // Do everything in a try-catch in case users try inputing a pdf or something
             try
@@ -94,18 +99,14 @@ namespace FrogForge
                 {
                     lengths[i] = int.Parse(lengthStrings[i].Trim());
                 }
-                if (lengths.Length != setters.Length + 1)
-                {
-                    throw new Exception();
-                }
                 // Find all parts
                 string actualFile = source.Substring(lengths.Length * (LENGTH_LENGTH + 1));
                 T result = actualFile.Substring(0, lengths[0]).JsonToObject<T>();
-                for (int i = 0; i < setters.Length; i++)
+                for (int i = 0; i < lengths.Length - 1; i++)
                 {
                     actualFile = actualFile.Substring(lengths[i]);
                     Image image = Base64ToImage(actualFile.Substring(0, lengths[i + 1]));
-                    setters[i](result, image);
+                    setter(i, result, image);
                 }
                 return result;
             }
@@ -114,6 +115,11 @@ namespace FrogForge
                 MessageBox.Show("Invalid file! Import failed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return default;
             }
+}
+
+        private static T ImportString<T>(string magic, string source, params Action<T, Image>[] setters)
+        {
+            return ImportString<T>(magic, source, (i, data, image) => setters[i](data, image));
         }
 
         // From https://stackoverflow.com/questions/18827081/c-sharp-base64-string-to-jpeg-image

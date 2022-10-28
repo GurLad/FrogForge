@@ -43,6 +43,7 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.rdbSelectionMulti = new System.Windows.Forms.RadioButton();
             this.rdbSelectionPush = new System.Windows.Forms.RadioButton();
             this.rdbSelectionSwap = new System.Windows.Forms.RadioButton();
             this.rdbSelectionSelect = new System.Windows.Forms.RadioButton();
@@ -66,7 +67,9 @@
             this.pnlPossibleTiles = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.bblBattleBackgrounds = new FrogForge.UserControls.BattleBackgroundsListEditor();
-            this.rdbSelectionMulti = new System.Windows.Forms.RadioButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnExport = new System.Windows.Forms.ToolStripButton();
+            this.btnImport = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -82,7 +85,10 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnSave,
             this.btnNew,
-            this.btnDelete});
+            this.btnDelete,
+            this.toolStripSeparator1,
+            this.btnExport,
+            this.btnImport});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(789, 25);
@@ -203,6 +209,17 @@
             this.groupBox4.TabIndex = 32;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Selection mode";
+            // 
+            // rdbSelectionMulti
+            // 
+            this.rdbSelectionMulti.AutoSize = true;
+            this.rdbSelectionMulti.Location = new System.Drawing.Point(180, 19);
+            this.rdbSelectionMulti.Name = "rdbSelectionMulti";
+            this.rdbSelectionMulti.Size = new System.Drawing.Size(47, 17);
+            this.rdbSelectionMulti.TabIndex = 0;
+            this.rdbSelectionMulti.Text = "Multi";
+            this.rdbSelectionMulti.UseVisualStyleBackColor = true;
+            this.rdbSelectionMulti.CheckedChanged += new System.EventHandler(this.rdbSelectionMulti_CheckedChanged);
             // 
             // rdbSelectionPush
             // 
@@ -472,16 +489,30 @@
             this.bblBattleBackgrounds.Size = new System.Drawing.Size(335, 278);
             this.bblBattleBackgrounds.TabIndex = 1;
             // 
-            // rdbSelectionMulti
+            // toolStripSeparator1
             // 
-            this.rdbSelectionMulti.AutoSize = true;
-            this.rdbSelectionMulti.Location = new System.Drawing.Point(180, 19);
-            this.rdbSelectionMulti.Name = "rdbSelectionMulti";
-            this.rdbSelectionMulti.Size = new System.Drawing.Size(47, 17);
-            this.rdbSelectionMulti.TabIndex = 0;
-            this.rdbSelectionMulti.Text = "Multi";
-            this.rdbSelectionMulti.UseVisualStyleBackColor = true;
-            this.rdbSelectionMulti.CheckedChanged += new System.EventHandler(this.rdbSelectionMulti_CheckedChanged);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnExport
+            // 
+            this.btnExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExport.Image = global::FrogForge.Properties.Resources.Export;
+            this.btnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(23, 22);
+            this.btnExport.Text = "Export";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnImport
+            // 
+            this.btnImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnImport.Image = global::FrogForge.Properties.Resources.Import;
+            this.btnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(23, 22);
+            this.btnImport.Text = "Import";
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // frmTilesetEditor
             // 
@@ -561,5 +592,8 @@
         private System.Windows.Forms.CheckBox ckbAutoApply;
         private UserControls.BattleBackgroundsListEditor bblBattleBackgrounds;
         private System.Windows.Forms.RadioButton rdbSelectionMulti;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btnExport;
+        private System.Windows.Forms.ToolStripButton btnImport;
     }
 }
