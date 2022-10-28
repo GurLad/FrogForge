@@ -32,6 +32,9 @@ namespace FrogForge.Editors
         private void frmMenu_Load(object sender, EventArgs e)
         {
             // Init stuff
+            FontStuff.CreateFont(Properties.Resources.Gaiden);
+            FontStuff.CreateFont(Properties.Resources._3X5);
+            lblCredits.Font = lblVersion.Font = FontStuff.GetFont("3x5", lblCredits.Font.Size);
             dlgFolder.IsFolderPicker = true;
             dlgDataImport.Filter = "Frog Forge editor data files|*.ffed";
             dlgDataExport.Filter = "Frog Forge editor data files|*.ffed";

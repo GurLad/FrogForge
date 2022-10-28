@@ -61,6 +61,16 @@ namespace FrogForge.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] _3X5 {
+            get {
+                object obj = ResourceManager.GetObject("_3X5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Add {
@@ -127,6 +137,16 @@ namespace FrogForge.Properties {
             get {
                 object obj = ResourceManager.GetObject("FrogmanGaidenConversationBG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Gaiden {
+            get {
+                object obj = ResourceManager.GetObject("Gaiden", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

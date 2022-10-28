@@ -170,6 +170,7 @@
     <Compile Include="Editors\frmPreferences.Designer.cs">
       <DependentUpon>frmPreferences.cs</DependentUpon>
     </Compile>
+    <Compile Include="FontStuff.cs" />
     <Compile Include="frmColorsHelp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -485,6 +486,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
+    <None Include="Resources\3X5.ttf" />
     <None Include="Resources\FrogmanGaidenConversationBG.png" />
   </ItemGroup>
   <ItemGroup>
@@ -495,6 +497,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FrogForge.ico" />
+    <None Include="Resources\Gaiden.ttf" />
     <None Include="Resources\OpenFile.png" />
     <None Include="Resources\Reset.png" />
     <None Include="Resources\Remove.png" />
