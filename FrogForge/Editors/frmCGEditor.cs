@@ -26,6 +26,7 @@ namespace FrogForge.Editors
             // Init palettes
             BaseSpritePalettes = Palette.GetBaseSpritePalettes(WorkingDirectory);
             // Init stuff
+            dlgImport.Filter = dlgExport.Filter = "CG data files|*.cg.ffpp";
             lstCGs.Init(this, () => new CGData(), CGDataFromUI, CGDataToUI, "CGs");
             pltBG1.Init(this, (p) => { picBG1.Palette = p; UpdatePreview(); });
             pltBG2.Init(this, (p) => { picBG2.Palette = p; UpdatePreview(); });
@@ -152,6 +153,76 @@ namespace FrogForge.Editors
                 }
             }
             Cursor.Current = Cursors.Default;
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            CGData data = CGDataFromUI(new CGData());
+            List<Image> images = new List<Image>();
+            data.HasLayers = CGData.Layers.Unkown;
+            if ((data.HasLayers & CGData.Layers.L1) != 0)
+            {
+                images.Add(data.BGImage1.ToBitmap(Palette.BasePalette));
+            }
+            if ((data.HasLayers & CGData.Layers.L2) != 0)
+            {
+                images.Add(data.BGImage2.ToBitmap(Palette.BasePalette));
+            }
+            if ((data.HasLayers & CGData.Layers.L3) != 0)
+            {
+                images.Add(data.FGImage1.ToBitmap(Palette.BasePalette));
+            }
+            if ((data.HasLayers & CGData.Layers.L4) != 0)
+            {
+                images.Add(data.FGImage2.ToBitmap(Palette.BasePalette));
+            }
+            ProjectPart.Export(dlgExport, "CG", data, images.ToArray());
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            ProjectPart.Import<CGData>(
+                dlgImport, "CG",
+                (cg) =>
+                {
+                    CGDataToUI(cg);
+                    btnSave_Click(sender, e);
+                },
+                (i, cg, img) =>
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (((int)cg.HasLayers & ((int)BattleBackgroundData.Layers.L1 << j)) != 0)
+                        {
+                            if (i == 0)
+                            {
+                                switch (j)
+                                {
+                                    case 0:
+                                        cg.BGImage1 = new PartialPalettedImage(img);
+                                        break;
+                                    case 1:
+                                        cg.BGImage2 = new PartialPalettedImage(img);
+                                        break;
+                                    case 2:
+                                        cg.FGImage1 = new PartialPalettedImage(img);
+                                        break;
+                                    case 3:
+                                        cg.FGImage2 = new PartialPalettedImage(img);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                return;
+                            }
+                            else
+                            {
+                                i--;
+                            }
+                        }
+                    }
+                    throw new Exception();
+                });
         }
     }
 }

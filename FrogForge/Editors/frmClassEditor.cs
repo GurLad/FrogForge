@@ -349,5 +349,63 @@ namespace FrogForge.Editors
         {
             nudWalkSpeed.Enabled = ckbWalkCustomSpeed.Checked;
         }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if (tbcMain.SelectedIndex == 0)
+            {
+                dlgExport.Filter = "Class data files|*.class.ffpp";
+                ClassData data = ClassDataFromUI(new ClassData());
+                List<Image> images = new List<Image>();
+                images.Add(data.MapSprite.ToBitmap(Palette.BasePalette));
+                images.AddRange(data.BattleAnimations.ConvertAll(a => a.Image.ToBitmap(Palette.BasePalette)));
+                ProjectPart.Export(dlgExport, "Class", data, images.ToArray());
+            }
+            else
+            {
+                // Technically, could just be a simple JSON file as it doesn't contain any images, but eh
+                dlgExport.Filter = "Unit data files|*.unit.ffpp";
+                UnitData data = UnitDataFromUI(new UnitData());
+                ProjectPart.Export(dlgExport, "Unit", data);
+            }
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            if (tbcMain.SelectedIndex == 0)
+            {
+                dlgImport.Filter = "Class data files|*.class.ffpp";
+                ProjectPart.Import<ClassData>(
+                    dlgImport, "Class",
+                    (c) =>
+                    {
+                        ClassDataToUI(c);
+                        btnSave_Click(sender, e);
+                    },
+                    (i, c, img) =>
+                    {
+                        if (i <= 0)
+                        {
+                            c.MapSprite = new PalettedImage(img);
+                        }
+                        else
+                        {
+                            c.BattleAnimations[i - 1].Image = new PalettedImage(img);
+                        }
+                    });
+            }
+            else
+            {
+                // Technically, could just be a simple JSON file as it doesn't contain any images, but eh
+                dlgImport.Filter = "Unit data files|*.unit.ffpp";
+                ProjectPart.Import<UnitData>(
+                    dlgImport, "Unit",
+                    (u) =>
+                    {
+                        UnitDataToUI(u);
+                        btnSave_Click(sender, e);
+                    });
+            }
+        }
     }
 }

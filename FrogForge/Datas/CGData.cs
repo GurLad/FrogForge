@@ -9,6 +9,7 @@ namespace FrogForge.Datas
 {
     public class CGData : NamedData
     {
+        public enum Layers { None = 0, L1 = 1, L2 = 2, L3 = 4, L4 = 8, Unkown = -1 }
         public Palette BGPalette1 { get; set; } = new Palette();
         public Palette BGPalette2 { get; set; } = new Palette();
         public int FGPalette1 { get; set; }
@@ -21,6 +22,22 @@ namespace FrogForge.Datas
         public PalettedImage FGImage1 { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
         public PalettedImage FGImage2 { get; set; }
+        private Layers _hasLayers;
+        public Layers HasLayers
+        {
+            get
+            {
+                return _hasLayers != Layers.Unkown ? _hasLayers :
+                    (BGImage1 != null ? Layers.L1 : Layers.None) |
+                    (BGImage2 != null ? Layers.L2 : Layers.None) |
+                    (FGImage1 != null ? Layers.L3 : Layers.None) |
+                    (FGImage2 != null ? Layers.L4 : Layers.None);
+            }
+            set
+            {
+                _hasLayers = value;
+            }
+        }
 
         public void LoadImages(FilesController workingDirectory)
         {

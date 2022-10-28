@@ -113,6 +113,7 @@ namespace FrogForge.Editors
             txtLevelName.TextChanged += DirtyFunc;
             nudLevelNumber.ValueChanged += DirtyFunc;
             // Init stuff
+            dlgImport.Filter = dlgExport.Filter = "Map data files|*.map.ffpp";
             melMapEvents.Init(this, () => new MapEventData(), () => new UserControls.MapEventPanel(), (a) => a.Init(this, DataDirectory), false);
             this.ApplyPreferences();
             // Fix zoom mode - I don't know why it has so many bugs
@@ -248,9 +249,8 @@ namespace FrogForge.Editors
             UpdatePreview();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private MapData MapDataFromUI()
         {
-            Dirty = false;
             MapData data = new MapData();
             // Tilemap
             string result = "";
@@ -272,25 +272,11 @@ namespace FrogForge.Editors
             data.LevelNumber = (int)nudLevelNumber.Value;
             data.Objective = ObjectiveToString();
             data.Name = txtLevelName.Text;
-            CurrentDirectory.SaveFile(txtLevelName.Text, data.ToJson());
-            flbFiles.UpdateList();
-            VoiceAssist.Say("Save");
+            return data;
         }
 
-        private void LoadFile(string fileName)
+        private void MapDataToUI(MapData data)
         {
-            if (HasUnsavedChanges())
-            {
-                return;
-            }
-            // Cancel the current placing operation
-            CurrentSelected = CurrentSelected ?? new MapTile();
-            tbcUI.Enabled = true;
-            Placing = null;
-            PreviousHover = null;
-            // Load the new level;
-            CurrentFile = fileName;
-            MapData data = CurrentDirectory.LoadFile(txtLevelName.Text = fileName).JsonToObject<MapData>();
             Tiles = null;
             string[] rows = data.Tiles.Split(';');
             for (int i = 0; i < rows.Length; i++)
@@ -315,6 +301,32 @@ namespace FrogForge.Editors
             Render();
             UpdateUnitListBox();
             Dirty = false;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            MapData data = MapDataFromUI();
+            Dirty = false;
+            CurrentDirectory.SaveFile(txtLevelName.Text, data.ToJson());
+            flbFiles.UpdateList();
+            VoiceAssist.Say("Save");
+        }
+
+        private void LoadFile(string fileName)
+        {
+            if (HasUnsavedChanges())
+            {
+                return;
+            }
+            // Cancel the current placing operation
+            CurrentSelected = CurrentSelected ?? new MapTile();
+            tbcUI.Enabled = true;
+            Placing = null;
+            PreviousHover = null;
+            // Load the new level;
+            CurrentFile = fileName;
+            MapData data = CurrentDirectory.LoadFile(txtLevelName.Text = fileName).JsonToObject<MapData>();
+            MapDataToUI(data);
         }
 
         protected override bool ControlKeyAction(Keys key)
@@ -663,6 +675,26 @@ namespace FrogForge.Editors
             {
                 lstUnits.EndUpdate();
             }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            // Technically, could just be a simple JSON file as it doesn't contain any images, but eh
+            MapData data = MapDataFromUI();
+            ProjectPart.Export(dlgExport, "Map", data);
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            // Technically, could just be a simple JSON file as it doesn't contain any images, but eh
+            ProjectPart.Import<MapData>(
+                dlgImport, "Map",
+                (m) =>
+                {
+                    CurrentFile = txtLevelName.Text = m.Name;
+                    MapDataToUI(m);
+                    btnSave_Click(sender, e);
+                });
         }
     }
 }
