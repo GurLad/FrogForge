@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SixLabors.ImageSharp.Advanced;
+using SixLabors.ImageSharp.Formats.Png;
+using SixLabors.ImageSharp.PixelFormats;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -59,12 +62,16 @@ namespace FrogForge
 
         protected virtual void UpdatePalette()
         {
-            for (int i = 0; i < Target.Width; i++)
+            using (var image = Target.ToImageSharpImage<Rgba32>())
             {
-                for (int j = 0; j < Target.Height; j++)
+                for (int i = 0; i < Target.Width; i++)
                 {
-                    Target.SetPixel(i, j, CurrentPalette[Indexes[i, j]]);
+                    for (int j = 0; j < Target.Height; j++)
+                    {
+                        image[i, j] = CurrentPalette[Indexes[i, j]].ToImageSharpColor();
+                    }
                 }
+                Target = image.ToBitmap();
             }
         }
 
@@ -72,13 +79,15 @@ namespace FrogForge
         {
             Target = target;
             Indexes = new int[target.Size.Width, target.Size.Height];
-            // TBA: Replace with something more efficient
-            for (int i = 0; i < target.Width; i++)
+            using (var image = Target.ToImageSharpImage<Rgba32>())
             {
-                for (int j = 0; j < target.Height; j++)
+                for (int i = 0; i < Target.Width; i++)
                 {
-                    Color color = target.GetPixel(i, j);
-                    Indexes[i, j] = color.A == 0 ? 3 : Palette.BasePalette.ClosestColor(color);
+                    for (int j = 0; j < Target.Height; j++)
+                    {
+                        Color color = image[i, j].ToSystemDrawingColor();
+                        Indexes[i, j] = color.A == 0 ? 3 : Palette.BasePalette.ClosestColor(color);
+                    }
                 }
             }
             //SetPalette(Palette.BasePalette);

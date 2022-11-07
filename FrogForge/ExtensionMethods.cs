@@ -249,9 +249,12 @@ namespace FrogForge
         {
             int ColorDiff(Color c1, Color c2)
             {
-                return (int)Math.Sqrt((c1.R - c2.R) * (c1.R - c2.R)
-                                       + (c1.G - c2.G) * (c1.G - c2.G)
-                                       + (c1.B - c2.B) * (c1.B - c2.B));
+                int gray1 = (int)(0.11 * c1.B + 0.59 * c1.G + 0.30 * c1.R);
+                int gray2 = (int)(0.11 * c2.B + 0.59 * c2.G + 0.30 * c2.R);
+                return Math.Abs(gray1 - gray2);
+                //return (int)Math.Sqrt((c1.R - c2.R) * (c1.R - c2.R)
+                //                       + (c1.G - c2.G) * (c1.G - c2.G)
+                //                       + (c1.B - c2.B) * (c1.B - c2.B));
             }
 
             var colorDiffs = options.Select(n => ColorDiff(n, origin)).Min(n => n);

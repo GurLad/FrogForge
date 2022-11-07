@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SixLabors.ImageSharp.PixelFormats;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -24,19 +25,23 @@ namespace FrogForge
 
         protected override void UpdatePalette()
         {
-            for (int i = 0; i < Target.Width / 8; i++)
+            using (var image = Target.ToImageSharpImage<Rgba32>())
             {
-                for (int j = 0; j < Target.Height / 8; j++)
+                for (int i = 0; i < Target.Width / 8; i++)
                 {
-                    bool transparent = TransparentBlocks[i, j];
-                    for (int k = 0; k < 8; k++)
+                    for (int j = 0; j < Target.Height / 8; j++)
                     {
-                        for (int l = 0; l < 8; l++)
+                        bool transparent = TransparentBlocks[i, j];
+                        for (int k = 0; k < 8; k++)
                         {
-                            Target.SetPixel(i * 8 + k, j * 8 + l, transparent ? Color.Transparent : CurrentPalette[Indexes[i * 8 + k, j * 8 + l]]);
+                            for (int l = 0; l < 8; l++)
+                            {
+                                image[i * 8 + k, j * 8 + l] = (transparent ? Color.Transparent : CurrentPalette[Indexes[i * 8 + k, j * 8 + l]]).ToImageSharpColor();
+                            }
                         }
                     }
                 }
+                Target = image.ToBitmap();
             }
         }
 
@@ -52,23 +57,26 @@ namespace FrogForge
             Indexes = new int[target.Size.Width, target.Size.Height];
             TransparentBlocks = new bool[target.Size.Width / 8, target.Size.Height / 8];
             // TBA: Replace with something more efficient
-            for (int i = 0; i < Target.Width / 8; i++)
+            using (var image = Target.ToImageSharpImage<Rgba32>())
             {
-                for (int j = 0; j < Target.Height / 8; j++)
+                for (int i = 0; i < Target.Width / 8; i++)
                 {
-                    bool transparent = true;
-                    for (int k = 0; k < 8; k++)
+                    for (int j = 0; j < Target.Height / 8; j++)
                     {
-                        for (int l = 0; l < 8; l++)
+                        bool transparent = true;
+                        for (int k = 0; k < 8; k++)
                         {
-                            Color color = target.GetPixel(i * 8 + k, j * 8 + l);
-                            Indexes[i * 8 + k, j * 8 + l] = color.A == 0 ? 3 : Palette.BasePalette.ClosestColor(color);
-                            transparent = transparent && color.A == 0;
+                            for (int l = 0; l < 8; l++)
+                            {
+                                Color color = image[i * 8 + k, j * 8 + l].ToSystemDrawingColor();
+                                Indexes[i * 8 + k, j * 8 + l] = color.A == 0 ? 3 : Palette.BasePalette.ClosestColor(color);
+                                transparent = transparent && color.A == 0;
+                            }
                         }
-                    }
-                    if (transparent)
-                    {
-                        TransparentBlocks[i, j] = true;
+                        if (transparent)
+                        {
+                            TransparentBlocks[i, j] = true;
+                        }
                     }
                 }
             }
