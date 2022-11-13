@@ -56,6 +56,11 @@ namespace FrogForge.Editors
                     if (ExtensionMethods.ConfirmDialog("Game directory not found. Locate manually?", "Missing game files"))
                     {
                         btnChangePath_Click(sender, e);
+                        if (WorkingDirectory.Path == "")
+                        {
+                            Close();
+                            return;
+                        }
                     }
                     else
                     {
@@ -71,6 +76,7 @@ namespace FrogForge.Editors
             if (GamePath == "")
             {
                 btnFrogForgeData.Visible = true;
+                btnDebugOptions.Visible = false;
                 btnPlay.Visible = false;
                 Height -= 30;
             }
@@ -294,7 +300,12 @@ namespace FrogForge.Editors
 
         private void btnGameSettings_Click(object sender, EventArgs e)
         {
-            new frmGameSettingsEditor(WorkingDirectory).ShowDialog();
+            new frmGameSettingsEditor(WorkingDirectory).ShowDialog(this);
+        }
+
+        private void btnDebugOptions_Click(object sender, EventArgs e)
+        {
+            new frmDebugOptionsEditor(WorkingDirectory).ShowDialog(this);
         }
 
         private void btnEditPreferences_Click(object sender, EventArgs e)

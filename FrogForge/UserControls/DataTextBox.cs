@@ -17,7 +17,10 @@ namespace FrogForge.UserControls
 
         public void Init(frmBaseEditor editor)
         {
-            txtData.TextChanged += (sender, e) => editor.Dirty = true;
+            if (editor != null)
+            {
+                txtData.TextChanged += (sender, e) => editor.Dirty = true;
+            }
         }
 
         public DataTextBox()
