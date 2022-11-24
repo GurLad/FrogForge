@@ -14,5 +14,6 @@ namespace FrogForge.Datas
         public string Tileset { get; set; }
         public int LevelNumber { get; set; }
         public string Objective { get; set; }
+        public string Tags { get; set; }
     }
 }

@@ -79,10 +79,14 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnNewFolder = new System.Windows.Forms.ToolStripButton();
             this.btnDeleteFolder = new System.Windows.Forms.ToolStripButton();
-            this.label10 = new System.Windows.Forms.Label();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnExport = new System.Windows.Forms.ToolStripButton();
             this.btnImport = new System.Windows.Forms.ToolStripButton();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtTags = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.rdbCustom = new System.Windows.Forms.RadioButton();
+            this.txtCustomObjectiveDescription = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
@@ -414,6 +418,8 @@
             this.tabPage3.Controls.Add(this.nudEscapePosY);
             this.tabPage3.Controls.Add(this.nudEscapePosX);
             this.tabPage3.Controls.Add(this.nudSurviveTurn);
+            this.tabPage3.Controls.Add(this.txtCustomObjectiveDescription);
+            this.tabPage3.Controls.Add(this.rdbCustom);
             this.tabPage3.Controls.Add(this.txtBossName);
             this.tabPage3.Controls.Add(this.rdbDefeatBoss);
             this.tabPage3.Controls.Add(this.rdbEscape);
@@ -637,15 +643,6 @@
             this.btnDeleteFolder.Text = "Delete folder";
             this.btnDeleteFolder.Click += new System.EventHandler(this.btnDeleteFolder_Click);
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(127, 31);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 13);
-            this.label10.TabIndex = 37;
-            this.label10.Text = "Name:";
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -671,14 +668,61 @@
             this.btnImport.Text = "Import";
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(127, 31);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(38, 13);
+            this.label10.TabIndex = 37;
+            this.label10.Text = "Name:";
+            // 
+            // txtTags
+            // 
+            this.txtTags.Location = new System.Drawing.Point(461, 28);
+            this.txtTags.Name = "txtTags";
+            this.txtTags.Size = new System.Drawing.Size(109, 20);
+            this.txtTags.TabIndex = 36;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(421, 31);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(34, 13);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "Tags:";
+            // 
+            // rdbCustom
+            // 
+            this.rdbCustom.AutoSize = true;
+            this.rdbCustom.Location = new System.Drawing.Point(6, 112);
+            this.rdbCustom.Name = "rdbCustom";
+            this.rdbCustom.Size = new System.Drawing.Size(60, 17);
+            this.rdbCustom.TabIndex = 0;
+            this.rdbCustom.Text = "Custom";
+            this.rdbCustom.UseVisualStyleBackColor = true;
+            this.rdbCustom.CheckedChanged += new System.EventHandler(this.rdbCustom_CheckedChanged);
+            // 
+            // txtCustomObjectiveDescription
+            // 
+            this.txtCustomObjectiveDescription.Enabled = false;
+            this.txtCustomObjectiveDescription.Location = new System.Drawing.Point(94, 111);
+            this.txtCustomObjectiveDescription.MaxLength = 17;
+            this.txtCustomObjectiveDescription.Name = "txtCustomObjectiveDescription";
+            this.txtCustomObjectiveDescription.Size = new System.Drawing.Size(100, 20);
+            this.txtCustomObjectiveDescription.TabIndex = 1;
+            // 
             // frmMapEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(657, 306);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tbcUI);
+            this.Controls.Add(this.txtTags);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtLevelName);
             this.Controls.Add(this.nudLevelNumber);
@@ -771,6 +815,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btnExport;
         private System.Windows.Forms.ToolStripButton btnImport;
+        private System.Windows.Forms.TextBox txtTags;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtCustomObjectiveDescription;
+        private System.Windows.Forms.RadioButton rdbCustom;
     }
 }
 

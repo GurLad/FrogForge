@@ -49,6 +49,8 @@
             this.btnDataExport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.btnGameSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDebugOptions = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btnEditPreferences = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.btnHelpColorsResolutions = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,8 +64,6 @@
             this.btnMusicEditor = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnPlay = new System.Windows.Forms.Button();
-            this.btnDebugOptions = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -117,7 +117,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(289, 11);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.6.3.1 13.11.2022";
+            this.lblVersion.Text = "V.0.6.3.2 24.11.2022";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnClassEditor
@@ -186,21 +186,21 @@
             // btnProjectExport
             // 
             this.btnProjectExport.Name = "btnProjectExport";
-            this.btnProjectExport.Size = new System.Drawing.Size(180, 22);
+            this.btnProjectExport.Size = new System.Drawing.Size(159, 22);
             this.btnProjectExport.Text = "Export project...";
             this.btnProjectExport.Click += new System.EventHandler(this.btnProjectExport_Click);
             // 
             // btnProjectImport
             // 
             this.btnProjectImport.Name = "btnProjectImport";
-            this.btnProjectImport.Size = new System.Drawing.Size(180, 22);
+            this.btnProjectImport.Size = new System.Drawing.Size(159, 22);
             this.btnProjectImport.Text = "Import project...";
             this.btnProjectImport.Click += new System.EventHandler(this.btnProjectImport_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(156, 6);
             // 
             // btnFrogForgeData
             // 
@@ -209,7 +209,7 @@
             this.btnDataImport,
             this.btnDataExport});
             this.btnFrogForgeData.Name = "btnFrogForgeData";
-            this.btnFrogForgeData.Size = new System.Drawing.Size(180, 22);
+            this.btnFrogForgeData.Size = new System.Drawing.Size(159, 22);
             this.btnFrogForgeData.Text = "Frog Forge data";
             this.btnFrogForgeData.Visible = false;
             // 
@@ -248,14 +248,26 @@
             // btnGameSettings
             // 
             this.btnGameSettings.Name = "btnGameSettings";
-            this.btnGameSettings.Size = new System.Drawing.Size(180, 22);
+            this.btnGameSettings.Size = new System.Drawing.Size(161, 22);
             this.btnGameSettings.Text = "Game settings...";
             this.btnGameSettings.Click += new System.EventHandler(this.btnGameSettings_Click);
+            // 
+            // btnDebugOptions
+            // 
+            this.btnDebugOptions.Name = "btnDebugOptions";
+            this.btnDebugOptions.Size = new System.Drawing.Size(161, 22);
+            this.btnDebugOptions.Text = "Debug options...";
+            this.btnDebugOptions.Click += new System.EventHandler(this.btnDebugOptions_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(158, 6);
             // 
             // btnEditPreferences
             // 
             this.btnEditPreferences.Name = "btnEditPreferences";
-            this.btnEditPreferences.Size = new System.Drawing.Size(180, 22);
+            this.btnEditPreferences.Size = new System.Drawing.Size(161, 22);
             this.btnEditPreferences.Text = "Preferences...";
             this.btnEditPreferences.Click += new System.EventHandler(this.btnEditPreferences_Click);
             // 
@@ -374,18 +386,6 @@
             this.btnPlay.Text = "Play";
             this.btnPlay.UseVisualStyleBackColor = true;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
-            // 
-            // btnDebugOptions
-            // 
-            this.btnDebugOptions.Name = "btnDebugOptions";
-            this.btnDebugOptions.Size = new System.Drawing.Size(180, 22);
-            this.btnDebugOptions.Text = "Debug options...";
-            this.btnDebugOptions.Click += new System.EventHandler(this.btnDebugOptions_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // frmMenu
             // 

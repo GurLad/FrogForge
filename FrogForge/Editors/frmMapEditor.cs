@@ -271,6 +271,7 @@ namespace FrogForge.Editors
             data.Tileset = cmbTileSets.Text;
             data.LevelNumber = (int)nudLevelNumber.Value;
             data.Objective = ObjectiveToString();
+            data.Tags = txtTags.Text;
             data.Name = txtLevelName.Text;
             return data;
         }
@@ -297,6 +298,7 @@ namespace FrogForge.Editors
             melMapEvents.Datas = data.MapEvents;
             cmbTileSets.Text = data.Tileset;
             nudLevelNumber.Value = data.LevelNumber;
+            txtTags.Text = data.Tags;
             ObjectiveFromString(data.Objective);
             Render();
             UpdateUnitListBox();
@@ -363,6 +365,10 @@ namespace FrogForge.Editors
             {
                 return "Escape:" + nudEscapePosX.Value + ":" + nudEscapePosY.Value;
             }
+            else if (rdbCustom.Checked)
+            {
+                return "Custom:" + txtCustomObjectiveDescription.Text;
+            }
             else
             {
                 return "Null";
@@ -389,6 +395,10 @@ namespace FrogForge.Editors
                     rdbEscape.Checked = true;
                     nudEscapePosX.Value = int.Parse(parts[1]);
                     nudEscapePosY.Value = int.Parse(parts[2]);
+                    break;
+                case "Custom":
+                    rdbCustom.Checked = true;
+                    txtCustomObjectiveDescription.Text = parts[1];
                     break;
                 default:
                     break;
@@ -539,6 +549,11 @@ namespace FrogForge.Editors
         private void rdbEscape_CheckedChanged(object sender, EventArgs e)
         {
             nudEscapePosX.Enabled = nudEscapePosY.Enabled = rdbEscape.Checked;
+        }
+
+        private void rdbCustom_CheckedChanged(object sender, EventArgs e)
+        {
+            txtCustomObjectiveDescription.Enabled = rdbCustom.Checked;
         }
 
         private void btnNew_Click(object sender, EventArgs e)
