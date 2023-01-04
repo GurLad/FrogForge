@@ -13,6 +13,7 @@ namespace FrogForge.UserControls
     public partial class BasePalettedPicturebox<T> : PictureBox where T : PalettedImage
     {
         public Action PostOnClick;
+        protected PalettePanel PalettePanel;
         private frmBaseEditor Editor;
         private OpenFileDialog dlgOpen;
         private Timer tmrAnimate = new Timer();
@@ -53,11 +54,12 @@ namespace FrogForge.UserControls
         private int ImageWidth { get; set; }
         private int ImageHeight { get; set; }
 
-        public void Init(OpenFileDialog dlgOpen, frmBaseEditor editor, Action postOnClick = null)
+        public void Init(OpenFileDialog dlgOpen, frmBaseEditor editor, PalettePanel palettePanel = null, Action postOnClick = null)
         {
             MouseUp += OnClick;
             this.dlgOpen = dlgOpen;
             Editor = editor;
+            PalettePanel = palettePanel;
             tmrAnimate.Interval = 400;
             tmrAnimate.Tick += tmrAnimateTick;
             PostOnClick = postOnClick;
@@ -167,7 +169,14 @@ namespace FrogForge.UserControls
     {
         protected override PalettedImage NewT(Image source)
         {
-            return new PalettedImage(source);
+            if (Preferences.Current.AutoPaletteImageImports && PalettePanel != null)
+            {
+                return PalettedImage.AutoPalette(new Bitmap(source), PalettePanel);
+            }
+            else
+            {
+                return new PalettedImage(source);
+            }
         }
     }
 

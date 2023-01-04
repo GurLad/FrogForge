@@ -8,7 +8,7 @@ namespace FrogForge
 {
     public class UnityColor
     {
-        private static List<System.Drawing.Color> AllPossibleColors { get; } = new List<System.Drawing.Color>(new System.Drawing.Color[]
+        public static List<System.Drawing.Color> AllPossibleColors { get; } = new List<System.Drawing.Color>(new System.Drawing.Color[]
         {
             // Generated in Frogman Magmaborn
             System.Drawing.ColorTranslator.FromHtml("#FFFFFFFF"),
@@ -69,6 +69,8 @@ namespace FrogForge
             System.Drawing.ColorTranslator.FromHtml("#FF000000"),
             System.Drawing.ColorTranslator.FromHtml("#00000000")
         });
+        public static int TRANSPARENT_INDEX => AllPossibleColors.Count - 1;
+        public static int BLACK_INDEX => AllPossibleColors.Count - 2;
 
         public int id { get; set; }
         public float r { get; set; }

@@ -64,7 +64,7 @@ namespace FrogForge.Editors
                 (bap) => { bap.Init(dlgOpen, this); bap.SetPreviewPalette(CurrentPreviewPalette, BaseSpritePalettes); }, true,
                 () => btnGenerateBase.Visible = balBattleAnimations.Datas.Count <= 0);
             txtUnitDeathQuote.Init(DataDirectory, this);
-            picProjectile.Init(dlgOpen, this, () => UpdateProjectileIndicator(true));
+            picProjectile.Init(dlgOpen, this, null, () => UpdateProjectileIndicator(true));
             // Misc
             this.ApplyPreferences();
             pnlProjectilePos.BackColor = picProjectileIndicator.BackColor;
