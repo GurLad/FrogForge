@@ -129,6 +129,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoPaletteHelper.cs" />
     <Compile Include="Datas\AIPriorities.cs" />
     <Compile Include="Datas\BasePortraitData.cs" />
     <Compile Include="Datas\BattleAnimationData.cs" />

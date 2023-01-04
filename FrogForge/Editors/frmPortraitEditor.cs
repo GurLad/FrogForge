@@ -31,7 +31,7 @@ namespace FrogForge.Editors
             // Init palettes
             BaseSpritePalettes = Palette.GetBaseSpritePalettes(WorkingDirectory);
             // Init animation pictureboxes
-            picCharactersBG.Init(dlgOpen, this);
+            picCharactersBG.Init(dlgOpen, this, pltCharactersBGPalette);
             picCharactersFG.Init(dlgOpen, this);
             picCharactersBG.PostOnClick = picCharactersFG.PostOnClick = UpdateCharacterPreview;
             picGenericsBG.Init(dlgOpen, this);
