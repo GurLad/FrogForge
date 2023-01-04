@@ -40,7 +40,7 @@ namespace FrogForge
                     colors[fullImageIndexes[i, j]] = new Point(colors[fullImageIndexes[i, j]].X, colors[fullImageIndexes[i, j]].Y + 1);
                 }
             }
-            colors.Sort((a, b) => a.Y > b.Y ? 1 : (a.Y < b.Y ? -1 : 0));
+            colors.Sort((a, b) => a.Y > b.Y ? -1 : (a.Y < b.Y ? 1 : 0));
             List<int> finalIndexes = colors.GetRange(0, 4).ConvertAll(a => a.X);
             // Process the colours, depending on whether it's a sprite or background
             if (sprite)
@@ -59,10 +59,14 @@ namespace FrogForge
                     finalIndexes.Remove(UnityColor.TRANSPARENT_INDEX);
                     finalIndexes.Add(colors[4].X);
                 }
-                // If it doesn't contain black, add it instead of the 4th colour.
-                if (finalIndexes.FindIndex(a => UnityColor.AllPossibleColors[a] == Color.Black) < 0)
+                int blackIndex = finalIndexes.FindIndex(a => UnityColor.AllPossibleColors[a] == Color.Black);
+                if (blackIndex < 0) // If it doesn't contain black, add it instead of the 4th colour.
                 {
                     finalIndexes[3] = UnityColor.BLACK_INDEX;
+                }
+                else // Otherwise, make sure the black is always UnityColor.BLACK_INDEX
+                {
+                    finalIndexes[blackIndex] = UnityColor.BLACK_INDEX;
                 }
             }
             // Sort these indexes according to brightness - lower indexes are brighter in the default palette

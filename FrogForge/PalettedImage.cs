@@ -44,14 +44,14 @@ namespace FrogForge
             PalettedImage result = new PalettedImage();
             int[,] fullImageIndexes = AutoPaletteHelper.GetFullNESPaletteIndexes(target);
             Palette palette = AutoPaletteHelper.GenerateAutoPalette(fullImageIndexes, target, palettePanel == null);
-            if (palettePanel != null)
-            {
-                palettePanel.SilentSetData(palette);
-            }
             int[,] reducedIndexes = AutoPaletteHelper.ReduceIndexes(fullImageIndexes, target, palette);
             result.Indexes = reducedIndexes;
             result.Target = new Bitmap(target.Width, target.Height);
             result.CurrentPalette = palette;
+            if (palettePanel != null)
+            {
+                palettePanel.Data = palette;
+            }
             return result;
         }
 

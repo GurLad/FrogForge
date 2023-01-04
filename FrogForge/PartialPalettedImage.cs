@@ -30,15 +30,15 @@ namespace FrogForge
             PartialPalettedImage result = new PartialPalettedImage();
             int[,] fullImageIndexes = AutoPaletteHelper.GetFullNESPaletteIndexes(target);
             Palette palette = AutoPaletteHelper.GenerateAutoPalette(fullImageIndexes, target, palettePanel == null);
-            if (palettePanel != null)
-            {
-                palettePanel.SilentSetData(palette);
-            }
             int[,] reducedIndexes = AutoPaletteHelper.ReduceIndexes(fullImageIndexes, target, palette);
             result.TransparentBlocks = new bool[target.Size.Width / 8, target.Size.Height / 8]; // !!!
             result.Indexes = reducedIndexes;
             result.Target = new Bitmap(target.Width, target.Height);
             result.CurrentPalette = palette;
+            if (palettePanel != null)
+            {
+                palettePanel.Data = palette;
+            }
             return result;
         }
 

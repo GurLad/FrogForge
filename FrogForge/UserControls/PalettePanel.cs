@@ -24,7 +24,14 @@ namespace FrogForge.UserControls
             }
             set
             {
-                SilentSetData(value);
+                for (int i = 0; i < 4; i++)
+                {
+                    BGPaletteSelectors[i].BackColor = value[i];
+                    if (SpritePalette && i == 3) // Fix non-transparent JSONs
+                    {
+                        BGPaletteSelectors[i].BackColor = Color.Transparent;
+                    }
+                }
                 OnPaletteChange?.Invoke(Data);
             }
         }
@@ -51,18 +58,6 @@ namespace FrogForge.UserControls
         public void ApplyZoomMode()
         {
             GenerateBoxes();
-        }
-
-        public void SilentSetData(Palette value)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                BGPaletteSelectors[i].BackColor = value[i];
-                if (SpritePalette && i == 3) // Fix non-transparent JSONs
-                {
-                    BGPaletteSelectors[i].BackColor = Color.Transparent;
-                }
-            }
         }
 
         private void Box_Click(object sender, EventArgs e)
