@@ -10,22 +10,36 @@ namespace FrogForge
 {
     public static class AutoPaletteHelper
     {
-        public static int[,] GetFullNESPaletteIndexes(Bitmap target)
+        public static Color[,] BitmapToColorArray(Bitmap target)
         {
-            // First, convert to an indexed image using the entire NES colour palette
-            int[,] fullImageIndexes = new int[target.Width, target.Height];
+            Color[,] colors = new Color[target.Width, target.Height];
             for (int i = 0; i < target.Width; i++)
             {
                 for (int j = 0; j < target.Height; j++)
                 {
                     Color color = target.GetPixel(i, j);
+                    colors[i, j] = color;
+                }
+            }
+            return colors;
+        }
+
+        public static int[,] GetFullNESPaletteIndexes(Color[,] colors, Size size)
+        {
+            // First, convert to an indexed image using the entire NES colour palette
+            int[,] fullImageIndexes = new int[size.Width, size.Height];
+            for (int i = 0; i < size.Width; i++)
+            {
+                for (int j = 0; j < size.Height; j++)
+                {
+                    Color color = colors[i, j];
                     fullImageIndexes[i, j] = color.A == 0 ? UnityColor.TRANSPARENT_INDEX : color.ClosestColorIndex(UnityColor.AllPossibleColors);
                 }
             }
             return fullImageIndexes;
         }
 
-        public static Palette GenerateAutoPalette(int[,] fullImageIndexes, Bitmap target, bool sprite)
+        public static Palette GenerateAutoPalette(int[,] fullImageIndexes, Size size, bool sprite)
         {
             // Now find the 4 most common colours
             List<Point> colors = new List<Point>();
@@ -33,9 +47,9 @@ namespace FrogForge
             {
                 colors.Add(new Point(i, 0));
             }
-            for (int i = 0; i < target.Width; i++)
+            for (int i = 0; i < size.Width; i++)
             {
-                for (int j = 0; j < target.Height; j++)
+                for (int j = 0; j < size.Height; j++)
                 {
                     colors[fullImageIndexes[i, j]] = new Point(colors[fullImageIndexes[i, j]].X, colors[fullImageIndexes[i, j]].Y + 1);
                 }
@@ -49,6 +63,11 @@ namespace FrogForge
                 if (!finalIndexes.Contains(UnityColor.TRANSPARENT_INDEX))
                 {
                     finalIndexes[3] = UnityColor.TRANSPARENT_INDEX;
+                }
+                int blackIndex = finalIndexes.FindIndex(a => UnityColor.AllPossibleColors[a] == Color.Black);
+                if (blackIndex >= 0) // Make sure the black is always UnityColor.BLACK_INDEX
+                {
+                    finalIndexes[blackIndex] = UnityColor.BLACK_INDEX;
                 }
             }
             else
@@ -97,16 +116,16 @@ namespace FrogForge
             return new Palette(sortedColors.ToArray());
         }
 
-        public static int[,] ReduceIndexes(int[,] fullImageIndexes, Bitmap target, Palette palette)
+        public static int[,] ReduceIndexes(Color[,] colors, Size size, Palette palette)
         {
             // Now, we need to generate the image indexes according to the reduced palette.
-            int[,] reducedImageIndexes = new int[target.Width, target.Height];
+            int[,] reducedImageIndexes = new int[size.Width, size.Height];
             List<Color> sortedColors = palette.Colors.ToList().ConvertAll(a => (Color)a);
-            for (int i = 0; i < target.Width; i++)
+            for (int i = 0; i < size.Width; i++)
             {
-                for (int j = 0; j < target.Height; j++)
+                for (int j = 0; j < size.Height; j++)
                 {
-                    reducedImageIndexes[i, j] = UnityColor.AllPossibleColors[fullImageIndexes[i, j]].ClosestColorIndex(sortedColors);
+                    reducedImageIndexes[i, j] = colors[i, j].ClosestColorIndex(sortedColors);
                 }
             }
             // FINALLY, create the actual PalettedImage from this array

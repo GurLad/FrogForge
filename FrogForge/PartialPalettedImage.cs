@@ -28,9 +28,10 @@ namespace FrogForge
         {
             // TEMP
             PartialPalettedImage result = new PartialPalettedImage();
-            int[,] fullImageIndexes = AutoPaletteHelper.GetFullNESPaletteIndexes(target);
-            Palette palette = AutoPaletteHelper.GenerateAutoPalette(fullImageIndexes, target, palettePanel == null);
-            int[,] reducedIndexes = AutoPaletteHelper.ReduceIndexes(fullImageIndexes, target, palette);
+            Color[,] colors = AutoPaletteHelper.BitmapToColorArray(target);
+            int[,] fullImageIndexes = AutoPaletteHelper.GetFullNESPaletteIndexes(colors, target.Size);
+            Palette palette = AutoPaletteHelper.GenerateAutoPalette(fullImageIndexes, target.Size, palettePanel == null);
+            int[,] reducedIndexes = AutoPaletteHelper.ReduceIndexes(colors, target.Size, palette);
             result.TransparentBlocks = new bool[target.Size.Width / 8, target.Size.Height / 8]; // !!!
             result.Indexes = reducedIndexes;
             result.Target = new Bitmap(target.Width, target.Height);

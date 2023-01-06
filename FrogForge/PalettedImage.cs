@@ -42,9 +42,10 @@ namespace FrogForge
         public static PalettedImage AutoPalette(Bitmap target, UserControls.PalettePanel palettePanel)
         {
             PalettedImage result = new PalettedImage();
-            int[,] fullImageIndexes = AutoPaletteHelper.GetFullNESPaletteIndexes(target);
-            Palette palette = AutoPaletteHelper.GenerateAutoPalette(fullImageIndexes, target, palettePanel == null);
-            int[,] reducedIndexes = AutoPaletteHelper.ReduceIndexes(fullImageIndexes, target, palette);
+            Color[,] colors = AutoPaletteHelper.BitmapToColorArray(target);
+            int[,] fullImageIndexes = AutoPaletteHelper.GetFullNESPaletteIndexes(colors, target.Size);
+            Palette palette = AutoPaletteHelper.GenerateAutoPalette(fullImageIndexes, target.Size, palettePanel == null);
+            int[,] reducedIndexes = AutoPaletteHelper.ReduceIndexes(colors, target.Size, palette);
             result.Indexes = reducedIndexes;
             result.Target = new Bitmap(target.Width, target.Height);
             result.CurrentPalette = palette;

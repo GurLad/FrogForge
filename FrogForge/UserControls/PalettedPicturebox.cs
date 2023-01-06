@@ -169,7 +169,7 @@ namespace FrogForge.UserControls
     {
         protected override PalettedImage NewT(Image source)
         {
-            if (Preferences.Current.AutoPaletteImageImports && PalettePanel != null)
+            if (Preferences.Current.AutoPaletteImageImports)
             {
                 return PalettedImage.AutoPalette(new Bitmap(source), PalettePanel);
             }
@@ -184,7 +184,7 @@ namespace FrogForge.UserControls
     {
         protected override PartialPalettedImage NewT(Image source)
         {
-            if (Preferences.Current.AutoPaletteImageImports && PalettePanel != null)
+            if (Preferences.Current.AutoPaletteImageImports)
             {
                 return PartialPalettedImage.AutoPalette(new Bitmap(source), PalettePanel);
             }
