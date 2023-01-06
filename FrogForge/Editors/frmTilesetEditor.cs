@@ -96,12 +96,14 @@ namespace FrogForge.Editors
             dlgOpenTiles.Multiselect = true;
             (Selected = new Selection(this)).Set(-1);
             lstTilemaps.Init(this, () => new TilesetData(), TilesetDataFromUI, TilesetDataToUI, "Tilesets");
-            picTileImage.Init(dlgOpen, this);
+            picTileImage.Init(dlgOpen, this, plt1); // A bit of a problem, as it can technically change...
             plt1.Init(this, UpdatePalette);
             plt2.Init(this, UpdatePalette);
             bblBattleBackgrounds.Init(
                 this, () => new BattleBackgroundData(""),
-                () => new BattleBackgroundPanel(), (a) => a.Init(dlgOpen, this, GetPalette), true);
+                () => new BattleBackgroundPanel(),
+                (a) => a.Init(dlgOpen, this, GetPalette, plt1, plt2),
+                true);
             this.ApplyPreferences();
             // Fix zoom mode~
             for (int i = 0; i < TILEMAP_SIZE.X * TILEMAP_SIZE.Y; i++)
@@ -295,7 +297,7 @@ namespace FrogForge.Editors
         private void UpdatePalette(Palette palette = null)
         {
             Render();
-            bblBattleBackgrounds.Datas = bblBattleBackgrounds.Datas;
+            bblBattleBackgrounds.ForEachControl(a => a.UpdatePalette());
         }
 
         private void ckbWall_CheckedChanged(object sender, EventArgs e)

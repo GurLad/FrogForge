@@ -33,7 +33,7 @@ namespace FrogForge.Editors
             fgpFG1.Init(this, BaseSpritePalettes, (p) => { picFG1.Palette = p; UpdatePreview(); });
             fgpFG2.Init(this, BaseSpritePalettes, (p) => { picFG2.Palette = p; UpdatePreview(); });
             picBG1.Init(dlgOpen, this, pltBG1, () => UpdatePreview());
-            picBG2.Init(dlgOpen, this, null, () => UpdatePreview());
+            picBG2.Init(dlgOpen, this, pltBG2, () => UpdatePreview());
             picFG1.Init(dlgOpen, this, null, () => UpdatePreview());
             picFG2.Init(dlgOpen, this, null, () => UpdatePreview());
             this.ApplyPreferences();

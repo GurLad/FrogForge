@@ -34,7 +34,7 @@ namespace FrogForge.Editors
             picCharactersBG.Init(dlgOpen, this, pltCharactersBGPalette);
             picCharactersFG.Init(dlgOpen, this);
             picCharactersBG.PostOnClick = picCharactersFG.PostOnClick = UpdateCharacterPreview;
-            picGenericsBG.Init(dlgOpen, this);
+            picGenericsBG.Init(dlgOpen, this, new UserControls.PalettePanel()); // So that auto-palettes won't think it's a sprite one
             picGenericsFG.Init(dlgOpen, this);
             picGenericsBG.PostOnClick = picGenericsFG.PostOnClick = UpdateGenericPreview;
             // Init base
