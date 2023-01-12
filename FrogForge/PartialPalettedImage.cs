@@ -26,20 +26,28 @@ namespace FrogForge
 
         public new static PartialPalettedImage AutoPalette(Bitmap target, UserControls.PalettePanel palettePanel)
         {
-            // TEMP
             PartialPalettedImage result = new PartialPalettedImage();
             Color[,] colors = AutoPaletteHelper.BitmapToColorArray(target);
-            int[,] fullImageIndexes = AutoPaletteHelper.GetFullNESPaletteIndexes(colors, target.Size);
-            Palette palette = AutoPaletteHelper.GenerateAutoPalette(fullImageIndexes, target.Size, palettePanel == null);
-            int[,] reducedIndexes = AutoPaletteHelper.ReduceIndexes(colors, target.Size, palette);
-            result.TransparentBlocks = new bool[target.Size.Width / 8, target.Size.Height / 8]; // !!!
-            result.Indexes = reducedIndexes;
-            result.Target = new Bitmap(target.Width, target.Height);
-            result.CurrentPalette = palette;
-            if (palettePanel != null)
+            result.TransparentBlocks = new bool[target.Size.Width / 8, target.Size.Height / 8];
+            for (int i = 0; i < target.Width / 8; i++)
             {
-                palettePanel.Data = palette;
+                for (int j = 0; j < target.Height / 8; j++)
+                {
+                    bool transparent = true;
+                    for (int k = 0; k < 8; k++)
+                    {
+                        for (int l = 0; l < 8; l++)
+                        {
+                            transparent = transparent && colors[i * 8 + k, j * 8 + l].A == 0;
+                        }
+                    }
+                    if (transparent)
+                    {
+                        result.TransparentBlocks[i, j] = true;
+                    }
+                }
             }
+            result.GenerateAutoPalette(target, palettePanel, colors);
             return result;
         }
 

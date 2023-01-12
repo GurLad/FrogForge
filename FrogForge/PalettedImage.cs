@@ -43,16 +43,7 @@ namespace FrogForge
         {
             PalettedImage result = new PalettedImage();
             Color[,] colors = AutoPaletteHelper.BitmapToColorArray(target);
-            int[,] fullImageIndexes = AutoPaletteHelper.GetFullNESPaletteIndexes(colors, target.Size);
-            Palette palette = AutoPaletteHelper.GenerateAutoPalette(fullImageIndexes, target.Size, palettePanel == null);
-            int[,] reducedIndexes = AutoPaletteHelper.ReduceIndexes(colors, target.Size, palette);
-            result.Indexes = reducedIndexes;
-            result.Target = new Bitmap(target.Width, target.Height);
-            result.CurrentPalette = palette;
-            if (palettePanel != null)
-            {
-                palettePanel.Data = palette;
-            }
+            result.GenerateAutoPalette(target, palettePanel, colors);
             return result;
         }
 
@@ -101,6 +92,20 @@ namespace FrogForge
                 }
             }
             //SetPalette(Palette.BasePalette);
+        }
+
+        protected void GenerateAutoPalette(Bitmap target, UserControls.PalettePanel palettePanel, Color[,] colors)
+        {
+            int[,] fullImageIndexes = AutoPaletteHelper.GetFullNESPaletteIndexes(colors, target.Size);
+            Palette palette = AutoPaletteHelper.GenerateAutoPalette(fullImageIndexes, target.Size, palettePanel == null);
+            int[,] reducedIndexes = AutoPaletteHelper.ReduceIndexes(colors, target.Size, palette);
+            Indexes = reducedIndexes;
+            Target = new Bitmap(target.Width, target.Height);
+            CurrentPalette = palette;
+            if (palettePanel != null)
+            {
+                palettePanel.Data = palette;
+            }
         }
     }
 }

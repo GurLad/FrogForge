@@ -37,6 +37,7 @@ namespace FrogForge.Editors
             }
             ckbDarkMode.Checked = Preferences.Current.DarkMode;
             nudZoomAmount.Value = (decimal)Preferences.Current.ZoomAmount;
+            rdbImageImportingAutoPalette.Checked = Preferences.Current.AutoPaletteImageImports;
             this.ApplyPreferences();
             CenterToParent();
         }
@@ -52,6 +53,7 @@ namespace FrogForge.Editors
         {
             Preferences.Current.ZoomAmount = (double)nudZoomAmount.Value;
             Preferences.Current.DarkMode = ckbDarkMode.Checked;
+            Preferences.Current.AutoPaletteImageImports = rdbImageImportingAutoPalette.Checked;
             Preferences.Current.VoiceAssist = (cmbVoice.SelectedItem?.ToString() ?? "None") == "None" ? "" : cmbVoice.SelectedItem.ToString();
             DataDirectory.SaveFile("Preferences", Preferences.Current.ToJson(), ".json");
             Close();
