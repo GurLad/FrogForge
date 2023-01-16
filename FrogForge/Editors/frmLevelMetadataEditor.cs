@@ -45,7 +45,7 @@ namespace FrogForge.Editors
                 TeamDatas[i] = new TeamPanel();
                 TeamDatas[i].Left = baseX + offset * i;
                 TeamDatas[i].Top = baseY;
-                TeamDatas[i].Init(this);
+                TeamDatas[i].Init(this, dlgOpen, pltPalette4);
                 pnlTeams.Controls.Add(TeamDatas[i]);
             }
             // Dirty
@@ -56,7 +56,13 @@ namespace FrogForge.Editors
             // Init stuff
             lstLevels.Init(this, () => lstLevels.Data[0].Clone(), LevelMetadataFromUI, LevelMetadataToUI, "LevelMetadata");
             lstUnitReplacements.Init(this, () => new UnitReplacementData(), () => new UnitReplacementPanel(), a => a.Init(this), false);
-            pltPalette4.Init(this);
+            pltPalette4.Init(this, p =>
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    TeamDatas[i].UpdatePalette4(p);
+                }
+            });
             // Load default
             if (lstLevels.Items.Count == 0)
             {
@@ -79,6 +85,7 @@ namespace FrogForge.Editors
             data.Alliances = new bool[] { ckbAllies12.Checked, ckbAllies13.Checked, ckbAllies23.Checked };
             data.UnitReplacements = lstUnitReplacements.Datas;
             data.Name = CurrentLevel;
+            data.SaveImages(WorkingDirectory);
             CurrentFile = data.Name;
             Dirty = false;
             return data;
@@ -86,6 +93,7 @@ namespace FrogForge.Editors
 
         private void LevelMetadataToUI(LevelMetadata data)
         {
+            data.LoadImages(WorkingDirectory);
             for (int i = 0; i < 3; i++)
             {
                 TeamDatas[i].Data = data.TeamDatas[i];

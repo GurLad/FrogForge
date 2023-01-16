@@ -18,12 +18,21 @@ namespace FrogForge.UserControls
         {
             get
             {
-                return new TeamData(txtName.Text, pltPalette.Data, rdbPlayerController.Checked, (PortraitLoadingMode)cmbPortraitMode.SelectedIndex, appAI.Data);
+                return new TeamData(
+                    txtName.Text,
+                    pltPalette.Data,
+                    rdbPlayerController.Checked,
+                    (PortraitLoadingMode)cmbPortraitMode.SelectedIndex,
+                    appAI.Data,
+                    picBase.Image,
+                    picMoved.Image);
             }
             set
             {
                 txtName.Text = value.Name;
                 pltPalette.Data = value.Palette;
+                picBase.Image = value.BaseSymbol;
+                picMoved.Image = value.MovedSymbol;
                 rdbPlayerController.Checked = value.PlayerControlled;
                 rdbComputerControlled.Checked = !value.PlayerControlled;
                 appAI.Enabled = rdbComputerControlled.Checked;
@@ -37,7 +46,7 @@ namespace FrogForge.UserControls
             InitializeComponent();
         }
 
-        public void Init(frmBaseEditor editor)
+        public void Init(frmBaseEditor editor, OpenFileDialog dlgOpen, PalettePanel pltPalette4)
         {
             EventHandler dirtyFunc = (s, e1) => editor.Dirty = true;
             pltPalette.Init(editor);
@@ -45,6 +54,14 @@ namespace FrogForge.UserControls
             txtName.TextChanged += dirtyFunc;
             rdbPlayerController.CheckedChanged += dirtyFunc;
             cmbPortraitMode.SelectedIndexChanged += dirtyFunc;
+            picBase.Init(dlgOpen, editor, pltPalette4);
+            picMoved.Init(dlgOpen, editor, pltPalette4);
+        }
+
+        public void UpdatePalette4(Palette palette)
+        {
+            picBase.Palette = palette;
+            picMoved.Palette = palette;
         }
 
         private void rdbPlayerControlled_CheckedChanged(object sender, EventArgs e)

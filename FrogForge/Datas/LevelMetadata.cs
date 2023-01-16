@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace FrogForge.Datas
 {
@@ -32,6 +33,22 @@ namespace FrogForge.Datas
             List<Palette> result = TeamDatas.Select(b => b.Palette).ToList();
             result.Add(Palette4);
             return result;
+        }
+
+        public void LoadImages(FilesController workingDirectory)
+        {
+            for (int i = 0; i < TeamDatas.Length; i++)
+            {
+                TeamDatas[i].LoadImages(workingDirectory);
+            }
+        }
+
+        public void SaveImages(FilesController workingDirectory)
+        {
+            for (int i = 0; i < TeamDatas.Length; i++)
+            {
+                TeamDatas[i].SaveImages(workingDirectory);
+            }
         }
 
         public LevelMetadata Clone()
