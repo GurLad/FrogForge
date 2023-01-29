@@ -178,6 +178,12 @@
     <Compile Include="Editors\frmPreferences.Designer.cs">
       <DependentUpon>frmPreferences.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\frmProjectInit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\frmProjectInit.Designer.cs">
+      <DependentUpon>frmProjectInit.cs</DependentUpon>
+    </Compile>
     <Compile Include="FontStuff.cs" />
     <Compile Include="frmColorsHelp.cs">
       <SubType>Form</SubType>
@@ -395,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\frmPreferences.resx">
       <DependentUpon>frmPreferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\frmProjectInit.resx">
+      <DependentUpon>frmProjectInit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\frmTilesetEditor.resx">
       <DependentUpon>frmTilesetEditor.cs</DependentUpon>

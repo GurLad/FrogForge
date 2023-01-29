@@ -29,7 +29,7 @@ namespace FrogForge.Editors
             InitializeComponent();
         }
 
-        private void frmMenu_Load(object sender, EventArgs e)
+        private async void frmMenu_Load(object sender, EventArgs e)
         {
             // Init stuff
             FontStuff.CreateFont(Properties.Resources.Gaiden);
@@ -93,6 +93,11 @@ namespace FrogForge.Editors
             {
                 VoiceAssist.SelectVoice(Preferences.Current.VoiceAssist ?? "");
                 VoiceAssist.Say("Ready");
+            }
+            // Init project
+            if (!WorkingDirectory.CheckFileExist("GameSettings.json"))
+            {
+                await InitProject(true);
             }
         }
 
@@ -240,45 +245,16 @@ namespace FrogForge.Editors
             }
         }
 
+        private async void btnProjectNew_Click(object sender, EventArgs e)
+        {
+            await InitProject();
+        }
+
         private async void btnProjectImport_Click(object sender, EventArgs e)
         {
             if (dlgProjectImport.ShowDialog(this) == DialogResult.OK)
             {
-                PreWork();
-                frmWorkProgress workProgress = frmWorkProgress.Show("Extracting...", "importing", true, false, this);
-                FilesController tempProject = new FilesController();
-                // Delete current TempData (shouldn't exist, but just in case)
-                tempProject.Path = WorkingDirectory.Path.Substring(0, WorkingDirectory.Path.LastIndexOf(@"\"));
-                tempProject.CreateDirectory("TempData", true);
-                if (System.IO.Directory.Exists(tempProject.Path))
-                {
-                    await Task.Run(() => System.IO.Directory.Delete(tempProject.Path, true));
-                }
-                if (workProgress.Canceled)
-                {
-                    workProgress.End();
-                    PostWork(false);
-                    return;
-                }
-                // Extract the project
-                await Task.Run(() => System.IO.Compression.ZipFile.ExtractToDirectory(dlgProjectImport.FileName, tempProject.Path));
-                workProgress.Cancelable = false; // After we delete the current project (next command), it's impossible to cancel the import
-                await workProgress.FinishCanceling();
-                if (workProgress.Canceled)
-                {
-                    workProgress.End();
-                    PostWork(false);
-                    return;
-                }
-                // Move the project to the real Data folder
-                workProgress.LabelText = "Importing...";
-                if (System.IO.Directory.Exists(WorkingDirectory.Path))
-                {
-                    await Task.Run(() => System.IO.Directory.Delete(WorkingDirectory.Path, true));
-                }
-                await Task.Run(() => System.IO.Directory.Move(tempProject.Path, WorkingDirectory.Path));
-                workProgress.End();
-                PostWork();
+                await ImportProject(dlgProjectImport.FileName);
             }
         }
 
@@ -286,15 +262,7 @@ namespace FrogForge.Editors
         {
             if (dlgProjectExport.ShowDialog(this) == DialogResult.OK)
             {
-                PreWork();
-                frmWorkProgress workProgress = frmWorkProgress.Show("Exporting...", "exporting", false, false, this);
-                if (System.IO.File.Exists(dlgProjectExport.FileName))
-                {
-                    await Task.Run(() => System.IO.File.Delete(dlgProjectExport.FileName));
-                }
-                await Task.Run(() => System.IO.Compression.ZipFile.CreateFromDirectory(WorkingDirectory.Path, dlgProjectExport.FileName));
-                workProgress.End();
-                PostWork();
+                await ExportProject(dlgProjectExport.FileName);
             }
         }
 
@@ -332,6 +300,72 @@ namespace FrogForge.Editors
         private void btnHelpSourceCode_Click(object sender, EventArgs e)
         {
             Process.Start("https://www.github.com/GurLad/FrogForge");
+        }
+
+        private async Task InitProject(bool skipWarnings = false)
+        {
+            if (!skipWarnings)
+            {
+                if (!ExtensionMethods.ConfirmDialog("Warning! Creating a new project will override your current mod, erasing everything you've changed. This action cannot be undone. Continue?", "New project"))
+                {
+                    return;
+                }
+            }
+            frmProjectInit projectInit = new frmProjectInit();
+            projectInit.ShowDialog(this);
+            await ImportProject(DataDirectory.Path + @"\ProjectTemplates\" + projectInit.SelectedTemplate + ".ffpd", false);
+        }
+
+        private async Task ImportProject(string path, bool cancelable = true)
+        {
+            PreWork();
+            frmWorkProgress workProgress = frmWorkProgress.Show("Extracting...", "importing", cancelable, false, this);
+            FilesController tempProject = new FilesController();
+            // Delete current TempData (shouldn't exist, but just in case)
+            tempProject.Path = WorkingDirectory.Path.Substring(0, WorkingDirectory.Path.LastIndexOf(@"\"));
+            tempProject.CreateDirectory("TempData", true);
+            if (System.IO.Directory.Exists(tempProject.Path))
+            {
+                await Task.Run(() => System.IO.Directory.Delete(tempProject.Path, true));
+            }
+            if (workProgress.Canceled)
+            {
+                workProgress.End();
+                PostWork(false);
+                return;
+            }
+            // Extract the project
+            await Task.Run(() => System.IO.Compression.ZipFile.ExtractToDirectory(path, tempProject.Path));
+            workProgress.Cancelable = false; // After we delete the current project (next command), it's impossible to cancel the import
+            await workProgress.FinishCanceling();
+            if (workProgress.Canceled)
+            {
+                workProgress.End();
+                PostWork(false);
+                return;
+            }
+            // Move the project to the real Data folder
+            workProgress.LabelText = "Importing...";
+            if (System.IO.Directory.Exists(WorkingDirectory.Path))
+            {
+                await Task.Run(() => System.IO.Directory.Delete(WorkingDirectory.Path, true));
+            }
+            await Task.Run(() => System.IO.Directory.Move(tempProject.Path, WorkingDirectory.Path));
+            workProgress.End();
+            PostWork();
+        }
+
+        private async Task ExportProject(string path)
+        {
+            PreWork();
+            frmWorkProgress workProgress = frmWorkProgress.Show("Exporting...", "exporting", false, false, this);
+            if (System.IO.File.Exists(path))
+            {
+                await Task.Run(() => System.IO.File.Delete(path));
+            }
+            await Task.Run(() => System.IO.Compression.ZipFile.CreateFromDirectory(WorkingDirectory.Path, path));
+            workProgress.End();
+            PostWork();
         }
 
         private void PreWork()
