@@ -43,6 +43,7 @@ namespace FrogForge.UserControls
         public void Play(string text, bool removeParts = true)
         {
             // Only preview text
+            TargetLine = "";
             PreviewLines = new List<string>();
             PreviewLines.Add("");
             List<string> sourceParts = new List<string>(text.Split('~'));
