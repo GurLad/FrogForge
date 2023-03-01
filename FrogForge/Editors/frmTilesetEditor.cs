@@ -256,7 +256,19 @@ namespace FrogForge.Editors
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            lstTilemaps.Remove();
+            TilesetData removed = lstTilemaps.Remove();
+            if (removed != null)
+            {
+                // No need to delete the individual files, just delete the folder
+                if (WorkingDirectory.DirectoryExists(@"\Images\BattleBackgrounds\" + removed.Name))
+                {
+                    DeleteFolder(@"\Images\BattleBackgrounds\" + removed.Name, WorkingDirectory);
+                }
+                if (WorkingDirectory.DirectoryExists(@"\Images\Tilesets\" + removed.Name))
+                {
+                    DeleteFolder(@"\Images\Tilesets\" + removed.Name, WorkingDirectory);
+                }
+            }
         }
 
         protected override bool ControlKeyAction(Keys key)

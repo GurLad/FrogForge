@@ -199,7 +199,10 @@ namespace FrogForge.Editors
                 {
                     DeleteFile(baseFolder + @"\B", WorkingDirectory, false, WorkingDirectory.DefultImageFileFormat);
                 }
-                // TBA: Delete folder
+                if (WorkingDirectory.DirectoryExists(@"\" + baseFolder))
+                {
+                    DeleteFolder(baseFolder, WorkingDirectory);
+                }
             }
         }
 

@@ -107,7 +107,16 @@ namespace FrogForge.Editors
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            lstCGs.Remove();
+            CGData removed = lstCGs.Remove();
+            if (removed != null)
+            {
+                // No need to delete the individual files, just delete the folder
+                if (WorkingDirectory.DirectoryExists(@"\Images\CGs\" + removed.Name))
+                {
+                    DeleteFolder(@"\Images\CGs\" + removed.Name, WorkingDirectory);
+                }
+            }
+            
         }
 
         protected override bool ControlKeyAction(Keys key)

@@ -92,6 +92,15 @@ namespace FrogForge.Editors
             return false;
         }
 
+        protected void DeleteFolder(string folderName, FilesController directory)
+        {
+            directory.DeleteDirectory(@"\" + folderName);
+            if (directory.CheckFileExist(folderName + ".meta"))
+            {
+                directory.DeleteFile(folderName + ".meta", "");
+            }
+        }
+
         protected virtual bool ControlKeyAction(Keys key)
         {
             throw new NotImplementedException();

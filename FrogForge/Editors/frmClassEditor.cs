@@ -109,7 +109,10 @@ namespace FrogForge.Editors
                             DeleteFile(fileName, WorkingDirectory, false, WorkingDirectory.DefultImageFileFormat);
                         }
                     }
-                    // TBA: Delete folders
+                    if (WorkingDirectory.DirectoryExists(@"\Images\ClassBattleAnimations\" + removed.Name))
+                    {
+                        DeleteFolder(@"\Images\ClassBattleAnimations\" + removed.Name, WorkingDirectory);
+                    }
                 }
             }
             else
