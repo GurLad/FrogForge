@@ -27,12 +27,12 @@ namespace FrogForge.UserControls
         public ConversationPlayer()
         {
             InitializeComponent();
-            // Init stuff (font)
-            lblPreviewName.Font = lblPreviewText.Font = FontStuff.GetFont("Gaiden", lblPreviewText.Font.SizeInPoints);
         }
 
         public void Init(FilesController workingDirectory, int charsInLine, Action<bool> setPreviewMode)
         {
+            // Init stuff (font)
+            lblPreviewName.Font = lblPreviewText.Font = FontStuff.GetFont("Gaiden", lblPreviewText.Font.SizeInPoints);
             WorkingDirectory = workingDirectory;
             CharsInLine = charsInLine;
             SetPreviewMode = setPreviewMode;

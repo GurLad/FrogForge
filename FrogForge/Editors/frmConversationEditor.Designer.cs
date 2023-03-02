@@ -46,10 +46,13 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnPreview = new System.Windows.Forms.ToolStripButton();
             this.copConversationPlayer = new FrogForge.UserControls.ConversationPlayer();
+            this.grpFindAndReplace = new System.Windows.Forms.GroupBox();
+            this.farFindAndReplacePanel = new FrogForge.UserControls.FindAndReplacePanel();
             this.pnlEditorUI.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSeperator2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSeperator1)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            this.grpFindAndReplace.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlEditorUI
@@ -64,7 +67,7 @@
             this.pnlEditorUI.Controls.Add(this.txtName);
             this.pnlEditorUI.Location = new System.Drawing.Point(195, 28);
             this.pnlEditorUI.Name = "pnlEditorUI";
-            this.pnlEditorUI.Size = new System.Drawing.Size(567, 480);
+            this.pnlEditorUI.Size = new System.Drawing.Size(567, 694);
             this.pnlEditorUI.TabIndex = 2;
             // 
             // picSeperator2
@@ -93,7 +96,7 @@
             this.txtText.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtText.Location = new System.Drawing.Point(0, 26);
             this.txtText.Name = "txtText";
-            this.txtText.Size = new System.Drawing.Size(567, 454);
+            this.txtText.Size = new System.Drawing.Size(567, 668);
             this.txtText.TabIndex = 3;
             this.txtText.Text = "Xirveros: 012345678901234567890123456789 01234567890123456789012345678";
             // 
@@ -122,7 +125,7 @@
             this.flbFileBrowser.Location = new System.Drawing.Point(12, 28);
             this.flbFileBrowser.Name = "flbFileBrowser";
             this.flbFileBrowser.SelectedFilename = null;
-            this.flbFileBrowser.Size = new System.Drawing.Size(177, 479);
+            this.flbFileBrowser.Size = new System.Drawing.Size(177, 693);
             this.flbFileBrowser.TabIndex = 0;
             // 
             // toolStrip1
@@ -220,11 +223,33 @@
             this.copConversationPlayer.Size = new System.Drawing.Size(512, 480);
             this.copConversationPlayer.TabIndex = 4;
             // 
+            // grpFindAndReplace
+            // 
+            this.grpFindAndReplace.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpFindAndReplace.Controls.Add(this.farFindAndReplacePanel);
+            this.grpFindAndReplace.Location = new System.Drawing.Point(769, 515);
+            this.grpFindAndReplace.Name = "grpFindAndReplace";
+            this.grpFindAndReplace.Size = new System.Drawing.Size(511, 206);
+            this.grpFindAndReplace.TabIndex = 5;
+            this.grpFindAndReplace.TabStop = false;
+            this.grpFindAndReplace.Text = "Find && Replace";
+            // 
+            // farFindAndReplacePanel
+            // 
+            this.farFindAndReplacePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.farFindAndReplacePanel.Location = new System.Drawing.Point(7, 20);
+            this.farFindAndReplacePanel.Name = "farFindAndReplacePanel";
+            this.farFindAndReplacePanel.Size = new System.Drawing.Size(498, 180);
+            this.farFindAndReplacePanel.TabIndex = 0;
+            // 
             // frmConversationEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1292, 520);
+            this.ClientSize = new System.Drawing.Size(1292, 734);
+            this.Controls.Add(this.grpFindAndReplace);
             this.Controls.Add(this.copConversationPlayer);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.pnlEditorUI);
@@ -240,6 +265,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picSeperator1)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.grpFindAndReplace.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -264,5 +290,7 @@
         private System.Windows.Forms.ToolStripButton btnDeleteFolder;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private UserControls.ConversationPlayer copConversationPlayer;
+        private System.Windows.Forms.GroupBox grpFindAndReplace;
+        private UserControls.FindAndReplacePanel farFindAndReplacePanel;
     }
 }

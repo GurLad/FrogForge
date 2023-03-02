@@ -37,15 +37,27 @@ namespace FrogForge.Editors
             CurrentDirectory.CreateDirectory("Conversations", true);
             flbFileBrowser.Directory = CurrentDirectory;
             flbFileBrowser.TopMostDirectory = CurrentDirectory.Path;
-            flbFileBrowser.OnFileSelected = LoadFile;
+            flbFileBrowser.OnFileSelected = (name) => LoadFile(name);
             flbFileBrowser.UpdateList();
             // Init stuff
             copConversationPlayer.Init(WorkingDirectory, CHARS_IN_LINE, SetPreviewMode);
             txtText.Init(DataDirectory, this);
+            farFindAndReplacePanel.Init(
+                txtText, WorkingDirectory,
+                () => CurrentFilePath.Substring(WorkingDirectory.Path.Length) + @"\" + txtName.Text,
+                LoadFile,
+                () => btnSave_Click(sender, e));
             this.ApplyPreferences(false);
             if (Preferences.Current.ZoomAmount > 1)
             {
                 flbFileBrowser.ApplyPreferences();
+                // Find & replace stuff
+                int heightDiff = grpFindAndReplace.Height - farFindAndReplacePanel.Height;
+                farFindAndReplacePanel.FixZoom();
+                grpFindAndReplace.Font = farFindAndReplacePanel.Font;
+                grpFindAndReplace.Height = (int)(farFindAndReplacePanel.Height * Preferences.Current.ZoomAmount) + heightDiff;
+                farFindAndReplacePanel.Height -= farFindAndReplacePanel.Top;
+                farFindAndReplacePanel.Top = (int)(farFindAndReplacePanel.Top * Preferences.Current.ZoomAmount);
                 // Save anchors, move
                 Dictionary<Control, AnchorStyles> anchors = new Dictionary<Control, AnchorStyles>();
                 foreach (Control control in Controls)
@@ -81,17 +93,18 @@ namespace FrogForge.Editors
             btnNew_Click(sender, e);
         }
 
-        private void LoadFile(string name)
+        private bool LoadFile(string name)
         {
             if (HasUnsavedChanges())
             {
-                return;
+                return false;
             }
             CurrentFile = name;
             CurrentFileName = name;
             CurrentFilePath = CurrentDirectory.Path;
             txtText.Text = CurrentDirectory.LoadFile(CurrentFileName);
             txtName.Text = CurrentFileName;
+            return true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -133,6 +146,7 @@ namespace FrogForge.Editors
             {
                 CurrentFilePath = CurrentDirectory.Path;
             }
+            farFindAndReplacePanel.Dirty = true;
             VoiceAssist.Say("Save");
         }
 
@@ -189,6 +203,7 @@ namespace FrogForge.Editors
                     flbFileBrowser.UpdateList();
                     CurrentFileName = "";
                     VoiceAssist.Say("Delete");
+                    farFindAndReplacePanel.Dirty = true;
                 }
             }
         }
@@ -223,6 +238,7 @@ namespace FrogForge.Editors
                     flbFileBrowser.Navigate(@"\..");
                 }
                 flbFileBrowser.UpdateList();
+                farFindAndReplacePanel.Dirty = true;
             }
         }
 

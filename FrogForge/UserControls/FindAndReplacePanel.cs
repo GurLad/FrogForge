@@ -30,12 +30,37 @@ namespace FrogForge.UserControls
         public void Init(RichTextBox textBox, FilesController workingDirectory, Func<string> getCurrentFileName, Func<string, bool> loadFile, Action saveFile)
         {
             TextBox = textBox;
-            // Clone the working directory, in case the user changes folders later
-            WorkingDirectory = new FilesController(workingDirectory.Path);
+            WorkingDirectory = workingDirectory;
             GetCurrentFileName = getCurrentFileName;
             LoadFile = loadFile;
             SaveFile = saveFile;
             UpdateFiles();
+        }
+
+        public void FixZoom()
+        {
+            // Save anchors, move
+            Dictionary<Control, AnchorStyles> anchors = new Dictionary<Control, AnchorStyles>();
+            foreach (Control control in Controls)
+            {
+                anchors.Add(control, control.Anchor);
+                control.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            }
+            // Resize
+            int oldWidth = Width;
+            this.ApplyPreferences();
+            // Restore anchors
+            foreach (Control control in Controls)
+            {
+                control.Anchor = anchors[control];
+                // Hardcoded fix because this is super annoying
+                if ((control.Anchor & AnchorStyles.Left) != 0 && (control.Anchor & AnchorStyles.Right) != 0)
+                {
+                    control.Width = Width - control.Left;
+                }
+            }
+            // Restore width
+            Width = oldWidth;
         }
 
         private void txtReplace_TextChanged(object sender, EventArgs e)
