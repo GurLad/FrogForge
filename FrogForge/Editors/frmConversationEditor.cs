@@ -47,8 +47,8 @@ namespace FrogForge.Editors
                 () => (CurrentFilePath != "" ? CurrentFilePath.Substring(WorkingDirectory.Path.Length) : "") + @"\" + txtName.Text + ".txt",
                 (name) =>
                 {
-                    string path = name.Substring(0, name.LastIndexOf(@"\"));
-                    string trueName = name.Substring(path.Length);
+                    string path = name.Substring(0, Math.Max(0, name.LastIndexOf(@"\")));
+                    string trueName = name.Substring(path.Length + 1);
                     trueName = trueName.Substring(0, trueName.IndexOf(".txt"));
                     CurrentDirectory.Path = WorkingDirectory.Path + path;
                     flbFileBrowser.UpdateList();

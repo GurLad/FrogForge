@@ -169,9 +169,11 @@ namespace FrogForge.UserControls
         private bool MarkNextInAllFiles(string searchFor)
         {
             int currentIndex = Math.Max(0, FilesCache.FindIndex(a => a.FileName == GetCurrentFileName()));
+            //MessageBox.Show("Current index is " + currentIndex + ", aka " + GetCurrentFileName());
             if (!MarkNextInCurrent(txtFind.Text, false))
             {
                 currentIndex = GetNextFileIndex(txtFind.Text, currentIndex, true);
+                //MessageBox.Show("Didn't find, next is " + currentIndex + ", aka " + FilesCache[currentIndex].FileName);
                 if (currentIndex >= 0)
                 {
                     if (LoadFile(FilesCache[currentIndex].FileName)) // In case the user decides to not discard changes
@@ -231,7 +233,7 @@ namespace FrogForge.UserControls
         {
             // Currently, loads every single file again after each update - change to only update changes
             FilesCache.Clear();
-            List<string> files = WorkingDirectory.RecursiveAllFiles(true);
+            List<string> files = WorkingDirectory.RecursiveAllFiles(true, true, @"\Conversations");
             foreach (string fileName in files)
             {
                 string[] parts = fileName.Split('.');

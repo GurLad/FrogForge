@@ -73,7 +73,7 @@
             this.txtReplace.Location = new System.Drawing.Point(0, 55);
             this.txtReplace.Name = "txtReplace";
             this.txtReplace.Size = new System.Drawing.Size(150, 20);
-            this.txtReplace.TabIndex = 1;
+            this.txtReplace.TabIndex = 2;
             this.txtReplace.TextChanged += new System.EventHandler(this.txtReplace_TextChanged);
             // 
             // btnFind
@@ -83,7 +83,7 @@
             this.btnFind.Location = new System.Drawing.Point(0, 81);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(150, 23);
-            this.btnFind.TabIndex = 2;
+            this.btnFind.TabIndex = 3;
             this.btnFind.Text = "Find next";
             this.btnFind.UseVisualStyleBackColor = true;
             this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
@@ -94,7 +94,7 @@
             this.btnReplace.Location = new System.Drawing.Point(0, 110);
             this.btnReplace.Name = "btnReplace";
             this.btnReplace.Size = new System.Drawing.Size(72, 23);
-            this.btnReplace.TabIndex = 2;
+            this.btnReplace.TabIndex = 4;
             this.btnReplace.Text = "Replace";
             this.btnReplace.UseVisualStyleBackColor = true;
             this.btnReplace.Click += new System.EventHandler(this.btnReplace_Click);
@@ -107,7 +107,7 @@
             this.btnReplaceAll.Location = new System.Drawing.Point(78, 110);
             this.btnReplaceAll.Name = "btnReplaceAll";
             this.btnReplaceAll.Size = new System.Drawing.Size(72, 23);
-            this.btnReplaceAll.TabIndex = 2;
+            this.btnReplaceAll.TabIndex = 5;
             this.btnReplaceAll.Text = "Replace all";
             this.btnReplaceAll.UseVisualStyleBackColor = true;
             this.btnReplaceAll.Click += new System.EventHandler(this.btnReplaceAll_Click);
@@ -119,7 +119,7 @@
             this.rdbCurrentDocument.Location = new System.Drawing.Point(0, 140);
             this.rdbCurrentDocument.Name = "rdbCurrentDocument";
             this.rdbCurrentDocument.Size = new System.Drawing.Size(109, 17);
-            this.rdbCurrentDocument.TabIndex = 3;
+            this.rdbCurrentDocument.TabIndex = 6;
             this.rdbCurrentDocument.TabStop = true;
             this.rdbCurrentDocument.Text = "Current document";
             this.rdbCurrentDocument.UseVisualStyleBackColor = true;
@@ -130,7 +130,7 @@
             this.rdbAllFiles.Location = new System.Drawing.Point(0, 163);
             this.rdbAllFiles.Name = "rdbAllFiles";
             this.rdbAllFiles.Size = new System.Drawing.Size(57, 17);
-            this.rdbAllFiles.TabIndex = 3;
+            this.rdbAllFiles.TabIndex = 7;
             this.rdbAllFiles.Text = "All files";
             this.rdbAllFiles.UseVisualStyleBackColor = true;
             // 
