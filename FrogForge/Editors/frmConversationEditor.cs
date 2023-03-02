@@ -44,8 +44,17 @@ namespace FrogForge.Editors
             txtText.Init(DataDirectory, this);
             farFindAndReplacePanel.Init(
                 txtText, WorkingDirectory,
-                () => CurrentFilePath.Substring(WorkingDirectory.Path.Length) + @"\" + txtName.Text,
-                LoadFile,
+                () => (CurrentFilePath != "" ? CurrentFilePath.Substring(WorkingDirectory.Path.Length) : "") + @"\" + txtName.Text + ".txt",
+                (name) =>
+                {
+                    string path = name.Substring(0, name.LastIndexOf(@"\"));
+                    string trueName = name.Substring(path.Length);
+                    trueName = trueName.Substring(0, trueName.IndexOf(".txt"));
+                    CurrentDirectory.Path = WorkingDirectory.Path + path;
+                    flbFileBrowser.UpdateList();
+                    flbFileBrowser.SelectedFilename = trueName;
+                    return LoadFile(trueName);
+                },
                 () => btnSave_Click(sender, e));
             this.ApplyPreferences(false);
             if (Preferences.Current.ZoomAmount > 1)

@@ -36,6 +36,17 @@ namespace FrogForge
             System.IO.Directory.Delete(files.Path + toDelete, recursive);
         }
 
+        public static List<string> RecursiveAllFiles(this FilesController files, bool includePath = false, bool includeFormat = true, string additionalPath = "")
+        {
+            List<string> result = new List<string>();
+            result.AddRange(files.AllFiles(includePath, includeFormat, additionalPath));
+            foreach (string directory in files.AllDirectories(false, additionalPath))
+            {
+                result.AddRange(files.RecursiveAllFiles(includePath, includeFormat, additionalPath + @"\" + directory));
+            }
+            return result;
+        }
+
         public static int GetFrameCount(this Image source)
         {
             FrameDimension dimension = new FrameDimension(source.FrameDimensionsList.First());

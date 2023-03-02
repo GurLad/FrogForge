@@ -133,7 +133,7 @@ namespace FrogForge.UserControls
                 TextBox.Text = TextBox.Text.Replace(txtFind.Text, txtReplace.Text);
                 // Reload all files again, just in case one was modified externally
                 UpdateFiles();
-                int currentIndex = Math.Min(0, FilesCache.FindIndex(a => a.FileName == GetCurrentFileName()));
+                int currentIndex = Math.Max(0, FilesCache.FindIndex(a => a.FileName == GetCurrentFileName()));
                 bool looped = false;
                 while (
                     (currentIndex = GetNextFileIndex(txtFind.Text, currentIndex, false)) >= 0 ||
@@ -162,12 +162,13 @@ namespace FrogForge.UserControls
                 }
             }
             TextBox.Select(nextIndex, searchFor.Length);
+            TextBox.Focus();
             return true;
         }
 
         private bool MarkNextInAllFiles(string searchFor)
         {
-            int currentIndex = Math.Min(0, FilesCache.FindIndex(a => a.FileName == GetCurrentFileName()));
+            int currentIndex = Math.Max(0, FilesCache.FindIndex(a => a.FileName == GetCurrentFileName()));
             if (!MarkNextInCurrent(txtFind.Text, false))
             {
                 currentIndex = GetNextFileIndex(txtFind.Text, currentIndex, true);
@@ -223,20 +224,21 @@ namespace FrogForge.UserControls
 
         private void ShowNotFoundMessage()
         {
-            MessageBox.Show("No instance of " + txtFind.Text + " was found in the current document");
+            MessageBox.Show("No instance of " + txtFind.Text + " was found" + (!AllFiles ? " in the current document" : " anywhere"));
         }
 
         private void UpdateFiles()
         {
             // Currently, loads every single file again after each update - change to only update changes
             FilesCache.Clear();
-            string[] files = WorkingDirectory.AllFiles();
+            List<string> files = WorkingDirectory.RecursiveAllFiles(true);
             foreach (string fileName in files)
             {
                 string[] parts = fileName.Split('.');
                 if (parts[parts.Length - 1] == "txt")
                 {
-                    FilesCache.Add(new TextFile(fileName, WorkingDirectory.LoadFile(fileName, "", "")));
+                    string trueName = fileName.Substring(WorkingDirectory.Path.Length);
+                    FilesCache.Add(new TextFile(trueName, WorkingDirectory.LoadFile(trueName, "", "")));
                 }
             }
             Dirty = false;
