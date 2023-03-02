@@ -243,6 +243,12 @@
     <Compile Include="UserControls\DataTextBox.Designer.cs">
       <DependentUpon>DataTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\FindAndReplacePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\FindAndReplacePanel.Designer.cs">
+      <DependentUpon>FindAndReplacePanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ForegroundPaletteSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -434,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\DataTextBox.resx">
       <DependentUpon>DataTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\FindAndReplacePanel.resx">
+      <DependentUpon>FindAndReplacePanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ForegroundPaletteSelector.resx">
       <DependentUpon>ForegroundPaletteSelector.cs</DependentUpon>
