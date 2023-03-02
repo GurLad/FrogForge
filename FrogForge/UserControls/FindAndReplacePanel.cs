@@ -19,6 +19,7 @@ namespace FrogForge.UserControls
         private Func<string> GetCurrentFileName;
         private Func<string, bool> LoadFile;
         private Action SaveFile;
+        private Action SetDirty;
         private List<TextFile> FilesCache = new List<TextFile>();
         private bool AllFiles => rdbAllFiles.Checked;
 
@@ -27,13 +28,20 @@ namespace FrogForge.UserControls
             InitializeComponent();
         }
 
-        public void Init(RichTextBox textBox, FilesController workingDirectory, Func<string> getCurrentFileName, Func<string, bool> loadFile, Action saveFile)
+        public void Init(
+            RichTextBox textBox,
+            FilesController workingDirectory,
+            Func<string> getCurrentFileName,
+            Func<string, bool> loadFile,
+            Action saveFile,
+            Action setDirty)
         {
             TextBox = textBox;
             WorkingDirectory = workingDirectory;
             GetCurrentFileName = getCurrentFileName;
             LoadFile = loadFile;
             SaveFile = saveFile;
+            SetDirty = setDirty;
             UpdateFiles();
         }
 
@@ -101,6 +109,10 @@ namespace FrogForge.UserControls
                         ShowNotFoundMessage();
                     }
                 }
+                else
+                {
+                    SetDirty();
+                }
             }
             else
             {
@@ -115,22 +127,41 @@ namespace FrogForge.UserControls
                         ShowNotFoundMessage();
                     }
                 }
+                else
+                {
+                    SetDirty();
+                }
             }
         }
 
         private void btnReplaceAll_Click(object sender, EventArgs e)
         {
-            if (!ExtensionMethods.ConfirmDialog("Are you sure? This action cannot be undone!", "Replace all"))
-            {
-                return;
-            }
             if (!AllFiles)
             {
-                TextBox.Text = TextBox.Text.Replace(txtFind.Text, txtReplace.Text);
+                if (TextBox is EventTextBox box)
+                {
+                    box.Text = TextBox.Text.Replace(txtFind.Text, txtReplace.Text);
+                }
+                else
+                {
+                    TextBox.Text = TextBox.Text.Replace(txtFind.Text, txtReplace.Text);
+                }
+                SetDirty();
             }
             else
             {
-                TextBox.Text = TextBox.Text.Replace(txtFind.Text, txtReplace.Text);
+                if (!ExtensionMethods.ConfirmDialog("Are you sure? This action cannot be undone!", "Replace all"))
+                {
+                    return;
+                }
+                if (TextBox is EventTextBox box)
+                {
+                    box.Text = TextBox.Text.Replace(txtFind.Text, txtReplace.Text);
+                }
+                else
+                {
+                    TextBox.Text = TextBox.Text.Replace(txtFind.Text, txtReplace.Text);
+                }
                 // Reload all files again, just in case one was modified externally
                 UpdateFiles();
                 int currentIndex = Math.Max(0, FilesCache.FindIndex(a => a.FileName == GetCurrentFileName()));

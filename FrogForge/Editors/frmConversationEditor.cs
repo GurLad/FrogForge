@@ -55,7 +55,8 @@ namespace FrogForge.Editors
                     flbFileBrowser.SelectedFilename = trueName;
                     return LoadFile(trueName);
                 },
-                () => btnSave_Click(sender, e));
+                () => btnSave_Click(sender, e),
+                () => Dirty = true);
             this.ApplyPreferences(false);
             if (Preferences.Current.ZoomAmount > 1)
             {
