@@ -18,5 +18,6 @@ namespace FrogForge.Datas
         public bool OPPlayers { get; set; }
         public string ForceConversation { get; set; }
         public string ForceMap { get; set; }
+        public bool KillAutoSaves { get; set; }
     }
 }

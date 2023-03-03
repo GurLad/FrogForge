@@ -175,6 +175,9 @@ namespace FrogForge.Editors
                     case Keys.P:
                         btnPreview_Click(this, new EventArgs());
                         return true;
+                    case Keys.F:
+                        farFindAndReplacePanel.Focus();
+                        return true;
                     default:
                         break;
                 }

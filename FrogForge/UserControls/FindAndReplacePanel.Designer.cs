@@ -56,6 +56,7 @@
             this.txtFind.Name = "txtFind";
             this.txtFind.Size = new System.Drawing.Size(150, 20);
             this.txtFind.TabIndex = 1;
+            this.txtFind.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFind_KeyDown);
             // 
             // label2
             // 

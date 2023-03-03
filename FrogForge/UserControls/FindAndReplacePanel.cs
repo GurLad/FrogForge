@@ -71,6 +71,12 @@ namespace FrogForge.UserControls
             Width = oldWidth;
         }
 
+        public new void Focus()
+        {
+            base.Focus();
+            txtFind.Focus();
+        }
+
         private void txtReplace_TextChanged(object sender, EventArgs e)
         {
             btnReplace.Enabled = btnReplaceAll.Enabled = txtReplace.Text != "";
@@ -286,6 +292,14 @@ namespace FrogForge.UserControls
             {
                 FileName = fileName;
                 Content = content;
+            }
+        }
+
+        private void txtFind_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnFind_Click(sender, e);
             }
         }
     }

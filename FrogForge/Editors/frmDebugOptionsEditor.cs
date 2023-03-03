@@ -42,6 +42,7 @@ namespace FrogForge.Editors
             lstStartingUnits.Datas = Data.Units;
             ckbUnlimitedMove.Checked = Data.UnlimitedMove;
             ckbOP.Checked = Data.OPPlayers;
+            ckbKillAutoSaves.Checked = Data.KillAutoSaves;
             pnlAll.Enabled = ckbEnabled.Checked;
         }
 
@@ -55,6 +56,7 @@ namespace FrogForge.Editors
             Data.Units = lstStartingUnits.Datas;
             Data.UnlimitedMove = ckbUnlimitedMove.Checked;
             Data.OPPlayers = ckbOP.Checked;
+            Data.KillAutoSaves = ckbKillAutoSaves.Checked;
             WorkingDirectory.SaveFile("DebugOptions", Data.ToJson(), ".json");
             Close();
         }
