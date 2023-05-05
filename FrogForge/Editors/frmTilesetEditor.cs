@@ -104,6 +104,7 @@ namespace FrogForge.Editors
                 () => new BattleBackgroundPanel(),
                 (a) => a.Init(dlgOpen, this, GetPalette, plt1, plt2),
                 true);
+            lblAnimationSpeed.Visible = nudAnimationSpeed.Visible = Preferences.Current.ShowEndgameOverrides;
             this.ApplyPreferences();
             // Fix zoom mode~
             for (int i = 0; i < TILEMAP_SIZE.X * TILEMAP_SIZE.Y; i++)
@@ -185,6 +186,7 @@ namespace FrogForge.Editors
             data.Palette2 = plt2.Data;
             data.Tiles = CurrentTiles.ConvertAll(a => a.Clone());
             data.BattleBackgrounds = bblBattleBackgrounds.Datas;
+            data.SpeedOverride = (float)nudAnimationSpeed.Value;
             CurrentFile = data.Name;
             Dirty = false;
             return data;
@@ -198,6 +200,7 @@ namespace FrogForge.Editors
             plt2.Data = data.Palette2;
             CurrentTiles = data.Tiles.ConvertAll(a => a.Clone());
             bblBattleBackgrounds.Datas = data.BattleBackgrounds;
+            nudAnimationSpeed.Value = (decimal)data.SpeedOverride;
             Selected.Clear();
             Render();
             CurrentFile = data.Name;

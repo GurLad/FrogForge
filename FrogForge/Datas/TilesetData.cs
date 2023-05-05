@@ -13,6 +13,7 @@ namespace FrogForge.Datas
         public Palette Palette2 { get; set; } = Palette.BasePalette;
         public List<TileData> Tiles { get; set; } = new List<TileData>();
         public List<BattleBackgroundData> BattleBackgrounds { get; set; } = new List<BattleBackgroundData>();
+        public float SpeedOverride { get; set; } = 1;
         // TBA - battle backgrounds
 
         public void LoadImages(FilesController workingDirectory)

@@ -34,6 +34,9 @@
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnExport = new System.Windows.Forms.ToolStripButton();
+            this.btnImport = new System.Windows.Forms.ToolStripButton();
             this.lstTilemaps = new FrogForge.UserControls.TilemapJSONBrowser();
             this.plt1 = new FrogForge.UserControls.PalettePanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -67,9 +70,8 @@
             this.pnlPossibleTiles = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.bblBattleBackgrounds = new FrogForge.UserControls.BattleBackgroundsListEditor();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnExport = new System.Windows.Forms.ToolStripButton();
-            this.btnImport = new System.Windows.Forms.ToolStripButton();
+            this.lblAnimationSpeed = new System.Windows.Forms.Label();
+            this.nudAnimationSpeed = new System.Windows.Forms.NumericUpDown();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -78,6 +80,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudArmorMod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMoveCost)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAnimationSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -124,6 +127,31 @@
             this.btnDelete.Size = new System.Drawing.Size(23, 22);
             this.btnDelete.Text = "Delete";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnExport
+            // 
+            this.btnExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExport.Image = global::FrogForge.Properties.Resources.Export;
+            this.btnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(23, 22);
+            this.btnExport.Text = "Export";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnImport
+            // 
+            this.btnImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnImport.Image = global::FrogForge.Properties.Resources.Import;
+            this.btnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(23, 22);
+            this.btnImport.Text = "Import";
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // lstTilemaps
             // 
@@ -489,36 +517,40 @@
             this.bblBattleBackgrounds.Size = new System.Drawing.Size(335, 278);
             this.bblBattleBackgrounds.TabIndex = 1;
             // 
-            // toolStripSeparator1
+            // lblAnimationSpeed
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.lblAnimationSpeed.AutoSize = true;
+            this.lblAnimationSpeed.Location = new System.Drawing.Point(622, 31);
+            this.lblAnimationSpeed.Name = "lblAnimationSpeed";
+            this.lblAnimationSpeed.Size = new System.Drawing.Size(88, 13);
+            this.lblAnimationSpeed.TabIndex = 25;
+            this.lblAnimationSpeed.Text = "Animation speed:";
             // 
-            // btnExport
+            // nudAnimationSpeed
             // 
-            this.btnExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnExport.Image = global::FrogForge.Properties.Resources.Export;
-            this.btnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(23, 22);
-            this.btnExport.Text = "Export";
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // btnImport
-            // 
-            this.btnImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnImport.Image = global::FrogForge.Properties.Resources.Import;
-            this.btnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(23, 22);
-            this.btnImport.Text = "Import";
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            this.nudAnimationSpeed.DecimalPlaces = 1;
+            this.nudAnimationSpeed.Location = new System.Drawing.Point(716, 29);
+            this.nudAnimationSpeed.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.nudAnimationSpeed.Name = "nudAnimationSpeed";
+            this.nudAnimationSpeed.Size = new System.Drawing.Size(36, 20);
+            this.nudAnimationSpeed.TabIndex = 26;
+            this.nudAnimationSpeed.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // frmTilesetEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(789, 369);
+            this.Controls.Add(this.nudAnimationSpeed);
+            this.Controls.Add(this.lblAnimationSpeed);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtName);
@@ -548,6 +580,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudArmorMod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMoveCost)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudAnimationSpeed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -595,5 +628,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnExport;
         private System.Windows.Forms.ToolStripButton btnImport;
+        private System.Windows.Forms.Label lblAnimationSpeed;
+        private System.Windows.Forms.NumericUpDown nudAnimationSpeed;
     }
 }
