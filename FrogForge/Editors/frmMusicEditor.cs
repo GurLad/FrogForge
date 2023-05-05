@@ -195,7 +195,7 @@ namespace FrogForge.Editors
                 {
                     Musics.Remove(Musics.Find(a => a.FullFileName == toDelete.Substring(1) + @"\" + file));
                 }
-                CurrentDirectory.DeleteDirectory(toDelete);
+                DeleteFolder(toDelete, CurrentDirectory);
                 if (toDelete == @"\")
                 {
                     flbFiles.Navigate(@"\..");

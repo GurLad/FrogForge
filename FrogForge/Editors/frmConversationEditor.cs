@@ -245,7 +245,7 @@ namespace FrogForge.Editors
                 (CurrentDirectory.AllFiles(false, true, toDelete).Length == 0 ||
                  ConfirmDialog("Warning! " + toDeleteName + " contains files. Continue anyway?", "Warning")))
             {
-                CurrentDirectory.DeleteDirectory(toDelete);
+                DeleteFolder(toDelete, CurrentDirectory);
                 if (toDelete == @"\")
                 {
                     flbFileBrowser.Navigate(@"\..");
