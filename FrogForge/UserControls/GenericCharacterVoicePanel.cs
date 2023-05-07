@@ -34,7 +34,7 @@ namespace FrogForge.UserControls
                 {
                     voiceTypes.Add(VoiceType.Triangle);
                 }
-                return new GenericCharacterVoice(txtNames.Text, voiceTypes, new UnityVector2(vpsMin.Pitch, vpsMax.Pitch));
+                return new GenericCharacterVoice(txtInternalName.Text, txtNames.Text, voiceTypes, new UnityVector2(vpsMin.Pitch, vpsMax.Pitch));
             }
             set
             {
@@ -42,6 +42,7 @@ namespace FrogForge.UserControls
                 ckbSquare25.Checked = value.AvailableVoiceTypes.Contains(VoiceType.Square25);
                 ckbSquare50.Checked = value.AvailableVoiceTypes.Contains(VoiceType.Square50);
                 ckbTriangle.Checked = value.AvailableVoiceTypes.Contains(VoiceType.Triangle);
+                txtInternalName.Text = value.InternalName;
                 txtNames.Text = value.Names;
                 vpsMin.Pitch = value.PitchRange.x;
                 vpsMax.Pitch = value.PitchRange.y;

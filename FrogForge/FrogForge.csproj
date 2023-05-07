@@ -388,6 +388,12 @@
     <Compile Include="UserControls\VoicePitchSlider.Designer.cs">
       <DependentUpon>VoicePitchSlider.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\VoiceTypesSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\VoiceTypesSelector.Designer.cs">
+      <DependentUpon>VoiceTypesSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="VoiceAssist.cs" />
     <Compile Include="Weapon.cs" />
     <EmbeddedResource Include="Editors\frmCGEditor.resx">
@@ -498,6 +504,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\VoicePitchSlider.resx">
       <DependentUpon>VoicePitchSlider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\VoiceTypesSelector.resx">
+      <DependentUpon>VoiceTypesSelector.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

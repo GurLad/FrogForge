@@ -55,6 +55,7 @@ namespace FrogForge.Editors
             });
             fgpCharacterAccent.Init(this, BaseSpritePalettes);
             vpsVoicePitch.Init(this);
+            vtsGenericsVoiceTypeSelector.Init(this);
             Dirty = false;
             this.ApplyPreferences();
             // Misc
@@ -65,6 +66,7 @@ namespace FrogForge.Editors
                 GlobalData = WorkingDirectory.LoadFile("GenericPortraitsGlobalData", "", ".json").JsonToObject<GenericPortraitsGlobalData>();
                 pleGenericsPossibleBGPalettes.Datas = GlobalData.GenericPossibleBackgroundColors;
                 pleGenericsCharacterVoices.Datas = GlobalData.GenericVoicesAndNames;
+                UpdateGenericVoices();
             }
             // Set dirty
             txtGenericsTags.TextChanged += DirtyFunc;
@@ -89,6 +91,11 @@ namespace FrogForge.Editors
                 pleGenericsPossibleBGPalettes.Datas[RNG.Next(pleGenericsPossibleBGPalettes.Datas.Count)] : Palette.BasePalette;
             picGenericsFG.Palette = BaseSpritePalettes[RNG.Next(0, 4)];
             picGenericsPreview.FixZoom();
+        }
+
+        private void UpdateGenericVoices()
+        {
+            vtsGenericsVoiceTypeSelector.OptionNames = pleGenericsCharacterVoices.Datas.ConvertAll(a => a.InternalName);
         }
 
         private PortraitData CharacterDataFromUI(PortraitData data)
@@ -130,10 +137,11 @@ namespace FrogForge.Editors
         {
             data.Name = txtGenericsID.Text;
             data.tags = txtGenericsTags.Text;
-            data.VoiceType = trkGenericsVoiceType.Value;
+            data.VoiceTypes = vtsGenericsVoiceTypeSelector.SelectedOptions;
             data.Background = picGenericsBG.Image;
             data.Foreground = picGenericsFG.Image;
             CurrentFile = data.Name;
+            UpdateGenericVoices();
             Dirty = false;
             return data;
         }
@@ -142,7 +150,7 @@ namespace FrogForge.Editors
         {
             txtGenericsID.Text = data.Name;
             txtGenericsTags.Text = data.tags;
-            trkGenericsVoiceType.Value = data.VoiceType;
+            vtsGenericsVoiceTypeSelector.SelectedOptions = data.VoiceTypes;
             WorkingDirectory.CreateDirectory(@"Images\GenericPortraits\" + data.Name);
             picGenericsBG.Image = data.Background ?? new PalettedImage(WorkingDirectory.LoadImage(@"GenericPortraits\" + data.Name + @"\B") ?? new Bitmap(1, 1));
             picGenericsFG.Image = data.Foreground ?? new PalettedImage(WorkingDirectory.LoadImage(@"GenericPortraits\" + data.Name + @"\F") ?? new Bitmap(1, 1));
@@ -279,7 +287,6 @@ namespace FrogForge.Editors
 
         private void trkGenericsVoiceType_ValueChanged(object sender, EventArgs e)
         {
-            lblVoiceType.Text = trkGenericsVoiceType.Value.ToString();
             Dirty = true;
         }
 

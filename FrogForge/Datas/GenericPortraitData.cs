@@ -9,7 +9,7 @@ namespace FrogForge.Datas
     public class GenericPortraitData : BasePortraitData
     {
         public string tags { get; set; } // To match Unity's casing (I'm not sure whether it's case-sensitive, just in case)
-        public int VoiceType { get; set; }
+        public List<int> VoiceTypes { get; set; } = new List<int>();
     }
 }
 

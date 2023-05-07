@@ -33,8 +33,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPortraitEditor));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.picCharactersBG = new FrogForge.UserControls.PalettedPicturebox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.picCharactersPreview = new System.Windows.Forms.PictureBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.picCharactersFG = new FrogForge.UserControls.PalettedPicturebox();
             this.grpData = new System.Windows.Forms.GroupBox();
             this.fgpCharacterAccent = new FrogForge.UserControls.ForegroundPaletteSelector();
             this.fgpCharactersFGPalette = new FrogForge.UserControls.ForegroundPaletteSelector();
@@ -53,6 +56,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnSave = new System.Windows.Forms.ToolStripButton();
+            this.btnNew = new System.Windows.Forms.ToolStripButton();
+            this.btnDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnExport = new System.Windows.Forms.ToolStripButton();
+            this.btnImport = new System.Windows.Forms.ToolStripButton();
             this.tbcMain = new System.Windows.Forms.TabControl();
             this.tbpPortraits = new System.Windows.Forms.TabPage();
             this.lstCharacters = new FrogForge.UserControls.PortraitJSONBrowser();
@@ -65,32 +74,25 @@
             this.lstGenerics = new FrogForge.UserControls.GenericPortraitJSONBrowser();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.picGenericsBG = new FrogForge.UserControls.PalettedPicturebox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.picGenericsPreview = new System.Windows.Forms.PictureBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.picGenericsFG = new FrogForge.UserControls.PalettedPicturebox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.lblVoiceType = new System.Windows.Forms.Label();
+            this.vtsGenericsVoiceTypeSelector = new FrogForge.UserControls.VoiceTypesSelector();
             this.txtGenericsTags = new System.Windows.Forms.TextBox();
             this.txtGenericsID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.trkGenericsVoiceType = new System.Windows.Forms.TrackBar();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.picCharactersBG = new FrogForge.UserControls.PalettedPicturebox();
-            this.picCharactersPreview = new System.Windows.Forms.PictureBox();
-            this.picCharactersFG = new FrogForge.UserControls.PalettedPicturebox();
-            this.picGenericsBG = new FrogForge.UserControls.PalettedPicturebox();
-            this.picGenericsPreview = new System.Windows.Forms.PictureBox();
-            this.picGenericsFG = new FrogForge.UserControls.PalettedPicturebox();
-            this.btnSave = new System.Windows.Forms.ToolStripButton();
-            this.btnNew = new System.Windows.Forms.ToolStripButton();
-            this.btnDelete = new System.Windows.Forms.ToolStripButton();
-            this.btnExport = new System.Windows.Forms.ToolStripButton();
-            this.btnImport = new System.Windows.Forms.ToolStripButton();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCharactersBG)).BeginInit();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCharactersPreview)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCharactersFG)).BeginInit();
             this.grpData.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -102,21 +104,16 @@
             this.groupBox12.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            this.groupBox8.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            this.groupBox10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trkGenericsVoiceType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCharactersBG)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCharactersPreview)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCharactersFG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGenericsBG)).BeginInit();
+            this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGenericsPreview)).BeginInit();
+            this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGenericsFG)).BeginInit();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.Controls.Add(this.groupBox6);
             this.groupBox1.Controls.Add(this.groupBox4);
@@ -137,6 +134,17 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "BG";
             // 
+            // picCharactersBG
+            // 
+            this.picCharactersBG.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picCharactersBG.Image = null;
+            this.picCharactersBG.Location = new System.Drawing.Point(6, 19);
+            this.picCharactersBG.Name = "picCharactersBG";
+            this.picCharactersBG.Palette = palette1;
+            this.picCharactersBG.Size = new System.Drawing.Size(52, 52);
+            this.picCharactersBG.TabIndex = 0;
+            this.picCharactersBG.TabStop = false;
+            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.picCharactersPreview);
@@ -146,6 +154,15 @@
             this.groupBox6.TabIndex = 1;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Preview";
+            // 
+            // picCharactersPreview
+            // 
+            this.picCharactersPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picCharactersPreview.Location = new System.Drawing.Point(6, 19);
+            this.picCharactersPreview.Name = "picCharactersPreview";
+            this.picCharactersPreview.Size = new System.Drawing.Size(52, 52);
+            this.picCharactersPreview.TabIndex = 0;
+            this.picCharactersPreview.TabStop = false;
             // 
             // groupBox4
             // 
@@ -157,10 +174,19 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "FG";
             // 
+            // picCharactersFG
+            // 
+            this.picCharactersFG.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picCharactersFG.Image = null;
+            this.picCharactersFG.Location = new System.Drawing.Point(6, 19);
+            this.picCharactersFG.Name = "picCharactersFG";
+            this.picCharactersFG.Palette = palette1;
+            this.picCharactersFG.Size = new System.Drawing.Size(52, 52);
+            this.picCharactersFG.TabIndex = 0;
+            this.picCharactersFG.TabStop = false;
+            // 
             // grpData
             // 
-            this.grpData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.grpData.Controls.Add(this.fgpCharacterAccent);
             this.grpData.Controls.Add(this.fgpCharactersFGPalette);
             this.grpData.Controls.Add(this.pltCharactersBGPalette);
@@ -267,7 +293,8 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox3.Controls.Add(this.vpsVoicePitch);
             this.groupBox3.Controls.Add(this.btnVoicePlay);
             this.groupBox3.Controls.Add(this.cmbVoiceType);
@@ -275,7 +302,7 @@
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Location = new System.Drawing.Point(126, 263);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(216, 79);
+            this.groupBox3.Size = new System.Drawing.Size(216, 102);
             this.groupBox3.TabIndex = 16;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Voice";
@@ -346,6 +373,61 @@
             this.toolStrip1.TabIndex = 17;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // btnSave
+            // 
+            this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSave.Image = global::FrogForge.Properties.Resources.Save;
+            this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(23, 22);
+            this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnNew
+            // 
+            this.btnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNew.Image = global::FrogForge.Properties.Resources.New;
+            this.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(23, 22);
+            this.btnNew.Text = "New";
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnDelete.Image = global::FrogForge.Properties.Resources.Delete;
+            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(23, 22);
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnExport
+            // 
+            this.btnExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExport.Image = global::FrogForge.Properties.Resources.Export;
+            this.btnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(23, 22);
+            this.btnExport.Text = "Export";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnImport
+            // 
+            this.btnImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnImport.Image = global::FrogForge.Properties.Resources.Import;
+            this.btnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(23, 22);
+            this.btnImport.Text = "Import";
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
             // tbcMain
             // 
             this.tbcMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -356,7 +438,7 @@
             this.tbcMain.Location = new System.Drawing.Point(12, 28);
             this.tbcMain.Name = "tbcMain";
             this.tbcMain.SelectedIndex = 0;
-            this.tbcMain.Size = new System.Drawing.Size(352, 369);
+            this.tbcMain.Size = new System.Drawing.Size(352, 392);
             this.tbcMain.TabIndex = 10;
             this.tbcMain.SelectedIndexChanged += new System.EventHandler(this.tbcMain_SelectedIndexChanged);
             // 
@@ -369,7 +451,7 @@
             this.tbpPortraits.Location = new System.Drawing.Point(4, 22);
             this.tbpPortraits.Name = "tbpPortraits";
             this.tbpPortraits.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpPortraits.Size = new System.Drawing.Size(344, 343);
+            this.tbpPortraits.Size = new System.Drawing.Size(344, 366);
             this.tbpPortraits.TabIndex = 0;
             this.tbpPortraits.Text = "Character Portraits";
             this.tbpPortraits.UseVisualStyleBackColor = true;
@@ -381,7 +463,7 @@
             this.lstCharacters.FormattingEnabled = true;
             this.lstCharacters.Location = new System.Drawing.Point(0, 0);
             this.lstCharacters.Name = "lstCharacters";
-            this.lstCharacters.Size = new System.Drawing.Size(120, 342);
+            this.lstCharacters.Size = new System.Drawing.Size(120, 355);
             this.lstCharacters.TabIndex = 3;
             // 
             // tbpGenerics
@@ -393,45 +475,54 @@
             this.tbpGenerics.Location = new System.Drawing.Point(4, 22);
             this.tbpGenerics.Name = "tbpGenerics";
             this.tbpGenerics.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpGenerics.Size = new System.Drawing.Size(344, 343);
+            this.tbpGenerics.Size = new System.Drawing.Size(344, 366);
             this.tbpGenerics.TabIndex = 1;
             this.tbpGenerics.Text = "Generic Portraits";
             this.tbpGenerics.UseVisualStyleBackColor = true;
             // 
             // groupBox11
             // 
+            this.groupBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox11.Controls.Add(this.groupBox13);
             this.groupBox11.Controls.Add(this.groupBox12);
             this.groupBox11.Location = new System.Drawing.Point(126, 108);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(432, 234);
+            this.groupBox11.Size = new System.Drawing.Size(432, 257);
             this.groupBox11.TabIndex = 19;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Global Data";
             // 
             // groupBox13
             // 
+            this.groupBox13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox13.Controls.Add(this.pleGenericsCharacterVoices);
             this.groupBox13.Location = new System.Drawing.Point(162, 19);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(264, 209);
+            this.groupBox13.Size = new System.Drawing.Size(264, 232);
             this.groupBox13.TabIndex = 2;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Voices";
             // 
             // pleGenericsCharacterVoices
             // 
+            this.pleGenericsCharacterVoices.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pleGenericsCharacterVoices.Location = new System.Drawing.Point(6, 19);
             this.pleGenericsCharacterVoices.Name = "pleGenericsCharacterVoices";
-            this.pleGenericsCharacterVoices.Size = new System.Drawing.Size(252, 184);
+            this.pleGenericsCharacterVoices.Size = new System.Drawing.Size(252, 207);
             this.pleGenericsCharacterVoices.TabIndex = 0;
             // 
             // groupBox12
             // 
+            this.groupBox12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox12.Controls.Add(this.pleGenericsPossibleBGPalettes);
             this.groupBox12.Location = new System.Drawing.Point(6, 19);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(150, 209);
+            this.groupBox12.Size = new System.Drawing.Size(150, 232);
             this.groupBox12.TabIndex = 1;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "BG Palettes";
@@ -443,7 +534,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pleGenericsPossibleBGPalettes.Location = new System.Drawing.Point(6, 19);
             this.pleGenericsPossibleBGPalettes.Name = "pleGenericsPossibleBGPalettes";
-            this.pleGenericsPossibleBGPalettes.Size = new System.Drawing.Size(138, 184);
+            this.pleGenericsPossibleBGPalettes.Size = new System.Drawing.Size(138, 207);
             this.pleGenericsPossibleBGPalettes.TabIndex = 0;
             // 
             // lstGenerics
@@ -453,7 +544,7 @@
             this.lstGenerics.FormattingEnabled = true;
             this.lstGenerics.Location = new System.Drawing.Point(0, 0);
             this.lstGenerics.Name = "lstGenerics";
-            this.lstGenerics.Size = new System.Drawing.Size(120, 342);
+            this.lstGenerics.Size = new System.Drawing.Size(120, 355);
             this.lstGenerics.TabIndex = 4;
             // 
             // groupBox2
@@ -478,6 +569,17 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "BG";
             // 
+            // picGenericsBG
+            // 
+            this.picGenericsBG.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picGenericsBG.Image = null;
+            this.picGenericsBG.Location = new System.Drawing.Point(6, 19);
+            this.picGenericsBG.Name = "picGenericsBG";
+            this.picGenericsBG.Palette = palette2;
+            this.picGenericsBG.Size = new System.Drawing.Size(52, 52);
+            this.picGenericsBG.TabIndex = 0;
+            this.picGenericsBG.TabStop = false;
+            // 
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.picGenericsPreview);
@@ -487,6 +589,15 @@
             this.groupBox8.TabIndex = 1;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Preview";
+            // 
+            // picGenericsPreview
+            // 
+            this.picGenericsPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picGenericsPreview.Location = new System.Drawing.Point(6, 19);
+            this.picGenericsPreview.Name = "picGenericsPreview";
+            this.picGenericsPreview.Size = new System.Drawing.Size(52, 52);
+            this.picGenericsPreview.TabIndex = 0;
+            this.picGenericsPreview.TabStop = false;
             // 
             // groupBox9
             // 
@@ -498,15 +609,25 @@
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "FG";
             // 
+            // picGenericsFG
+            // 
+            this.picGenericsFG.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picGenericsFG.Image = null;
+            this.picGenericsFG.Location = new System.Drawing.Point(6, 19);
+            this.picGenericsFG.Name = "picGenericsFG";
+            this.picGenericsFG.Palette = palette2;
+            this.picGenericsFG.Size = new System.Drawing.Size(52, 52);
+            this.picGenericsFG.TabIndex = 0;
+            this.picGenericsFG.TabStop = false;
+            // 
             // groupBox10
             // 
-            this.groupBox10.Controls.Add(this.lblVoiceType);
+            this.groupBox10.Controls.Add(this.vtsGenericsVoiceTypeSelector);
             this.groupBox10.Controls.Add(this.txtGenericsTags);
             this.groupBox10.Controls.Add(this.txtGenericsID);
             this.groupBox10.Controls.Add(this.label4);
             this.groupBox10.Controls.Add(this.label5);
             this.groupBox10.Controls.Add(this.label6);
-            this.groupBox10.Controls.Add(this.trkGenericsVoiceType);
             this.groupBox10.Location = new System.Drawing.Point(126, 0);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(204, 102);
@@ -514,14 +635,12 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Data";
             // 
-            // lblVoiceType
+            // vtsGenericsVoiceTypeSelector
             // 
-            this.lblVoiceType.Location = new System.Drawing.Point(168, 71);
-            this.lblVoiceType.Name = "lblVoiceType";
-            this.lblVoiceType.Size = new System.Drawing.Size(30, 20);
-            this.lblVoiceType.TabIndex = 3;
-            this.lblVoiceType.Text = "0";
-            this.lblVoiceType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.vtsGenericsVoiceTypeSelector.Location = new System.Drawing.Point(73, 71);
+            this.vtsGenericsVoiceTypeSelector.Name = "vtsGenericsVoiceTypeSelector";
+            this.vtsGenericsVoiceTypeSelector.Size = new System.Drawing.Size(125, 25);
+            this.vtsGenericsVoiceTypeSelector.TabIndex = 3;
             // 
             // txtGenericsTags
             // 
@@ -564,141 +683,11 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "ID:";
             // 
-            // trkGenericsVoiceType
-            // 
-            this.trkGenericsVoiceType.AutoSize = false;
-            this.trkGenericsVoiceType.BackColor = System.Drawing.Color.White;
-            this.trkGenericsVoiceType.LargeChange = 1;
-            this.trkGenericsVoiceType.Location = new System.Drawing.Point(73, 71);
-            this.trkGenericsVoiceType.Maximum = 1;
-            this.trkGenericsVoiceType.Name = "trkGenericsVoiceType";
-            this.trkGenericsVoiceType.Size = new System.Drawing.Size(89, 20);
-            this.trkGenericsVoiceType.TabIndex = 3;
-            this.trkGenericsVoiceType.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.trkGenericsVoiceType.ValueChanged += new System.EventHandler(this.trkGenericsVoiceType_ValueChanged);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // picCharactersBG
-            // 
-            this.picCharactersBG.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picCharactersBG.Image = null;
-            this.picCharactersBG.Location = new System.Drawing.Point(6, 19);
-            this.picCharactersBG.Name = "picCharactersBG";
-            this.picCharactersBG.Palette = palette1;
-            this.picCharactersBG.Size = new System.Drawing.Size(52, 52);
-            this.picCharactersBG.TabIndex = 0;
-            this.picCharactersBG.TabStop = false;
-            // 
-            // picCharactersPreview
-            // 
-            this.picCharactersPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picCharactersPreview.Location = new System.Drawing.Point(6, 19);
-            this.picCharactersPreview.Name = "picCharactersPreview";
-            this.picCharactersPreview.Size = new System.Drawing.Size(52, 52);
-            this.picCharactersPreview.TabIndex = 0;
-            this.picCharactersPreview.TabStop = false;
-            // 
-            // picCharactersFG
-            // 
-            this.picCharactersFG.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picCharactersFG.Image = null;
-            this.picCharactersFG.Location = new System.Drawing.Point(6, 19);
-            this.picCharactersFG.Name = "picCharactersFG";
-            this.picCharactersFG.Palette = palette1;
-            this.picCharactersFG.Size = new System.Drawing.Size(52, 52);
-            this.picCharactersFG.TabIndex = 0;
-            this.picCharactersFG.TabStop = false;
-            // 
-            // picGenericsBG
-            // 
-            this.picGenericsBG.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picGenericsBG.Image = null;
-            this.picGenericsBG.Location = new System.Drawing.Point(6, 19);
-            this.picGenericsBG.Name = "picGenericsBG";
-            this.picGenericsBG.Palette = palette2;
-            this.picGenericsBG.Size = new System.Drawing.Size(52, 52);
-            this.picGenericsBG.TabIndex = 0;
-            this.picGenericsBG.TabStop = false;
-            // 
-            // picGenericsPreview
-            // 
-            this.picGenericsPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picGenericsPreview.Location = new System.Drawing.Point(6, 19);
-            this.picGenericsPreview.Name = "picGenericsPreview";
-            this.picGenericsPreview.Size = new System.Drawing.Size(52, 52);
-            this.picGenericsPreview.TabIndex = 0;
-            this.picGenericsPreview.TabStop = false;
-            // 
-            // picGenericsFG
-            // 
-            this.picGenericsFG.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picGenericsFG.Image = null;
-            this.picGenericsFG.Location = new System.Drawing.Point(6, 19);
-            this.picGenericsFG.Name = "picGenericsFG";
-            this.picGenericsFG.Palette = palette2;
-            this.picGenericsFG.Size = new System.Drawing.Size(52, 52);
-            this.picGenericsFG.TabIndex = 0;
-            this.picGenericsFG.TabStop = false;
-            // 
-            // btnSave
-            // 
-            this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSave.Image = global::FrogForge.Properties.Resources.Save;
-            this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(23, 22);
-            this.btnSave.Text = "Save";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnNew
-            // 
-            this.btnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnNew.Image = global::FrogForge.Properties.Resources.New;
-            this.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(23, 22);
-            this.btnNew.Text = "New";
-            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnDelete.Image = global::FrogForge.Properties.Resources.Delete;
-            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(23, 22);
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnExport
-            // 
-            this.btnExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnExport.Image = global::FrogForge.Properties.Resources.Export;
-            this.btnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(23, 22);
-            this.btnExport.Text = "Export";
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // btnImport
-            // 
-            this.btnImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnImport.Image = global::FrogForge.Properties.Resources.Import;
-            this.btnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(23, 22);
-            this.btnImport.Text = "Import";
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
-            // 
             // frmPortraitEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(377, 409);
+            this.ClientSize = new System.Drawing.Size(377, 432);
             this.Controls.Add(this.tbcMain);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -711,8 +700,11 @@
             this.Load += new System.EventHandler(this.frmPortraitEditor_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picCharactersBG)).EndInit();
             this.groupBox6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picCharactersPreview)).EndInit();
             this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picCharactersFG)).EndInit();
             this.grpData.ResumeLayout(false);
             this.grpData.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -727,17 +719,13 @@
             this.groupBox12.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picGenericsBG)).EndInit();
             this.groupBox8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picGenericsPreview)).EndInit();
             this.groupBox9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picGenericsFG)).EndInit();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trkGenericsVoiceType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCharactersBG)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCharactersPreview)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCharactersFG)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picGenericsBG)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picGenericsPreview)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picGenericsFG)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -776,9 +764,7 @@
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.TextBox txtGenericsID;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TrackBar trkGenericsVoiceType;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblVoiceType;
         private System.Windows.Forms.TextBox txtGenericsTags;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox11;
@@ -800,5 +786,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnExport;
         private System.Windows.Forms.ToolStripButton btnImport;
+        private UserControls.VoiceTypesSelector vtsGenericsVoiceTypeSelector;
     }
 }
