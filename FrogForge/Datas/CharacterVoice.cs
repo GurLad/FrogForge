@@ -11,5 +11,6 @@ namespace FrogForge.Datas
     {
         public VoiceType VoiceType { get; set; } = VoiceType.Square50;
         public float Pitch { get; set; } = 1;
+        public float Speed { get; set; } = 1;
     }
 }

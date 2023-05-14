@@ -86,6 +86,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.vpsVoiceSpeed = new FrogForge.UserControls.VoicePitchSlider();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCharactersBG)).BeginInit();
@@ -295,9 +297,11 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox3.Controls.Add(this.vpsVoiceSpeed);
             this.groupBox3.Controls.Add(this.vpsVoicePitch);
             this.groupBox3.Controls.Add(this.btnVoicePlay);
             this.groupBox3.Controls.Add(this.cmbVoiceType);
+            this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Location = new System.Drawing.Point(126, 263);
@@ -639,6 +643,7 @@
             // 
             this.vtsGenericsVoiceTypeSelector.Location = new System.Drawing.Point(73, 71);
             this.vtsGenericsVoiceTypeSelector.Name = "vtsGenericsVoiceTypeSelector";
+            this.vtsGenericsVoiceTypeSelector.SelectedOptions = ((System.Collections.Generic.List<int>)(resources.GetObject("vtsGenericsVoiceTypeSelector.SelectedOptions")));
             this.vtsGenericsVoiceTypeSelector.Size = new System.Drawing.Size(125, 25);
             this.vtsGenericsVoiceTypeSelector.TabIndex = 3;
             // 
@@ -682,6 +687,23 @@
             this.label6.Size = new System.Drawing.Size(21, 13);
             this.label6.TabIndex = 0;
             this.label6.Text = "ID:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 76);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(41, 13);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Speed:";
+            // 
+            // vpsVoiceSpeed
+            // 
+            this.vpsVoiceSpeed.Location = new System.Drawing.Point(73, 72);
+            this.vpsVoiceSpeed.Name = "vpsVoiceSpeed";
+            this.vpsVoiceSpeed.Pitch = 1F;
+            this.vpsVoiceSpeed.Size = new System.Drawing.Size(137, 20);
+            this.vpsVoiceSpeed.TabIndex = 5;
             // 
             // frmPortraitEditor
             // 
@@ -787,5 +809,7 @@
         private System.Windows.Forms.ToolStripButton btnExport;
         private System.Windows.Forms.ToolStripButton btnImport;
         private UserControls.VoiceTypesSelector vtsGenericsVoiceTypeSelector;
+        private UserControls.VoicePitchSlider vpsVoiceSpeed;
+        private System.Windows.Forms.Label label11;
     }
 }

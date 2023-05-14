@@ -118,7 +118,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(289, 11);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.6.5.0 07.05.2022";
+            this.lblVersion.Text = "V.0.6.5.1 14.05.2022";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnClassEditor
@@ -324,9 +324,9 @@
             this.lblCredits.Font = new System.Drawing.Font("3x5", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.lblCredits.Location = new System.Drawing.Point(12, 398);
             this.lblCredits.Name = "lblCredits";
-            this.lblCredits.Size = new System.Drawing.Size(75, 6);
+            this.lblCredits.Size = new System.Drawing.Size(43, 6);
             this.lblCredits.TabIndex = 4;
-            this.lblCredits.Text = "By Gur Ladizhinsky";
+            this.lblCredits.Text = "Disc O Key";
             // 
             // btnCGEditor
             // 

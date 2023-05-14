@@ -55,6 +55,7 @@ namespace FrogForge.Editors
             });
             fgpCharacterAccent.Init(this, BaseSpritePalettes);
             vpsVoicePitch.Init(this);
+            vpsVoiceSpeed.Init(this);
             vtsGenericsVoiceTypeSelector.Init(this);
             Dirty = false;
             this.ApplyPreferences();
@@ -107,7 +108,8 @@ namespace FrogForge.Editors
             data.Background = picCharactersBG.Image;
             data.Foreground = picCharactersFG.Image;
             data.AccentColor = fgpCharacterAccent.Data;
-            data.Voice.Pitch = (float)vpsVoicePitch.Pitch;
+            data.Voice.Pitch = vpsVoicePitch.Pitch;
+            data.Voice.Speed = vpsVoiceSpeed.Pitch;
             data.Voice.VoiceType = (VoiceType)cmbVoiceType.SelectedIndex;
             CurrentFile = data.Name;
             Dirty = false;
@@ -127,6 +129,7 @@ namespace FrogForge.Editors
             picCharactersFG.Palette = BaseSpritePalettes[fgpCharactersFGPalette.Data];
             fgpCharacterAccent.Data = data.AccentColor;
             vpsVoicePitch.Pitch = data.Voice.Pitch;
+            vpsVoiceSpeed.Pitch = data.Voice.Speed;
             cmbVoiceType.SelectedIndex = (int)data.Voice.VoiceType;
             UpdateCharacterPreview();
             CurrentFile = data.Name;
