@@ -115,8 +115,10 @@ namespace FrogForge.Editors
             // Init stuff
             dlgImport.Filter = dlgExport.Filter = "Map data files|*.map.ffpp";
             melMapEvents.Init(this, () => new MapEventData(), () => new UserControls.MapEventPanel(), (a) => a.Init(this, DataDirectory), false);
+            ccbClass.Init(this);
             this.ApplyPreferences();
             // Fix zoom mode - I don't know why it has so many bugs
+            ccbClass.Width = nudLevel.Width;
             for (i = 0; i < Size.X; i++)
             {
                 for (int j = 0; j < Size.Y; j++)
@@ -412,7 +414,7 @@ namespace FrogForge.Editors
 
         private void btnPlace_Click(object sender, EventArgs e)
         {
-            Units.Add(Placing = new Unit((Team)Enum.Parse(typeof(Team), cmbUnitTeam.Text), (int)nudLevel.Value, txtClass.Text, (AIType)Enum.Parse(typeof(AIType), cmbAIType.Text), (int)nudReinforcementTurn.Value, ckbStatue.Checked));
+            Units.Add(Placing = new Unit((Team)Enum.Parse(typeof(Team), cmbUnitTeam.Text), (int)nudLevel.Value, ccbClass.Text, (AIType)Enum.Parse(typeof(AIType), cmbAIType.Text), (int)nudReinforcementTurn.Value, ckbStatue.Checked));
             Placing.image = GetUnitImage(Placing).Resize(Preferences.Current.ZoomAmount);
             CurrentSelected = null;
             picPreview.BackgroundImage = null;
@@ -508,7 +510,7 @@ namespace FrogForge.Editors
             {
                 cmbUnitTeam.Text = unit.Team.ToString();
                 nudLevel.Value = unit.Level;
-                txtClass.Text = unit.Class;
+                ccbClass.Text = unit.Class;
                 cmbAIType.Text = unit.AIType.ToString();
                 nudReinforcementTurn.Value = unit.ReinforcementTurn;
                 ckbStatue.Checked = unit.Statue;

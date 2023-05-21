@@ -35,7 +35,6 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.lstUnits = new System.Windows.Forms.ListBox();
             this.btnPlace = new System.Windows.Forms.Button();
-            this.txtClass = new System.Windows.Forms.TextBox();
             this.nudLevel = new System.Windows.Forms.NumericUpDown();
             this.cmbUnitTeam = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -62,6 +61,8 @@
             this.nudEscapePosY = new System.Windows.Forms.NumericUpDown();
             this.nudEscapePosX = new System.Windows.Forms.NumericUpDown();
             this.nudSurviveTurn = new System.Windows.Forms.NumericUpDown();
+            this.txtCustomObjectiveDescription = new System.Windows.Forms.TextBox();
+            this.rdbCustom = new System.Windows.Forms.RadioButton();
             this.txtBossName = new System.Windows.Forms.TextBox();
             this.rdbDefeatBoss = new System.Windows.Forms.RadioButton();
             this.rdbEscape = new System.Windows.Forms.RadioButton();
@@ -85,8 +86,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txtTags = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.rdbCustom = new System.Windows.Forms.RadioButton();
-            this.txtCustomObjectiveDescription = new System.Windows.Forms.TextBox();
+            this.ccbClass = new FrogForge.UserControls.ClassComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevelNumber)).BeginInit();
             this.tbcUI.SuspendLayout();
@@ -158,13 +158,6 @@
             this.btnPlace.Text = "Place";
             this.btnPlace.UseVisualStyleBackColor = true;
             this.btnPlace.Click += new System.EventHandler(this.btnPlace_Click);
-            // 
-            // txtClass
-            // 
-            this.txtClass.Location = new System.Drawing.Point(40, 0);
-            this.txtClass.Name = "txtClass";
-            this.txtClass.Size = new System.Drawing.Size(95, 20);
-            this.txtClass.TabIndex = 2;
             // 
             // nudLevel
             // 
@@ -265,6 +258,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.ccbClass);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.label6);
@@ -275,7 +269,6 @@
             this.tabPage2.Controls.Add(this.cmbUnitTeam);
             this.tabPage2.Controls.Add(this.nudReinforcementTurn);
             this.tabPage2.Controls.Add(this.nudLevel);
-            this.tabPage2.Controls.Add(this.txtClass);
             this.tabPage2.Controls.Add(this.ckbStatue);
             this.tabPage2.Controls.Add(this.btnPlace);
             this.tabPage2.Controls.Add(this.btnReplace);
@@ -472,6 +465,26 @@
             this.nudSurviveTurn.Name = "nudSurviveTurn";
             this.nudSurviveTurn.Size = new System.Drawing.Size(33, 20);
             this.nudSurviveTurn.TabIndex = 2;
+            // 
+            // txtCustomObjectiveDescription
+            // 
+            this.txtCustomObjectiveDescription.Enabled = false;
+            this.txtCustomObjectiveDescription.Location = new System.Drawing.Point(94, 111);
+            this.txtCustomObjectiveDescription.MaxLength = 17;
+            this.txtCustomObjectiveDescription.Name = "txtCustomObjectiveDescription";
+            this.txtCustomObjectiveDescription.Size = new System.Drawing.Size(100, 20);
+            this.txtCustomObjectiveDescription.TabIndex = 1;
+            // 
+            // rdbCustom
+            // 
+            this.rdbCustom.AutoSize = true;
+            this.rdbCustom.Location = new System.Drawing.Point(6, 112);
+            this.rdbCustom.Name = "rdbCustom";
+            this.rdbCustom.Size = new System.Drawing.Size(60, 17);
+            this.rdbCustom.TabIndex = 0;
+            this.rdbCustom.Text = "Custom";
+            this.rdbCustom.UseVisualStyleBackColor = true;
+            this.rdbCustom.CheckedChanged += new System.EventHandler(this.rdbCustom_CheckedChanged);
             // 
             // txtBossName
             // 
@@ -693,25 +706,13 @@
             this.label8.TabIndex = 37;
             this.label8.Text = "Tags:";
             // 
-            // rdbCustom
+            // ccbClass
             // 
-            this.rdbCustom.AutoSize = true;
-            this.rdbCustom.Location = new System.Drawing.Point(6, 112);
-            this.rdbCustom.Name = "rdbCustom";
-            this.rdbCustom.Size = new System.Drawing.Size(60, 17);
-            this.rdbCustom.TabIndex = 0;
-            this.rdbCustom.Text = "Custom";
-            this.rdbCustom.UseVisualStyleBackColor = true;
-            this.rdbCustom.CheckedChanged += new System.EventHandler(this.rdbCustom_CheckedChanged);
-            // 
-            // txtCustomObjectiveDescription
-            // 
-            this.txtCustomObjectiveDescription.Enabled = false;
-            this.txtCustomObjectiveDescription.Location = new System.Drawing.Point(94, 111);
-            this.txtCustomObjectiveDescription.MaxLength = 17;
-            this.txtCustomObjectiveDescription.Name = "txtCustomObjectiveDescription";
-            this.txtCustomObjectiveDescription.Size = new System.Drawing.Size(100, 20);
-            this.txtCustomObjectiveDescription.TabIndex = 1;
+            this.ccbClass.FormattingEnabled = true;
+            this.ccbClass.Location = new System.Drawing.Point(40, 0);
+            this.ccbClass.Name = "ccbClass";
+            this.ccbClass.Size = new System.Drawing.Size(95, 21);
+            this.ccbClass.TabIndex = 9;
             // 
             // frmMapEditor
             // 
@@ -767,7 +768,6 @@
         private System.Windows.Forms.ComboBox cmbUnitTeam;
         private System.Windows.Forms.NumericUpDown nudLevel;
         private System.Windows.Forms.Button btnPlace;
-        private System.Windows.Forms.TextBox txtClass;
         private System.Windows.Forms.ListBox lstUnits;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.ComboBox cmbTileSets;
@@ -819,6 +819,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtCustomObjectiveDescription;
         private System.Windows.Forms.RadioButton rdbCustom;
+        private UserControls.ClassComboBox ccbClass;
     }
 }
 

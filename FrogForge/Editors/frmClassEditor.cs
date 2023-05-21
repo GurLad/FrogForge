@@ -50,7 +50,6 @@ namespace FrogForge.Editors
             ckbFlies.CheckedChanged += DirtyFunc;
             cmbClassAnimationModeMelee.TextChanged += DirtyFunc;
             cmbClassAnimationModeRanged.TextChanged += DirtyFunc;
-            txtUnitClass.TextChanged += DirtyFunc;
             cmbUnitInclination.TextChanged += DirtyFunc;
             nudProjectileLocationX.ValueChanged += DirtyFunc;
             nudProjectileLocationY.ValueChanged += DirtyFunc;
@@ -65,6 +64,7 @@ namespace FrogForge.Editors
                 () => btnGenerateBase.Visible = balBattleAnimations.Datas.Count <= 0);
             txtUnitDeathQuote.Init(DataDirectory, this);
             picProjectile.Init(dlgOpen, this, null, () => UpdateProjectileIndicator(true));
+            ccbUnitClass.Init(this, lstClasses.Data);
             // Misc
             this.ApplyPreferences();
             pnlProjectilePos.BackColor = picProjectileIndicator.BackColor;
@@ -75,6 +75,7 @@ namespace FrogForge.Editors
             if (tbcMain.SelectedIndex == 0)
             {
                 lstClasses.Save(txtClassName.Text);
+                ccbUnitClass.UpdateItems(lstClasses.Data);
             }
             else
             {
@@ -186,7 +187,7 @@ namespace FrogForge.Editors
         {
             data.Name = txtUnitName.Text;
             data.DisplayName = txtUnitDisplayName.Text;
-            data.Class = txtUnitClass.Text;
+            data.Class = ccbUnitClass.Text;
             data.Inclination = (Inclination)cmbUnitInclination.SelectedIndex;
             data.Growths = gthUnitGrowths.Data;
             data.DeathQuote = txtUnitDeathQuote.Text;
@@ -199,7 +200,7 @@ namespace FrogForge.Editors
         {
             txtUnitName.Text = data.Name;
             txtUnitDisplayName.Text = data.DisplayName;
-            txtUnitClass.Text = data.Class;
+            ccbUnitClass.Text = data.Class;
             cmbUnitInclination.Text = data.Inclination.ToString();
             gthUnitGrowths.Data = data.Growths;
             txtUnitDeathQuote.Text = data.DeathQuote;
@@ -262,13 +263,29 @@ namespace FrogForge.Editors
 
         private void btnGenerateBase_Click(object sender, EventArgs e)
         {
-            BattleAnimationsFromList(new List<string>(new string[]
+            List<BattleAnimationMode> modes = new List<BattleAnimationMode>
             {
-                "Idle",
-                "Walk",
-                "AttackStart",
-                "AttackEnd"
-            }));
+                (BattleAnimationMode)cmbClassAnimationModeMelee.SelectedIndex,
+                (BattleAnimationMode)cmbClassAnimationModeRanged.SelectedIndex
+            };
+            List<string> result = new List<string> { "Idle" };
+            if (modes.Contains(BattleAnimationMode.Walk))
+            {
+                result.Add("Walk");
+            }
+            if (modes.Contains(BattleAnimationMode.Teleport))
+            {
+                result.Add("TeleportStart");
+                result.Add("TeleportEnd");
+            }
+            result.Add("AttackStart");
+            result.Add("AttackEnd");
+            if (modes.Contains(BattleAnimationMode.Projectile))
+            {
+                result.Add("AttackRangeStart");
+                result.Add("AttackRangeEnd");
+            }
+            BattleAnimationsFromList(result);
             Dirty = true;
         }
 

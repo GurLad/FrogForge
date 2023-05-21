@@ -59,6 +59,9 @@
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
             this.btnRemove = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnExport = new System.Windows.Forms.ToolStripButton();
+            this.btnImport = new System.Windows.Forms.ToolStripButton();
             this.tbcMain = new System.Windows.Forms.TabControl();
             this.tbpClass = new System.Windows.Forms.TabPage();
             this.grpAnimationData = new System.Windows.Forms.GroupBox();
@@ -90,16 +93,13 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtUnitClass = new System.Windows.Forms.TextBox();
             this.txtUnitDisplayName = new System.Windows.Forms.TextBox();
             this.txtUnitName = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gthUnitGrowths = new FrogForge.UserControls.GrowthsPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.cmbUnitInclination = new System.Windows.Forms.ComboBox();
-            this.btnImport = new System.Windows.Forms.ToolStripButton();
-            this.btnExport = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ccbUnitClass = new UserControls.ClassComboBox();
             this.grpGrowths.SuspendLayout();
             this.grpWeapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponWeight)).BeginInit();
@@ -439,6 +439,31 @@
             this.btnRemove.Text = "Delete";
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnExport
+            // 
+            this.btnExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExport.Image = global::FrogForge.Properties.Resources.Export;
+            this.btnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(23, 22);
+            this.btnExport.Text = "Export";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnImport
+            // 
+            this.btnImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnImport.Image = global::FrogForge.Properties.Resources.Import;
+            this.btnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(23, 22);
+            this.btnImport.Text = "Import";
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
             // tbcMain
             // 
             this.tbcMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -731,12 +756,12 @@
             // 
             // tbpUnit
             // 
+            this.tbpUnit.Controls.Add(this.ccbUnitClass);
             this.tbpUnit.Controls.Add(this.groupBox3);
             this.tbpUnit.Controls.Add(this.lstUnits);
             this.tbpUnit.Controls.Add(this.label10);
             this.tbpUnit.Controls.Add(this.label11);
             this.tbpUnit.Controls.Add(this.label8);
-            this.tbpUnit.Controls.Add(this.txtUnitClass);
             this.tbpUnit.Controls.Add(this.txtUnitDisplayName);
             this.tbpUnit.Controls.Add(this.txtUnitName);
             this.tbpUnit.Controls.Add(this.groupBox1);
@@ -809,14 +834,6 @@
             this.label8.TabIndex = 10;
             this.label8.Text = "Name:";
             // 
-            // txtUnitClass
-            // 
-            this.txtUnitClass.Location = new System.Drawing.Point(205, 52);
-            this.txtUnitClass.MaxLength = 8;
-            this.txtUnitClass.Name = "txtUnitClass";
-            this.txtUnitClass.Size = new System.Drawing.Size(167, 20);
-            this.txtUnitClass.TabIndex = 1;
-            // 
             // txtUnitDisplayName
             // 
             this.txtUnitDisplayName.Location = new System.Drawing.Point(205, 26);
@@ -872,30 +889,13 @@
             this.cmbUnitInclination.Size = new System.Drawing.Size(167, 21);
             this.cmbUnitInclination.TabIndex = 2;
             // 
-            // btnImport
+            // ccbUnitClass
             // 
-            this.btnImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnImport.Image = global::FrogForge.Properties.Resources.Import;
-            this.btnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(23, 22);
-            this.btnImport.Text = "Import";
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
-            // 
-            // btnExport
-            // 
-            this.btnExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnExport.Image = global::FrogForge.Properties.Resources.Export;
-            this.btnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(23, 22);
-            this.btnExport.Text = "Export";
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.ccbUnitClass.FormattingEnabled = true;
+            this.ccbUnitClass.Location = new System.Drawing.Point(205, 52);
+            this.ccbUnitClass.Name = "ccbUnitClass";
+            this.ccbUnitClass.Size = new System.Drawing.Size(167, 21);
+            this.ccbUnitClass.TabIndex = 17;
             // 
             // frmClassEditor
             // 
@@ -992,7 +992,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cmbUnitInclination;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtUnitClass;
         private System.Windows.Forms.GroupBox groupBox3;
         private UserControls.EventTextBox txtUnitDeathQuote;
         private System.Windows.Forms.GroupBox grpAnimationData;
@@ -1022,5 +1021,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnImport;
         private System.Windows.Forms.ToolStripButton btnExport;
+        private UserControls.ClassComboBox ccbUnitClass;
     }
 }

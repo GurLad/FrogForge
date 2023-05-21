@@ -237,6 +237,9 @@
     <Compile Include="UserControls\BattleBackgroundPanel.Designer.cs">
       <DependentUpon>BattleBackgroundPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ClassComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UserControls\DataTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
