@@ -115,7 +115,7 @@ namespace FrogForge.Editors
             // Init stuff
             dlgImport.Filter = dlgExport.Filter = "Map data files|*.map.ffpp";
             melMapEvents.Init(this, () => new MapEventData(), () => new UserControls.MapEventPanel(), (a) => a.Init(this, DataDirectory), false);
-            ccbClass.Init(this);
+            ccbClass.Init(this, null, false);
             this.ApplyPreferences();
             // Fix zoom mode - I don't know why it has so many bugs
             ccbClass.Width = nudLevel.Width;

@@ -14,11 +14,14 @@ namespace FrogForge.UserControls
     {
         private FilesController WorkingDirectory;
 
-        public void Init(frmBaseEditor baseEditor, List<ClassData> items = null)
+        public void Init(frmBaseEditor baseEditor, List<ClassData> items = null, bool dirty = true)
         {
             WorkingDirectory = baseEditor.WorkingDirectory;
             UpdateItems(items);
-            TextChanged += (sender, e) => baseEditor.Dirty = true;
+            if (dirty)
+            {
+                TextChanged += (sender, e) => baseEditor.Dirty = true;
+            }
         }
 
         public void UpdateItems(List<ClassData> items = null)
