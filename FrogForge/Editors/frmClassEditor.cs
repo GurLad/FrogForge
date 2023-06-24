@@ -62,9 +62,13 @@ namespace FrogForge.Editors
                 this, () => new BattleAnimationData(), () => new BattleAnimationPanel(),
                 (bap) => { bap.Init(dlgOpen, this); bap.SetPreviewPalette(CurrentPreviewPalette, BaseSpritePalettes); }, true,
                 () => btnGenerateBase.Visible = balBattleAnimations.Datas.Count <= 0);
-            txtUnitDeathQuote.Init(DataDirectory, this);
             picProjectile.Init(dlgOpen, this, null, () => UpdateProjectileIndicator(true));
             ccbUnitClass.Init(this, lstClasses.Data);
+            // Fix zoom mode issues
+            lstUnitDeathQuotes.Width -= PageWidths[0] - PageWidths[1];
+            lstUnitDeathQuotes.Init(
+                this, () => "", () => new DataEventTextBox(), a => a.Init(DataDirectory, this), false);
+            lstUnitDeathQuotes.Width += PageWidths[0] - PageWidths[1];
             // Misc
             this.ApplyPreferences();
             pnlProjectilePos.BackColor = picProjectileIndicator.BackColor;
@@ -190,7 +194,7 @@ namespace FrogForge.Editors
             data.Class = ccbUnitClass.Text;
             data.Inclination = (Inclination)cmbUnitInclination.SelectedIndex;
             data.Growths = gthUnitGrowths.Data;
-            data.DeathQuote = txtUnitDeathQuote.Text;
+            data.DeathQuotes = lstUnitDeathQuotes.Datas;
             CurrentFile = data.Name;
             Dirty = false;
             return data;
@@ -203,7 +207,7 @@ namespace FrogForge.Editors
             ccbUnitClass.Text = data.Class;
             cmbUnitInclination.Text = data.Inclination.ToString();
             gthUnitGrowths.Data = data.Growths;
-            txtUnitDeathQuote.Text = data.DeathQuote;
+            lstUnitDeathQuotes.Datas = data.DeathQuotes;
             CurrentFile = data.Name;
             Dirty = false;
         }

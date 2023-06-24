@@ -240,6 +240,12 @@
     <Compile Include="UserControls\ClassComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UserControls\DataEventTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\DataEventTextBox.Designer.cs">
+      <DependentUpon>DataEventTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\DataTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -446,6 +452,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ConversationPlayer.resx">
       <DependentUpon>ConversationPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\DataEventTextBox.resx">
+      <DependentUpon>DataEventTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\DataTextBox.resx">
       <DependentUpon>DataTextBox.cs</DependentUpon>

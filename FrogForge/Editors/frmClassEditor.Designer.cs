@@ -87,8 +87,9 @@
             this.cmbClassAnimationModeRanged = new System.Windows.Forms.ComboBox();
             this.cmbClassAnimationModeMelee = new System.Windows.Forms.ComboBox();
             this.tbpUnit = new System.Windows.Forms.TabPage();
+            this.ccbUnitClass = new FrogForge.UserControls.ClassComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.txtUnitDeathQuote = new FrogForge.UserControls.EventTextBox();
+            this.lstUnitDeathQuotes = new FrogForge.UserControls.EventListEditor();
             this.lstUnits = new FrogForge.UserControls.UnitJSONBrowser();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -99,7 +100,6 @@
             this.gthUnitGrowths = new FrogForge.UserControls.GrowthsPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.cmbUnitInclination = new System.Windows.Forms.ComboBox();
-            this.ccbUnitClass = new UserControls.ClassComboBox();
             this.grpGrowths.SuspendLayout();
             this.grpWeapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponWeight)).BeginInit();
@@ -775,27 +775,35 @@
             this.tbpUnit.Text = "Unit";
             this.tbpUnit.UseVisualStyleBackColor = true;
             // 
+            // ccbUnitClass
+            // 
+            this.ccbUnitClass.FormattingEnabled = true;
+            this.ccbUnitClass.Location = new System.Drawing.Point(205, 52);
+            this.ccbUnitClass.Name = "ccbUnitClass";
+            this.ccbUnitClass.Size = new System.Drawing.Size(167, 21);
+            this.ccbUnitClass.TabIndex = 17;
+            // 
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.txtUnitDeathQuote);
+            this.groupBox3.Controls.Add(this.lstUnitDeathQuotes);
             this.groupBox3.Location = new System.Drawing.Point(378, 0);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(375, 204);
             this.groupBox3.TabIndex = 16;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Death event";
+            this.groupBox3.Text = "Death events";
             // 
-            // txtUnitDeathQuote
+            // lstUnitDeathQuotes
             // 
-            this.txtUnitDeathQuote.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lstUnitDeathQuotes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUnitDeathQuote.Location = new System.Drawing.Point(7, 20);
-            this.txtUnitDeathQuote.Name = "txtUnitDeathQuote";
-            this.txtUnitDeathQuote.Size = new System.Drawing.Size(362, 178);
-            this.txtUnitDeathQuote.TabIndex = 0;
+            this.lstUnitDeathQuotes.Location = new System.Drawing.Point(6, 19);
+            this.lstUnitDeathQuotes.Name = "lstUnitDeathQuotes";
+            this.lstUnitDeathQuotes.Size = new System.Drawing.Size(363, 179);
+            this.lstUnitDeathQuotes.TabIndex = 1;
             // 
             // lstUnits
             // 
@@ -888,14 +896,6 @@
             this.cmbUnitInclination.Name = "cmbUnitInclination";
             this.cmbUnitInclination.Size = new System.Drawing.Size(167, 21);
             this.cmbUnitInclination.TabIndex = 2;
-            // 
-            // ccbUnitClass
-            // 
-            this.ccbUnitClass.FormattingEnabled = true;
-            this.ccbUnitClass.Location = new System.Drawing.Point(205, 52);
-            this.ccbUnitClass.Name = "ccbUnitClass";
-            this.ccbUnitClass.Size = new System.Drawing.Size(167, 21);
-            this.ccbUnitClass.TabIndex = 17;
             // 
             // frmClassEditor
             // 
@@ -993,7 +993,6 @@
         private System.Windows.Forms.ComboBox cmbUnitInclination;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox3;
-        private UserControls.EventTextBox txtUnitDeathQuote;
         private System.Windows.Forms.GroupBox grpAnimationData;
         private System.Windows.Forms.ComboBox cmbClassAnimationModeMelee;
         private System.Windows.Forms.Label label12;
@@ -1022,5 +1021,6 @@
         private System.Windows.Forms.ToolStripButton btnImport;
         private System.Windows.Forms.ToolStripButton btnExport;
         private UserControls.ClassComboBox ccbUnitClass;
+        private UserControls.EventListEditor lstUnitDeathQuotes;
     }
 }
