@@ -40,7 +40,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lstEndingCards = new FrogForge.UserControls.EndingCardsListEditor();
             this.lstCharacterEndings = new FrogForge.UserControls.CharacterEndingJSONBrowser();
+            this.grpCards = new System.Windows.Forms.GroupBox();
             this.toolStrip1.SuspendLayout();
+            this.grpCards.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -54,7 +56,7 @@
             this.btnImport});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(437, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(454, 25);
             this.toolStrip1.TabIndex = 12;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -131,10 +133,7 @@
             // 
             // lstEndingCards
             // 
-            this.lstEndingCards.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstEndingCards.Location = new System.Drawing.Point(144, 54);
+            this.lstEndingCards.Location = new System.Drawing.Point(6, 19);
             this.lstEndingCards.Name = "lstEndingCards";
             this.lstEndingCards.Size = new System.Drawing.Size(286, 163);
             this.lstEndingCards.TabIndex = 26;
@@ -146,15 +145,28 @@
             this.lstCharacterEndings.FormattingEnabled = true;
             this.lstCharacterEndings.Location = new System.Drawing.Point(12, 28);
             this.lstCharacterEndings.Name = "lstCharacterEndings";
-            this.lstCharacterEndings.Size = new System.Drawing.Size(126, 186);
+            this.lstCharacterEndings.Size = new System.Drawing.Size(126, 212);
             this.lstCharacterEndings.TabIndex = 13;
+            // 
+            // grpCards
+            // 
+            this.grpCards.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpCards.Controls.Add(this.lstEndingCards);
+            this.grpCards.Location = new System.Drawing.Point(144, 54);
+            this.grpCards.Name = "grpCards";
+            this.grpCards.Size = new System.Drawing.Size(298, 188);
+            this.grpCards.TabIndex = 27;
+            this.grpCards.TabStop = false;
+            this.grpCards.Text = "Possible cards";
             // 
             // frmCharacterEndingEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(437, 229);
-            this.Controls.Add(this.lstEndingCards);
+            this.ClientSize = new System.Drawing.Size(454, 254);
+            this.Controls.Add(this.grpCards);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lstCharacterEndings);
@@ -169,6 +181,7 @@
             this.Load += new System.EventHandler(this.frmCharacterEndingEditor_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.grpCards.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,5 +200,6 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label3;
         private UserControls.EndingCardsListEditor lstEndingCards;
+        private System.Windows.Forms.GroupBox grpCards;
     }
 }
