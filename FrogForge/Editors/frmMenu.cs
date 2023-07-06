@@ -189,6 +189,15 @@ namespace FrogForge.Editors
             musicEditor.ShowDialog(this);
         }
 
+        private void btnCharacterEndingEditor_Click(object sender, EventArgs e)
+        {
+            frmCharacterEndingEditor characterEndingEditor = new frmCharacterEndingEditor();
+            characterEndingEditor.DataDirectory = DataDirectory;
+            characterEndingEditor.WorkingDirectory = WorkingDirectory;
+            VoiceAssist.Say("New");
+            characterEndingEditor.ShowDialog(this);
+        }
+
         private async void btnDataImport_Click(object sender, EventArgs e)
         {
             if (dlgDataImport.ShowDialog(this) == DialogResult.OK)

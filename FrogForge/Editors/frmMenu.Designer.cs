@@ -65,6 +65,7 @@
             this.btnMusicEditor = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnPlay = new System.Windows.Forms.Button();
+            this.btnCharacterEndingEditor = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -114,11 +115,11 @@
             // 
             this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblVersion.Font = new System.Drawing.Font("3x5", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(12, 398);
+            this.lblVersion.Location = new System.Drawing.Point(12, 427);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(289, 11);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.6.5.3 28.05.2023";
+            this.lblVersion.Text = "V.0.6.6.0 06.07.2023";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnClassEditor
@@ -322,7 +323,7 @@
             this.lblCredits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCredits.AutoSize = true;
             this.lblCredits.Font = new System.Drawing.Font("3x5", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.lblCredits.Location = new System.Drawing.Point(12, 398);
+            this.lblCredits.Location = new System.Drawing.Point(12, 427);
             this.lblCredits.Name = "lblCredits";
             this.lblCredits.Size = new System.Drawing.Size(43, 6);
             this.lblCredits.TabIndex = 4;
@@ -357,7 +358,7 @@
             this.groupBox2.Controls.Add(this.btnConversationEditor);
             this.groupBox2.Controls.Add(this.btnMusicEditor);
             this.groupBox2.Controls.Add(this.btnCGEditor);
-            this.groupBox2.Location = new System.Drawing.Point(12, 289);
+            this.groupBox2.Location = new System.Drawing.Point(12, 318);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(289, 106);
             this.groupBox2.TabIndex = 3;
@@ -378,10 +379,11 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox3.Controls.Add(this.btnClassEditor);
+            this.groupBox3.Controls.Add(this.btnCharacterEndingEditor);
             this.groupBox3.Controls.Add(this.btnPortraitEditor);
             this.groupBox3.Location = new System.Drawing.Point(12, 206);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(289, 77);
+            this.groupBox3.Size = new System.Drawing.Size(289, 106);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Classes && Units";
@@ -396,11 +398,21 @@
             this.btnPlay.UseVisualStyleBackColor = true;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
+            // btnCharacterEndingEditor
+            // 
+            this.btnCharacterEndingEditor.Location = new System.Drawing.Point(6, 77);
+            this.btnCharacterEndingEditor.Name = "btnCharacterEndingEditor";
+            this.btnCharacterEndingEditor.Size = new System.Drawing.Size(277, 23);
+            this.btnCharacterEndingEditor.TabIndex = 5;
+            this.btnCharacterEndingEditor.Text = "Character Ending editor";
+            this.btnCharacterEndingEditor.UseVisualStyleBackColor = true;
+            this.btnCharacterEndingEditor.Click += new System.EventHandler(this.btnCharacterEndingEditor_Click);
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(313, 413);
+            this.ClientSize = new System.Drawing.Size(313, 442);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -466,5 +478,6 @@
         private System.Windows.Forms.ToolStripMenuItem btnDebugOptions;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem btnProjectNew;
+        private System.Windows.Forms.Button btnCharacterEndingEditor;
     }
 }

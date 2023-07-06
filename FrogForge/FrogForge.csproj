@@ -135,8 +135,10 @@
     <Compile Include="Datas\BattleAnimationData.cs" />
     <Compile Include="Datas\BattleBackgroundData.cs" />
     <Compile Include="Datas\CGData.cs" />
+    <Compile Include="Datas\CharacterEndingData.cs" />
     <Compile Include="Datas\DebugOptionsData.cs" />
     <Compile Include="Datas\DisplayNamedData.cs" />
+    <Compile Include="Datas\EndingCardData.cs" />
     <Compile Include="Datas\GameSettingsData.cs" />
     <Compile Include="Datas\GenericCharacterVoice.cs" />
     <Compile Include="Datas\GenericPortraitData.cs" />
@@ -153,6 +155,12 @@
     </Compile>
     <Compile Include="Editors\frmCGEditor.Designer.cs">
       <DependentUpon>frmCGEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\frmCharacterEndingEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\frmCharacterEndingEditor.Designer.cs">
+      <DependentUpon>frmCharacterEndingEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Editors\frmDebugOptionsEditor.cs">
       <SubType>Form</SubType>
@@ -251,6 +259,12 @@
     </Compile>
     <Compile Include="UserControls\DataTextBox.Designer.cs">
       <DependentUpon>DataTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EndingCardPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\EndingCardPanel.Designer.cs">
+      <DependentUpon>EndingCardPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\FindAndReplacePanel.cs">
       <SubType>UserControl</SubType>
@@ -408,6 +422,9 @@
     <EmbeddedResource Include="Editors\frmCGEditor.resx">
       <DependentUpon>frmCGEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Editors\frmCharacterEndingEditor.resx">
+      <DependentUpon>frmCharacterEndingEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Editors\frmDebugOptionsEditor.resx">
       <DependentUpon>frmDebugOptionsEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -458,6 +475,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\DataTextBox.resx">
       <DependentUpon>DataTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\EndingCardPanel.resx">
+      <DependentUpon>EndingCardPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\FindAndReplacePanel.resx">
       <DependentUpon>FindAndReplacePanel.cs</DependentUpon>
