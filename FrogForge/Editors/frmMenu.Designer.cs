@@ -64,8 +64,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnMusicEditor = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnPlay = new System.Windows.Forms.Button();
             this.btnCharacterEndingEditor = new System.Windows.Forms.Button();
+            this.btnPlay = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -119,7 +119,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(289, 11);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.6.6.0 06.07.2023";
+            this.lblVersion.Text = "V.0.6.6.1 12.07.2023";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnClassEditor
@@ -388,16 +388,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Classes && Units";
             // 
-            // btnPlay
-            // 
-            this.btnPlay.Location = new System.Drawing.Point(12, 65);
-            this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(289, 23);
-            this.btnPlay.TabIndex = 1;
-            this.btnPlay.Text = "Play";
-            this.btnPlay.UseVisualStyleBackColor = true;
-            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
-            // 
             // btnCharacterEndingEditor
             // 
             this.btnCharacterEndingEditor.Location = new System.Drawing.Point(6, 77);
@@ -407,6 +397,16 @@
             this.btnCharacterEndingEditor.Text = "Character Ending editor";
             this.btnCharacterEndingEditor.UseVisualStyleBackColor = true;
             this.btnCharacterEndingEditor.Click += new System.EventHandler(this.btnCharacterEndingEditor_Click);
+            // 
+            // btnPlay
+            // 
+            this.btnPlay.Location = new System.Drawing.Point(12, 65);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(289, 23);
+            this.btnPlay.TabIndex = 1;
+            this.btnPlay.Text = "Play";
+            this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // frmMenu
             // 
