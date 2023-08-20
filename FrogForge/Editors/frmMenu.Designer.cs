@@ -119,7 +119,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(289, 11);
             this.lblVersion.TabIndex = 4;
-            this.lblVersion.Text = "V.0.6.6.1 12.07.2023";
+            this.lblVersion.Text = "V.1.0.0.0 20.08.2023";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnClassEditor
@@ -394,7 +394,7 @@
             this.btnCharacterEndingEditor.Name = "btnCharacterEndingEditor";
             this.btnCharacterEndingEditor.Size = new System.Drawing.Size(277, 23);
             this.btnCharacterEndingEditor.TabIndex = 5;
-            this.btnCharacterEndingEditor.Text = "Character Ending editor";
+            this.btnCharacterEndingEditor.Text = "Ending editor";
             this.btnCharacterEndingEditor.UseVisualStyleBackColor = true;
             this.btnCharacterEndingEditor.Click += new System.EventHandler(this.btnCharacterEndingEditor_Click);
             // 

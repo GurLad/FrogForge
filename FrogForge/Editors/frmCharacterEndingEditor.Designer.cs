@@ -41,8 +41,15 @@
             this.lstEndingCards = new FrogForge.UserControls.EndingCardsListEditor();
             this.lstCharacterEndings = new FrogForge.UserControls.CharacterEndingJSONBrowser();
             this.grpCards = new System.Windows.Forms.GroupBox();
+            this.tbcMain = new System.Windows.Forms.TabControl();
+            this.tbpCharacters = new System.Windows.Forms.TabPage();
+            this.tbpGlobal = new System.Windows.Forms.TabPage();
+            this.lstGlobalEndings = new FrogForge.UserControls.GlobalEndingsListEditor();
             this.toolStrip1.SuspendLayout();
             this.grpCards.SuspendLayout();
+            this.tbcMain.SuspendLayout();
+            this.tbpCharacters.SuspendLayout();
+            this.tbpGlobal.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -56,7 +63,7 @@
             this.btnImport});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(454, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(464, 25);
             this.toolStrip1.TabIndex = 12;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -117,7 +124,7 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(235, 28);
+            this.txtName.Location = new System.Drawing.Point(223, 0);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(100, 20);
             this.txtName.TabIndex = 25;
@@ -125,7 +132,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(144, 31);
+            this.label3.Location = new System.Drawing.Point(132, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 13);
             this.label3.TabIndex = 24;
@@ -140,48 +147,90 @@
             // 
             // lstCharacterEndings
             // 
-            this.lstCharacterEndings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.lstCharacterEndings.FormattingEnabled = true;
-            this.lstCharacterEndings.Location = new System.Drawing.Point(12, 28);
+            this.lstCharacterEndings.Location = new System.Drawing.Point(0, 0);
             this.lstCharacterEndings.Name = "lstCharacterEndings";
             this.lstCharacterEndings.Size = new System.Drawing.Size(126, 212);
             this.lstCharacterEndings.TabIndex = 13;
             // 
             // grpCards
             // 
-            this.grpCards.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpCards.Controls.Add(this.lstEndingCards);
-            this.grpCards.Location = new System.Drawing.Point(144, 54);
+            this.grpCards.Location = new System.Drawing.Point(132, 26);
             this.grpCards.Name = "grpCards";
             this.grpCards.Size = new System.Drawing.Size(298, 188);
             this.grpCards.TabIndex = 27;
             this.grpCards.TabStop = false;
             this.grpCards.Text = "Possible cards";
             // 
+            // tbcMain
+            // 
+            this.tbcMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbcMain.Controls.Add(this.tbpCharacters);
+            this.tbcMain.Controls.Add(this.tbpGlobal);
+            this.tbcMain.Location = new System.Drawing.Point(12, 28);
+            this.tbcMain.Name = "tbcMain";
+            this.tbcMain.SelectedIndex = 0;
+            this.tbcMain.Size = new System.Drawing.Size(440, 241);
+            this.tbcMain.TabIndex = 28;
+            this.tbcMain.SelectedIndexChanged += new System.EventHandler(this.tbcMain_SelectedIndexChanged);
+            // 
+            // tbpCharacters
+            // 
+            this.tbpCharacters.Controls.Add(this.lstCharacterEndings);
+            this.tbpCharacters.Controls.Add(this.grpCards);
+            this.tbpCharacters.Controls.Add(this.label3);
+            this.tbpCharacters.Controls.Add(this.txtName);
+            this.tbpCharacters.Location = new System.Drawing.Point(4, 22);
+            this.tbpCharacters.Name = "tbpCharacters";
+            this.tbpCharacters.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpCharacters.Size = new System.Drawing.Size(432, 215);
+            this.tbpCharacters.TabIndex = 0;
+            this.tbpCharacters.Text = "Characters";
+            this.tbpCharacters.UseVisualStyleBackColor = true;
+            // 
+            // tbpGlobal
+            // 
+            this.tbpGlobal.Controls.Add(this.lstGlobalEndings);
+            this.tbpGlobal.Location = new System.Drawing.Point(4, 22);
+            this.tbpGlobal.Name = "tbpGlobal";
+            this.tbpGlobal.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpGlobal.Size = new System.Drawing.Size(432, 215);
+            this.tbpGlobal.TabIndex = 1;
+            this.tbpGlobal.Text = "Global";
+            this.tbpGlobal.UseVisualStyleBackColor = true;
+            // 
+            // lstGlobalEndings
+            // 
+            this.lstGlobalEndings.Location = new System.Drawing.Point(0, 0);
+            this.lstGlobalEndings.Name = "lstGlobalEndings";
+            this.lstGlobalEndings.Size = new System.Drawing.Size(286, 231);
+            this.lstGlobalEndings.TabIndex = 0;
+            // 
             // frmCharacterEndingEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 254);
-            this.Controls.Add(this.grpCards);
-            this.Controls.Add(this.txtName);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.lstCharacterEndings);
+            this.ClientSize = new System.Drawing.Size(464, 281);
+            this.Controls.Add(this.tbcMain);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmCharacterEndingEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Character Ending Editor";
+            this.Text = "Ending Editor";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmCharacterEndingEditor_FormClosed);
             this.Load += new System.EventHandler(this.frmCharacterEndingEditor_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.grpCards.ResumeLayout(false);
+            this.tbcMain.ResumeLayout(false);
+            this.tbpCharacters.ResumeLayout(false);
+            this.tbpCharacters.PerformLayout();
+            this.tbpGlobal.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,5 +250,9 @@
         private System.Windows.Forms.Label label3;
         private UserControls.EndingCardsListEditor lstEndingCards;
         private System.Windows.Forms.GroupBox grpCards;
+        private System.Windows.Forms.TabControl tbcMain;
+        private System.Windows.Forms.TabPage tbpCharacters;
+        private System.Windows.Forms.TabPage tbpGlobal;
+        private UserControls.GlobalEndingsListEditor lstGlobalEndings;
     }
 }

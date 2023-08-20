@@ -174,7 +174,7 @@ namespace FrogForge.UserControls
         {
             if (ModifierKeys != Keys.Control)
             {
-                if (!Editor.Dirty)
+                if (!(Editor?.Dirty ?? true))
                 {
                     Editor.Dirty = true;
                 }
