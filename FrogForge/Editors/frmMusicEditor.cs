@@ -133,27 +133,55 @@ namespace FrogForge.Editors
             }
         }
 
-        private void btnNew_Click(object sender, EventArgs e)
+        private async void btnNew_Click(object sender, EventArgs e)
         {
-            // TBA: Add support for mp3/wav
             if (dlgOpen.ShowDialog() == DialogResult.OK)
             {
-                for (int i = 0; i < dlgOpen.FileNames.Length; i++)
+                try
                 {
-                    string fileName = dlgOpen.SafeFileNames[i];
-                    if (System.IO.File.Exists(CurrentDirectory.Path + @"\" + fileName))
+                    Application.UseWaitCursor = true;
+                    //Enabled = false; // Screws with the window for some reason
+                    btnSave.Enabled = btnPlay.Enabled = btnNew.Enabled = btnDelete.Enabled = flbFiles.Enabled = lstMusics.Enabled = btnNewFolder.Enabled = btnDeleteFolder.Enabled = txtInternalName.Enabled = txtName.Enabled = false;
+                    for (int i = 0; i < dlgOpen.FileNames.Length; i++)
                     {
-                        MessageBox.Show("There is already a music file called " + fileName + " in this directory!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        string fileName = dlgOpen.SafeFileNames[i];
+                        if (fileName.ToLower().EndsWith(".mp3") || fileName.ToLower().EndsWith(".wav"))
+                        {
+                            fileName = fileName.Remove(fileName.Length - ".mp3".Length) + ".ogg";
+                            if (System.IO.File.Exists(CurrentDirectory.Path + @"\" + fileName))
+                            {
+                                MessageBox.Show("There is already a music file called " + fileName + " in this directory!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                continue;
+                            }
+                            await FFMpegCore.FFMpegArguments
+                                .FromFileInput(dlgOpen.FileNames[i])
+                                .OutputToFile(CurrentDirectory.Path + @"\" + fileName, true, options => options.
+                                    WithAudioCodec(FFMpegCore.Enums.AudioCodec.LibVorbis))
+                                .ProcessAsynchronously();
+                        }
+                        else if (System.IO.File.Exists(CurrentDirectory.Path + @"\" + fileName))
+                        {
+                            MessageBox.Show("There is already a music file called " + fileName + " in this directory!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            continue;
+                        }
+                        else
+                        {
+                            System.IO.File.Copy(dlgOpen.FileNames[i], CurrentDirectory.Path + @"\" + fileName);
+                        }
+                        fileName = fileName.Replace(".ogg", "");
+                        MusicData newData = new MusicData(fileName, flbFiles.CurrentSubDirectory + @"\" + fileName);
+                        Musics.Add(newData);
+                        Current = newData;
                     }
-                    System.IO.File.Copy(dlgOpen.FileNames[i], CurrentDirectory.Path + @"\" + fileName);
-                    fileName = fileName.Replace(".ogg", "");
-                    MusicData newData = new MusicData(fileName, flbFiles.CurrentSubDirectory + @"\" + fileName);
-                    Musics.Add(newData);
-                    Current = newData;
+                    flbFiles.UpdateList();
+                    Dirty = false;
                 }
-                flbFiles.UpdateList();
-                Dirty = false;
+                finally
+                {
+                    Application.UseWaitCursor = false;
+                    //Enabled = true;
+                    btnNew.Enabled = btnDelete.Enabled = flbFiles.Enabled = lstMusics.Enabled = btnNewFolder.Enabled = btnDeleteFolder.Enabled = txtInternalName.Enabled = txtName.Enabled = true;
+                }
             }
         }
 
