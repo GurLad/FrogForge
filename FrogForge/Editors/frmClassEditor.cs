@@ -31,7 +31,7 @@ namespace FrogForge.Editors
         {
             // Init stuff
             dlgOpen.Filter = "Animated image files|*.gif;*.png";
-            picIcon.Init(dlgOpen, this);
+            picIcon.Init(dlgOpen, this, true);
             cmbClassInclination.SelectedIndex = 0;
             cmbUnitInclination.SelectedIndex = 0;
             string[] battleAnimationModeNames = Enum.GetNames(typeof(BattleAnimationMode));
@@ -62,7 +62,7 @@ namespace FrogForge.Editors
                 this, () => new BattleAnimationData(), () => new BattleAnimationPanel(),
                 (bap) => { bap.Init(dlgOpen, this); bap.SetPreviewPalette(CurrentPreviewPalette, BaseSpritePalettes); }, true,
                 () => btnGenerateBase.Visible = balBattleAnimations.Datas.Count <= 0);
-            picProjectile.Init(dlgOpen, this, null, () => UpdateProjectileIndicator(true));
+            picProjectile.Init(dlgOpen, this, true, null, () => UpdateProjectileIndicator(true));
             ccbUnitClass.Init(this, lstClasses.Data);
             // Fix zoom mode issues
             lstUnitDeathQuotes.Width -= PageWidths[0] - PageWidths[1];

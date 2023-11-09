@@ -12,10 +12,16 @@ namespace FrogForge.UserControls
 {
     public partial class BasePalettedPicturebox<T> : PictureBox where T : PalettedImage
     {
+        // Paint vars
+        public List<PictureBox> Sources = null;
+        public bool Animated;
+        public bool Sprite => PalettePanel?.SpritePalette ?? false;
+        // Everything else
         public Action PostOnClick;
         protected PalettePanel PalettePanel;
         private frmBaseEditor Editor;
         private OpenFileDialog dlgOpen;
+        private frmPaint dlgPaint;
         private Timer tmrAnimate = new Timer();
         private int CurrentFrame;
         private Palette palette;
@@ -54,15 +60,17 @@ namespace FrogForge.UserControls
         private int ImageWidth { get; set; }
         private int ImageHeight { get; set; }
 
-        public void Init(OpenFileDialog dlgOpen, frmBaseEditor editor, PalettePanel palettePanel = null, Action postOnClick = null)
+        public void Init(OpenFileDialog dlgOpen, frmBaseEditor editor, bool animated, PalettePanel palettePanel = null, Action postOnClick = null, List<PictureBox> sources = null)
         {
             MouseUp += OnClick;
             this.dlgOpen = dlgOpen;
             Editor = editor;
+            Animated = animated;
             PalettePanel = palettePanel;
+            PostOnClick = postOnClick;
+            Sources = sources;
             tmrAnimate.Interval = 400;
             tmrAnimate.Tick += tmrAnimateTick;
-            PostOnClick = postOnClick;
             SizeMode = PictureBoxSizeMode.Normal;
             switch (BorderStyle)
             {
@@ -81,38 +89,67 @@ namespace FrogForge.UserControls
                 default:
                     throw new Exception("What?");
             }
+            // Init dlgPaint
+            if (Preferences.Current.UseBuiltInPaint)
+            {
+                dlgPaint = new frmPaint();
+                dlgPaint.Init(new Size(Width, Height), Sources ?? new List<PictureBox>() { this }, Animated,
+                    Palette.GetBaseSpritePalettes(editor.WorkingDirectory));
+            }
         }
 
         private void OnClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                if (dlgOpen.ShowDialog() == DialogResult.OK)
+                if (Preferences.Current.UseBuiltInPaint)
                 {
-                    // Create image
-                    Image source = System.Drawing.Image.FromFile(dlgOpen.FileName).SplitGIF();
-                    // Verify size
-                    if (source.Height != ImageHeight || (source.Width % ImageWidth != 0))
+                    if (dlgPaint.ShowDialog() == DialogResult.OK)
                     {
-                        if (ExtensionMethods.ConfirmDialog("Wrong image size (should be " +ImageWidth + "x" + ImageHeight + ", got " + source.Width + "x" + source.Height + " instead). Continue anyway?", "Warning"))
+                        List<Image> result = dlgPaint.Result;
+                        List<PictureBox> sources = Sources ?? new List<PictureBox>() { this };
+                        for (int i = 0; i < sources.Count; i++)
                         {
-                            source = source.Resize(ImageWidth, ImageHeight);
-                        }
-                        else
-                        {
-                            return;
+                            if (sources[i] is PalettedPicturebox palettedPicturebox)
+                            {
+                                palettedPicturebox.Image = new PalettedImage(result[i]);
+                            }
+                            else if (sources[i] is PartialPalettedPicturebox partialPalettedPicturebox)
+                            {
+                                partialPalettedPicturebox.Image = new PartialPalettedImage(result[i]);
+                            }
                         }
                     }
-                    // Color image
-                    Image = NewT(source);
-                    Image.CurrentPalette = Palette;
-                    Image = Image;
-                    // Set dirty
-                    Editor.Dirty = true;
-                    PostOnClick?.Invoke();
+                }
+                else
+                {
+                    if (dlgOpen.ShowDialog() == DialogResult.OK)
+                    {
+                        // Create image
+                        Image source = System.Drawing.Image.FromFile(dlgOpen.FileName).SplitGIF();
+                        // Verify size
+                        if (source.Height != ImageHeight || (source.Width % ImageWidth != 0))
+                        {
+                            if (ExtensionMethods.ConfirmDialog("Wrong image size (should be " + ImageWidth + "x" + ImageHeight + ", got " + source.Width + "x" + source.Height + " instead). Continue anyway?", "Warning"))
+                            {
+                                source = source.Resize(ImageWidth, ImageHeight);
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                        // Color image
+                        Image = NewT(source);
+                        Image.CurrentPalette = Palette;
+                        Image = Image;
+                        // Set dirty
+                        Editor.Dirty = true;
+                        PostOnClick?.Invoke();
+                    }
                 }
             }
-            else if (e.Button == MouseButtons.Right)
+            else if (e.Button == MouseButtons.Right && Animated)
             {
                 if (tmrAnimate.Enabled)
                 {

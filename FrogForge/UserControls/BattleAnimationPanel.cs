@@ -34,7 +34,7 @@ namespace FrogForge.UserControls
 
         public void Init(OpenFileDialog dlgOpen, frmBaseEditor editor)
         {
-            picAnimation.Init(dlgOpen, editor);
+            picAnimation.Init(dlgOpen, editor, true);
         }
 
         public void SetPreviewPalette(int palette, List<Palette> baseSpritePalettes)

@@ -96,7 +96,7 @@ namespace FrogForge.Editors
             dlgOpenTiles.Multiselect = true;
             (Selected = new Selection(this)).Set(-1);
             lstTilemaps.Init(this, () => new TilesetData(), TilesetDataFromUI, TilesetDataToUI, "Tilesets");
-            picTileImage.Init(dlgOpen, this, plt1); // A bit of a problem, as it can technically change...
+            picTileImage.Init(dlgOpen, this, true, plt1); // A bit of a problem, as it can technically change...
             plt1.Init(this, UpdatePalette);
             plt2.Init(this, UpdatePalette);
             bblBattleBackgrounds.Init(

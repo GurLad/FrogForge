@@ -37,9 +37,9 @@ namespace FrogForge.UserControls
 
         public void Init(OpenFileDialog dlgOpen, frmBaseEditor editor, Func<int, Palette> setPalette, PalettePanel palettePanel1, PalettePanel palettePanel2)
         {
-            picLayer1.Init(dlgOpen, editor, palettePanel1);
+            picLayer1.Init(dlgOpen, editor, true, palettePanel1);
             picLayer1.PostOnClick = () => picLayer1.Palette = setPalette(1);
-            picLayer2.Init(dlgOpen, editor, palettePanel2);
+            picLayer2.Init(dlgOpen, editor, true, palettePanel2);
             picLayer2.PostOnClick = () => picLayer2.Palette = setPalette(2);
             txtTileName.TextChanged += (s, e) => editor.Dirty = true;
         }

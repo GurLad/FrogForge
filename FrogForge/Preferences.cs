@@ -16,6 +16,7 @@ namespace FrogForge
         public Color DarkModeBackColor { get; } = Color.FromArgb(25, 25, 25);
         public bool AutoPaletteImageImports { get; set; }
         public bool ShowEndgameOverrides { get; set; }
+        public bool UseBuiltInPaint { get; set; }
         public bool VoiceAssistAvailable { get; set; }
         public string VoiceAssist { get; set; }
     }

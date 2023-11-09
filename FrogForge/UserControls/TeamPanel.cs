@@ -54,8 +54,8 @@ namespace FrogForge.UserControls
             txtName.TextChanged += dirtyFunc;
             rdbPlayerController.CheckedChanged += dirtyFunc;
             cmbPortraitMode.SelectedIndexChanged += dirtyFunc;
-            picBase.Init(dlgOpen, editor, pltPalette4);
-            picMoved.Init(dlgOpen, editor, pltPalette4);
+            picBase.Init(dlgOpen, editor, false, pltPalette4);
+            picMoved.Init(dlgOpen, editor, false, pltPalette4);
         }
 
         public void UpdatePalette4(Palette palette)

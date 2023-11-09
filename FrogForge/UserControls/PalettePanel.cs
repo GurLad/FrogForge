@@ -60,7 +60,7 @@ namespace FrogForge.UserControls
             GenerateBoxes();
         }
 
-        private void Box_Click(object sender, EventArgs e)
+        protected virtual void Box_Click(object sender, EventArgs e)
         {
             ((PictureBox)sender).BackColor = dlgColorSelector.Dialog(this) ?? ((PictureBox)sender).BackColor;
             OnPaletteChange?.Invoke(Data);
@@ -99,6 +99,7 @@ namespace FrogForge.UserControls
                 {
                     box.Enabled = false;
                 }
+                box.Tag = i;
                 Controls.Add(box);
                 BGPaletteSelectors.Add(box);
             }
