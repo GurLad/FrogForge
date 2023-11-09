@@ -91,6 +91,7 @@ namespace FrogForge.Editors
                     PalettePanels[i].Palette = partialPalettedPicturebox.Palette;
                 }
             }
+            Selection.Layer = 0;
             return base.ShowDialog();
         }
 
@@ -147,6 +148,7 @@ namespace FrogForge.Editors
 
             public void Update()
             {
+                BackgroundImage = null;
                 BackgroundImage = Image.Target;
             }
         }
@@ -180,6 +182,7 @@ namespace FrogForge.Editors
             {
                 BaseSpritePalettes = baseSpritePalettes;
                 Text = "Layer " + (layer + 1);
+                Click += (sender, e) => selectColor(layer, -1);
                 PalettePanel = new SelectablePalettePanel((i) => selectColor(layer, i), sprite);
                 PalettePanel.Init(null, (p) => selectColor(layer, -1));
                 PalettePanel.Location = TOP_LEFT_OFFSET;
@@ -189,11 +192,7 @@ namespace FrogForge.Editors
                 if (Sprite = sprite)
                 {
                     PaletteSelector = new ForegroundPaletteSelector();
-                    PaletteSelector.Init(null, baseSpritePalettes, (p) =>
-                        {
-                            PalettePanel.Data = p;
-                            selectColor(layer, -1);
-                        });
+                    PaletteSelector.Init(null, baseSpritePalettes, (p) => PalettePanel.Data = p);
                     PaletteSelector.Location = TOP_LEFT_OFFSET;
                     PaletteSelector.Width = Width - TOP_LEFT_OFFSET.X - BOTTOM_RIGHT_OFFSET.X;
                     PaletteSelector.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
@@ -203,9 +202,9 @@ namespace FrogForge.Editors
                 Height = PalettePanel.Bottom + BOTTOM_RIGHT_OFFSET.Y;
             }
 
-            public void Select() => Text = Text.Replace(" (Selected)", "");
+            public void Select() => Text = Text.Replace(" (Selected)", "") + " (Selected)";
 
-            public void Unselect() => Text = Text.Replace(" (Selected)", "") + " (Selected)";
+            public void Unselect() => Text = Text.Replace(" (Selected)", "");
 
             private class SelectablePalettePanel : PalettePanel
             {
