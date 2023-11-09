@@ -36,6 +36,8 @@ namespace FrogForge.Editors
             picBG2.Init(dlgOpen, this, false, pltBG2, () => UpdatePreview());
             picFG1.Init(dlgOpen, this, false, null, () => UpdatePreview());
             picFG2.Init(dlgOpen, this, false, null, () => UpdatePreview());
+            picPreview.Init(dlgOpen, this,
+                new List<UserControls.BasePalettedPicturebox>() { picBG1, picBG2, picFG1, picFG2 });
             this.ApplyPreferences();
         }
 

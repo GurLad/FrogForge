@@ -57,7 +57,7 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.picPreview = new System.Windows.Forms.PictureBox();
+            this.picPreview = new UserControls.MultiPalettedPicturebox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnExport = new System.Windows.Forms.ToolStripButton();
             this.btnImport = new System.Windows.Forms.ToolStripButton();
@@ -413,7 +413,7 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private UserControls.PalettedPicturebox picFG1;
         private UserControls.PalettedPicturebox picFG2;
-        private System.Windows.Forms.PictureBox picPreview;
+        private UserControls.MultiPalettedPicturebox picPreview;
         private UserControls.ForegroundPaletteSelector fgpFG1;
         private UserControls.ForegroundPaletteSelector fgpFG2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

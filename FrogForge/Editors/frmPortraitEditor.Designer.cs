@@ -35,7 +35,7 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.picCharactersBG = new FrogForge.UserControls.PalettedPicturebox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.picCharactersPreview = new System.Windows.Forms.PictureBox();
+            this.picCharactersPreview = new FrogForge.UserControls.MultiPalettedPicturebox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.picCharactersFG = new FrogForge.UserControls.PalettedPicturebox();
             this.grpData = new System.Windows.Forms.GroupBox();
@@ -76,7 +76,7 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.picGenericsBG = new FrogForge.UserControls.PalettedPicturebox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.picGenericsPreview = new System.Windows.Forms.PictureBox();
+            this.picGenericsPreview = new FrogForge.UserControls.MultiPalettedPicturebox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.picGenericsFG = new FrogForge.UserControls.PalettedPicturebox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
@@ -771,7 +771,7 @@
         private System.Windows.Forms.ToolStripButton btnSave;
         private System.Windows.Forms.ToolStripButton btnNew;
         private System.Windows.Forms.ToolStripButton btnDelete;
-        private System.Windows.Forms.PictureBox picCharactersPreview;
+        private FrogForge.UserControls.MultiPalettedPicturebox picCharactersPreview;
         private System.Windows.Forms.TabControl tbcMain;
         private System.Windows.Forms.TabPage tbpPortraits;
         private System.Windows.Forms.TabPage tbpGenerics;
@@ -780,7 +780,7 @@
         private System.Windows.Forms.GroupBox groupBox7;
         private FrogForge.UserControls.PalettedPicturebox picGenericsBG;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.PictureBox picGenericsPreview;
+        private FrogForge.UserControls.MultiPalettedPicturebox picGenericsPreview;
         private System.Windows.Forms.GroupBox groupBox9;
         private FrogForge.UserControls.PalettedPicturebox picGenericsFG;
         private System.Windows.Forms.GroupBox groupBox10;

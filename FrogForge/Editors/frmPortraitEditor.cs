@@ -34,9 +34,11 @@ namespace FrogForge.Editors
             picCharactersBG.Init(dlgOpen, this, false, pltCharactersBGPalette);
             picCharactersFG.Init(dlgOpen, this, false);
             picCharactersBG.PostOnClick = picCharactersFG.PostOnClick = UpdateCharacterPreview;
+            picCharactersPreview.Init(dlgOpen, this, new List<UserControls.BasePalettedPicturebox>() { picCharactersBG, picCharactersFG });
             picGenericsBG.Init(dlgOpen, this, false, new UserControls.PalettePanel()); // So that auto-palettes won't think it's a sprite one
             picGenericsFG.Init(dlgOpen, this, false);
             picGenericsBG.PostOnClick = picGenericsFG.PostOnClick = UpdateGenericPreview;
+            picGenericsPreview.Init(dlgOpen, this, new List<UserControls.BasePalettedPicturebox>() { picGenericsBG, picGenericsFG });
             // Init base
             lstCharacters.Init(this, () => new PortraitData(), CharacterDataFromUI, CharacterDataToUI, "Portraits");
             lstGenerics.Init(this, () => new GenericPortraitData(), GenericDataFromUI, GenericDataToUI, "GenericPortraits");

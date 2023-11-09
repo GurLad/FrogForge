@@ -15,7 +15,7 @@ namespace FrogForge.Editors
     {
         public List<Image> Result => new List<Image>() { pnlPaintScreenHolder.BackgroundImage };
         public Size Resolution { private get; set; }
-        public List<PictureBox> Sources { private get; set; }
+        public List<BasePalettedPicturebox> Sources { private get; set; }
         public bool Animated { private get; set; }
         private List<Palette> BaseSpritePalettes;
 
@@ -24,7 +24,7 @@ namespace FrogForge.Editors
             InitializeComponent();
         }
 
-        public void Init(Size resolution, List<PictureBox> sources, bool animated, List<Palette> baseSpritePalettes)
+        public void Init(Size resolution, List<BasePalettedPicturebox> sources, bool animated, List<Palette> baseSpritePalettes)
         {
             Resolution = resolution;
             Sources = sources;
