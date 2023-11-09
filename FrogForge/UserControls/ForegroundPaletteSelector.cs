@@ -57,5 +57,11 @@ namespace FrogForge.UserControls
                 Editor.Dirty = true;
             }
         }
+
+        public void Set(int index)
+        {
+            trkFGPalette.Value = index;
+            trkFGPalette_Scroll(null, null);
+        }
     }
 }

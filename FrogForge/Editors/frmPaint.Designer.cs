@@ -38,6 +38,7 @@
             this.btnImport = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnPencilTool = new System.Windows.Forms.ToolStripButton();
+            this.pnlPalettes = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,11 +122,19 @@
             this.btnPencilTool.Size = new System.Drawing.Size(23, 22);
             this.btnPencilTool.Text = "toolStripButton1";
             // 
+            // pnlPalettes
+            // 
+            this.pnlPalettes.Location = new System.Drawing.Point(556, 29);
+            this.pnlPalettes.Name = "pnlPalettes";
+            this.pnlPalettes.Size = new System.Drawing.Size(232, 409);
+            this.pnlPalettes.TabIndex = 13;
+            // 
             // frmPaint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pnlPalettes);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.pnlPaintScreenHolder);
             this.Name = "frmPaint";
@@ -150,5 +159,6 @@
         private System.Windows.Forms.ToolStripButton btnImport;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btnPencilTool;
+        private System.Windows.Forms.Panel pnlPalettes;
     }
 }

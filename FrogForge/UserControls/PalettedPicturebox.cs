@@ -108,7 +108,7 @@ namespace FrogForge.UserControls
 
     public partial class BaseSinglePalettedPicturebox<T> : BasePalettedPicturebox where T : PalettedImage
     {
-        public override bool Sprite => PalettePanel?.SpritePalette ?? false;
+        public override bool Sprite => PalettePanel?.SpritePalette ?? true;
         // Everything else
         protected PalettePanel PalettePanel;
         private Timer tmrAnimate = new Timer();

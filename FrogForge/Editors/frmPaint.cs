@@ -18,6 +18,7 @@ namespace FrogForge.Editors
         public List<BasePalettedPicturebox> Sources { private get; set; }
         public bool Animated { private get; set; }
         private List<Palette> BaseSpritePalettes;
+        private List<DrawingPalettePanel> palettePanels = new List<DrawingPalettePanel>();
 
         public frmPaint()
         {
@@ -31,9 +32,10 @@ namespace FrogForge.Editors
             Animated = animated;
             BaseSpritePalettes = baseSpritePalettes;
             // Generate controls
+            int top = 0;
             for (int i = 0; i < Sources.Count; i++)
             {
-                DrawingPalettePanel palettePanel;
+                DrawingPalettePanel palettePanel = null;
                 if (Sources[i] is PalettedPicturebox palettedPicturebox)
                 {
                     palettePanel = new DrawingPalettePanel(palettedPicturebox.Sprite, i, SetColor, BaseSpritePalettes);
@@ -42,7 +44,32 @@ namespace FrogForge.Editors
                 {
                     palettePanel = new DrawingPalettePanel(partialPalettedPicturebox.Sprite, i, SetColor, BaseSpritePalettes);
                 }
+                else
+                {
+                    throw new Exception("Impossible!");
+                }
+                palettePanel.Width = pnlPalettes.Width;
+                palettePanel.Top = top;
+                palettePanels.Add(palettePanel);
+                pnlPalettes.Controls.Add(palettePanel);
+                top += palettePanel.Height + 6;
             }
+        }
+
+        public new DialogResult ShowDialog()
+        {
+            for (int i = 0; i < Sources.Count; i++)
+            {
+                if (Sources[i] is PalettedPicturebox palettedPicturebox)
+                {
+                    palettePanels[i].SetPalette(palettedPicturebox.Palette);
+                }
+                else if (Sources[i] is PartialPalettedPicturebox partialPalettedPicturebox)
+                {
+                    palettePanels[i].SetPalette(partialPalettedPicturebox.Palette);
+                }
+            }
+            return base.ShowDialog();
         }
 
         private void SetColor(int id, int index)
@@ -66,27 +93,47 @@ namespace FrogForge.Editors
         {
             private static readonly Point TOP_LEFT_OFFSET = new Point(7, 20);
             private static readonly Point BOTTOM_RIGHT_OFFSET = new Point(200 - 187 - 7, 100 - 20 - 74);
+            private bool Sprite;
+            private List<Palette> BaseSpritePalettes;
+            private SelectablePalettePanel PalettePanel;
+            private ForegroundPaletteSelector PaletteSelector;
 
             public DrawingPalettePanel(bool sprite, int id, Action<int, int> selectColor, List<Palette> baseSpritePalettes) : base()
             {
+                BaseSpritePalettes = baseSpritePalettes;
                 Text = "Layer " + (id + 1);
-                SelectablePalettePanel palettePanel = new SelectablePalettePanel((i) => selectColor(id, i), sprite);
-                palettePanel.Init(null, (p) => selectColor(id, -1));
-                palettePanel.Location = TOP_LEFT_OFFSET;
-                palettePanel.Width = Width - TOP_LEFT_OFFSET.X - BOTTOM_RIGHT_OFFSET.X;
-                palettePanel.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
-                if (sprite)
+                PalettePanel = new SelectablePalettePanel((i) => selectColor(id, i), sprite);
+                PalettePanel.Init(null, (p) => selectColor(id, -1));
+                PalettePanel.Location = TOP_LEFT_OFFSET;
+                PalettePanel.Width = Width - TOP_LEFT_OFFSET.X - BOTTOM_RIGHT_OFFSET.X;
+                PalettePanel.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+                Controls.Add(PalettePanel);
+                if (Sprite = sprite)
                 {
-                    ForegroundPaletteSelector paletteSelector = new ForegroundPaletteSelector();
-                    paletteSelector.Init(null, baseSpritePalettes, (p) =>
+                    PaletteSelector = new ForegroundPaletteSelector();
+                    PaletteSelector.Init(null, baseSpritePalettes, (p) =>
                         {
-                            palettePanel.Data = p;
+                            PalettePanel.Data = p;
                             selectColor(id, -1);
                         });
-                    paletteSelector.Location = TOP_LEFT_OFFSET;
-                    paletteSelector.Width = Width - TOP_LEFT_OFFSET.X - BOTTOM_RIGHT_OFFSET.X;
-                    paletteSelector.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
-                    palettePanel.Top += paletteSelector.Height;
+                    PaletteSelector.Location = TOP_LEFT_OFFSET;
+                    PaletteSelector.Width = Width - TOP_LEFT_OFFSET.X - BOTTOM_RIGHT_OFFSET.X;
+                    PaletteSelector.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+                    Controls.Add(PaletteSelector);
+                    PalettePanel.Top += PaletteSelector.Height + BOTTOM_RIGHT_OFFSET.Y;
+                }
+                Height = PalettePanel.Bottom + BOTTOM_RIGHT_OFFSET.Y;
+            }
+
+            public void SetPalette(Palette palette)
+            {
+                if (Sprite)
+                {
+                    PaletteSelector.Set(Math.Max(0, BaseSpritePalettes.FindIndex(a => a[1] == palette[1])));
+                }
+                else
+                {
+                    PalettePanel.Data = palette;
                 }
             }
 
