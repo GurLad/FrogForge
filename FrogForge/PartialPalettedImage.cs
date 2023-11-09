@@ -51,6 +51,33 @@ namespace FrogForge
             return result;
         }
 
+        public override void UpdateIndexes(List<Point> indexes, int newColor)
+        {
+            indexes.ForEach(a =>
+            {
+                if (Indexes[a.X, a.Y] != newColor)
+                {
+                    Indexes[a.X, a.Y] = newColor;
+                    int i = a.X / 8, j = a.Y / 8;
+                    if (TransparentBlocks[i, j])
+                    {
+                        TransparentBlocks[i, j] = false;
+                        for (int k = 0; k < 8; k++)
+                        {
+                            for (int l = 0; l < 8; l++)
+                            {
+                                Target.SetPixel(i * 8 + k, j * 8 + l, CurrentPalette[Indexes[i * 8 + k, j * 8 + l]]);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Target.SetPixel(a.X, a.Y, CurrentPalette[newColor]);
+                    }
+                }
+            });
+        }
+
         protected override void UpdatePalette()
         {
             for (int i = 0; i < Target.Width / 8; i++)

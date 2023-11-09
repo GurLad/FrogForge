@@ -39,13 +39,14 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnPencilTool = new System.Windows.Forms.ToolStripButton();
             this.pnlPalettes = new System.Windows.Forms.Panel();
+            this.pnlPaintViewport = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlPaintScreenHolder
             // 
             this.pnlPaintScreenHolder.BackColor = System.Drawing.Color.Black;
-            this.pnlPaintScreenHolder.Location = new System.Drawing.Point(12, 28);
+            this.pnlPaintScreenHolder.Location = new System.Drawing.Point(159, 71);
             this.pnlPaintScreenHolder.Name = "pnlPaintScreenHolder";
             this.pnlPaintScreenHolder.Size = new System.Drawing.Size(248, 171);
             this.pnlPaintScreenHolder.TabIndex = 0;
@@ -129,6 +130,18 @@
             this.pnlPalettes.Size = new System.Drawing.Size(232, 409);
             this.pnlPalettes.TabIndex = 13;
             // 
+            // pnlPaintViewport
+            // 
+            this.pnlPaintViewport.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlPaintViewport.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pnlPaintViewport.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPaintViewport.Location = new System.Drawing.Point(12, 29);
+            this.pnlPaintViewport.Name = "pnlPaintViewport";
+            this.pnlPaintViewport.Size = new System.Drawing.Size(538, 304);
+            this.pnlPaintViewport.TabIndex = 14;
+            // 
             // frmPaint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -137,6 +150,7 @@
             this.Controls.Add(this.pnlPalettes);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.pnlPaintScreenHolder);
+            this.Controls.Add(this.pnlPaintViewport);
             this.Name = "frmPaint";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Paint";
@@ -160,5 +174,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btnPencilTool;
         private System.Windows.Forms.Panel pnlPalettes;
+        private System.Windows.Forms.Panel pnlPaintViewport;
     }
 }

@@ -159,7 +159,7 @@ namespace FrogForge.UserControls
             if (Preferences.Current.UseBuiltInPaint)
             {
                 dlgPaint = new frmPaint();
-                dlgPaint.Init(new Size(Width, Height), new List<BasePalettedPicturebox>() { this }, Animated,
+                dlgPaint.Init(new Size(ImageWidth, ImageHeight), new List<BasePalettedPicturebox>() { this }, Animated,
                     Palette.GetBaseSpritePalettes(editor.WorkingDirectory));
             }
         }
@@ -288,7 +288,7 @@ namespace FrogForge.UserControls
             if (Preferences.Current.UseBuiltInPaint)
             {
                 dlgPaint = new frmPaint();
-                dlgPaint.Init(new Size(Width, Height), Sources, Animated,
+                dlgPaint.Init(new Size(ImageWidth, ImageHeight), Sources, Animated,
                     Palette.GetBaseSpritePalettes(editor.WorkingDirectory));
             }
         }

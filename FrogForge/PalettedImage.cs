@@ -67,6 +67,18 @@ namespace FrogForge
             return target;
         }
 
+        public virtual void UpdateIndexes(List<Point> indexes, int newColor)
+        {
+            indexes.ForEach(a =>
+            {
+                if (Indexes[a.X, a.Y] != newColor)
+                {
+                    Indexes[a.X, a.Y] = newColor;
+                    Target.SetPixel(a.X, a.Y, CurrentPalette[newColor]);
+                }
+            });
+        }
+
         protected virtual void UpdatePalette()
         {
             for (int i = 0; i < Target.Width; i++)
