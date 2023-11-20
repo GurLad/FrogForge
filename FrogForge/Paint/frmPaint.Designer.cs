@@ -1,4 +1,4 @@
-﻿namespace FrogForge.Editors
+﻿namespace FrogForge.Paint
 {
     partial class frmPaint
     {

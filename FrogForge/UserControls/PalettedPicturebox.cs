@@ -19,7 +19,7 @@ namespace FrogForge.UserControls
         // Everything else
         public Action PostOnClick;
         protected OpenFileDialog dlgOpen;
-        protected frmPaint dlgPaint;
+        protected Paint.frmPaint dlgPaint;
         protected frmBaseEditor Editor;
         protected int ImageWidth { get; set; }
         protected int ImageHeight { get; set; }
@@ -158,7 +158,7 @@ namespace FrogForge.UserControls
             // Init dlgPaint
             if (Preferences.Current.UseBuiltInPaint)
             {
-                dlgPaint = new frmPaint();
+                dlgPaint = new Paint.frmPaint();
                 dlgPaint.Init(new Size(ImageWidth, ImageHeight), new List<BasePalettedPicturebox>() { this }, Animated,
                     Palette.GetBaseSpritePalettes(editor.WorkingDirectory));
             }
@@ -287,7 +287,7 @@ namespace FrogForge.UserControls
             // Init dlgPaint
             if (Preferences.Current.UseBuiltInPaint)
             {
-                dlgPaint = new frmPaint();
+                dlgPaint = new Paint.frmPaint();
                 dlgPaint.Init(new Size(ImageWidth, ImageHeight), Sources, Animated,
                     Palette.GetBaseSpritePalettes(editor.WorkingDirectory));
             }

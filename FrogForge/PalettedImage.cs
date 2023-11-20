@@ -79,6 +79,8 @@ namespace FrogForge
             });
         }
 
+        public void UpdateIndexes(Point index, int newColor) => UpdateIndexes(new List<Point>() { index }, newColor);
+
         protected virtual void UpdatePalette()
         {
             for (int i = 0; i < Target.Width; i++)

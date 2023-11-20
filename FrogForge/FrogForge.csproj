@@ -187,10 +187,18 @@
     <Compile Include="Editors\frmMusicEditor.Designer.cs">
       <DependentUpon>frmMusicEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editors\frmPaint.cs">
+    <Compile Include="Paint\DrawingPalettePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Paint\DrawingPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Paint\DrawingTools\ADrawingTool.cs" />
+    <Compile Include="Paint\DrawingTools\DTPencil.cs" />
+    <Compile Include="Paint\frmPaint.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Editors\frmPaint.Designer.cs">
+    <Compile Include="Paint\frmPaint.Designer.cs">
       <DependentUpon>frmPaint.cs</DependentUpon>
     </Compile>
     <Compile Include="Editors\frmPreferences.cs">
@@ -456,7 +464,7 @@
     <EmbeddedResource Include="Editors\frmMusicEditor.resx">
       <DependentUpon>frmMusicEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Editors\frmPaint.resx">
+    <EmbeddedResource Include="Paint\frmPaint.resx">
       <DependentUpon>frmPaint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\frmPreferences.resx">
