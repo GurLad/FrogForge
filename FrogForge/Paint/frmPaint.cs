@@ -24,6 +24,23 @@ namespace FrogForge.Paint
         private Point PreviousMousePos = new Point(-1, -1);
         private SelectionClass Selection;
         private ADrawingTool SelectedTool;
+        private int _zoomAmount = 1;
+        private int ZoomAmount
+        {
+            get => _zoomAmount;
+            set
+            {
+                _zoomAmount = value.Clamp(1, 8);
+                this.BeginControlUpdate();
+                pnlPaintScreenHolder.Size = ZoomedResolution + new Size(2, 2);
+                pnlPaintScreenHolder.Location = new Point(
+                    (pnlPaintViewport.Width - pnlPaintScreenHolder.Width) / 2,
+                    (pnlPaintViewport.Height - pnlPaintScreenHolder.Height) / 2);
+                DrawingPanels.ForEach(a => a.Size = pnlPaintScreenHolder.Size - new Size(2, 2));
+                this.EndControlUpdate();
+            }
+        }
+        private Size ZoomedResolution => new Size(Resolution.Width * ZoomAmount, Resolution.Height * ZoomAmount);
 
         public frmPaint()
         {
@@ -70,6 +87,7 @@ namespace FrogForge.Paint
                 panel.Height = pnlPaintScreenHolder.Height - 2;
                 panel.Anchor = (AnchorStyles)15;
                 panel.BackColor = Color.Transparent;
+                panel.BackgroundImageLayout = ImageLayout.Zoom;
                 panel.MouseDown += DrawingPanelMouseDown;
                 panel.MouseMove += DrawingPanelMouseMove;
                 panel.MouseUp += DrawingPanelMouseUp;
@@ -79,6 +97,7 @@ namespace FrogForge.Paint
             }
             // Init misc
             Selection = new SelectionClass(PalettePanels);
+            MouseWheel += frmPaint_MouseWheel;
             // TEMP
             SelectedTool = new DTPencil();
         }
@@ -99,6 +118,7 @@ namespace FrogForge.Paint
                 }
             }
             Selection.Layer = 0;
+            ZoomAmount = (int)Preferences.Current.ZoomAmount;
             return base.ShowDialog();
         }
 
@@ -121,12 +141,20 @@ namespace FrogForge.Paint
             DialogResult = DialogResult.OK;
         }
 
+        private void frmPaint_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta != 0)
+            {
+                ZoomAmount += Math.Sign(e.Delta);
+            }
+        }
+
         private void DrawingPanelMouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 // TBA: Zoom support
-                Point mousePos = DrawingPanels[Selection.Layer].PointToClient(Cursor.Position);
+                Point mousePos = ConvertedMousePos(Cursor.Position);
                 SelectedTool.Press(DrawingPanels[Selection.Layer], Selection.Index, mousePos);
                 PreviousMousePos = mousePos;
             }
@@ -137,7 +165,7 @@ namespace FrogForge.Paint
             if (e.Button == MouseButtons.Left)
             {
                 // TBA: Zoom support
-                Point mousePos = DrawingPanels[Selection.Layer].PointToClient(Cursor.Position);
+                Point mousePos = ConvertedMousePos(Cursor.Position);
                 SelectedTool.Move(DrawingPanels[Selection.Layer], Selection.Index, mousePos, PreviousMousePos);
                 PreviousMousePos = mousePos;
             }
@@ -148,10 +176,16 @@ namespace FrogForge.Paint
             if (e.Button == MouseButtons.Left)
             {
                 // TBA: Zoom support
-                Point mousePos = DrawingPanels[Selection.Layer].PointToClient(Cursor.Position);
+                Point mousePos = ConvertedMousePos(Cursor.Position);
                 SelectedTool.Release(DrawingPanels[Selection.Layer], Selection.Index, mousePos);
                 PreviousMousePos = mousePos;
             }
+        }
+
+        private Point ConvertedMousePos(Point cursorPos)
+        {
+            cursorPos = DrawingPanels[Selection.Layer].PointToClient(cursorPos);
+            return new Point((cursorPos.X / ZoomAmount).Clamp(0, Resolution.Width - 1), (cursorPos.Y / ZoomAmount).Clamp(0, Resolution.Height - 1));
         }
 
         private class SelectionClass
@@ -172,6 +206,11 @@ namespace FrogForge.Paint
             public int Index;
 
             public SelectionClass(List<DrawingPalettePanel> palettePanels) => PalettePanels = palettePanels;
+        }
+
+        private void frmPaint_SizeChanged(object sender, EventArgs e)
+        {
+            ZoomAmount = ZoomAmount;
         }
     }
 }

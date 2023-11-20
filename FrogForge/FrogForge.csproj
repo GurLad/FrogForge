@@ -232,6 +232,7 @@
     <Compile Include="frmWorkProgress.Designer.cs">
       <DependentUpon>frmWorkProgress.cs</DependentUpon>
     </Compile>
+    <Compile Include="Paint\PaintExtensions.cs" />
     <Compile Include="PartialPalettedImage.cs" />
     <Compile Include="Datas\TeamData.cs" />
     <Compile Include="Datas\TileData.cs" />

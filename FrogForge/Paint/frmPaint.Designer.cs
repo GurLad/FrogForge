@@ -41,12 +41,13 @@
             this.pnlPalettes = new System.Windows.Forms.Panel();
             this.pnlPaintViewport = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
+            this.pnlPaintViewport.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlPaintScreenHolder
             // 
             this.pnlPaintScreenHolder.BackColor = System.Drawing.Color.Black;
-            this.pnlPaintScreenHolder.Location = new System.Drawing.Point(159, 71);
+            this.pnlPaintScreenHolder.Location = new System.Drawing.Point(150, 49);
             this.pnlPaintScreenHolder.Name = "pnlPaintScreenHolder";
             this.pnlPaintScreenHolder.Size = new System.Drawing.Size(248, 171);
             this.pnlPaintScreenHolder.TabIndex = 0;
@@ -125,6 +126,8 @@
             // 
             // pnlPalettes
             // 
+            this.pnlPalettes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlPalettes.Location = new System.Drawing.Point(556, 29);
             this.pnlPalettes.Name = "pnlPalettes";
             this.pnlPalettes.Size = new System.Drawing.Size(232, 409);
@@ -137,6 +140,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlPaintViewport.BackColor = System.Drawing.SystemColors.ControlDark;
             this.pnlPaintViewport.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPaintViewport.Controls.Add(this.pnlPaintScreenHolder);
             this.pnlPaintViewport.Location = new System.Drawing.Point(12, 29);
             this.pnlPaintViewport.Name = "pnlPaintViewport";
             this.pnlPaintViewport.Size = new System.Drawing.Size(538, 304);
@@ -149,14 +153,15 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.pnlPalettes);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.pnlPaintScreenHolder);
             this.Controls.Add(this.pnlPaintViewport);
             this.Name = "frmPaint";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Paint";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPaint_FormClosed);
+            this.SizeChanged += new System.EventHandler(this.frmPaint_SizeChanged);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.pnlPaintViewport.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
