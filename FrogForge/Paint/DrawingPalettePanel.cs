@@ -78,7 +78,7 @@ namespace FrogForge.Paint
             {
                 if (e is MouseEventArgs mouseArgs)
                 {
-                    if (mouseArgs.Button == MouseButtons.Right && !LockColors)
+                    if (mouseArgs.Button == MouseButtons.Right && !LockColors && (int)((PictureBox)sender).Tag != (SpritePalette ? 3 : 0))
                     {
                         base.Box_Click(sender, e);
                     }
@@ -87,6 +87,12 @@ namespace FrogForge.Paint
                         SelectColor((int)((PictureBox)sender).Tag);
                     }
                 }
+            }
+
+            protected override void GenerateBoxes()
+            {
+                base.GenerateBoxes();
+                BGPaletteSelectors.ForEach(a => a.Enabled = true);
             }
         }
     }

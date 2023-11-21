@@ -203,6 +203,11 @@ namespace FrogForge.Paint
             return new Point((cursorPos.X / ZoomAmount), (cursorPos.Y / ZoomAmount));
         }
 
+        private void frmPaint_SizeChanged(object sender, EventArgs e)
+        {
+            ZoomAmount = ZoomAmount;
+        }
+
         private class SelectionClass
         {
             private List<DrawingPalettePanel> PalettePanels = new List<DrawingPalettePanel>();
@@ -221,11 +226,6 @@ namespace FrogForge.Paint
             public int Index;
 
             public SelectionClass(List<DrawingPalettePanel> palettePanels) => PalettePanels = palettePanels;
-        }
-
-        private void frmPaint_SizeChanged(object sender, EventArgs e)
-        {
-            ZoomAmount = ZoomAmount;
         }
     }
 }

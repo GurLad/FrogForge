@@ -39,8 +39,8 @@ namespace FrogForge.UserControls
         [EditorBrowsable(EditorBrowsableState.Always)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool SpritePalette { get; set; } = false;
+        protected List<PictureBox> BGPaletteSelectors;
         private frmBaseEditor Editor;
-        private List<PictureBox> BGPaletteSelectors;
         private Action<Palette> OnPaletteChange;
 
         public PalettePanel()
@@ -75,7 +75,7 @@ namespace FrogForge.UserControls
             GenerateBoxes();
         }
 
-        private void GenerateBoxes()
+        protected virtual void GenerateBoxes()
         {
             Controls.Clear();
             BGPaletteSelectors = new List<PictureBox>(4);
@@ -91,11 +91,8 @@ namespace FrogForge.UserControls
                 box.Size = new Size(boxSize, Height);
                 box.BorderStyle = BorderStyle.Fixed3D;
                 box.BackColor = Palette.BasePalette[i];
-                if (i != (SpritePalette ? 3 : 0)) // Sprites can modify the Black color, because I misread how NES palettes work initially
-                {
-                    box.Click += Box_Click;
-                }
-                else
+                box.Click += Box_Click;
+                if (i == (SpritePalette ? 3 : 0)) // Sprites can modify the Black color, because I misread how NES palettes work initially
                 {
                     box.Enabled = false;
                 }
