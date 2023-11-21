@@ -153,7 +153,6 @@ namespace FrogForge.Paint
         {
             if (e.Button == MouseButtons.Left)
             {
-                // TBA: Zoom support
                 Point mousePos = ConvertedMousePos(Cursor.Position);
                 SelectedTool.Press(DrawingPanels[Selection.Layer], Selection.Index, mousePos);
                 PreviousMousePos = mousePos;
@@ -164,7 +163,6 @@ namespace FrogForge.Paint
         {
             if (e.Button == MouseButtons.Left)
             {
-                // TBA: Zoom support
                 Point mousePos = ConvertedMousePos(Cursor.Position);
                 SelectedTool.Move(DrawingPanels[Selection.Layer], Selection.Index, mousePos, PreviousMousePos);
                 PreviousMousePos = mousePos;
@@ -175,7 +173,6 @@ namespace FrogForge.Paint
         {
             if (e.Button == MouseButtons.Left)
             {
-                // TBA: Zoom support
                 Point mousePos = ConvertedMousePos(Cursor.Position);
                 SelectedTool.Release(DrawingPanels[Selection.Layer], Selection.Index, mousePos);
                 PreviousMousePos = mousePos;
@@ -185,7 +182,7 @@ namespace FrogForge.Paint
         private Point ConvertedMousePos(Point cursorPos)
         {
             cursorPos = DrawingPanels[Selection.Layer].PointToClient(cursorPos);
-            return new Point((cursorPos.X / ZoomAmount).Clamp(0, Resolution.Width - 1), (cursorPos.Y / ZoomAmount).Clamp(0, Resolution.Height - 1));
+            return new Point((cursorPos.X / ZoomAmount), (cursorPos.Y / ZoomAmount));
         }
 
         private class SelectionClass

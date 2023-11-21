@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +45,21 @@ namespace FrogForge.Paint
             window.DefWndProc(ref msgResumeUpdate);
             control.Invalidate();
             control.Refresh();
+        }
+
+        public static double Dist(this Point point1, Point point2)
+        {
+            return Math.Sqrt(Math.Pow(point1.X - point2.X, 2) + Math.Pow(point1.Y - point2.Y, 2));
+        }
+
+        public static int TileDist(this Point point1, Point point2)
+        {
+            return Math.Abs(point1.X - point2.X) + Math.Abs(point1.Y - point2.Y);
+        }
+
+        public static int MaxDist(this Point point1, Point point2)
+        {
+            return Math.Max(Math.Abs(point1.X - point2.X), Math.Abs(point1.Y - point2.Y));
         }
     }
 }

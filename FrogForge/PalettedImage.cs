@@ -71,7 +71,7 @@ namespace FrogForge
         {
             indexes.ForEach(a =>
             {
-                if (Indexes[a.X, a.Y] != newColor)
+                if (a.X >= 0 && a.Y >= 0 && a.X < Target.Width && a.Y < Target.Height && Indexes[a.X, a.Y] != newColor)
                 {
                     Indexes[a.X, a.Y] = newColor;
                     Target.SetPixel(a.X, a.Y, CurrentPalette[newColor]);
