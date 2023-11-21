@@ -15,7 +15,7 @@ namespace FrogForge.Paint
 {
     public partial class frmPaint : Form
     {
-        public List<Image> Result => new List<Image>() { pnlPaintScreenHolder.BackgroundImage };
+        public List<PalettedImage> Result => DrawingPanels.ConvertAll(a => a.Image);
         public Size Resolution { private get; set; }
         public List<BasePalettedPicturebox> Sources { private get; set; }
         public bool Animated { private get; set; }

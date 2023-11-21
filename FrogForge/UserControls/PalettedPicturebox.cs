@@ -79,17 +79,24 @@ namespace FrogForge.UserControls
         {
             if (dlgPaint.ShowDialog() == DialogResult.OK)
             {
-                List<Image> result = dlgPaint.Result;
+                List<PalettedImage> result = dlgPaint.Result;
                 List<BasePalettedPicturebox> sources = Sources ?? new List<BasePalettedPicturebox>() { this };
                 for (int i = 0; i < sources.Count; i++)
                 {
                     if (sources[i] is PalettedPicturebox palettedPicturebox)
                     {
-                        palettedPicturebox.Image = new PalettedImage(result[i]);
+                        palettedPicturebox.Image = result[i];
                     }
                     else if (sources[i] is PartialPalettedPicturebox partialPalettedPicturebox)
                     {
-                        partialPalettedPicturebox.Image = new PartialPalettedImage(result[i]);
+                        if (result[i] is PartialPalettedImage partialPalettedImage)
+                        {
+                            partialPalettedPicturebox.Image = partialPalettedImage;
+                        }
+                        else
+                        {
+                            throw new Exception("Impossible!");
+                        }
                     }
                     else
                     {
