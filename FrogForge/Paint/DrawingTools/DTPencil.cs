@@ -53,6 +53,10 @@ namespace FrogForge.Paint.DrawingTools
 
         private List<Point> Resize(List<Point> sources)
         {
+            if (size <= 1 + EPSILON)
+            {
+                return sources;
+            }
             List<Point> result = new List<Point>();
             sources.ForEach(a => result.AddRange(Resize(a)));
             return result.Distinct().ToList();

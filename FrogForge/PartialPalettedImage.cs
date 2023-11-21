@@ -55,7 +55,7 @@ namespace FrogForge
         {
             indexes.ForEach(a =>
             {
-                if (Indexes[a.X, a.Y] != newColor)
+                if (ValidPos(a) && Indexes[a.X, a.Y] != newColor)
                 {
                     Indexes[a.X, a.Y] = newColor;
                     int i = a.X / 8, j = a.Y / 8;

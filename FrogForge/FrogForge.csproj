@@ -193,7 +193,11 @@
     <Compile Include="Paint\DrawingPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Paint\DrawingToolstripItems\ADrawingToolstripItem.cs" />
+    <Compile Include="Paint\DrawingToolstripItems\DTIDrawingTool.cs" />
+    <Compile Include="Paint\DrawingToolstripItems\DTISeperator.cs" />
     <Compile Include="Paint\DrawingTools\ADrawingTool.cs" />
+    <Compile Include="Paint\DrawingTools\DTFill.cs" />
     <Compile Include="Paint\DrawingTools\DTPencil.cs" />
     <Compile Include="Paint\frmPaint.cs">
       <SubType>Form</SubType>

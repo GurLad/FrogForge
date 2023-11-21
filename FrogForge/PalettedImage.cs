@@ -71,7 +71,7 @@ namespace FrogForge
         {
             indexes.ForEach(a =>
             {
-                if (a.X >= 0 && a.Y >= 0 && a.X < Target.Width && a.Y < Target.Height && Indexes[a.X, a.Y] != newColor)
+                if (ValidPos(a) && Indexes[a.X, a.Y] != newColor)
                 {
                     Indexes[a.X, a.Y] = newColor;
                     Target.SetPixel(a.X, a.Y, CurrentPalette[newColor]);
@@ -80,6 +80,14 @@ namespace FrogForge
         }
 
         public void UpdateIndexes(Point index, int newColor) => UpdateIndexes(new List<Point>() { index }, newColor);
+
+        public int GetIndex(int x, int y) { if (ValidPos(x, y)) return Indexes[x, y]; return -1; }
+
+        public int GetIndex(Point point) => GetIndex(point.X, point.Y);
+
+        protected bool ValidPos(int x, int y) => x >= 0 && y >= 0 && x < Target.Width && y < Target.Height;
+
+        protected bool ValidPos(Point point) => ValidPos(point.X, point.Y);
 
         protected virtual void UpdatePalette()
         {

@@ -1,4 +1,5 @@
 ﻿using FrogForge.Paint.DrawingTools;
+using FrogForge.Paint.DrawingToolstripItems;
 using FrogForge.UserControls;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace FrogForge.Paint
         private List<DrawingPanel> DrawingPanels = new List<DrawingPanel>();
         private Point PreviousMousePos = new Point(-1, -1);
         private SelectionClass Selection;
-        private ADrawingTool SelectedTool;
+        private DTIDrawingTool SelectedTool;
         private int _zoomAmount = 1;
         private int ZoomAmount
         {
@@ -53,6 +54,15 @@ namespace FrogForge.Paint
             Sources = sources;
             Animated = animated;
             BaseSpritePalettes = baseSpritePalettes;
+            // Generate drawint tool bar controls
+            List<ADrawingToolstripItem> drawingToolstripItems = new List<ADrawingToolstripItem>()
+            {
+                new DTIDrawingTool(SetDrawingTool, "Pencil", Properties.Resources.Palette, new DTPencil()),
+                new DTIDrawingTool(SetDrawingTool, "Fill", Properties.Resources.Palette, new DTFill()),
+            };
+            drawingToolstripItems.ForEach(a => tlsDrawingToolstrip.Items.Add(a.Control));
+            // Select the first one (pencil probably)
+            SetDrawingTool((DTIDrawingTool)drawingToolstripItems.Find(a => a is DTIDrawingTool));
             // Generate side-bar controls
             int top = 0;
             for (int i = 0; i < Sources.Count; i++)
@@ -98,8 +108,6 @@ namespace FrogForge.Paint
             // Init misc
             Selection = new SelectionClass(PalettePanels);
             MouseWheel += frmPaint_MouseWheel;
-            // TEMP
-            SelectedTool = new DTPencil();
         }
 
         public new DialogResult ShowDialog()
@@ -136,6 +144,16 @@ namespace FrogForge.Paint
             }
         }
 
+        private void SetDrawingTool(DTIDrawingTool drawingTool)
+        {
+            if (SelectedTool != null)
+            {
+                SelectedTool.Button.Checked = false;
+            }
+            SelectedTool = drawingTool;
+            SelectedTool.Button.Checked = true;
+        }
+
         private void frmPaint_FormClosed(object sender, FormClosedEventArgs e)
         {
             DialogResult = DialogResult.OK;
@@ -154,7 +172,7 @@ namespace FrogForge.Paint
             if (e.Button == MouseButtons.Left)
             {
                 Point mousePos = ConvertedMousePos(Cursor.Position);
-                SelectedTool.Press(DrawingPanels[Selection.Layer], Selection.Index, mousePos);
+                SelectedTool.Tool.Press(DrawingPanels[Selection.Layer], Selection.Index, mousePos);
                 PreviousMousePos = mousePos;
             }
         }
@@ -164,7 +182,7 @@ namespace FrogForge.Paint
             if (e.Button == MouseButtons.Left)
             {
                 Point mousePos = ConvertedMousePos(Cursor.Position);
-                SelectedTool.Move(DrawingPanels[Selection.Layer], Selection.Index, mousePos, PreviousMousePos);
+                SelectedTool.Tool.Move(DrawingPanels[Selection.Layer], Selection.Index, mousePos, PreviousMousePos);
                 PreviousMousePos = mousePos;
             }
         }
@@ -174,7 +192,7 @@ namespace FrogForge.Paint
             if (e.Button == MouseButtons.Left)
             {
                 Point mousePos = ConvertedMousePos(Cursor.Position);
-                SelectedTool.Release(DrawingPanels[Selection.Layer], Selection.Index, mousePos);
+                SelectedTool.Tool.Release(DrawingPanels[Selection.Layer], Selection.Index, mousePos);
                 PreviousMousePos = mousePos;
             }
         }
