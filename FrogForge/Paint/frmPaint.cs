@@ -22,6 +22,7 @@ namespace FrogForge.Paint
         private List<Palette> BaseSpritePalettes;
         private List<DrawingPalettePanel> PalettePanels = new List<DrawingPalettePanel>();
         private List<DrawingPanel> DrawingPanels = new List<DrawingPanel>();
+        private List<ADrawingToolstripItem> DrawingToolstripItems;
         private Point PreviousMousePos = new Point(-1, -1);
         private SelectionClass Selection;
         private DTIDrawingTool SelectedTool;
@@ -55,23 +56,23 @@ namespace FrogForge.Paint
             Animated = animated;
             BaseSpritePalettes = baseSpritePalettes;
             // Generate drawint tool bar controls
-            List<ADrawingToolstripItem> drawingToolstripItems = new List<ADrawingToolstripItem>()
+            DrawingToolstripItems = new List<ADrawingToolstripItem>()
             {
-                new DTISingleAction("Flip", Properties.Resources.Palette, () =>
+                new DTISingleAction("Flip", Properties.Resources.Palette, null, () =>
                     DrawingPanels.ForEach(a => { a.Image.Flip(true); a.Render(); })),
-                new DTISingleAction("Mirror", Properties.Resources.Palette, () =>
+                new DTISingleAction("Mirror", Properties.Resources.Palette, null, () =>
                     DrawingPanels.ForEach(a => { a.Image.Flip(false); a.Render(); })),
-                new DTISingleAction("Rotate Clockwise", Properties.Resources.Palette, () =>
+                new DTISingleAction("Rotate Clockwise", Properties.Resources.Palette, Keys.R, () =>
                     DrawingPanels.ForEach(a => { a.Image.Rotate(true); a.Render(); })),
-                new DTISingleAction("Rotate Counter-clockwise", Properties.Resources.Palette, () =>
+                new DTISingleAction("Rotate Counter-clockwise", Properties.Resources.Palette, Keys.L, () =>
                     DrawingPanels.ForEach(a => { a.Image.Rotate(false); a.Render(); })),
                 new DTISeperator(),
-                new DTIDrawingTool("Pencil", Properties.Resources.Palette, SetDrawingTool, new DTPencil()),
-                new DTIDrawingTool("Fill", Properties.Resources.Palette, SetDrawingTool, new DTFill())
+                new DTIDrawingTool("Pencil", Properties.Resources.Palette, Keys.B, SetDrawingTool, new DTPencil()),
+                new DTIDrawingTool("Fill", Properties.Resources.Palette, Keys.F, SetDrawingTool, new DTFill())
             };
-            drawingToolstripItems.ForEach(a => tlsDrawingToolstrip.Items.Add(a.Control));
+            DrawingToolstripItems.ForEach(a => tlsDrawingToolstrip.Items.Add(a.Control));
             // Select the first one (pencil probably)
-            SetDrawingTool((DTIDrawingTool)drawingToolstripItems.Find(a => a is DTIDrawingTool));
+            SetDrawingTool((DTIDrawingTool)DrawingToolstripItems.Find(a => a is DTIDrawingTool));
             // Generate side-bar controls
             int top = 0;
             for (int i = 0; i < Sources.Count; i++)
@@ -117,6 +118,7 @@ namespace FrogForge.Paint
             // Init misc
             Selection = new SelectionClass(PalettePanels);
             MouseWheel += frmPaint_MouseWheel;
+            KeyPreview = true;
         }
 
         public new DialogResult ShowDialog()
@@ -235,6 +237,14 @@ namespace FrogForge.Paint
             public int Index;
 
             public SelectionClass(List<DrawingPalettePanel> palettePanels) => PalettePanels = palettePanels;
+        }
+
+        private void frmPaint_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (ModifierKeys == Keys.Control)
+            {
+                DrawingToolstripItems.Find(a => a.MatchesHotkey(e.KeyCode))?.Interact?.Invoke();
+            }
         }
     }
 }

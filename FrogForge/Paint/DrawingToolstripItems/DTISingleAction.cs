@@ -12,12 +12,14 @@ namespace FrogForge.Paint.DrawingToolstripItems
     {
         public ToolStripButton Button { get; private set; }
 
-        public DTISingleAction(string name, Image icon, Action action)
+        public DTISingleAction(string name, Image icon, Keys? hotkey, Action action)
+            : base(hotkey)
         {
             Button = new ToolStripButton();
             Button.Image = icon;
-            Button.ToolTipText = name;
+            Button.ToolTipText = name + HotkeyString;
             Button.Click += (s, e) => action();
+            Interact = action;
         }
 
         protected override ToolStripItem Render()

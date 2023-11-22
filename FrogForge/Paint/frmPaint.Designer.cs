@@ -146,6 +146,7 @@
             this.Text = "Paint";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPaint_FormClosed);
             this.SizeChanged += new System.EventHandler(this.frmPaint_SizeChanged);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPaint_KeyDown);
             this.tlsDrawingToolstrip.ResumeLayout(false);
             this.tlsDrawingToolstrip.PerformLayout();
             this.pnlPaintViewport.ResumeLayout(false);
