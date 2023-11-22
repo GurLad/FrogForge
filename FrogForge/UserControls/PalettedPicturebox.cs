@@ -103,6 +103,8 @@ namespace FrogForge.UserControls
                         throw new Exception("Impossible!");
                     }
                 }
+                // Set dirty
+                Editor.Dirty = true;
                 return true;
             }
             return false;

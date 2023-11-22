@@ -9,40 +9,46 @@ namespace FrogForge.Paint.DrawingTools
 {
     public class DTFill : ADrawingTool
     {
-        public override void Move(DrawingPanel layer, int colorIndex, Point mousePos, Point previousPos)
+        public override void Move(List<DrawingPanel> layers, int layer, int colorIndex, Point mousePos, Point previousPos)
         {
             // Do nothing
         }
 
-        public override void Press(DrawingPanel layer, int colorIndex, Point mousePos)
+        public override void Press(List<DrawingPanel> layers, int layer, int colorIndex, Point mousePos)
         {
             // Do nothing
         }
 
-        public override void Release(DrawingPanel layer, int colorIndex, Point mousePos)
+        public override void Release(List<DrawingPanel> layers, int layer, int colorIndex, Point mousePos)
         {
-            Fill(layer.Image, colorIndex, mousePos);
-            layer.Render();
+            Fill(layers.ConvertAll(a => a.Image), layer, colorIndex, mousePos);
+            layers.FindAll((a, i) => i >= layer).ForEach(a => a.Render());
         }
 
-        private void Fill(PalettedImage image, int fillColor, Point pos, int? originColor = null)
+        private void Fill(List<PalettedImage> layers, int layer, int fillColor, Point pos)
         {
-            originColor = originColor ?? image.GetIndex(pos);
-            if (originColor == fillColor || originColor < 0)
+            void FillInner(Point current, List<int> originColors)
             {
-                return;
-            }
-            image.UpdateIndexes(pos, fillColor);
-            for (int i = -1; i <= 1; i++)
-            {
-                for (int j = -1; j <= 1; j++)
+                layers.ForEach((a, i) => a.UpdateIndexes(current, i == layer ? fillColor : 3), layer);
+                for (int i = -1; i <= 1; i++)
                 {
-                    if (i != j && (i == 0 || j == 0) && image.GetIndex(pos.X + i, pos.Y + j) == originColor)
+                    for (int j = -1; j <= 1; j++)
                     {
-                        Fill(image, fillColor, new Point(pos.X + i, pos.Y + j), originColor);
+                        if (i != j && (i == 0 || j == 0) &&
+                            layers.FindIndex((a, k) => a.GetIndex(current.X + i, current.Y + j) != originColors[k], layer) < 0)
+                        {
+                            FillInner(new Point(current.X + i, current.Y + j), originColors);
+                        }
                     }
                 }
             }
+
+            List<int> originColorsTemp = layers.ConvertAll(a => a.GetIndex(pos));
+            if (originColorsTemp[layer] == fillColor || originColorsTemp[layer] < 0)
+            {
+                return;
+            }
+            FillInner(pos, originColorsTemp);
         }
     }
 }

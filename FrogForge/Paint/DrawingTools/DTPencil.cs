@@ -12,21 +12,29 @@ namespace FrogForge.Paint.DrawingTools
         private const float EPSILON = 1e-6f;
         private float size { get; set; } = 1;
 
-        public override void Move(DrawingPanel layer, int colorIndex, Point mousePos, Point previousPos)
+        public override void Move(List<DrawingPanel> layers, int layer, int colorIndex, Point mousePos, Point previousPos)
         {
-            layer.Image.UpdateIndexes(Resize(GetLine(previousPos, mousePos)), colorIndex);
-            layer.Render();
+            Paint(layers, layer, Resize(GetLine(previousPos, mousePos)), colorIndex);
         }
 
-        public override void Press(DrawingPanel layer, int colorIndex, Point mousePos)
+        public override void Press(List<DrawingPanel> layers, int layer, int colorIndex, Point mousePos)
         {
-            layer.Image.UpdateIndexes(Resize(mousePos), colorIndex);
-            layer.Render();
+            Paint(layers, layer, Resize(mousePos), colorIndex);
         }
 
-        public override void Release(DrawingPanel layer, int colorIndex, Point mousePos)
+        public override void Release(List<DrawingPanel> layers, int layer, int colorIndex, Point mousePos)
         {
             // Do nothing
+        }
+
+        private void Paint(List<DrawingPanel> layers, int layer, List<Point> points, int colorIndex)
+        {
+            // Zero all layers above it
+            for (int i = layer; i < layers.Count; i++)
+            {
+                layers[i].Image.UpdateIndexes(points, i == layer ? colorIndex : 3);
+                layers[i].Render();
+            }
         }
 
         private List<Point> Resize(Point source)

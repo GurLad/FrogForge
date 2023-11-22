@@ -285,5 +285,50 @@ namespace FrogForge
             else if (val.CompareTo(max) > 0) return max;
             else return val;
         }
+
+        public static T Find<T>(this List<T> list, Func<T, int, bool> predicate, int startIndex = 0)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (predicate(list[i], i))
+                {
+                    return list[i];
+                }
+            }
+            return default;
+        }
+
+        public static List<T> FindAll<T>(this List<T> list, Func<T, int, bool> predicate, int startIndex = 0)
+        {
+            List<T> result = new List<T>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (predicate(list[i], i))
+                {
+                    result.Add(list[i]);
+                }
+            }
+            return result;
+        }
+
+        public static int FindIndex<T>(this List<T> list, Func<T, int, bool> predicate, int startIndex = 0)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (predicate(list[i], i))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        public static void ForEach<T>(this List<T> list, Action<T, int> action, int startIndex = 0)
+        {
+            for (int i = startIndex; i < list.Count; i++)
+            {
+                action(list[i], i);
+            }
+        }
     }
 }

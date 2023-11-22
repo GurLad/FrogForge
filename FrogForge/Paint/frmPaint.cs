@@ -116,12 +116,12 @@ namespace FrogForge.Paint
             {
                 if (Sources[i] is PalettedPicturebox palettedPicturebox)
                 {
-                    DrawingPanels[i].Image = palettedPicturebox.Image;
+                    DrawingPanels[i].Image = palettedPicturebox.Image.Clone();
                     PalettePanels[i].Palette = palettedPicturebox.Palette;
                 }
                 else if (Sources[i] is PartialPalettedPicturebox partialPalettedPicturebox)
                 {
-                    DrawingPanels[i].Image = partialPalettedPicturebox.Image;
+                    DrawingPanels[i].Image = partialPalettedPicturebox.Image.Clone();
                     PalettePanels[i].Palette = partialPalettedPicturebox.Palette;
                 }
             }
@@ -172,7 +172,7 @@ namespace FrogForge.Paint
             if (e.Button == MouseButtons.Left)
             {
                 Point mousePos = ConvertedMousePos(Cursor.Position);
-                SelectedTool.Tool.Press(DrawingPanels[Selection.Layer], Selection.Index, mousePos);
+                SelectedTool.Tool.Press(DrawingPanels, Selection.Layer, Selection.Index, mousePos);
                 PreviousMousePos = mousePos;
             }
         }
@@ -182,7 +182,7 @@ namespace FrogForge.Paint
             if (e.Button == MouseButtons.Left)
             {
                 Point mousePos = ConvertedMousePos(Cursor.Position);
-                SelectedTool.Tool.Move(DrawingPanels[Selection.Layer], Selection.Index, mousePos, PreviousMousePos);
+                SelectedTool.Tool.Move(DrawingPanels, Selection.Layer, Selection.Index, mousePos, PreviousMousePos);
                 PreviousMousePos = mousePos;
             }
         }
@@ -192,7 +192,7 @@ namespace FrogForge.Paint
             if (e.Button == MouseButtons.Left)
             {
                 Point mousePos = ConvertedMousePos(Cursor.Position);
-                SelectedTool.Tool.Release(DrawingPanels[Selection.Layer], Selection.Index, mousePos);
+                SelectedTool.Tool.Release(DrawingPanels, Selection.Layer, Selection.Index, mousePos);
                 PreviousMousePos = mousePos;
             }
         }
