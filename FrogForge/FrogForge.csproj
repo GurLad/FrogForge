@@ -196,6 +196,7 @@
     <Compile Include="Paint\DrawingToolstripItems\ADrawingToolstripItem.cs" />
     <Compile Include="Paint\DrawingToolstripItems\DTIDrawingTool.cs" />
     <Compile Include="Paint\DrawingToolstripItems\DTISeperator.cs" />
+    <Compile Include="Paint\DrawingToolstripItems\DTISingleAction.cs" />
     <Compile Include="Paint\DrawingTools\ADrawingTool.cs" />
     <Compile Include="Paint\DrawingTools\DTFill.cs" />
     <Compile Include="Paint\DrawingTools\DTPencil.cs" />

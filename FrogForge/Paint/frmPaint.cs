@@ -57,8 +57,17 @@ namespace FrogForge.Paint
             // Generate drawint tool bar controls
             List<ADrawingToolstripItem> drawingToolstripItems = new List<ADrawingToolstripItem>()
             {
-                new DTIDrawingTool(SetDrawingTool, "Pencil", Properties.Resources.Palette, new DTPencil()),
-                new DTIDrawingTool(SetDrawingTool, "Fill", Properties.Resources.Palette, new DTFill()),
+                new DTISingleAction("Flip", Properties.Resources.Palette, () =>
+                    DrawingPanels.ForEach(a => { a.Image.Flip(true); a.Render(); })),
+                new DTISingleAction("Mirror", Properties.Resources.Palette, () =>
+                    DrawingPanels.ForEach(a => { a.Image.Flip(false); a.Render(); })),
+                new DTISingleAction("Rotate Clockwise", Properties.Resources.Palette, () =>
+                    DrawingPanels.ForEach(a => { a.Image.Rotate(true); a.Render(); })),
+                new DTISingleAction("Rotate Counter-clockwise", Properties.Resources.Palette, () =>
+                    DrawingPanels.ForEach(a => { a.Image.Rotate(false); a.Render(); })),
+                new DTISeperator(),
+                new DTIDrawingTool("Pencil", Properties.Resources.Palette, SetDrawingTool, new DTPencil()),
+                new DTIDrawingTool("Fill", Properties.Resources.Palette, SetDrawingTool, new DTFill())
             };
             drawingToolstripItems.ForEach(a => tlsDrawingToolstrip.Items.Add(a.Control));
             // Select the first one (pencil probably)
@@ -96,7 +105,7 @@ namespace FrogForge.Paint
                 panel.Width = pnlPaintScreenHolder.Width - 2;
                 panel.Height = pnlPaintScreenHolder.Height - 2;
                 panel.Anchor = (AnchorStyles)15;
-                panel.BackColor = Color.Transparent;
+                panel.BackColor = i == 0 ? Color.FromArgb(60, 60, 60) : Color.Transparent;
                 panel.BackgroundImageLayout = ImageLayout.Zoom;
                 panel.MouseDown += DrawingPanelMouseDown;
                 panel.MouseMove += DrawingPanelMouseMove;

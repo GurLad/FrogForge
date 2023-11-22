@@ -85,6 +85,44 @@ namespace FrogForge
 
         public int GetIndex(Point point) => GetIndex(point.X, point.Y);
 
+        public void Rotate(bool clockwise)
+        {
+            int[,] newIndexes = new int[Target.Size.Width, Target.Size.Height];
+            for (int i = 0; i < Target.Width; i++)
+            {
+                for (int j = 0; j < Target.Height; j++)
+                {
+                    newIndexes[i, j] = clockwise ? Indexes[j, Target.Width - i - 1] : Indexes[Target.Height - j - 1, i];
+                }
+            }
+            for (int i = 0; i < Target.Width; i++)
+            {
+                for (int j = 0; j < Target.Height; j++)
+                {
+                    UpdateIndexes(new Point(i, j), newIndexes[i, j]);
+                }
+            }
+        }
+
+        public void Flip(bool vertical)
+        {
+            int[,] newIndexes = new int[Target.Size.Width, Target.Size.Height];
+            for (int i = 0; i < Target.Width; i++)
+            {
+                for (int j = 0; j < Target.Height; j++)
+                {
+                    newIndexes[i, j] = vertical ? Indexes[i, Target.Height - j - 1] : Indexes[Target.Width - i - 1, j];
+                }
+            }
+            for (int i = 0; i < Target.Width; i++)
+            {
+                for (int j = 0; j < Target.Height; j++)
+                {
+                    UpdateIndexes(new Point(i, j), newIndexes[i, j]);
+                }
+            }
+        }
+
         protected bool ValidPos(int x, int y) => x >= 0 && y >= 0 && x < Target.Width && y < Target.Height;
 
         protected bool ValidPos(Point point) => ValidPos(point.X, point.Y);

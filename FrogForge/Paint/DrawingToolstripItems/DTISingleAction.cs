@@ -1,5 +1,4 @@
-﻿using FrogForge.Paint.DrawingTools;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -9,19 +8,16 @@ using System.Windows.Forms;
 
 namespace FrogForge.Paint.DrawingToolstripItems
 {
-    public class DTIDrawingTool : ADrawingToolstripItem
+    public class DTISingleAction : ADrawingToolstripItem
     {
-        public ADrawingTool Tool { get; private set; }
         public ToolStripButton Button { get; private set; }
 
-        public DTIDrawingTool(string name, Image icon, Action<DTIDrawingTool> setDrawingTool, ADrawingTool drawingTool)
+        public DTISingleAction(string name, Image icon, Action action)
         {
-            Tool = drawingTool;
             Button = new ToolStripButton();
             Button.Image = icon;
             Button.ToolTipText = name;
-            //Button.CheckOnClick = true;
-            Button.Click += (s, e) => setDrawingTool(this);
+            Button.Click += (s, e) => action();
         }
 
         protected override ToolStripItem Render()
